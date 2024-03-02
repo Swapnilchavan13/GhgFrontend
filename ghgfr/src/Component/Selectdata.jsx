@@ -79,7 +79,7 @@ export const Selectdata = () => {
     if (selectedItem) {
       return (
         <div className='container'>
-          <h3>All Data for Selected Item:</h3>
+          <h3>All Data for Selected Information:</h3>
           <p>Name: {selectedItem.Name}</p>
           <p>Country: {selectedItem.Country}</p>
           <p>Brand: {selectedItem.Brand}</p>
