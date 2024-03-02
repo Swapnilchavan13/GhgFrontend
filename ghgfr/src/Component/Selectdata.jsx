@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/select.css';
 
 export const Selectdata = () => {
   const [data, setData] = useState([]);
@@ -77,7 +78,7 @@ export const Selectdata = () => {
     const selectedItem = data.find(item => item.Name === selectedName && item.Country === selectedCountry && item.Brand === selectedBrand && item.Type === selectedType);
     if (selectedItem) {
       return (
-        <div>
+        <div className='container'>
           <h3>All Data for Selected Item:</h3>
           <p>Name: {selectedItem.Name}</p>
           <p>Country: {selectedItem.Country}</p>
@@ -98,7 +99,7 @@ export const Selectdata = () => {
   };
 
   return (
-    <div>
+    <div className='container2'>
       <h2>Selected Data</h2>
 
       <label>Select Name:</label>
@@ -154,7 +155,6 @@ export const Selectdata = () => {
           <p>Country: {selectedCountry}</p>
           <p>Brand: {selectedBrand}</p>
           <p>Type: {selectedType}</p> */}
-
           {renderDynamicFields()}
         </div>
       )}
@@ -164,14 +164,15 @@ export const Selectdata = () => {
       <label>Enter Distance Travelled (in kilometers):</label>
       <input type="number" value={distance} onChange={handleDistanceChange} />
 
-      <button onClick={calculateTotalEmission}>Calculate Total Emission</button>
-
       {totalEmission !== null && (
         <div>
           <h3>Total Emission:</h3>
-          <p>{totalEmission}</p>
+          <h3>{totalEmission}</h3>
         </div>
       )}
+      <button onClick={calculateTotalEmission}>Calculate Total Emission</button>
+
+     
     </div>
   );
 };
