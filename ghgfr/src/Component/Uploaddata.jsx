@@ -38,7 +38,7 @@ const Uploaddata = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/addData', {
+      const response = await fetch('http://62.72.59.146:8080/addData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
