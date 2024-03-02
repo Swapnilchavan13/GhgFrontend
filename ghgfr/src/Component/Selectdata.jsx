@@ -167,7 +167,7 @@ export const Selectdata = () => {
       {totalEmission !== null && (
         <div>
           <h3>Total Emission:</h3>
-          <h3>{totalEmission}</h3>
+          <p>{totalEmission}</p>
         </div>
       )}
       <button onClick={calculateTotalEmission}>Calculate Total Emission</button>
