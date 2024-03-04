@@ -74,9 +74,9 @@ const Uploaddata = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Scope</option>
-                  <option value="Group 1">Scope 1</option>
-                  <option value="Group 2">Scope 2</option>
-                  <option value="Group 3">Scope 3</option>
+                  <option value="Scope 1">Scope 1</option>
+                  <option value="Scope 2">Scope 2</option>
+                  <option value="Scope 3">Scope 3</option>
                 </select>
               </div>
             ) : (
