@@ -5,6 +5,7 @@ export const Demoselect = () => {
   const [rows, setRows] = useState(createInitialRows());
   const [result, setResult] = useState(null);
   const [localStorageData, setLocalStorageData] = useState(getDataFromLocalStorage());
+  const [isSorted, setIsSorted] = useState(false); // Track whether data is sorted or not
 
   useEffect(() => {
     fetchData();
@@ -94,10 +95,27 @@ export const Demoselect = () => {
     setResult(totalFootprints);
   };
 
+  const sortData = () => {
+    const sortedRows = [...rows].sort((a, b) => {
+      if (isSorted) {
+        // Sort from low to high
+        return (a.result || 0) - (b.result || 0);
+      } else {
+        // Sort from high to low
+        return (b.result || 0) - (a.result || 0);
+      }
+    });
+    setRows(sortedRows);
+    setIsSorted(!isSorted); // Toggle sorting order
+  };
+
 
   return (
     <div>
       <h1>Selected Data</h1>
+      <button onClick={sortData}>
+        {isSorted ? 'RESULT Sort (Low to High)' : 'RESULT Sort (High to Low)'}
+      </button>
       <table>
         <thead>
           <tr>
