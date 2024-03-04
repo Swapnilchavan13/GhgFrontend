@@ -113,8 +113,8 @@ export const Demoselect = () => {
   return (
     <div>
       <h1>Selected Data</h1>
-      <button onClick={sortData}>
-        {isSorted ? 'RESULT Sort (Low to High)' : 'RESULT Sort (High to Low)'}
+      <button style={{backgroundColor:'black'}} onClick={sortData}>
+        {isSorted ? 'Result Sort (Low to High)' : 'Result Sort (High to Low)'}
       </button>
       <table>
         <thead>
