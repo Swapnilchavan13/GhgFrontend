@@ -15,7 +15,7 @@ function App() {
       <Routes>
           <Route path="upload" element={<Uploaddata />} />
           <Route path="see" element={<Seendelete />} />
-          <Route path="select" element={<Selectdata />} />
+          {/* <Route path="select" element={<Selectdata />} /> */}
           <Route path="demo" element={<Demoselect />} />
 
       </Routes>

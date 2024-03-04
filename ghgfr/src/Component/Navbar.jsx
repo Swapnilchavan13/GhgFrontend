@@ -11,12 +11,12 @@ export const Navbar = () => {
       <Link to='see' className="nav-link">
         <h3>All Data</h3>
       </Link>
-      <Link to='select' className="nav-link">
+      {/* <Link to='select' className="nav-link">
         <h3>Select Data</h3>
-      </Link>
+      </Link> */}
       
       <Link to='demo' className="nav-link">
-        <h3>Demo select</h3>
+        <h3>Select Data</h3>
       </Link>
     </div>
   );
