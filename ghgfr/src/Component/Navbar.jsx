@@ -14,6 +14,10 @@ export const Navbar = () => {
       <Link to='select' className="nav-link">
         <h3>Select Data</h3>
       </Link>
+      
+      <Link to='demo' className="nav-link">
+        <h3>Demo select</h3>
+      </Link>
     </div>
   );
 };

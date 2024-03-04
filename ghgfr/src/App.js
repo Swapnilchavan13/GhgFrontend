@@ -5,6 +5,7 @@ import { Seendelete } from './Component/Seendelete';
 import { Selectdata } from './Component/Selectdata';
 import Uploaddata from './Component/Uploaddata';
 import { Navbar } from './Component/Navbar';
+import { Demoselect } from './Component/Demoselect';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route path="upload" element={<Uploaddata />} />
           <Route path="see" element={<Seendelete />} />
           <Route path="select" element={<Selectdata />} />
+          <Route path="demo" element={<Demoselect />} />
+
       </Routes>
     </BrowserRouter>
      

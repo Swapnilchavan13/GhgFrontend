@@ -1,4 +1,4 @@
-/* select.css */ 
+/* select.css 
   .container2 {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -43,4 +43,26 @@
   button:hover {
     background-color: #0056b3;
   }
+   */
+
+   .container2 {
+    /* Add your existing styles here */
+  
+    /* Additional styles for horizontal layout */
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  /* Add any other styles as needed */
   

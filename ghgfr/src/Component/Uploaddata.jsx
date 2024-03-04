@@ -66,17 +66,17 @@ const Uploaddata = () => {
           <div style={{ display: fieldName === "dynamicFields" ? 'none' : 'block' }} key={fieldName}>
             {fieldName === 'Group' ? (
               <div>
-                <label htmlFor={fieldName}>{fieldName}:</label>
+                <label htmlFor={fieldName}>Scope:</label>
                 <select
                   id={fieldName}
                   name={fieldName}
                   value={formData[fieldName]}
                   onChange={handleChange}
                 >
-                  <option value="">Select {fieldName}</option>
-                  <option value="Group 1">Group 1</option>
-                  <option value="Group 2">Group 2</option>
-                  <option value="Group 3">Group 3</option>
+                  <option value="">Select Scope</option>
+                  <option value="Group 1">Scope 1</option>
+                  <option value="Group 2">Scope 2</option>
+                  <option value="Group 3">Scope 3</option>
                 </select>
               </div>
             ) : (

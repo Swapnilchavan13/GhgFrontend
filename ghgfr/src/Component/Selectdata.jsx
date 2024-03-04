@@ -102,67 +102,78 @@ export const Selectdata = () => {
     <div className='container2'>
       <h2>Selected Data</h2>
 
-      <label>Select Name:</label>
-      <select onChange={handleNameChange} value={selectedName}>
-        <option value="">Select a name</option>
-        {data.map(item => (
-          <option key={item._id} value={item.Name}>
-            {item.Name}
-          </option>
-        ))}
-      </select>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label>Select Name:</label>
+              <select onChange={handleNameChange} value={selectedName}>
+                <option value="">Select a name</option>
+                {data.map(item => (
+                  <option key={item._id} value={item.Name}>
+                    {item.Name}
+                  </option>
+                ))}
+              </select>
+            </td>
 
-      <label>Select Country:</label>
-      <select onChange={handleCountryChange} value={selectedCountry}>
-        <option value="">Select a country</option>
-        {data
-          .filter(item => item.Name === selectedName)
-          .map(item => (
-            <option key={item._id} value={item.Country}>
-              {item.Country}
-            </option>
-          ))}
-      </select>
+            <td>
+              <label>Select Country:</label>
+              <select onChange={handleCountryChange} value={selectedCountry}>
+                <option value="">Select a country</option>
+                {data
+                  .filter(item => item.Name === selectedName)
+                  .map(item => (
+                    <option key={item._id} value={item.Country}>
+                      {item.Country}
+                    </option>
+                  ))}
+              </select>
+            </td>
 
-      <label>Select Brand:</label>
-      <select onChange={handleBrandChange} value={selectedBrand}>
-        <option value="">Select a brand</option>
-        {data
-          .filter(item => item.Name === selectedName && item.Country === selectedCountry)
-          .map(item => (
-            <option key={item._id} value={item.Brand}>
-              {item.Brand}
-            </option>
-          ))}
-      </select>
+            <td>
+              <label>Select Brand:</label>
+              <select onChange={handleBrandChange} value={selectedBrand}>
+                <option value="">Select a brand</option>
+                {data
+                  .filter(item => item.Name === selectedName && item.Country === selectedCountry)
+                  .map(item => (
+                    <option key={item._id} value={item.Brand}>
+                      {item.Brand}
+                    </option>
+                  ))}
+              </select>
+            </td>
 
-      <label>Select Type:</label>
-      <select onChange={handleTypeChange} value={selectedType}>
-        <option value="">Select a type</option>
-        {data
-          .filter(item => item.Name === selectedName && item.Country === selectedCountry && item.Brand === selectedBrand)
-          .map(item => (
-            <option key={item._id} value={item.Type}>
-              {item.Type}
-            </option>
-          ))}
-      </select>
+            <td>
+              <label>Select Type:</label>
+              <select onChange={handleTypeChange} value={selectedType}>
+                <option value="">Select a type</option>
+                {data
+                  .filter(item => item.Name === selectedName && item.Country === selectedCountry && item.Brand === selectedBrand)
+                  .map(item => (
+                    <option key={item._id} value={item.Type}>
+                      {item.Type}
+                    </option>
+                  ))}
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       {selectedName && (
         <div>
-          {/* <h3>Selected Item Details:</h3>
-          <p>Name: {selectedName}</p>
-          <p>Country: {selectedCountry}</p>
-          <p>Brand: {selectedBrand}</p>
-          <p>Type: {selectedType}</p> */}
           {renderDynamicFields()}
         </div>
       )}
 
       {renderAllData()}
 
-      <label>Enter Distance Travelled (in kilometers):</label>
-      <input type="number" value={distance} onChange={handleDistanceChange} />
+      <div className="form-group">
+        <label>Enter Distance Travelled (in kilometers):</label>
+        <input type="number" value={distance} onChange={handleDistanceChange} />
+      </div>
 
       {totalEmission !== null && (
         <div>
@@ -171,8 +182,6 @@ export const Selectdata = () => {
         </div>
       )}
       <button onClick={calculateTotalEmission}>Calculate Total Emission</button>
-
-     
     </div>
   );
 };
