@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 export const Demoselect = () => {
   const [data, setData] = useState([]);
-  const [rows, setRows] = useState([{ ...createEmptyRow() }]);
+  const [rows, setRows] = useState(createInitialRows());
   const [result, setResult] = useState(null);
+  const [localStorageData, setLocalStorageData] = useState(getDataFromLocalStorage());
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    saveDataToLocalStorage();
+  }, [rows]);
 
   const fetchData = async () => {
     try {
@@ -20,7 +25,8 @@ export const Demoselect = () => {
   };
 
   function createEmptyRow() {
-    return {
+    const storedData = getDataFromLocalStorage();
+    return storedData.length > 0 ? storedData[0] : {
       selectedName: '',
       selectedCategory: '',
       selectedCountry: '',
@@ -29,6 +35,11 @@ export const Demoselect = () => {
       distance: '',
       result: null,
     };
+  }
+
+  function createInitialRows() {
+    const storedData = getDataFromLocalStorage();
+    return storedData.length > 0 ? storedData : [{ ...createEmptyRow() }];
   }
 
   const handleRowChange = (index, field, value) => {
@@ -63,6 +74,27 @@ export const Demoselect = () => {
     setRows([...rows, { ...createEmptyRow() }]);
   };
 
+  const saveDataToLocalStorage = () => {
+    localStorage.setItem('demoSelectData', JSON.stringify(rows));
+  };
+
+  function getDataFromLocalStorage() {
+    const storedData = localStorage.getItem('demoSelectData');
+    return storedData ? JSON.parse(storedData) : [];
+  }
+
+  const calculateTotalFootprints = () => {
+    const totalFootprints = rows.reduce((total, row) => {
+      if (row.result !== null) {
+        total += row.result;
+      }
+      return total;
+    }, 0);
+
+    setResult(totalFootprints);
+  };
+
+
   return (
     <div>
       <h1>Data Table</h1>
@@ -86,7 +118,7 @@ export const Demoselect = () => {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => {
+        {rows.map((row, index) => {
             const filteredData = data.filter(
               (item) =>
                 (row.selectedBrand === '' || item.Brand === row.selectedBrand) &&
@@ -142,6 +174,7 @@ export const Demoselect = () => {
             );
 
             return (
+            
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
@@ -228,11 +261,21 @@ export const Demoselect = () => {
                 <td>
                   <button onClick={addNextRow}>Add Next</button>
                 </td>
+               
               </tr>
             );
           })}
         </tbody>
+        <tfoot>
+          <tr>
+            <td style={{fontWeight:'bolder'}} colSpan="11">Total Footprints</td>
+            <td style={{fontWeight:'bolder'}} >{result !== null ? result : 'N/A'}</td>
+            <td>
+              <button onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
-    </div>
-  );
+      </div>
+      );
 };
