@@ -58,7 +58,7 @@ export const Allemissions = () => {
   const handleUpdate = async (id) => {
     try {
       // Make API call to update the item with the given id
-      const response = await fetch(`http://localhost:8080/updateData/${id}`, {
+      const response = await fetch(`http://62.72.59.146:8080/updateData/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

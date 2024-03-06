@@ -98,7 +98,7 @@ export const Myemission = () => {
 
   const saveDataToBackend = async () => {
     try {
-      const response = await fetch('http://localhost:8080/saveData', {
+      const response = await fetch('http://62.72.59.146:8080/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

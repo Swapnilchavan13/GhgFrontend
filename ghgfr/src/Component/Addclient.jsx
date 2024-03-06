@@ -11,7 +11,7 @@ export const Addclient = () => {
     e.preventDefault();
 
     // Send data to the backend here
-    const response = await fetch('http://localhost:8080/addclient', {
+    const response = await fetch('http://62.72.59.146:8080/addclient', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
