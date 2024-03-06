@@ -90,7 +90,6 @@ export const Selectdata = () => {
           <p>SKU: {selectedItem.SKU}</p>
           <p>Unit: {selectedItem.Unit}</p>
           <p>Emission: {selectedItem.Emission}</p>
-
           {renderDynamicFields()}
         </div>
       );

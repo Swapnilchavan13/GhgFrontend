@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Clientnavbar } from './Clientnavbar';
 
-export const Demoselect = () => {
+export const Myemission = () => {
   const [data, setData] = useState([]);
   const [rows, setRows] = useState(createInitialRows());
   const [result, setResult] = useState(null);
   const [localStorageData, setLocalStorageData] = useState(getDataFromLocalStorage());
   const [isSorted, setIsSorted] = useState(false); // Track whether data is sorted or not
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Assume user is logged in initially
+  const navigate = useNavigate();
+
+
 
   useEffect(() => {
     fetchData();
@@ -109,10 +115,24 @@ export const Demoselect = () => {
     setIsSorted(!isSorted); // Toggle sorting order
   };
 
+  useEffect(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    setIsLoggedIn(!!storedIsLoggedIn);
+  }, []);
+
+  // Redirect to login page if not logged in
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/client/login');
+    }
+  }, [isLoggedIn, navigate]);
+
 
   return (
+    <>
+    <Clientnavbar />
     <div>
-      <h1>Selected Data</h1>
+      <h1>My Emission</h1>
       <button style={{backgroundColor:'black'}} onClick={sortData}>
         {isSorted ? 'Result Sort (Low to High)' : 'Result Sort (High to Low)'}
       </button>
@@ -129,7 +149,7 @@ export const Demoselect = () => {
             <th>Scope</th>
             <th>SKU</th>
             <th>Unit</th>
-            <th>Distance</th>
+            <th>Consumption</th>
             <th>RESULT</th>
             <th>Calculate</th>
             <th>Add Next</th>
@@ -295,5 +315,6 @@ export const Demoselect = () => {
         </tfoot>
       </table>
       </div>
+    </>
       );
 };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/upload.css'
+import { Adminnavbar } from './Adminnavbar';
 
-const Uploaddata = () => {
+const Addemission = () => {
   const [formData, setFormData] = useState({
     Name: '',
     Category: '',
@@ -59,8 +60,10 @@ const Uploaddata = () => {
   };
 
   return (
+    <>
+      <Adminnavbar />
     <div className='mdiv'>
-      <h1>Upload The Data</h1>
+      <h1>Add Emission Data</h1>
       <form onSubmit={handleSubmit}>
         {Object.keys(formData).map((fieldName) => (
           <div style={{ display: fieldName === "dynamicFields" ? 'none' : 'block' }} key={fieldName}>
@@ -125,7 +128,8 @@ const Uploaddata = () => {
         <button type="submit">Submit</button>
       </form>
     </div>
+    </>
   );
 };
 
-export default Uploaddata;
+export default Addemission;

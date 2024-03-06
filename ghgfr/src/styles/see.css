@@ -1,29 +1,96 @@
-/* Seendelete.css */
-.seendelete-container {
-    margin: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  .delete-button {
-    background-color: #ff6347;
-    color: #fff;
-    padding: 6px 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
+/* Add this CSS to your existing styles or create a new CSS file */
+
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  color: #333;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* Action buttons */
+button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+button.edit {
+  background-color: #2ecc71; /* Green color */
+  color: #fff;
+}
+
+button.delete {
+  background-color: #e74c3c; /* Red color */
+  color: #fff;
+}
+
+/* Edit form popup */
+.edit-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-buttons button {
+  padding: 10px;
+  background-color: #3498db; /* Blue color for buttons */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-buttons button.cancel {
+  background-color: #e74c3c; /* Red color for cancel button */
+}
+
+.edit-buttons button:hover {
+  background-color: #2980b9; /* Darker blue color on hover */
+}
