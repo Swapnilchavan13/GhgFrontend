@@ -11,8 +11,6 @@ export const Myemission = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Assume user is logged in initially
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -23,9 +21,11 @@ export const Myemission = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://62.72.59.146:8080/getdata');
+      const response = await fetch('http://localhost:8080/getdata');
       const jsonData = await response.json();
       setData(jsonData);
+      // Set initial rows based on the fetched data
+      setRows([{ ...createEmptyRow() }]);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -81,6 +81,28 @@ export const Myemission = () => {
     setRows([...rows, { ...createEmptyRow() }]);
   };
 
+  const saveDataToBackend = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/saveData', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ rows }),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        console.log('Data saved successfully');
+      } else {
+        console.error('Error saving data:', responseData.message);
+      }
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
   const saveDataToLocalStorage = () => {
     localStorage.setItem('demoSelectData', JSON.stringify(rows));
   };
@@ -115,7 +137,7 @@ export const Myemission = () => {
     setIsSorted(!isSorted); // Toggle sorting order
   };
 
-  useEffect(() => {
+ useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     setIsLoggedIn(!!storedIsLoggedIn);
   }, []);
@@ -310,6 +332,8 @@ export const Myemission = () => {
             <td style={{fontWeight:'bolder'}} >{result !== null ? result : 'N/A'}</td>
             <td>
               <button onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
+              <button onClick={saveDataToBackend}>Save</button>
+
             </td>
           </tr>
         </tfoot>

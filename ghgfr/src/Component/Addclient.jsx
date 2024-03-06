@@ -3,7 +3,7 @@ import { Adminnavbar } from './Adminnavbar';
 import '../styles/addclients.css';
 
 export const Addclient = () => {
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,7 +16,7 @@ export const Addclient = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, userId, password }),
+      body: JSON.stringify({ username, userId, password }),
     });
 
     if (response.ok) {
@@ -34,7 +34,7 @@ export const Addclient = () => {
         <form onSubmit={handleSubmit} className="client-form">
           <label>
             Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" value={username} onChange={(e) => setName(e.target.value)} />
           </label>
           <br />
           <label>

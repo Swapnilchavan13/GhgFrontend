@@ -8,7 +8,7 @@ export const Adminnavbar = () => {
       <Link to='/addemission' className="nav-link">
         <h3>Add Emission</h3>
       </Link>
-      <Link to='/addclients' className="nav-link">
+      <Link to='/addclient' className="nav-link">
         <h3>Add Clients</h3>
       </Link>      
       <Link to='/allclients' className="nav-link">

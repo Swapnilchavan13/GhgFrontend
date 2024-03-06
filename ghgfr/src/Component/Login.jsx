@@ -29,7 +29,7 @@ export const Login = () => {
 
       if (response.ok) {
         // Login successful
-        setLoginStatus(true);
+        // setLoginStatus(true);
         setLoggedInUserName(userId);
         localStorage.setItem('isLoggedIn', 'true');
         alert('Login successful!');
