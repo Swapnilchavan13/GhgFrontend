@@ -9,7 +9,14 @@ export const Myemission = () => {
   const [localStorageData, setLocalStorageData] = useState(getDataFromLocalStorage());
   const [isSorted, setIsSorted] = useState(false); // Track whether data is sorted or not
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Assume user is logged in initially
+  const [selectedDates, setSelectedDates] = useState(createInitialDates());
+
   const navigate = useNavigate();
+
+  function createInitialDates() {
+    const storedDates = localStorage.getItem('demoSelectDates');
+    return storedDates ? JSON.parse(storedDates) : [];
+  }
 
   useEffect(() => {
     fetchData();
@@ -21,11 +28,9 @@ export const Myemission = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:8080/getdata');
+      const response = await fetch('http://62.72.59.146:8080/getdata');
       const jsonData = await response.json();
       setData(jsonData);
-      // Set initial rows based on the fetched data
-      setRows([{ ...createEmptyRow() }]);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -40,6 +45,7 @@ export const Myemission = () => {
       selectedType: '',
       selectedBrand: '',
       distance: '',
+      date: '', // Add date field
       result: null,
     };
   }
@@ -52,6 +58,15 @@ export const Myemission = () => {
   const handleRowChange = (index, field, value) => {
     const updatedRows = [...rows];
     updatedRows[index][field] = value;
+
+      // Update the selected dates state
+  if (field === 'date') {
+    const updatedDates = [...selectedDates];
+    updatedDates[index] = value;
+    
+    setSelectedDates(updatedDates);
+  }
+
     setRows(updatedRows);
   };
 
@@ -137,6 +152,7 @@ export const Myemission = () => {
     setIsSorted(!isSorted); // Toggle sorting order
   };
 
+
  useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     setIsLoggedIn(!!storedIsLoggedIn);
@@ -172,6 +188,7 @@ export const Myemission = () => {
             <th>SKU</th>
             <th>Unit</th>
             <th>Consumption</th>
+            <th>Date</th>
             <th>RESULT</th>
             <th>Calculate</th>
             <th>Add Next</th>
@@ -311,8 +328,15 @@ export const Myemission = () => {
                     type="number"
                     value={row.distance}
                     onChange={(e) => handleRowChange(index, 'distance', e.target.value)}
-                    placeholder="Enter Distance"
+                    placeholder="Enter Consumption"
                   />
+                </td>
+                <td>
+                <input
+                      type="date"
+                      value={row.date}
+                      onChange={(e) => handleRowChange(index, 'date', e.target.value)}
+                   /> 
                 </td>
                 <td>{row.result !== null ? row.result : 'N/A'}</td>
                 <td>
@@ -328,7 +352,7 @@ export const Myemission = () => {
         </tbody>
         <tfoot>
           <tr>
-            <td style={{fontWeight:'bolder'}} colSpan="11">Total Footprints</td>
+            <td style={{fontWeight:'bolder'}} colSpan="12">Total Footprints</td>
             <td style={{fontWeight:'bolder'}} >{result !== null ? result : 'N/A'}</td>
             <td>
               <button onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
