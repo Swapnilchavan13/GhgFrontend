@@ -27,7 +27,7 @@ export const Myemission = () => {
       const jsonData = await response.json();
       setData(jsonData);
       // Fetch saved data from the backend
-      const savedDataResponse = await fetch('http://localhost:8080/getdata12');
+      const savedDataResponse = await fetch('http://62.72.59.146:8080/getdata12');
       const savedData = await savedDataResponse.json();
       setSdata(savedData)
       setRows(savedData.rows || createInitialRows());
@@ -103,7 +103,7 @@ export const Myemission = () => {
 
  const saveDataToBackend = async () => {
   try {
-    const response = await fetch('http://localhost:8080/saveData', {
+    const response = await fetch('http://62.72.59.146:8080/saveData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
