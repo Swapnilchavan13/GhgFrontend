@@ -63,10 +63,8 @@ export const Myemission = () => {
   if (field === 'date') {
     const updatedDates = [...selectedDates];
     updatedDates[index] = value;
-    
     setSelectedDates(updatedDates);
   }
-
     setRows(updatedRows);
   };
 

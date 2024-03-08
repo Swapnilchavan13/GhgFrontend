@@ -192,9 +192,9 @@ export const Myemission = () => {
               <th>Type</th>
               <th>Brand</th>
               <th>Description</th>
-              <th>Scope</th>
               <th>SKU</th>
               <th>Unit</th>
+              <th>Scope</th>
               <th>Consumption</th>
               <th>Date</th>
               <th>RESULT</th>
