@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clientnavbar } from './Clientnavbar';
+import "../styles/myemission.css";
 
 export const Myemission = () => {
   const [data, setData] = useState([]);
@@ -10,6 +11,12 @@ export const Myemission = () => {
   const [isSorted, setIsSorted] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedDates, setSelectedDates] = useState(createInitialDates());
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [countryFilter, setCountryFilter] = useState('');
+  const [uniqueCountries, setUniqueCountries] = useState([]);
+
+
+
 
   const navigate = useNavigate();
 
@@ -174,6 +181,36 @@ export const Myemission = () => {
   }, [isLoggedIn, navigate]);
 
 
+  const handleSort = (columnName) => {
+    const sortedData = [...sdata].sort((a, b) => {
+      const valueA = a[columnName].toLowerCase();
+      const valueB = b[columnName].toLowerCase();
+
+      if (sortOrder === 'asc') {
+        return valueA.localeCompare(valueB);
+      } else {
+        return valueB.localeCompare(valueA);
+      }
+    });
+
+    setSdata(sortedData);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+
+  useEffect(() => {
+    // Extract unique countries from sdata when sdata changes
+    const countries = [...new Set(sdata.map((row) => row.selectedCountry))];
+    setUniqueCountries(countries);
+  }, [sdata]);
+
+
+  const handleCountryFilter = (selectedCountry) => {
+    setCountryFilter(selectedCountry);
+    // Apply additional filtering logic if needed
+  };
+
+
   return (
     <>
       <Clientnavbar />
@@ -319,18 +356,27 @@ const groupOptions = Array.from(
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>
-                    <select
-                      onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
-                      value={row.selectedName}
-                    >
-                      <option value="">Select Name</option>
-                      {nameOptions.map((name) => (
-                        <option key={name} value={name}>
-                          {name}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
+  <input
+    type="text"
+    value={row.selectedName}
+    onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
+    placeholder="Search Name"
+  />
+  <div className="search-results">
+    {nameOptions
+      .filter((name) => name.toLowerCase().includes(row.selectedName.toLowerCase()))
+      .map((filteredName) => (
+        <div
+          key={filteredName}
+          onClick={() => handleRowChange(index, 'selectedName', filteredName)}
+          className="search-result-item"
+        >
+          {filteredName}
+        </div>
+      ))}
+  </div>
+</td>
+
                   <td>
                     <select
                       onChange={(e) => handleRowChange(index, 'selectedCategory', e.target.value)}
@@ -484,9 +530,23 @@ const groupOptions = Array.from(
           <thead>
             <tr>
               <th>Sr. No</th>
-              <th>Name</th>
+              <th onClick={() => handleSort('selectedName')}>Name</th>
               <th>Category</th>
-              <th>Country</th>
+              <th>
+          <select
+            id="countryFilter"
+            value={countryFilter}
+            onChange={(e) => handleCountryFilter(e.target.value)}
+          >
+            <option value="">All Countries</option>
+            {uniqueCountries.map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+        </th>
+
               <th>Type</th>
               <th>Brand</th>
               <th>Description</th>
@@ -499,9 +559,11 @@ const groupOptions = Array.from(
             </tr>
           </thead>
           <tbody>
-            {sdata.map((row, index) => (
+          {sdata
+              .filter((row) => !countryFilter || row.selectedCountry === countryFilter)
+              .map((row, index) => (
+
               <tr key={index}>
-                {/* Modify this part according to your sdata structure */}
                 <td>{index + 1}</td>
                 <td>{row.selectedName}</td>
                 <td>{row.selectedCategory}</td>
