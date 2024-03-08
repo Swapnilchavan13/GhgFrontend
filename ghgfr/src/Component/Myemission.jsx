@@ -14,8 +14,8 @@ export const Myemission = () => {
   const [sortOrder, setSortOrder] = useState('asc');
   const [countryFilter, setCountryFilter] = useState('');
   const [uniqueCountries, setUniqueCountries] = useState([]);
-
-
+  const [totalConsumption, setTotalConsumption] = useState(0);
+  const [totalResult, setTotalResult] = useState(0);
 
 
   const navigate = useNavigate();
@@ -199,10 +199,20 @@ export const Myemission = () => {
 
 
   useEffect(() => {
-    // Extract unique countries from sdata when sdata changes
-    const countries = [...new Set(sdata.map((row) => row.selectedCountry))];
-    setUniqueCountries(countries);
-  }, [sdata]);
+        // Extract unique countries from sdata when sdata changes
+        const countries = [...new Set(sdata.map((row) => row.selectedCountry))];
+        setUniqueCountries(countries);
+    
+        // Calculate total consumption and total result for the selected country
+        const filteredData = sdata.filter((row) => !countryFilter || row.selectedCountry === countryFilter);
+    
+        const totalC = filteredData.reduce((acc, row) => acc + parseFloat(row.consumption) || 0, 0);
+        setTotalConsumption(totalC);
+    
+        const totalR = filteredData.reduce((acc, row) => acc + parseFloat(row.result) || 0, 0);
+        setTotalResult(totalR);
+      }, [sdata, countryFilter]);
+    
 
 
   const handleCountryFilter = (selectedCountry) => {
@@ -546,7 +556,6 @@ const groupOptions = Array.from(
             ))}
           </select>
         </th>
-
               <th>Type</th>
               <th>Brand</th>
               <th>Description</th>
@@ -579,6 +588,14 @@ const groupOptions = Array.from(
                 <td>{row.result !== null ? row.result : 'N/A'}</td>
               </tr>
             ))}
+              <tr>
+              <td style={{fontWeight:'bolder'}} colSpan="10">Total Consumption</td>
+              <td style={{fontWeight:'bolder'}}>{totalConsumption}</td>
+            </tr>
+            <tr>
+              <td style={{fontWeight:'bolder'}} colSpan="12">Total Result</td>
+              <td style={{fontWeight:'bolder'}}>{totalResult}</td>
+            </tr>
           </tbody>
         </table>
         </div>
