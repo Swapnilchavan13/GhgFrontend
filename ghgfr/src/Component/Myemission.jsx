@@ -18,8 +18,13 @@ export const Myemission = () => {
   const [totalResult, setTotalResult] = useState(0);
 
   const [categoryFilter, setCategoryFilter] = useState('');
-const [uniqueCategories, setUniqueCategories] = useState([]);
+  const [uniqueCategories, setUniqueCategories] = useState([]);
 
+  const [scopeFilter, setScopeFilter] = useState('');
+  const [uniqueScopes, setUniqueScopes] = useState([]);
+
+  const [consumptionSortOrder, setConsumptionSortOrder] = useState('asc');
+  const [isConsumptionSorted, setIsConsumptionSorted] = useState(false);
 
   const navigate = useNavigate();
 
@@ -211,26 +216,35 @@ const [uniqueCategories, setUniqueCategories] = useState([]);
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
-
   useEffect(() => {
+    // Extract unique countries from sdata when sdata changes
+    const countries = [...new Set(sdata.map((row) => row.selectedCountry))];
+    setUniqueCountries(countries);
+
     // Extract unique categories from sdata when sdata changes
     const categories = [...new Set(sdata.map((row) => row.selectedCategory))];
     setUniqueCategories(categories);
-  
-    // Calculate total consumption and total result for the selected category
-    const filteredData = sdata.filter(
-      (row) =>
-        (!countryFilter || row.selectedCountry === countryFilter) &&
-        (!categoryFilter || row.selectedCategory === categoryFilter)
+
+
+    // Extract unique scopes from sdata when sdata changes
+    const scopes = [...new Set(sdata.map((row) => row.group))];
+    setUniqueScopes(scopes);
+
+    // Calculate total consumption and total result for the selected country
+    const filteredData = sdata.filter((row) =>
+      (!countryFilter || row.selectedCountry === countryFilter) &&
+      (!categoryFilter || row.selectedCategory === categoryFilter) &&
+      (!scopeFilter || row.group === scopeFilter)
+
     );
-  
+
     const totalC = filteredData.reduce((acc, row) => acc + parseFloat(row.consumption) || 0, 0);
     setTotalConsumption(totalC);
-  
+
     const totalR = filteredData.reduce((acc, row) => acc + parseFloat(row.result) || 0, 0);
     setTotalResult(totalR);
+  }, [sdata, countryFilter, categoryFilter, scopeFilter]);
 
-  }, [sdata, countryFilter, categoryFilter]);
 
 
   const handleCountryFilter = (selectedCountry) => {
@@ -238,10 +252,35 @@ const [uniqueCategories, setUniqueCategories] = useState([]);
     // Apply additional filtering logic if needed
   };
 
+
   const handleCategoryFilter = (selectedCategory) => {
     setCategoryFilter(selectedCategory);
     // Apply additional filtering logic if needed
   };
+
+  const handleScopeFilter = (selectedScope) => {
+    setScopeFilter(selectedScope);
+    // Apply additional filtering logic if needed
+  };
+
+  const handleConsumptionSort = () => {
+    const sortedData = [...sdata].sort((a, b) => {
+      const valueA = parseFloat(a.consumption) || 0;
+      const valueB = parseFloat(b.consumption) || 0;
+
+      if (isConsumptionSorted) {
+        return valueA - valueB;
+      } else {
+        return valueB - valueA;
+      }
+    });
+
+    setSdata(sortedData);
+    setConsumptionSortOrder(isConsumptionSorted ? 'asc' : 'desc');
+    setIsConsumptionSorted(!isConsumptionSorted);
+  };
+
+
   return (
     <>
       <Clientnavbar />
@@ -566,19 +605,20 @@ const [uniqueCategories, setUniqueCategories] = useState([]);
                 <th>Sr. No</th>
                 <th onClick={() => handleSort('selectedName')}>Name</th>
                 <th>
-  <select
-    id="categoryFilter"
-    value={categoryFilter}
-    onChange={(e) => handleCategoryFilter(e.target.value)}
-  >
-    <option value="">All Categories</option>
-    {uniqueCategories.map((category) => (
-      <option key={category} value={category}>
-        {category}
-      </option>
-    ))}
-  </select>
-</th>
+                  <select
+                    id="categoryFilter"
+                    value={categoryFilter}
+                    onChange={(e) => handleCategoryFilter(e.target.value)}
+                  >
+                    <option value="">All Categories</option>
+                    {uniqueCategories.map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+
                 <th>
                   <select
                     id="countryFilter"
@@ -596,19 +636,38 @@ const [uniqueCategories, setUniqueCategories] = useState([]);
                 <th>Type</th>
                 <th>Brand</th>
                 <th>Description</th>
-                <th>Scope</th>
+                <th>
+                  <select
+                    id="scopeFilter"
+                    value={scopeFilter}
+                    onChange={(e) => handleScopeFilter(e.target.value)}
+                  >
+                    <option value="">All Scopes</option>
+                    {uniqueScopes.map((scope) => (
+                      <option key={scope} value={scope}>
+                        {scope}
+                      </option>
+                    ))}
+                  </select>
+                </th>
                 <th>SKU</th>
                 <th>Unit</th>
-                <th>Consumption Per Kg</th>
+                <th onClick={handleConsumptionSort}>
+                  Consumption Per Kg
+                  {isConsumptionSorted ? ' (High)' : ' (Low)'}
+                </th>
+
                 <th>Date</th>
                 <th>RESULT</th>
               </tr>
             </thead>
             <tbody>
               {sdata
-    .filter((row) => (!countryFilter || row.selectedCountry === countryFilter) &&
-    (!categoryFilter || row.selectedCategory === categoryFilter))
-   .map((row, index) => (
+                .filter((row) =>
+                  (!countryFilter || row.selectedCountry === countryFilter) &&
+                  (!categoryFilter || row.selectedCategory === categoryFilter) &&
+                  (!scopeFilter || row.group === scopeFilter)
+                ).map((row, index) => (
 
                   <tr key={index}>
                     <td>{index + 1}</td>
