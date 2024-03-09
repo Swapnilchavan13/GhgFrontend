@@ -30,21 +30,26 @@ export const Myemission = () => {
 
   const fetchData = async () => {
     try {
+      const userId = localStorage.getItem('userId') || '';
+
       const response = await fetch('http://62.72.59.146:8080/getdata');
       const jsonData = await response.json();
       setData(jsonData);
       // Fetch saved data from the backend
-      const savedDataResponse = await fetch('http://62.72.59.146:8080/getdata12');
+      const savedDataResponse = await fetch(`http://62.72.59.146:8080/getdata12?userId=${userId}`);
       const savedData = await savedDataResponse.json();
       setSdata(savedData)
       setRows(savedData.rows || createInitialRows());
     } catch (error) {
-      console.error('Error fetching data:', error);
+     console.error('Error fetching data:', error);
     }
-  };
+  }; 
 
   function createEmptyRow() {
+    const userId = localStorage.getItem('userId') || '';
+
     return {
+      userId: userId,
       selectedName: '',
       selectedCategory: '',
       selectedCountry: '',
@@ -110,10 +115,14 @@ export const Myemission = () => {
 
  const saveDataToBackend = async () => {
   try {
+
+    const userId = localStorage.getItem('userId') || '';
+
     const response = await fetch('http://62.72.59.146:8080/saveData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': userId, // Include the Authorization header with the user ID
       },
       body: JSON.stringify({
         rows }),
@@ -589,11 +598,9 @@ const groupOptions = Array.from(
               </tr>
             ))}
               <tr>
-              <td style={{fontWeight:'bolder'}} colSpan="10">Total Consumption</td>
+              <td style={{fontWeight:'bolder'}} colSpan="10">Total</td>
               <td style={{fontWeight:'bolder'}}>{totalConsumption}</td>
-            </tr>
-            <tr>
-              <td style={{fontWeight:'bolder'}} colSpan="12">Total Result</td>
+              <td style={{fontWeight:'bolder'}}></td>
               <td style={{fontWeight:'bolder'}}>{totalResult}</td>
             </tr>
           </tbody>

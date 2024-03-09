@@ -9,12 +9,13 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [loginStatus, setLoginStatus] = useState(storedLoginStatus);
   const [loggedInUserName, setLoggedInUserName] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setLoggedInUserName('');
     setLoginStatus(false);
     localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('userId'); // Remove user ID on logout
   };
 
   const handleLogin = async () => {
@@ -29,21 +30,23 @@ export const Login = () => {
 
       if (response.ok) {
         // Login successful
-        // setLoginStatus(true);
         setLoggedInUserName(userId);
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', userId); // Save user ID on successful login
         alert('Login successful!');
-        navigate('/client/myemission')
+        navigate('/client/myemission');
         // Redirect to the My Emission page or perform any other necessary actions
       } else {
         // Login failed
         setLoginStatus(false);
         localStorage.setItem('isLoggedIn', 'false');
+        localStorage.removeItem('userId'); // Remove user ID on unsuccessful login
       }
     } catch (error) {
       console.error('Error during login:', error);
       setLoginStatus(false);
       localStorage.setItem('isLoggedIn', 'false');
+      localStorage.removeItem('userId'); // Remove user ID on error
     }
   };
 
