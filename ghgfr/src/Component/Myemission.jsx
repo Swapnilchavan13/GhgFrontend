@@ -65,6 +65,7 @@ export const Myemission = () => {
       selectedBrand: '',
       distance: '',
       date: '',
+      date1: '',
       result: null,
       description: '',
       group: '',
@@ -82,18 +83,17 @@ export const Myemission = () => {
   const handleRowChange = (index, field, value) => {
     const updatedRows = [...rows];
     updatedRows[index][field] = value;
-
-    if (field === 'date') {
+  
+    if (field === 'date' || field === 'date1') {
       const updatedDates = [...selectedDates];
       updatedDates[index] = value;
       setSelectedDates(updatedDates);
     }
-
+  
     setRows(updatedRows);
     // Update additional fields
-
   };
-
+  
 
   const calculateResult = (index) => {
     const selectedRow = rows[index];
@@ -125,7 +125,7 @@ export const Myemission = () => {
     try {
       const userId = localStorage.getItem('userId') || '';
 
-      const response = await fetch('http://62.72.59.146:8080/saveData', {
+      const response = await fetch('http://localhost:8080/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -304,6 +304,7 @@ export const Myemission = () => {
               <th>Scope</th>
               <th>Consumption Per Kg</th>
               <th>Date</th>
+              <th>Upload Image</th>
               <th>RESULT</th>
               <th>Calculate</th>
               <th>Add Next</th>
@@ -567,11 +568,21 @@ export const Myemission = () => {
                     />
                   </td>
                   <td>
+                    From
                     <input
                       type="date"
                       value={row.date}
                       onChange={(e) => handleRowChange(index, 'date', e.target.value)}
                     />
+                    To 
+                    <input
+                      type="date"
+                      value={row.date1}
+                      onChange={(e) => handleRowChange(index, 'date1', e.target.value)}
+                    />
+                  </td>
+                  <td>
+                    <input type='file' />
                   </td>
                   <td>{row.result !== null ? row.result : 'N/A'}</td>
                   <td>
@@ -586,13 +597,13 @@ export const Myemission = () => {
           </tbody>
           <tfoot>
             <tr>
-              <td style={{ fontWeight: 'bolder' }} colSpan="12">
+              <td style={{ fontWeight: 'bolder' }} colSpan="13">
                 Total Footprints
               </td>
               <td style={{ fontWeight: 'bolder' }}>{result !== null ? result : 'N/A'}</td>
               <td>
                 <button onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
-                <button onClick={saveDataToBackend}>Save</button>
+                <button style={{marginTop:'5px', backgroundColor:'black'}} onClick={saveDataToBackend}>Save</button>
               </td>
             </tr>
           </tfoot>
@@ -657,7 +668,9 @@ export const Myemission = () => {
                   {isConsumptionSorted ? ' (High)' : ' (Low)'}
                 </th>
 
-                <th>Date</th>
+                <th>From Date</th>
+                <th>To Date</th>
+
                 <th>RESULT</th>
               </tr>
             </thead>
@@ -682,12 +695,15 @@ export const Myemission = () => {
                     <td>{row.unit}</td>
                     <td>{row.consumption}</td>
                     <td>{row.date}</td>
+                    <td>{row.date1}</td>
+
                     <td>{row.result !== null ? row.result : 'N/A'}</td>
                   </tr>
                 ))}
               <tr>
                 <td style={{ fontWeight: 'bolder' }} colSpan="10">Total</td>
                 <td style={{ fontWeight: 'bolder' }}>{totalConsumption}</td>
+                <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}>{totalResult}</td>
               </tr>
