@@ -427,28 +427,29 @@ export const Myemission = () => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>
-                    <input
-                      type="text"
-                      value={row.selectedName}
-                      onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
-                      placeholder="Search Name"
-                    />
-                    {row.selectedName.length > 0 && (
-                      <div className="search-results">
-                        {nameOptions
-                          .filter((name) => name.toLowerCase().includes(row.selectedName.toLowerCase()))
-                          .map((filteredName) => (
-                            <div
-                              key={filteredName}
-                              onClick={() => handleRowChange(index, 'selectedName', filteredName)}
-                              className="search-result-item"
-                            >
-                              {filteredName}
-                            </div>
-                          ))}
-                      </div>
-                    )}
-                  </td>
+  <input
+    type="text"
+    value={row.selectedName}
+    onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
+    placeholder="Search Name"
+  />
+  {row.selectedName.length > 0 && (
+    <div className="search-results">
+      {nameOptions
+        .filter((name) => name.toLowerCase().includes(row.selectedName.toLowerCase()))
+        .map((filteredName) => (
+          <div
+            key={filteredName}
+            onClick={() => handleRowChange(index, 'selectedName', filteredName)}
+            className="search-result-item"
+          >
+            {filteredName}
+          </div>
+        ))}
+    </div>
+  )}
+</td>
+
 
 
                   <td>
