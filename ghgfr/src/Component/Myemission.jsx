@@ -125,7 +125,7 @@ export const Myemission = () => {
     try {
       const userId = localStorage.getItem('userId') || '';
 
-      const response = await fetch('http://localhost:8080/saveData', {
+      const response = await fetch('http://62.72.59.146:8080/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
