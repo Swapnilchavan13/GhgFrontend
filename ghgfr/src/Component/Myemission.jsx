@@ -83,17 +83,17 @@ export const Myemission = () => {
   const handleRowChange = (index, field, value) => {
     const updatedRows = [...rows];
     updatedRows[index][field] = value;
-  
+
     if (field === 'date' || field === 'date1') {
       const updatedDates = [...selectedDates];
       updatedDates[index] = value;
       setSelectedDates(updatedDates);
     }
-  
+
     setRows(updatedRows);
     // Update additional fields
   };
-  
+
 
   const calculateResult = (index) => {
     const selectedRow = rows[index];
@@ -143,13 +143,13 @@ export const Myemission = () => {
         // Update sdata state with the saved data
         setSdata(responseData.savedData.rows || createInitialRows());
         // Update additional fields if needed
-        window.location.reload(false);
       } else {
         console.error('Error saving data:', responseData.message);
       }
     } catch (error) {
       console.error('Error saving data:', error);
     }
+    window.location.reload(false);
   };
 
 
@@ -279,7 +279,6 @@ export const Myemission = () => {
     setConsumptionSortOrder(isConsumptionSorted ? 'asc' : 'desc');
     setIsConsumptionSorted(!isConsumptionSorted);
   };
-
 
   return (
     <>
@@ -427,28 +426,28 @@ export const Myemission = () => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>
-  <input
-    type="text"
-    value={row.selectedName}
-    onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
-    placeholder="Search Name"
-  />
-  {row.selectedName.length > 0 && (
-    <div className="search-results">
-      {nameOptions
-        .filter((name) => name.toLowerCase().includes(row.selectedName.toLowerCase()))
-        .map((filteredName) => (
-          <div
-            key={filteredName}
-            onClick={() => handleRowChange(index, 'selectedName', filteredName)}
-            className="search-result-item"
-          >
-            {filteredName}
-          </div>
-        ))}
-    </div>
-  )}
-</td>
+                    <input
+                      type="text"
+                      value={row.selectedName}
+                      onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
+                      placeholder="Search Name"
+                    />
+                    {row.selectedName.length > 0 && (
+                      <div className="search-results">
+                        {nameOptions
+                          .filter((name) => name.toLowerCase().includes(row.selectedName.toLowerCase()))
+                          .map((filteredName) => (
+                            <div
+                              key={filteredName}
+                              onClick={() => handleRowChange(index, 'selectedName', filteredName)}
+                              className="search-result-item"
+                            >
+                              {filteredName}
+                            </div>
+                          ))}
+                      </div>
+                    )}
+                  </td>
 
 
 
@@ -575,7 +574,7 @@ export const Myemission = () => {
                       value={row.date}
                       onChange={(e) => handleRowChange(index, 'date', e.target.value)}
                     />
-                    To 
+                    To
                     <input
                       type="date"
                       value={row.date1}
@@ -604,7 +603,7 @@ export const Myemission = () => {
               <td style={{ fontWeight: 'bolder' }}>{result !== null ? result : 'N/A'}</td>
               <td>
                 <button onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
-                <button style={{marginTop:'5px', backgroundColor:'black'}} onClick={saveDataToBackend}>Save</button>
+                <button style={{ marginTop: '5px', backgroundColor: 'black' }} onClick={saveDataToBackend}>Save</button>
               </td>
             </tr>
           </tfoot>
