@@ -26,11 +26,70 @@ export const Myemission = () => {
   const [consumptionSortOrder, setConsumptionSortOrder] = useState('asc');
   const [isConsumptionSorted, setIsConsumptionSorted] = useState(false);
 
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const navigate = useNavigate();
 
   function createInitialDates() {
     return [];
   }
+
+   const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setSelectedImage(reader.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  const [formData, setFormData] = useState({
+    image_one: '',
+
+  });
+
+  const handleFileChange = (event, field) => {
+    const file = event.target.files[0];
+    setFormData({ ...formData, [field]: file });
+  };
+
+  const handleSubmitimg = async (event) => {
+    event.preventDefault();
+    const apiUrl = 'http://62.72.59.146:8001/productimage/';
+    
+    try {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        if (formData[key]) {
+          formDataToSend.append(key, formData[key]);
+        }
+      }
+    
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: formDataToSend,
+      });
+    
+      if (!response.ok) {
+        console.error('Error response from server:', response);
+        alert("Product Images Not uploaded. Refresh the page.");
+        return;
+      }
+             
+      localStorage.setItem('uploadedImg', JSON.stringify(formData));
+      alert("Images Added");
+    
+    
+    } catch (error) {
+      console.error('Error uploading data:', error);
+      alert("An error occurred during the upload. Please try again.");
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -40,11 +99,11 @@ export const Myemission = () => {
     try {
       const userId = localStorage.getItem('userId') || '';
 
-      const response = await fetch('http://62.72.59.146:8080/getdata');
+      const response = await fetch('http://localhost:8080/getdata');
       const jsonData = await response.json();
       setData(jsonData);
       // Fetch saved data from the backend
-      const savedDataResponse = await fetch(`http://62.72.59.146:8080/getdata12?userId=${userId}`);
+      const savedDataResponse = await fetch(`http://localhost:8080/getdata12?userId=${userId}`);
       const savedData = await savedDataResponse.json();
       setSdata(savedData)
       setRows(savedData.rows || createInitialRows());
@@ -73,6 +132,7 @@ export const Myemission = () => {
       unit: '',
       consumption: '',
       emission: '',
+      image: '',
     };
   }
 
@@ -84,19 +144,21 @@ export const Myemission = () => {
     const updatedRows = [...rows];
     updatedRows[index][field] = value;
 
+
     if (field === 'date' || field === 'date1') {
       const updatedDates = [...selectedDates];
       updatedDates[index] = value;
       setSelectedDates(updatedDates);
     }
 
-    setRows(updatedRows);
     // Update additional fields
+    setRows(updatedRows);
   };
 
 
   const calculateResult = (index) => {
     const selectedRow = rows[index];
+    
     const filteredData = data.filter(
       (item) =>
         (selectedRow.selectedBrand === '' || item.Brand === selectedRow.selectedBrand) &&
@@ -113,6 +175,8 @@ export const Myemission = () => {
 
       const updatedRows = [...rows];
       updatedRows[index].result = calculatedResult;
+      updatedRows[index].image = selectedImage; // Add this line to set the image
+
       setRows(updatedRows);
     }
   };
@@ -125,7 +189,7 @@ export const Myemission = () => {
     try {
       const userId = localStorage.getItem('userId') || '';
 
-      const response = await fetch('http://62.72.59.146:8080/saveData', {
+      const response = await fetch('http://localhost:8080/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,8 +215,6 @@ export const Myemission = () => {
     }
     window.location.reload(false);
   };
-
-
 
   const calculateTotalFootprints = () => {
     const totalFootprints = rows.reduce((total, row) => {
@@ -244,7 +306,6 @@ export const Myemission = () => {
     const totalR = filteredData.reduce((acc, row) => acc + parseFloat(row.result) || 0, 0);
     setTotalResult(totalR);
   }, [sdata, countryFilter, categoryFilter, scopeFilter]);
-
 
 
   const handleCountryFilter = (selectedCountry) => {
@@ -449,8 +510,6 @@ export const Myemission = () => {
                     )}
                   </td>
 
-
-
                   <td>
                     <select
                       onChange={(e) => handleRowChange(index, 'selectedCategory', e.target.value)}
@@ -582,7 +641,17 @@ export const Myemission = () => {
                     />
                   </td>
                   <td>
-                    <input type='file' />
+                  <input type="file" onChange={(e) => handleImageChange(e, 'image_one')} />
+      {selectedImage && (
+        <img
+          src={selectedImage}
+          accept='image/*'
+          alt='Selected Image'
+          style={{ maxWidth: '80px', marginTop: '10px' }}
+        />
+      )}
+              <button className="upload-button" onClick={handleSubmitimg}>Upload Data</button>
+
                   </td>
                   <td>{row.result !== null ? row.result : 'N/A'}</td>
                   <td>
