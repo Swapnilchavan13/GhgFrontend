@@ -26,70 +26,11 @@ export const Myemission = () => {
   const [consumptionSortOrder, setConsumptionSortOrder] = useState('asc');
   const [isConsumptionSorted, setIsConsumptionSorted] = useState(false);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const navigate = useNavigate();
 
   function createInitialDates() {
     return [];
   }
-
-   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        setSelectedImage(reader.result);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-  
-  const [formData, setFormData] = useState({
-    image_one: '',
-
-  });
-
-  const handleFileChange = (event, field) => {
-    const file = event.target.files[0];
-    setFormData({ ...formData, [field]: file });
-  };
-
-  const handleSubmitimg = async (event) => {
-    event.preventDefault();
-    const apiUrl = 'http://62.72.59.146:8001/productimage/';
-    
-    try {
-      const formDataToSend = new FormData();
-      for (const key in formData) {
-        if (formData[key]) {
-          formDataToSend.append(key, formData[key]);
-        }
-      }
-    
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        body: formDataToSend,
-      });
-    
-      if (!response.ok) {
-        console.error('Error response from server:', response);
-        alert("Product Images Not uploaded. Refresh the page.");
-        return;
-      }
-             
-      localStorage.setItem('uploadedImg', JSON.stringify(formData));
-      alert("Images Added");
-    
-    
-    } catch (error) {
-      console.error('Error uploading data:', error);
-      alert("An error occurred during the upload. Please try again.");
-    }
-  };
 
   useEffect(() => {
     fetchData();
@@ -143,18 +84,17 @@ export const Myemission = () => {
   const handleRowChange = (index, field, value) => {
     const updatedRows = [...rows];
     updatedRows[index][field] = value;
-
-
+  
     if (field === 'date' || field === 'date1') {
       const updatedDates = [...selectedDates];
       updatedDates[index] = value;
       setSelectedDates(updatedDates);
     }
-
+  
     // Update additional fields
     setRows(updatedRows);
   };
-
+  
 
   const calculateResult = (index) => {
     const selectedRow = rows[index];
@@ -175,8 +115,6 @@ export const Myemission = () => {
 
       const updatedRows = [...rows];
       updatedRows[index].result = calculatedResult;
-      updatedRows[index].image = selectedImage; // Add this line to set the image
-
       setRows(updatedRows);
     }
   };
@@ -364,7 +302,6 @@ export const Myemission = () => {
               <th>Scope</th>
               <th>Consumption Per Kg</th>
               <th>Date</th>
-              <th>Upload Image</th>
               <th>RESULT</th>
               <th>Calculate</th>
               <th>Add Next</th>
@@ -640,19 +577,16 @@ export const Myemission = () => {
                       onChange={(e) => handleRowChange(index, 'date1', e.target.value)}
                     />
                   </td>
-                  <td>
-                  <input type="file" onChange={(e) => handleImageChange(e, 'image_one')} />
-      {selectedImage && (
-        <img
-          src={selectedImage}
-          accept='image/*'
-          alt='Selected Image'
-          style={{ maxWidth: '80px', marginTop: '10px' }}
-        />
-      )}
-              <button className="upload-button" onClick={handleSubmitimg}>Upload Data</button>
 
-                  </td>
+<td>
+  <input
+    type="file"
+    onChange={(e) => handleRowChange(index, 'image', e.target.files[0])}
+    accept="image/*"
+  />
+</td>
+
+                 
                   <td>{row.result !== null ? row.result : 'N/A'}</td>
                   <td>
                     <button onClick={() => calculateResult(index)}>Calculate</button>

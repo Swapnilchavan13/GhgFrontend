@@ -7,6 +7,7 @@ import { Addclient } from './Component/Addclient';
 import  Addemission from './Component/Addemission';
 import { Allclients } from './Component/Allclients';
 import { Login } from './Component/Login';
+import { Imageupload } from './Component/Imageupload';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
           <Route path="allclients" element={<Allclients />} />
 
           <Route path="client" element={<Myemission />} />
+          <Route path="client/img" element={<Imageupload />} />
+
           <Route path="client/myemission" element={<Myemission />} />
 
           <Route path="client/login" element={<Login />} />
