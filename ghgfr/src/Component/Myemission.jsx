@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Clientnavbar } from './Clientnavbar';
+import axios from 'axios';
 import "../styles/myemission.css";
 
 export const Myemission = () => {
@@ -26,6 +27,45 @@ export const Myemission = () => {
   const [consumptionSortOrder, setConsumptionSortOrder] = useState('asc');
   const [isConsumptionSorted, setIsConsumptionSorted] = useState(false);
 
+  const [image, setImage] = useState(null);
+  const [latestImagePath, setLatestImagePath] = useState('');
+  const [isImageUploaded, setIsImageUploaded] = useState(false); // Add state for tracking image upload
+  const [selectedImagePreview, setSelectedImagePreview] = useState(null); // Add state for selected image preview
+
+
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    setImage(selectedImage);
+
+    // Generate preview for selected image
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSelectedImagePreview(reader.result);
+    };
+    reader.readAsDataURL(selectedImage);
+  };
+
+
+  const handleUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('image', image);
+
+      // Upload image to backend
+      const response = await axios.post('http://localhost:8080/upload', formData);
+
+      // Update the latest image path state with the new image path
+      setLatestImagePath(response.data.imagePath);
+
+      // Clear the selected image
+      setImage(null);
+      setIsImageUploaded(true); // Set the state to true when image is uploaded
+      alert("Image Uploded")
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
+
   const navigate = useNavigate();
 
   function createInitialDates() {
@@ -35,6 +75,10 @@ export const Myemission = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const resetImageState = () => {
+    setImage(null);
+  };
 
   const fetchData = async () => {
     try {
@@ -55,6 +99,8 @@ export const Myemission = () => {
 
   function createEmptyRow() {
     const userId = localStorage.getItem('userId') || '';
+
+
 
     return {
       userId: userId,
@@ -84,21 +130,22 @@ export const Myemission = () => {
   const handleRowChange = (index, field, value) => {
     const updatedRows = [...rows];
     updatedRows[index][field] = value;
-  
+
     if (field === 'date' || field === 'date1') {
       const updatedDates = [...selectedDates];
       updatedDates[index] = value;
       setSelectedDates(updatedDates);
     }
-  
+
+
     // Update additional fields
     setRows(updatedRows);
   };
-  
+
 
   const calculateResult = (index) => {
     const selectedRow = rows[index];
-    
+
     const filteredData = data.filter(
       (item) =>
         (selectedRow.selectedBrand === '' || item.Brand === selectedRow.selectedBrand) &&
@@ -121,6 +168,8 @@ export const Myemission = () => {
 
   const addNextRow = () => {
     setRows([...rows, { ...createEmptyRow() }]);
+    resetImageState(); // Reset the image state
+
   };
 
   const saveDataToBackend = async () => {
@@ -134,7 +183,8 @@ export const Myemission = () => {
           'Authorization': userId, // Include the Authorization header with the user ID
         },
         body: JSON.stringify({
-          rows
+          rows,
+          latestImagePath
         }),
       });
 
@@ -302,6 +352,7 @@ export const Myemission = () => {
               <th>Scope</th>
               <th>Consumption Per Kg</th>
               <th>Date</th>
+              <th>Upload Image</th>
               <th>RESULT</th>
               <th>Calculate</th>
               <th>Add Next</th>
@@ -309,15 +360,6 @@ export const Myemission = () => {
           </thead>
           <tbody>
             {rows.map((row, index) => {
-              const filteredData = data.filter(
-                (item) =>
-                  (row.selectedBrand === '' || item.Brand === row.selectedBrand) &&
-                  (row.selectedType === '' || item.Type === row.selectedType) &&
-                  (row.selectedCountry === '' || item.Country === row.selectedCountry) &&
-                  (row.selectedCategory === '' || item.Category === row.selectedCategory) &&
-                  (row.selectedName === '' || item.Name === row.selectedName)
-              );
-
               const nameOptions = Array.from(new Set(data.map((item) => item.Name)));
               const categoryOptions = Array.from(
                 new Set(
@@ -578,15 +620,16 @@ export const Myemission = () => {
                     />
                   </td>
 
-<td>
-  <input
-    type="file"
-    onChange={(e) => handleRowChange(index, 'image', e.target.files[0])}
-    accept="image/*"
-  />
-</td>
+                  <td>
+                    <input type="file" accept="image/*" onChange={handleImageChange} />
+                    {selectedImagePreview && (
+                      <img src={selectedImagePreview} alt="Selected Image" style={{ width: '80px' }} />
+                    )}
+                    <button onClick={handleUpload}>
+                      {isImageUploaded ? 'Uploaded' : 'Upload Image'}
+                    </button>
+                  </td>
 
-                 
                   <td>{row.result !== null ? row.result : 'N/A'}</td>
                   <td>
                     <button onClick={() => calculateResult(index)}>Calculate</button>
@@ -674,6 +717,7 @@ export const Myemission = () => {
                 <th>From Date</th>
                 <th>To Date</th>
 
+                <th>Image</th>
                 <th>RESULT</th>
               </tr>
             </thead>
@@ -699,7 +743,11 @@ export const Myemission = () => {
                     <td>{row.consumption}</td>
                     <td>{row.date}</td>
                     <td>{row.date1}</td>
-
+                    <td>
+                      <a href={`http://localhost:8080/${row.image}`} target="_blank" rel="noopener noreferrer">
+                        <img style={{ width: '80px' }} src={`http://localhost:8080/${row.image}`} alt="Latest Uploaded" />
+                      </a>
+                    </td>
                     <td>{row.result !== null ? row.result : 'N/A'}</td>
                   </tr>
                 ))}

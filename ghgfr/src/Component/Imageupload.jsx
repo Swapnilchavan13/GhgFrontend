@@ -3,40 +3,24 @@ import axios from 'axios';
 
 export const Imageupload = () => {
   const [image, setImage] = useState(null);
-  const [imagePaths, setImagePaths] = useState([]);
-
-  useEffect(() => {
-    // Fetch all uploaded image paths from the backend
-    const fetchImagePaths = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/images');
-        setImagePaths(response.data);
-      } catch (error) {
-        console.error('Error fetching image paths:', error);
-      }
-    };
-
-    fetchImagePaths();
-  }, []); // Run once on component mount
+  const [latestImagePath, setLatestImagePath] = useState('');
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
   };
-
+  
   const handleUpload = async () => {
     try {
       const formData = new FormData();
       formData.append('image', image);
-
       
       // Upload image to backend
       const response = await axios.post('http://localhost:8080/upload', formData);
       
-      // Update imagePaths state with the new image path
-      setImagePaths([imagePaths, response.data.imagePath]);
-      console.log(imagePaths[imagePaths.length-1])
-
+      // Update the latest image path state with the new image path
+      setLatestImagePath(response.data.imagePath);
+      
       // Clear the selected image
       setImage(null);
     } catch (error) {
@@ -50,15 +34,10 @@ export const Imageupload = () => {
       <button onClick={handleUpload}>Upload Image</button>
 
       <div>
-        <h2>Uploaded Images</h2>
-        <div>
-          {imagePaths.map((imagePath) => (
-            <img key={imagePath} src={`http://localhost:8080/${imagePath}`} alt="Uploaded" />
-          ))}
-        </div>
+        <h2>{latestImagePath}</h2>
+        <h2>Latest Uploaded Image</h2>
+        {<img src={`http://localhost:8080/${latestImagePath}`} alt="Latest Uploaded" />}
       </div>
     </div>
   );
 };
-
-
