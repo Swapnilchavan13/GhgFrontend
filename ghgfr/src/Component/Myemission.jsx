@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import { Clientnavbar } from './Clientnavbar';
 import axios from 'axios';
 import "../styles/myemission.css";
@@ -32,6 +32,16 @@ export const Myemission = () => {
   const [isImageUploaded, setIsImageUploaded] = useState(false); // Add state for tracking image upload
   const [selectedImagePreview, setSelectedImagePreview] = useState(null); // Add state for selected image preview
 
+  const [showItem1, setShowItem1] = useState(true);
+  const [bname, setBname] = useState("Next");
+
+
+  const handleNextButtonClick = () => {
+    setShowItem1(!showItem1);
+    setBname(showItem1 ? "Previous" : "Next");
+
+  };
+  
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -46,7 +56,7 @@ export const Myemission = () => {
   };
 
 
-  const handleUpload = async () => {
+  const handleUpload = async (index) => {
     try {
       const formData = new FormData();
       formData.append('image', image);
@@ -56,6 +66,12 @@ export const Myemission = () => {
 
       // Update the latest image path state with the new image path
       setLatestImagePath(response.data.imagePath);
+
+     // Update the emission field in the row with the new image path
+     const updatedRows = [...rows];
+     updatedRows[index].emission = response.data.imagePath;
+     setRows(updatedRows);
+
 
       // Clear the selected image
       setImage(null);
@@ -99,8 +115,6 @@ export const Myemission = () => {
 
   function createEmptyRow() {
     const userId = localStorage.getItem('userId') || '';
-
-
 
     return {
       userId: userId,
@@ -168,6 +182,9 @@ export const Myemission = () => {
 
   const addNextRow = () => {
     setRows([...rows, { ...createEmptyRow() }]);
+    setShowItem1(!showItem1);
+    setBname("Next")
+
     resetImageState(); // Reset the image state
 
   };
@@ -193,6 +210,8 @@ export const Myemission = () => {
       if (responseData.success) {
         alert('Data saved successfully');
         // Update sdata state with the saved data
+        setShowItem1(!showItem1);
+
         setSdata(responseData.savedData.rows || createInitialRows());
         // Update additional fields if needed
       } else {
@@ -285,7 +304,6 @@ export const Myemission = () => {
       (!countryFilter || row.selectedCountry === countryFilter) &&
       (!categoryFilter || row.selectedCategory === categoryFilter) &&
       (!scopeFilter || row.group === scopeFilter)
-
     );
 
     const totalC = filteredData.reduce((acc, row) => acc + parseFloat(row.consumption) || 0, 0);
@@ -337,6 +355,10 @@ export const Myemission = () => {
         <button style={{ backgroundColor: 'black' }} onClick={sortData}>
           {isSorted ? 'Result Sort (Low to High)' : 'Result Sort (High to Low)'}
         </button>
+        <div class="carousel-container">
+<div class="carousel">
+{showItem1 ? (
+      <div class="carousel-item1">
         <table>
           <thead>
             <tr>
@@ -350,24 +372,18 @@ export const Myemission = () => {
               <th>SKU</th>
               <th>Unit</th>
               <th>Scope</th>
-              <th>Consumption Per Kg</th>
-              <th>Date</th>
-              <th>Upload Image</th>
-              <th>RESULT</th>
-              <th>Calculate</th>
-              <th>Add Next</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, index) => {
-              const nameOptions = Array.from(new Set(data.map((item) => item.Name)));
-              const categoryOptions = Array.from(
-                new Set(
-                  data
-                    .filter((item) => row.selectedName === '' || item.Name === row.selectedName)
-                    .map((item) => item.Category)
-                )
-              );
+</tr>
+      </thead>
+      <tbody>
+  {rows.map((row, index) => {
+    const nameOptions = Array.from(new Set(data.map((item) => item.Name)));
+    const categoryOptions = Array.from(
+      new Set(
+        data
+          .filter((item) => row.selectedName === '' || item.Name === row.selectedName)
+          .map((item) => item.Category)
+      )
+    );
               const countryOptions = Array.from(
                 new Set(
                   data
@@ -461,7 +477,6 @@ export const Myemission = () => {
                     .map((item) => item.Group)
                 )
               );
-
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
@@ -597,53 +612,83 @@ export const Myemission = () => {
                       ))}
                     </select>
                   </td>
-                  <td>
-                    <input
-                      type="number"
-                      value={row.distance}
-                      onChange={(e) => handleRowChange(index, 'distance', e.target.value)}
-                      placeholder="Enter Consumption"
-                    />
-                  </td>
-                  <td>
-                    From
-                    <input
-                      type="date"
-                      value={row.date}
-                      onChange={(e) => handleRowChange(index, 'date', e.target.value)}
-                    />
-                    To
-                    <input
-                      type="date"
-                      value={row.date1}
-                      onChange={(e) => handleRowChange(index, 'date1', e.target.value)}
-                    />
-                  </td>
+                  </tr>
+    );
+  })}
+</tbody>
+        </table>
+      </div>
+       ) : (
+ <div class="carousel-item2">
+ <table>
+          <thead>
+            <tr>
+              <th>Consumption Per Kg</th>
+              <th>Date</th>
+              <th>Upload Image</th>
+              <th>RESULT</th>
+              <th>Calculate</th>
+              <th>Add Next</th>
+            </tr>
+          </thead>
+          <tbody>
+  {rows.map((row, index) => (
+    <tr key={index}>
+      <td>
+        <input
+          type="number"
+          value={row.distance}
+          onChange={(e) => handleRowChange(index, 'distance', e.target.value)}
+          placeholder="Enter Consumption"
+        />
+      </td>
+      <td>
+        From
+        <input
+          type="date"
+          value={row.date}
+          onChange={(e) => handleRowChange(index, 'date', e.target.value)}
+        />
+        To
+        <input
+          type="date"
+          value={row.date1}
+          onChange={(e) => handleRowChange(index, 'date1', e.target.value)}
+        />
+      </td>
+      <td>
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        {selectedImagePreview && (
+          
+          <img src={selectedImagePreview} alt="Selected Image" style={{ width: '80px' }} />
+         
+          
+        )}
+        <button onClick={() => handleUpload(index)}>
+    {isImageUploaded ? 'Uploaded' : 'Upload Image'}
+  </button>
+      </td>
+      <td> <input
+          type="text"
+          value={latestImagePath}
+          onChange={(e) => handleRowChange(index, 'emission', e.target.value)}
+          readOnly
+        /></td>
+        
+      <td>{row.result !== null ? row.result : 'N/A'}</td>
+      <td>
+        <button onClick={() => calculateResult(index)}>Calculate</button>
+      </td>
+      <td>
+        <button onClick={addNextRow}>Add Next</button>
+      </td>
+    </tr>
+  ))}
+</tbody>
 
-                  <td>
-                    <input type="file" accept="image/*" onChange={handleImageChange} />
-                    {selectedImagePreview && (
-                      <img src={selectedImagePreview} alt="Selected Image" style={{ width: '80px' }} />
-                    )}
-                    <button onClick={handleUpload}>
-                      {isImageUploaded ? 'Uploaded' : 'Upload Image'}
-                    </button>
-                  </td>
-
-                  <td>{row.result !== null ? row.result : 'N/A'}</td>
-                  <td>
-                    <button onClick={() => calculateResult(index)}>Calculate</button>
-                  </td>
-                  <td>
-                    <button onClick={addNextRow}>Add Next</button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
           <tfoot>
             <tr>
-              <td style={{ fontWeight: 'bolder' }} colSpan="13">
+              <td style={{ fontWeight: 'bolder' }} colSpan="3">
                 Total Footprints
               </td>
               <td style={{ fontWeight: 'bolder' }}>{result !== null ? result : 'N/A'}</td>
@@ -654,6 +699,13 @@ export const Myemission = () => {
             </tr>
           </tfoot>
         </table>
+        </div>
+        )}
+     </div>
+     <button onClick={handleNextButtonClick}>{bname}</button>
+    
+  </div>
+
         <div>
           <h2>Added Emission Table</h2>
           <table>
@@ -744,8 +796,8 @@ export const Myemission = () => {
                     <td>{row.date}</td>
                     <td>{row.date1}</td>
                     <td>
-                      <a href={`http://62.72.59.146:8080/${row.image}`} target="_blank" rel="noopener noreferrer">
-                        <img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${row.image}`} alt="Latest Uploaded" />
+                      <a href={`http://62.72.59.146:8080/${row.emission}`} target="_blank" rel="noopener noreferrer">
+                        <img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${row.emission}`} alt="Latest Uploaded" />
                       </a>
                     </td>
                     <td>{row.result !== null ? row.result : 'N/A'}</td>
@@ -753,7 +805,8 @@ export const Myemission = () => {
                 ))}
               <tr>
                 <td style={{ fontWeight: 'bolder' }} colSpan="10">Total</td>
-                <td style={{ fontWeight: 'bolder' }}>{totalConsumption}</td>
+                <td style={{ fontWeight: 'bolder' }}></td>
+                <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}>{totalResult}</td>

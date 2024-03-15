@@ -32,3 +32,27 @@ td {
     background-color: #f0f0f0;
   }
   
+
+  .carousel-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .carousel {
+    flex-wrap: nowrap;
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    width: 100%; /* Each carousel item takes 50% of the container */
+  }
+  
+  .carousel-item table {
+    width: 100%;
+    min-width: 100%; /* Ensure table takes full width */
+  }
+  
+  .carousel-item:not(:first-child) {
+    margin-left: 20px; /* Adjust margin as needed */
+  }
+  
