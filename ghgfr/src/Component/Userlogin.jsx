@@ -31,7 +31,7 @@ export const Userlogin = () => {
       if (response.ok) {
         // Login successful
         setLoggedInUserName(userId);
-        localStorage.setItem('isUserLoggedIn', 'true');
+        localStorage.setItem('isUserLoggedIn', true);
         localStorage.setItem('useruserId', userId); // Save user ID on successful login
         alert('Login successful!');
         navigate('/user/useremission');
@@ -67,9 +67,6 @@ export const Userlogin = () => {
         </label>
         <br />
         <button onClick={handleLogin}>Login</button>
-        {loginStatus === false && (
-          <p style={{ color: 'red' }}>Incorrect username or password. Please try again.</p>
-        )}
       </div>
     </>
   );

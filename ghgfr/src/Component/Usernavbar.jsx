@@ -14,7 +14,7 @@ export const Usernavbar = () => {
 
   return (
     <div className="navbar-container">
-      <Link to='/user/emission' className="nav-link">
+      <Link to='/user/useremission' className="nav-link">
         <h3>My Emission</h3>
       </Link>
       {isUserLoggedIn ? (

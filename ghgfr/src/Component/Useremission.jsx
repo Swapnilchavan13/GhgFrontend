@@ -654,7 +654,7 @@ export const Useremission = () => {
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {selectedImagePreview && (
           <>
-          <img src={selectedImagePreview} alt="Selected Image" style={{ width: '80px' }} />
+          {/* <img src={selectedImagePreview} alt="Selected Image" style={{ width: '80px' }} /> */}
           <input
           type="text"
           value={latestImagePath}
@@ -666,7 +666,7 @@ export const Useremission = () => {
           
         )}
         <button onClick={() => handleUpload(index)}>
-    {isImageUploaded ? 'Uploaded' : 'Upload Image'}
+    {isImageUploaded ? 'Upload Image' : 'Upload Image'}
   </button>
       </td>        
       <td>{row.result !== null ? row.result : 'N/A'}</td>
