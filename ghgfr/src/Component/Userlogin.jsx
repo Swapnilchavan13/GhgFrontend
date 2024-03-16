@@ -1,0 +1,76 @@
+import React, { useState } from 'react';
+import '../styles/addclients.css';
+import { useNavigate } from 'react-router-dom';
+import { Usernavbar } from './Usernavbar';
+
+export const Userlogin = () => {
+  const storedLoginStatus = localStorage.getItem('isUserLoggedIn') === 'true';
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginStatus, setLoginStatus] = useState(storedLoginStatus);
+  const [loggedInUserName, setLoggedInUserName] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setLoggedInUserName('');
+    setLoginStatus(false);
+    localStorage.setItem('isUserLoggedIn', 'false');
+    localStorage.removeItem('useruserId'); // Remove user ID on logout
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/userlogin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, password }),
+      });
+
+      if (response.ok) {
+        // Login successful
+        setLoggedInUserName(userId);
+        localStorage.setItem('isUserLoggedIn', 'true');
+        localStorage.setItem('useruserId', userId); // Save user ID on successful login
+        alert('Login successful!');
+        navigate('/user/useremission');
+        // Redirect to the My Emission page or perform any other necessary actions
+      } else {
+        // Login failed
+        setLoginStatus(false);
+        localStorage.setItem('isUserLoggedIn', 'false');
+        localStorage.removeItem('useruserId'); // Remove user ID on unsuccessful login
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setLoginStatus(false);
+      localStorage.setItem('isUserLoggedIn', 'false');
+      localStorage.removeItem('useruserId'); // Remove user ID on error
+    }
+  };
+
+  return (
+    <>
+      <Usernavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} />
+      <div className="add-client-container">
+        <h2>User Login</h2>
+       
+        <label>
+          User Id:
+          <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <br />
+        <button onClick={handleLogin}>Login</button>
+        {loginStatus === false && (
+          <p style={{ color: 'red' }}>Incorrect username or password. Please try again.</p>
+        )}
+      </div>
+    </>
+  );
+};

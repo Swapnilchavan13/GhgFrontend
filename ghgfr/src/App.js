@@ -7,7 +7,9 @@ import { Addclient } from './Component/Addclient';
 import  Addemission from './Component/Addemission';
 import { Allclients } from './Component/Allclients';
 import { Login } from './Component/Login';
-import { Imageupload } from './Component/Imageupload';
+import { Addusers } from './Component/Addusers';
+import { Useremission } from './Component/Useremission';
+import { Userlogin } from './Component/Userlogin';
 
 
 function App() {
@@ -22,11 +24,13 @@ function App() {
           <Route path="allclients" element={<Allclients />} />
 
           <Route path="client" element={<Myemission />} />
-          <Route path="client/img" element={<Imageupload />} />
-
           <Route path="client/myemission" element={<Myemission />} />
-
+          <Route path="client/addusers" element={<Addusers />} />
           <Route path="client/login" element={<Login />} />
+
+          <Route path="user" element={<Useremission />} />
+          <Route path="user/useremission" element={<Useremission />} />
+          <Route path="user/login" element={<Userlogin />} />
 
       </Routes>
     </BrowserRouter>

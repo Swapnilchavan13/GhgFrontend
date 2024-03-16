@@ -8,6 +8,8 @@ export const Clientnavbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn'); // Remove isLoggedIn key from local storage
+    localStorage.removeItem('userId'); // Remove isLoggedIn key from local storage
+
     navigate('/client/login')
     alert('Logout successful!');
   };
@@ -16,6 +18,9 @@ export const Clientnavbar = () => {
     <div className="navbar-container">
       <Link to='/client/myemission' className="nav-link">
         <h3>My Emission</h3>
+      </Link>
+      <Link to='/client/addusers' className="nav-link">
+        <h3>Add Users</h3>
       </Link>
       {isLoggedIn ? (
         <button onClick={handleLogout} className="nav-link">
