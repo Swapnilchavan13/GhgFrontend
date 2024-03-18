@@ -7,50 +7,43 @@ export const Myemission = () => {
   const [aggregatedData, setAggregatedData] = useState({});
   const [scopes, setScopes] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const myclientId = localStorage.getItem('userId')
-  const navigate = useNavigate();
+  const [selectedUserEmissionData, setSelectedUserEmissionData] = useState([]);
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     setIsLoggedIn(!!storedIsLoggedIn);
   }, []);
 
-    // Redirect to the login page if not logged in
-    useEffect(() => {
-        if (!isLoggedIn) {
-          navigate('/client/login');
-        }
-      }, [isLoggedIn, navigate]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch users from the matching client
-    fetch(`http://localhost:8080/getusers?clientId=${myclientId}`)
+    if (!isLoggedIn) {
+      navigate('/client/login');
+    }
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/getusers?clientId=${localStorage.getItem('userId')}`)
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error('Error fetching users:', error));
   }, []);
 
-  console.log(users)
-
   useEffect(() => {
     const fetchData = async () => {
       const aggregatedDataObj = {};
 
-      // Fetch emission data for each user
       for (const user of users) {
         try {
           const response = await fetch(`http://localhost:8080/getdata12?userId=${user.userId}`);
           const data = await response.json();
 
-          // Initialize scope values for the user
           aggregatedDataObj[user.userId] = {};
-
           for (const item of data) {
             if (!aggregatedDataObj[user.userId].hasOwnProperty(item.group)) {
-              aggregatedDataObj[user.userId][item.group] = parseFloat(item.result); // Convert result to number
+              aggregatedDataObj[user.userId][item.group] = parseFloat(item.result);
             } else {
-              aggregatedDataObj[user.userId][item.group] += parseFloat(item.result); // Convert result to number
+              aggregatedDataObj[user.userId][item.group] += parseFloat(item.result);
             }
           }
         } catch (error) {
@@ -58,10 +51,8 @@ export const Myemission = () => {
         }
       }
 
-      // Update the state with aggregated data
       setAggregatedData(aggregatedDataObj);
 
-      // Update the scopes state
       const allScopes = new Set();
       for (const userId in aggregatedDataObj) {
         for (const scope in aggregatedDataObj[userId]) {
@@ -74,11 +65,24 @@ export const Myemission = () => {
     fetchData();
   }, [users]);
 
+  const handleShowData = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/getdata12?userId=${userId}`);
+      const data = await response.json();
+      setSelectedUserEmissionData(data);
+      console.log(data)
+    } catch (error) {
+      console.error('Error fetching emission data:', error);
+    }
+  };
+
   return (
     <div>
       <Clientnavbar />
 
       <h2>Aggregated Data by Scope</h2>
+      <h4>Total Users: {users.length}</h4>
+
       <table>
         <thead>
           <tr>
@@ -87,6 +91,7 @@ export const Myemission = () => {
               <th key={scope}>{scope}</th>
             ))}
             <th>Total</th>
+            <th>Show Emission</th> {/* Add button column */}
           </tr>
         </thead>
         <tbody>
@@ -96,9 +101,8 @@ export const Myemission = () => {
               {scopes.map(scope => (
                 <td key={`${user.userId}-${scope}`}>{aggregatedData[user.userId]?.[scope] || 0}</td>
               ))}
-              <td>
-                {Object.values(aggregatedData[user.userId] || {}).reduce((acc, val) => acc + val, 0)}
-              </td>
+              <td>{Object.values(aggregatedData[user.userId] || {}).reduce((acc, val) => acc + val, 0)}</td>
+              <td><button onClick={() => handleShowData(user.userId)}>Show Emission</button></td> {/* Button to show data */}
             </tr>
           ))}
         </tbody>
@@ -116,7 +120,51 @@ export const Myemission = () => {
         </tfoot>
       </table>
 
-      <p>Total Users: {users.length}</p>
+      <div>
+        <h2>Emission Data ({selectedUserEmissionData[0].userId})</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Selected Name</th>
+              <th>Selected Category</th>
+              <th>Selected Country</th>
+              <th>Selected Type</th>
+              <th>Selected Brand</th>
+              <th>Distance</th>
+              <th>Description</th>
+              <th>Group</th>
+              <th>SKU</th>
+              <th>Unit</th>
+              <th>Image</th>
+              <th>Date</th>
+              <th>Date1</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedUserEmissionData.map(item => (
+              <tr key={item._id}>
+                <td>{item.userId}</td>
+                <td>{item.selectedName}</td>
+                <td>{item.selectedCategory}</td>
+                <td>{item.selectedCountry}</td>
+                <td>{item.selectedType}</td>
+                <td>{item.selectedBrand}</td>
+                <td>{item.distance}</td>
+                <td>{item.description}</td>
+                <td>{item.group}</td>
+                <td>{item.sku}</td>
+                <td>{item.unit}</td>
+                <td><img style={{ width: '100px' }} src={`http://62.72.59.146:8080/${item.emission}`} alt="Image" /></td>
+                <td>{item.date}</td>
+                <td>{item.date1}</td>
+                <td>{item.result}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { Login } from './Component/Login';
 import { Addusers } from './Component/Addusers';
 import { Useremission } from './Component/Useremission';
 import { Userlogin } from './Component/Userlogin';
-
+import { Myusers } from './Component/Myusers';
 
 function App() {
   return (
@@ -27,6 +27,8 @@ function App() {
           <Route path="client/myemission" element={<Myemission />} />
           <Route path="client/addusers" element={<Addusers />} />
           <Route path="client/login" element={<Login />} />
+          <Route path="client/myusers" element={<Myusers />} />
+
 
           <Route path="user" element={<Useremission />} />
           <Route path="user/useremission" element={<Useremission />} />

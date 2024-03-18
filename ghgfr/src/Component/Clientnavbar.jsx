@@ -22,6 +22,9 @@ export const Clientnavbar = () => {
       <Link to='/client/addusers' className="nav-link">
         <h3>Add Users</h3>
       </Link>
+      <Link to='/client/myusers' className="nav-link">
+        <h3>My Users</h3>
+      </Link>
       {isLoggedIn ? (
         <button onClick={handleLogout} className="nav-link">
           <h3>Logout</h3>
