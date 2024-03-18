@@ -24,7 +24,7 @@ export const Myusers = () => {
       }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/getusers?clientId=${cid}`)
+    fetch(`http://62.72.59.146:8080/getusers?clientId=${cid}`)
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error('Error fetching users:', error));

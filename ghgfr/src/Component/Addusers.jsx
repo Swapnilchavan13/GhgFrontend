@@ -16,7 +16,7 @@ const navigate = useNavigate();
     e.preventDefault();
 
     // Send data to the backend here
-    const response = await fetch('http://localhost:8080/adduser', {
+    const response = await fetch('http://62.72.59.146:8080/adduser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
