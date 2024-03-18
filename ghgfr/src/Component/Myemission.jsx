@@ -121,7 +121,7 @@ export const Myemission = () => {
       </table>
 
       <div>
-        <h2>Emission Data ({selectedUserEmissionData[0].userId})</h2>
+        <h2>Emission Data</h2>
         <table>
           <thead>
             <tr>
