@@ -91,7 +91,7 @@ export const Myemission = () => {
               <th key={scope}>{scope}</th>
             ))}
             <th>Total</th>
-            <th>Show Emission</th> {/* Add button column */}
+            <th>Show Emission</th>
           </tr>
         </thead>
         <tbody>
@@ -156,7 +156,7 @@ export const Myemission = () => {
                 <td>{item.group}</td>
                 <td>{item.sku}</td>
                 <td>{item.unit}</td>
-                <td><img style={{ width: '100px' }} src={`http://62.72.59.146:8080/${item.emission}`} alt="Image" /></td>
+                <td><img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${item.emission}`} alt="Image" /></td>
                 <td>{item.date}</td>
                 <td>{item.date1}</td>
                 <td>{item.result}</td>

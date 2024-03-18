@@ -499,6 +499,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'selectedCategory', e.target.value)}
                           value={row.selectedCategory}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Category</option>
                           {categoryOptions.map((category) => (
@@ -512,6 +513,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'selectedCountry', e.target.value)}
                           value={row.selectedCountry}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Country</option>
                           {countryOptions.map((country) => (
@@ -525,6 +527,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'selectedType', e.target.value)}
                           value={row.selectedType}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Type</option>
                           {typeOptions.map((type) => (
@@ -538,6 +541,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'selectedBrand', e.target.value)}
                           value={row.selectedBrand}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Brand</option>
                           {brandOptions.map((brand) => (
@@ -552,6 +556,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'description', e.target.value)}
                           value={row.description}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Description</option>
                           {descriptionOptions.map((description) => (
@@ -566,6 +571,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'sku', e.target.value)}
                           value={row.sku}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select SKU</option>
                           {skuOptions.map((sku) => (
@@ -580,6 +586,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'unit', e.target.value)}
                           value={row.unit}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Unit</option>
                           {unitOptions.map((unit) => (
@@ -594,6 +601,7 @@
                         <select
                           onChange={(e) => handleRowChange(index, 'group', e.target.value)}
                           value={row.group}
+                          disabled={row.selectedName === ''}
                         >
                           <option value="">Select Group</option>
                           {groupOptions.map((group) => (
