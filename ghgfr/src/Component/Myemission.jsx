@@ -131,7 +131,7 @@ export const Myemission = () => {
               <th>Selected Country</th>
               <th>Selected Type</th>
               <th>Selected Brand</th>
-              <th>Distance</th>
+              <th>Emission</th>
               <th>Description</th>
               <th>Group</th>
               <th>SKU</th>
