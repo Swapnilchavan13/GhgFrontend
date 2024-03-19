@@ -99,7 +99,8 @@ export const Myemission = () => {
             <tr key={user.userId}>
               <td>{user.userId}</td>
               {scopes.map(scope => (
-                <td key={`${user.userId}-${scope}`}>{aggregatedData[user.userId]?.[scope] || 0}</td>
+                <td key={`${user.userId}-${scope}`}>{(aggregatedData[user.userId]?.[scope] || 0).toFixed(2)}</td>
+
               ))}
               <td>{Object.values(aggregatedData[user.userId] || {}).reduce((acc, val) => acc + val, 0)}</td>
               <td><button onClick={() => handleShowData(user.userId)}>Show Emission</button></td> {/* Button to show data */}
@@ -110,11 +111,12 @@ export const Myemission = () => {
           <tr>
             <td colSpan={scopes.length + 1}><strong>Total</strong></td>
             <td>
-              <strong>
-                {Object.values(aggregatedData).reduce((total, userData) => {
-                  return total + Object.values(userData).reduce((acc, val) => acc + val, 0);
-                }, 0)}
-              </strong>
+            <strong>
+  {Object.values(aggregatedData).reduce((total, userData) => {
+    return total + Object.values(userData).reduce((acc, val) => acc + val, 0);
+  }, 0).toFixed(2)}
+</strong>
+
             </td>
           </tr>
         </tfoot>
@@ -156,10 +158,21 @@ export const Myemission = () => {
                 <td>{item.group}</td>
                 <td>{item.sku}</td>
                 <td>{item.unit}</td>
-                <td><img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${item.emission}`} alt="Image" /></td>
+                <td>
+                <a href={`http://62.72.59.146:8080/${item.emission}`} target="_blank" rel="noopener noreferrer">
+                  <img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${item.emission}`} alt="Image" />
+                 </a>
+                </td>
                 <td>{item.date}</td>
                 <td>{item.date1}</td>
-                <td>{item.result}</td>
+                <td>
+  {typeof item.result === 'number'
+    ? parseFloat(item.result.toFixed(2))
+    : typeof item.result === 'string'
+    ? parseFloat(item.result.match(/-?\d+(?:\.\d{0,2})?/)[0]).toFixed(2)
+    : item.result}
+</td>
+
               </tr>
             ))}
           </tbody>
