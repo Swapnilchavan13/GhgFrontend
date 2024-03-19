@@ -672,7 +672,11 @@ export const Useremission = () => {
                             {isImageUploaded ? 'Upload Image' : 'Upload Image'}
                           </button>
                         </td>
-                        <td>{row.result !== null ? row.result : 'N/A'}</td>
+                        <td>
+                          {row.result !== null && typeof row.result === 'number'
+                            ? row.result.toFixed(2)
+                            : 'N/A'}
+                        </td>
                         <td>
                           <button onClick={() => calculateResult(index)}>Calculate</button>
                         </td>
