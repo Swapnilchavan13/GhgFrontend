@@ -31,6 +31,10 @@ export const Useremission = () => {
 
   const [showItem1, setShowItem1] = useState(true);
   const [bname, setBname] = useState("Next");
+  
+  const [isConsumptionSorted, setIsConsumptionSorted] = useState("");
+  const [consumptionSortOrder, setConsumptionSortOrder] = useState(true);
+
 
   const useruserId = localStorage.getItem('useruserId') || '';
 
@@ -321,29 +325,29 @@ export const Useremission = () => {
     // Apply additional filtering logic if needed
   };
 
-  //   const handleConsumptionSort = () => {
-  //     const sortedData = [...sdata].sort((a, b) => {
-  //       const valueA = parseFloat(a.consumption) || 0;
-  //       const valueB = parseFloat(b.consumption) || 0;
+    const handleConsumptionSort = () => {
+      const sortedData = [...sdata].sort((a, b) => {
+        const valueA = parseFloat(a.result) || 0;
+        const valueB = parseFloat(b.result) || 0;
 
-  //       if (isConsumptionSorted) {
-  //         return valueA - valueB;
-  //       } else {
-  //         return valueB - valueA;
-  //       }
-  //     });
+        if (isConsumptionSorted) {
+          return valueA - valueB;
+        } else {
+          return valueB - valueA;
+        }
+      });
 
-  //     setSdata(sortedData);
-  //     setConsumptionSortOrder(isConsumptionSorted ? 'asc' : 'desc');
-  //     setIsConsumptionSorted(!isConsumptionSorted);
-  //   };
+      setSdata(sortedData);
+      setConsumptionSortOrder(isConsumptionSorted ? 'asc' : 'desc');
+      setIsConsumptionSorted(!isConsumptionSorted);
+    };
 
   return (
     <>
       <Usernavbar />
       <div>
-        <h1>My Emission ({useruserId})</h1>
-        <button style={{ backgroundColor: 'black' }} onClick={sortData}>
+        <h1>My Emissions ({useruserId})</h1>
+        <button className='btnblue' onClick={sortData}>
           {isSorted ? 'Result Sort (Low to High)' : 'Result Sort (High to Low)'}
         </button>
         <div class="carousel-container">
@@ -694,8 +698,8 @@ export const Useremission = () => {
                       </td>
                       <td style={{ fontWeight: 'bolder' }}>{result !== null ? result : 'N/A'}</td>
                       <td>
-                        <button onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
-                        <button style={{ marginTop: '5px', backgroundColor: 'black' }} onClick={saveDataToBackend}>Save</button>
+                        <button className='btnblue' onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
+                        <button className='btnblue' style={{ marginTop: '5px'}} onClick={saveDataToBackend}>Save</button>
                       </td>
                     </tr>
                   </tfoot>
@@ -762,16 +766,14 @@ export const Useremission = () => {
                 </th>
                 <th>SKU</th>
                 <th>Unit</th>
-                {/* <th onClick={handleConsumptionSort}>
-                      Consumption Per Kg
-                      {isConsumptionSorted ? ' (High)' : ' (Low)'}
-                    </th> */}
-
                 <th>From Date</th>
                 <th>To Date</th>
 
                 <th>Image</th>
-                <th>RESULT</th>
+                <th onClick={handleConsumptionSort}>
+                      RESULT
+                      {isConsumptionSorted ? ' (High)' : ' (Low)'}
+                    </th> 
               </tr>
             </thead>
             <tbody>

@@ -63,7 +63,7 @@ const Addemission = () => {
     <>
       <Adminnavbar />
     <div className='mdiv'>
-      <h1>Add Emission Data</h1>
+      <h1>Add Emissions Data</h1>
       <form onSubmit={handleSubmit}>
         {Object.keys(formData).map((fieldName) => (
           <div style={{ display: fieldName === "dynamicFields" ? 'none' : 'block' }} key={fieldName}>

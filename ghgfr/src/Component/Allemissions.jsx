@@ -97,7 +97,7 @@ export const Allemissions = () => {
     <>
       <Adminnavbar />
       <div>
-        <h2>All Emission Data</h2>
+        <h2>All Emission Coefficients</h2>
         <table>
           <thead>
             <tr>

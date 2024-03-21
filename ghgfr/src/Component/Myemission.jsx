@@ -123,7 +123,7 @@ export const Myemission = () => {
       </table>
 
       <div>
-        <h2>Emission Data</h2>
+        <h2>Emissions Data</h2>
         <table>
           <thead>
             <tr>

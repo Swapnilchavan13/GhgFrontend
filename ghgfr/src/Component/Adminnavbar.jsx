@@ -5,8 +5,9 @@ import "../styles/navbar.css"
 export const Adminnavbar = () => {
   return (
     <div className="navbar-container">
+      <img style={{borderRadius:'15px'}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
       <Link to='/addemission' className="nav-link">
-        <h3>Add Emission</h3>
+        <h3>Add Emissions</h3>
       </Link>
       <Link to='/addclient' className="nav-link">
         <h3>Add Clients</h3>
