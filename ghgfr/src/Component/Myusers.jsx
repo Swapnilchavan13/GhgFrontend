@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Clientnavbar } from './Clientnavbar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Myusers = () => {
   const [users, setUsers] = useState([]);
@@ -50,6 +50,10 @@ export const Myusers = () => {
           ))}
         </tbody>
       </table>
+      <br />
+      <Link to='/client/addusers' className="nav-link">
+        <button>Add Users</button>
+      </Link>
     </div>
   );
 };

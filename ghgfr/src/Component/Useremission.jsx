@@ -768,7 +768,6 @@ export const Useremission = () => {
                 <th>Unit</th>
                 <th>From Date</th>
                 <th>To Date</th>
-
                 <th>Image</th>
                 <th onClick={handleConsumptionSort}>
                       RESULT

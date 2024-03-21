@@ -46,6 +46,7 @@ export const Allclients = () => {
             ))}
           </tbody>
         </table>
+        
       </div>
     </>
   );
