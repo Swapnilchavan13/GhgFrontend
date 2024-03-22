@@ -70,7 +70,7 @@ const navigate = useNavigate();
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <br />
-          <button type="submit" className="submit-button">
+          <button type="submit" >
             Add User
           </button>
         </form>
