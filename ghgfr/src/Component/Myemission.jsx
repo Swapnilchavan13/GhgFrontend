@@ -139,8 +139,8 @@ export const Myemission = () => {
               <th>SKU</th>
               <th>Unit</th>
               <th>Image</th>
-              <th>Date</th>
-              <th>Date1</th>
+              <th>From Date</th>
+              <th>To Date</th>
               <th>Result</th>
             </tr>
           </thead>

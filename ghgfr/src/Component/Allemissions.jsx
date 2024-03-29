@@ -14,7 +14,6 @@ export const Allemissions = () => {
   });
 
   useEffect(() => {
-    // Fetch data from the API
     const fetchData = async () => {
       try {
         const response = await fetch('http://62.72.59.146:8080/getdata');
@@ -30,12 +29,10 @@ export const Allemissions = () => {
 
   const handleDelete = async (id) => {
     try {
-      // Make API call to delete the item with the given id
       await fetch(`http://62.72.59.146:8080/deleteData/${id}`, {
         method: 'DELETE',
       });
 
-      // Update the data state after successful deletion
       setData((prevData) => prevData.filter((item) => item._id !== id));
     } catch (error) {
       console.error('Error deleting data:', error);
@@ -43,7 +40,6 @@ export const Allemissions = () => {
   };
 
   const handleEdit = (id) => {
-    // Set the editingId and populate the editFormData
     setEditingId(id);
     const selectedData = data.find((item) => item._id === id);
     setEditFormData({
@@ -57,7 +53,6 @@ export const Allemissions = () => {
 
   const handleUpdate = async (id) => {
     try {
-      // Make API call to update the item with the given id
       const response = await fetch(`http://62.72.59.146:8080/updateData/${id}`, {
         method: 'PUT',
         headers: {
@@ -67,7 +62,6 @@ export const Allemissions = () => {
       });
       
       if (response.ok) {
-        // Update the data state after successful update
         setData((prevData) =>
           prevData.map((item) =>
             item._id === id ? { ...item, ...editFormData } : item
@@ -103,9 +97,10 @@ export const Allemissions = () => {
             <tr>
               <th>Name</th>
               <th>Description</th>
-              <th>Scope</th>
+              <th>Group</th>
               <th>Emission</th>
               <th>Unit</th>
+              <th>Dynamic Fields</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -117,6 +112,13 @@ export const Allemissions = () => {
                 <td>{item.Group}</td>
                 <td>{item.Emission}</td>
                 <td>{item.Unit}</td>
+                <td>
+                  {Object.entries(item.dynamicFields).map(([key, value]) => (
+                    <div key={key}>
+                      <strong>{key}: </strong> {value}
+                    </div>
+                  ))}
+                </td>
                 <td>
                   {editingId === item._id ? (
                     <>

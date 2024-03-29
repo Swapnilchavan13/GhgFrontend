@@ -31,7 +31,7 @@ export const Useremission = () => {
 
   const [showItem1, setShowItem1] = useState(true);
   const [bname, setBname] = useState("Next");
-  
+
   const [isConsumptionSorted, setIsConsumptionSorted] = useState("");
   const [consumptionSortOrder, setConsumptionSortOrder] = useState(true);
 
@@ -325,22 +325,22 @@ export const Useremission = () => {
     // Apply additional filtering logic if needed
   };
 
-    const handleConsumptionSort = () => {
-      const sortedData = [...sdata].sort((a, b) => {
-        const valueA = parseFloat(a.result) || 0;
-        const valueB = parseFloat(b.result) || 0;
+  const handleConsumptionSort = () => {
+    const sortedData = [...sdata].sort((a, b) => {
+      const valueA = parseFloat(a.result) || 0;
+      const valueB = parseFloat(b.result) || 0;
 
-        if (isConsumptionSorted) {
-          return valueA - valueB;
-        } else {
-          return valueB - valueA;
-        }
-      });
+      if (isConsumptionSorted) {
+        return valueA - valueB;
+      } else {
+        return valueB - valueA;
+      }
+    });
 
-      setSdata(sortedData);
-      setConsumptionSortOrder(isConsumptionSorted ? 'asc' : 'desc');
-      setIsConsumptionSorted(!isConsumptionSorted);
-    };
+    setSdata(sortedData);
+    setConsumptionSortOrder(isConsumptionSorted ? 'asc' : 'desc');
+    setIsConsumptionSorted(!isConsumptionSorted);
+  };
 
   return (
     <>
@@ -358,6 +358,7 @@ export const Useremission = () => {
                   <thead>
                     <tr>
                       <th>Sr. No</th>
+                      <th>Scope</th>
                       <th>Name</th>
                       <th>Category</th>
                       <th>Country</th>
@@ -366,7 +367,6 @@ export const Useremission = () => {
                       <th>Description</th>
                       <th>SKU</th>
                       <th>Unit</th>
-                      <th>Scope</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -475,17 +475,39 @@ export const Useremission = () => {
                       return (
                         <tr key={index}>
                           <td>{index + 1}</td>
+
+                          <td>
+                            <select
+                              onChange={(e) => handleRowChange(index, 'group', e.target.value)}
+                              value={row.group}
+                            >
+                              <option value="">Select Group</option>
+                              {groupOptions.map((group) => (
+                                <option key={group} value={group}>
+                                  {group}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
                           <td>
                             <input
                               type="text"
                               value={row.selectedName}
                               onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
                               placeholder="Search Name"
+                              disabled={row.group === ''}
                             />
                             {row.selectedName.length > 0 && (
                               <div className="search-results">
+                                {/* Filter names based on selected scope */}
                                 {nameOptions
-                                  .filter((name) => name.toLowerCase().includes(row.selectedName.toLowerCase()))
+                                  .filter((name) =>
+                                    data.some(
+                                      (item) =>
+                                        item.Name === name &&
+                                        item.Group === row.group // Filter names based on selected scope
+                                    )
+                                  )
                                   .map((filteredName) => (
                                     <div
                                       key={filteredName}
@@ -600,21 +622,7 @@ export const Useremission = () => {
                               ))}
                             </select>
                           </td>
-                          <td>
-                            {/* Add the dropdown for group */}
-                            <select
-                              onChange={(e) => handleRowChange(index, 'group', e.target.value)}
-                              value={row.group}
-                              disabled={row.selectedName === ''}
-                            >
-                              <option value="">Select Group</option>
-                              {groupOptions.map((group) => (
-                                <option key={group} value={group}>
-                                  {group}
-                                </option>
-                              ))}
-                            </select>
-                          </td>
+
                         </tr>
                       );
                     })}
@@ -687,6 +695,7 @@ export const Useremission = () => {
                         <td>
                           <button onClick={addNextRow}>Add Next</button>
                         </td>
+                        
                       </tr>
                     ))}
                   </tbody>
@@ -699,7 +708,7 @@ export const Useremission = () => {
                       <td style={{ fontWeight: 'bolder' }}>{result !== null ? result : 'N/A'}</td>
                       <td>
                         <button className='btnblue' onClick={calculateTotalFootprints}>CALCULATE FOOTPRINTS</button>
-                        <button className='btnblue' style={{ marginTop: '5px'}} onClick={saveDataToBackend}>Save</button>
+                        <button className='btnblue' style={{ marginTop: '5px' }} onClick={saveDataToBackend}>Save</button>
                       </td>
                     </tr>
                   </tfoot>
@@ -770,9 +779,9 @@ export const Useremission = () => {
                 <th>To Date</th>
                 <th>Image</th>
                 <th onClick={handleConsumptionSort}>
-                      RESULT
-                      {isConsumptionSorted ? ' (High)' : ' (Low)'}
-                    </th> 
+                  RESULT
+                  {isConsumptionSorted ? ' (High)' : ' (Low)'}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -803,6 +812,7 @@ export const Useremission = () => {
                       </a>
                     </td>
                     <td>{row.result !== null ? row.result : 'N/A'}</td>
+                    
                   </tr>
                 ))}
               <tr>
