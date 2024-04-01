@@ -537,7 +537,7 @@ export const Useremission = () => {
                           </td>
 
 
-                         
+
 
 
                           <td>
@@ -643,18 +643,18 @@ export const Useremission = () => {
                           </td>
 
                           {row.selectedName !== '' && (
-  <td>
-    {fields.map((el, index) => (
-      <div key={index}>
-        {Object.entries(el).map(([key, value]) => (
-          <p key={key}>
-            {key}: {value}
-          </p>
-        ))}
-      </div>
-    ))}
-  </td>
-)}
+                            <td>
+                              {fields.map((el, index) => (
+                                <div key={index}>
+                                  {Object.entries(el).map(([key, value]) => (
+                                    <p key={key}>
+                                      {key}: {value}
+                                    </p>
+                                  ))}
+                                </div>
+                              ))}
+                            </td>
+                          )}
 
 
                         </tr>
@@ -724,7 +724,7 @@ export const Useremission = () => {
                             : 'N/A'}
                         </td>
 
-                      
+
 
 
 
@@ -734,7 +734,7 @@ export const Useremission = () => {
                         <td>
                           <button onClick={addNextRow}>Add Next</button>
                         </td>
-                        
+
                       </tr>
                     ))}
                   </tbody>
@@ -851,7 +851,7 @@ export const Useremission = () => {
                       </a>
                     </td>
                     <td>{row.result !== null ? row.result : 'N/A'}</td>
-                    
+
                   </tr>
                 ))}
               <tr>
