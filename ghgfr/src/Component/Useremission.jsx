@@ -375,7 +375,6 @@ export const Useremission = () => {
                     {rows.map((row, index) => {
                       const nameOptions = Array.from(new Set(data.map((item) => item.Name)));
 
-
                       var fields = Array.from(
                         new Set(
                           data
@@ -383,9 +382,6 @@ export const Useremission = () => {
                             .map((item) => item.dynamicFields)
                         )
                       );
-
-                      // console.log(fields)
-
 
                       const categoryOptions = Array.from(
                         new Set(
@@ -535,11 +531,6 @@ export const Useremission = () => {
                               </div>
                             )}
                           </td>
-
-
-
-
-
                           <td>
                             <select
                               onChange={(e) => handleRowChange(index, 'selectedCategory', e.target.value)}
@@ -723,9 +714,6 @@ export const Useremission = () => {
                             ? row.result.toFixed(2)
                             : 'N/A'}
                         </td>
-
-
-
 
 
                         <td>
