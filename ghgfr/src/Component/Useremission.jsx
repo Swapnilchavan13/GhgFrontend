@@ -110,6 +110,7 @@ export const Useremission = () => {
       console.error('Error fetching data:', error);
     }
   };
+  // console.log(data);
 
   function createEmptyRow() {
     const userId = localStorage.getItem('userId') || '';
@@ -367,11 +368,25 @@ export const Useremission = () => {
                       <th>Description</th>
                       <th>SKU</th>
                       <th>Unit</th>
+                      <th>Extra fields</th>
                     </tr>
                   </thead>
                   <tbody>
                     {rows.map((row, index) => {
                       const nameOptions = Array.from(new Set(data.map((item) => item.Name)));
+
+
+                      var fields = Array.from(
+                        new Set(
+                          data
+                            .filter((item) => row.selectedName === '' || item.Name === row.selectedName)
+                            .map((item) => item.dynamicFields)
+                        )
+                      );
+
+                      // console.log(fields)
+
+
                       const categoryOptions = Array.from(
                         new Set(
                           data
@@ -521,6 +536,10 @@ export const Useremission = () => {
                             )}
                           </td>
 
+
+                         
+
+
                           <td>
                             <select
                               onChange={(e) => handleRowChange(index, 'selectedCategory', e.target.value)}
@@ -623,6 +642,21 @@ export const Useremission = () => {
                             </select>
                           </td>
 
+                          {row.selectedName !== '' && (
+  <td>
+    {fields.map((el, index) => (
+      <div key={index}>
+        {Object.entries(el).map(([key, value]) => (
+          <p key={key}>
+            {key}: {value}
+          </p>
+        ))}
+      </div>
+    ))}
+  </td>
+)}
+
+
                         </tr>
                       );
                     })}
@@ -689,6 +723,11 @@ export const Useremission = () => {
                             ? row.result.toFixed(2)
                             : 'N/A'}
                         </td>
+
+                      
+
+
+
                         <td>
                           <button onClick={() => calculateResult(index)}>Calculate</button>
                         </td>
