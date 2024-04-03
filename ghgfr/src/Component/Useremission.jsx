@@ -632,20 +632,23 @@ export const Useremission = () => {
                               ))}
                             </select>
                           </td>
-
                           {row.selectedName !== '' && (
-                            <td>
-                              {fields.map((el, index) => (
-                                <div key={index}>
-                                  {Object.entries(el).map(([key, value]) => (
-                                    <p key={key}>
-                                      {key}: {value}
-                                    </p>
-                                  ))}
-                                </div>
-                              ))}
-                            </td>
-                          )}
+    <td>
+        {fields.map((el, index) => (
+            <div key={index}>
+                {el ? (
+                    Object.entries(el).map(([key, value]) => (
+                        <p key={key}>
+                            {key}: {value}
+                        </p>
+                    ))
+                ) : (
+                    <p>N/A</p>
+                )}
+            </div>
+        ))}
+    </td>
+)}
 
 
                         </tr>
@@ -659,7 +662,7 @@ export const Useremission = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th>Consumption Per Kg</th>
+                      <th>Consumption</th>
                       <th>Date</th>
                       <th>Upload Image</th>
                       <th>RESULT</th>
