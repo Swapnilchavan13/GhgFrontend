@@ -844,7 +844,7 @@ export const Useremission = () => {
                         <img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${row.emission}`} alt="Latest Uploaded" />
                       </a>
                     </td>
-                    <td>{row.result !== null ? row.result : 'N/A'}</td>
+                    <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
 
                   </tr>
                 ))}
@@ -854,7 +854,7 @@ export const Useremission = () => {
                 <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}></td>
                 <td style={{ fontWeight: 'bolder' }}></td>
-                <td style={{ fontWeight: 'bolder' }}>{totalResult}</td>
+                <td style={{ fontWeight: 'bolder' }}>{totalResult.toFixed(2)}</td>
               </tr>
             </tbody>
           </table>
