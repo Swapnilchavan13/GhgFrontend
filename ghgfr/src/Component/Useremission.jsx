@@ -500,37 +500,38 @@ export const Useremission = () => {
                               ))}
                             </select>
                           </td>
-                          <td>
-                            <input
-                              type="text"
-                              value={row.selectedName}
-                              onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
-                              placeholder="Search Name"
-                              disabled={row.group === ''}
-                            />
-                            {row.selectedName.length > 0 && (
-                              <div className="search-results">
-                                {/* Filter names based on selected scope */}
-                                {nameOptions
-                                  .filter((name) =>
-                                    data.some(
-                                      (item) =>
-                                        item.Name === name &&
-                                        item.Group === row.group // Filter names based on selected scope
-                                    )
-                                  )
-                                  .map((filteredName) => (
-                                    <div
-                                      key={filteredName}
-                                      onClick={() => handleRowChange(index, 'selectedName', filteredName)}
-                                      className="search-result-item"
-                                    >
-                                      {filteredName}
-                                    </div>
-                                  ))}
-                              </div>
-                            )}
-                          </td>
+                         <td>
+  <input
+    type="text"
+    value={row.selectedName}
+    onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
+    placeholder="Search Name"
+    disabled={row.group === ''}
+  />
+  {row.selectedName.length > 0 && (
+    <div className="search-results" style={{ display: row.selectedName.length >= 2 ? 'none' : 'block' }}>
+      {/* Filter names based on selected scope */}
+      {nameOptions
+        .filter((name) =>
+          data.some(
+            (item) =>
+              item.Name === name &&
+              item.Group === row.group // Filter names based on selected scope
+          ) && name.toLowerCase().startsWith(row.selectedName.toLowerCase())
+        )
+        .map((filteredName) => (
+          <div
+            key={filteredName}
+            onClick={() => handleRowChange(index, 'selectedName', filteredName)}
+            className="search-result-item"
+          >
+            {filteredName}
+          </div>
+        ))}
+    </div>
+  )}
+</td>
+
                           <td>
                             <select
                               onChange={(e) => handleRowChange(index, 'selectedCategory', e.target.value)}
@@ -632,6 +633,7 @@ export const Useremission = () => {
                               ))}
                             </select>
                           </td>
+
                           {row.selectedName !== '' && (
     <td>
         {fields.map((el, index) => (
@@ -651,6 +653,7 @@ export const Useremission = () => {
 )}
 
 
+
                         </tr>
                       );
                     })}
@@ -662,7 +665,7 @@ export const Useremission = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th>Consumption</th>
+                      <th>Consumption Per Kg</th>
                       <th>Date</th>
                       <th>Upload Image</th>
                       <th>RESULT</th>
