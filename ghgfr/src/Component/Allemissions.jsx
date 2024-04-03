@@ -47,6 +47,7 @@ export const Allemissions = () => {
       Description: selectedData.Description,
       Group: selectedData.Group,
       Emission: selectedData.Emission,
+      method: 'PUT',
       Unit: selectedData.Unit,
     });
   };
@@ -54,7 +55,6 @@ export const Allemissions = () => {
   const handleUpdate = async (id) => {
     try {
       const response = await fetch(`http://62.72.59.146:8080/updateData/${id}`, {
-        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -113,12 +113,15 @@ export const Allemissions = () => {
                 <td>{item.Emission}</td>
                 <td>{item.Unit}</td>
                 <td>
-                  {Object.entries(item.dynamicFields).map(([key, value]) => (
-                    <div key={key}>
-                      <strong>{key}: </strong> {value}
-                    </div>
-                  ))}
-                </td>
+  {item.dynamicFields ? (
+    Object.entries(item.dynamicFields).map(([key, value]) => (
+      <div key={key}>
+        <strong>{key}: </strong> {value}
+      </div>
+    ))
+  ) : null}
+</td>
+
                 <td>
                   {editingId === item._id ? (
                     <>
