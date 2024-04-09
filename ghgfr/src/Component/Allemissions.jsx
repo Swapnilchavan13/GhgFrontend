@@ -54,13 +54,19 @@ export const Allemissions = () => {
 
   const handleUpdate = async (id) => {
     try {
+      console.log('Updating data for id:', id);
+      console.log('Edit form data:', editFormData);
+  
       const response = await fetch(`http://62.72.59.146:8080/updateData/${id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(editFormData),
       });
       
+      console.log('Response:', response);
+  
       if (response.ok) {
         setData((prevData) =>
           prevData.map((item) =>
@@ -75,6 +81,7 @@ export const Allemissions = () => {
       console.error('Error updating data:', error);
     }
   };
+  
 
   const handleCancelEdit = () => {
     setEditingId(null);
@@ -85,6 +92,10 @@ export const Allemissions = () => {
       Emission: '',
       Unit: '',
     });
+  };
+
+  const handleSaveChanges = () => {
+    handleUpdate(editingId);
   };
 
   return (
@@ -113,15 +124,14 @@ export const Allemissions = () => {
                 <td>{item.Emission}</td>
                 <td>{item.Unit}</td>
                 <td>
-  {item.dynamicFields ? (
-    Object.entries(item.dynamicFields).map(([key, value]) => (
-      <div key={key}>
-        <strong>{key}: </strong> {value}
-      </div>
-    ))
-  ) : null}
-</td>
-
+                  {item.dynamicFields ? (
+                    Object.entries(item.dynamicFields).map(([key, value]) => (
+                      <div key={key}>
+                        <strong>{key}: </strong> {value}
+                      </div>
+                    ))
+                  ) : null}
+                </td>
                 <td>
                   {editingId === item._id ? (
                     <>
@@ -196,6 +206,8 @@ export const Allemissions = () => {
                 }
               />
             </label>
+            <br />
+            <button onClick={handleSaveChanges}>Save</button>
           </div>
         )}
       </div>

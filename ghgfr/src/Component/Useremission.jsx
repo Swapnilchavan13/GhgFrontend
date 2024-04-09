@@ -530,7 +530,7 @@ export const Useremission = () => {
         ))}
     </div>
   )}
-</td>
+</td> 
 
                           <td>
                             <select
