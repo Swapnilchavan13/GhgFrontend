@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/navbar.css';
 
-export const Clientnavbar = () => {
+export const Clientnavbar = ({ logoimg }) => {
   const isLoggedIn = localStorage.getItem('isLoggedIn');
   const navigate = useNavigate();
 
@@ -14,9 +14,11 @@ export const Clientnavbar = () => {
     alert('Logout successful!');
   };
 
+  console.log(logoimg)
+
   return (
     <div className="navbar-container">
-            <img style={{borderRadius:'15px', marginLeft:"-60px"}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
+        <img style={{borderRadius:'15px', marginLeft:"-60px"}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
 
       <Link to='/client/myemission' className="nav-link">
         <h3>My Emission</h3>
@@ -36,6 +38,8 @@ export const Clientnavbar = () => {
           <h3>Login</h3>
         </Link>
       )}
+      {logoimg !== null && <img src={`http://62.72.59.146:8080${logoimg}`} alt="Client Logo" className="client-logo" />}
+
     </div>
   );
 };

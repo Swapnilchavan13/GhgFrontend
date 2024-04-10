@@ -8,6 +8,8 @@ export const Myemission = () => {
   const [scopes, setScopes] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedUserEmissionData, setSelectedUserEmissionData] = useState([]);
+  const [logoimg, setLogoimg] = useState('');
+
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
@@ -76,9 +78,24 @@ export const Myemission = () => {
     }
   };
 
+
+  useEffect(() => {
+    // Fetch client's data including logoimg
+    fetch(`http://62.72.59.146:8080/getclients`)
+      .then(response => response.json())
+      .then(data => {
+        // Find the client data whose userId matches with the one in local storage
+        const client = data.find(client => client.userId === localStorage.getItem('userId'));
+        if (client) {
+          setLogoimg(client.logoimg);
+        }
+      })
+      .catch(error => console.error('Error fetching client data:', error));
+  }, []);
+
   return (
     <div>
-      <Clientnavbar />
+      <Clientnavbar logoimg={logoimg} />
 
       <h2>Aggregated Data by Scope</h2>
       <h4>Total Users: {users.length}</h4>

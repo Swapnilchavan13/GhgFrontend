@@ -9,6 +9,8 @@ export const Addusers = () => {
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [clientId, setClientId] = useState(localStorage.getItem('userId'));
+  const [logoimg, setLogoimg] = useState('');
+
 
 const navigate = useNavigate();
 
@@ -45,9 +47,23 @@ const navigate = useNavigate();
         }
       }, [isLoggedIn, navigate]);
 
+      useEffect(() => {
+        // Fetch client's data including logoimg
+        fetch(`http://62.72.59.146:8080/getclients`)
+          .then(response => response.json())
+          .then(data => {
+            // Find the client data whose userId matches with the one in local storage
+            const client = data.find(client => client.userId === localStorage.getItem('userId'));
+            if (client) {
+              setLogoimg(client.logoimg);
+            }
+          })
+          .catch(error => console.error('Error fetching client data:', error));
+      }, []);
+
   return (
     <>
-      <Clientnavbar />
+      <Clientnavbar logoimg={logoimg} />
       <div className="add-client-container">
         <h2>Add User</h2>
         <form onSubmit={handleSubmit} className="client-form">
