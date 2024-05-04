@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Adminnavbar } from './Adminnavbar';
 import '../styles/addclients.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Addclient = () => {
   const [username, setUsername] = useState('');
@@ -8,6 +9,18 @@ export const Addclient = () => {
   const [password, setPassword] = useState('');
   const [logoImg, setLogoImg] = useState(null);
   const [logoImgPreview, setLogoImgPreview] = useState(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user is logged in
+    const adminloginstate = localStorage.getItem('adminloginstate');
+    if (adminloginstate !== 'true') {
+      // If not logged in, redirect to "/"
+      navigate('/');
+    }
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

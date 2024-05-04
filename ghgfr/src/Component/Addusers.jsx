@@ -11,8 +11,7 @@ export const Addusers = () => {
   const [clientId, setClientId] = useState(localStorage.getItem('userId'));
   const [logoimg, setLogoimg] = useState('');
 
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

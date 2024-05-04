@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/upload.css'
 import { Adminnavbar } from './Adminnavbar';
+import { useNavigate } from 'react-router-dom';
 
 const Addemission = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,17 @@ const Addemission = () => {
     Emission: '',
     dynamicFields: {},
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user is logged in
+    const adminloginstate = localStorage.getItem('adminloginstate');
+    if (adminloginstate !== 'true') {
+      // If not logged in, redirect to "/"
+      navigate('/');
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

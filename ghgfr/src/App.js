@@ -11,13 +11,14 @@ import { Addusers } from './Component/Addusers';
 import { Useremission } from './Component/Useremission';
 import { Userlogin } from './Component/Userlogin';
 import { Myusers } from './Component/Myusers';
+import { Adminlogin } from './Component/Adminlogin';
 
 function App() {
   return (
     <div className="App">
        <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Addemission />} />
+          <Route path="/" element={<Adminlogin />} />
           <Route path="addemission" element={<Addemission />} />
           <Route path="allemissions" element={<Allemissions />} />
           <Route path="addclient" element={<Addclient />} />
