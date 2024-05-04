@@ -19,7 +19,7 @@ export const Addclient = () => {
     formData.append('logoimg', logoImg);
 
     // Send data to the backend here
-    const response = await fetch('http://62.72.59.146:8080/addclient', {
+    const response = await fetch('https://62.72.59.146:8080/addclient', {
       method: 'POST',
       body: formData,
     });

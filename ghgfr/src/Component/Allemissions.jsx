@@ -16,7 +16,7 @@ export const Allemissions = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://62.72.59.146:8080/getdata');
+        const response = await fetch('https://62.72.59.146:8080/getdata');
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -29,7 +29,7 @@ export const Allemissions = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://62.72.59.146:8080/deleteData/${id}`, {
+      await fetch(`https://62.72.59.146:8080/deleteData/${id}`, {
         method: 'DELETE',
       });
 
@@ -57,7 +57,7 @@ export const Allemissions = () => {
       console.log('Updating data for id:', id);
       console.log('Edit form data:', editFormData);
   
-      const response = await fetch(`http://62.72.59.146:8080/updateData/${id}`, {
+      const response = await fetch(`https://62.72.59.146:8080/updateData/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

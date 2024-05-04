@@ -18,7 +18,7 @@ export const Clientnavbar = ({ logoimg }) => {
 
   return (
     <div className="navbar-container">
-        <img style={{borderRadius:'15px', marginLeft:"-60px"}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
+        <img style={{borderRadius:'15px', marginLeft:"-60px"}} src="httpss://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
 
       <Link to='/client/myemission' className="nav-link">
         <h3>My Emission</h3>
@@ -38,7 +38,7 @@ export const Clientnavbar = ({ logoimg }) => {
           <h3>Login</h3>
         </Link>
       )}
-      {logoimg !== null && <img src={`http://62.72.59.146:8080${logoimg}`} alt="Client Logo" className="client-logo" />}
+      {logoimg !== null && <img src={`https://62.72.59.146:8080${logoimg}`} alt="Client Logo" className="client-logo" />}
 
     </div>
   );
