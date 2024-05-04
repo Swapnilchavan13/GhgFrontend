@@ -13,10 +13,8 @@ export const Addclient = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user is logged in
     const adminloginstate = localStorage.getItem('adminloginstate');
     if (adminloginstate !== 'true') {
-      // If not logged in, redirect to "/"
       navigate('/');
     }
   }, []);
