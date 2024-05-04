@@ -61,7 +61,7 @@ export const Useremission = () => {
       formData.append('image', image);
 
       // Upload image to backend
-      const response = await axios.post('https://62.72.59.146:8080/upload', formData);
+      const response = await axios.post('http://62.72.59.146:8080/upload', formData);
 
       // Update the latest image path state with the new image path
       setLatestImagePath(response.data.imagePath);
@@ -98,11 +98,11 @@ export const Useremission = () => {
     try {
       const userId = localStorage.getItem('useruserId') || '';
 
-      const response = await fetch('https://62.72.59.146:8080/getdata');
+      const response = await fetch('http://62.72.59.146:8080/getdata');
       const jsonData = await response.json();
       setData(jsonData);
       // Fetch saved data from the backend
-      const savedDataResponse = await fetch(`https://62.72.59.146:8080/getdata12?userId=${userId}`);
+      const savedDataResponse = await fetch(`http://62.72.59.146:8080/getdata12?userId=${userId}`);
       const savedData = await savedDataResponse.json();
       setSdata(savedData)
       setRows(savedData.rows || createInitialRows());
@@ -189,7 +189,7 @@ export const Useremission = () => {
     try {
       const userId = localStorage.getItem('useruserId') || '';
 
-      const response = await fetch('https://62.72.59.146:8080/saveData', {
+      const response = await fetch('http://62.72.59.146:8080/saveData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -840,8 +840,8 @@ export const Useremission = () => {
                     <td>{row.date}</td>
                     <td>{row.date1}</td>
                     <td>
-                      <a href={`https://62.72.59.146:8080/${row.emission}`} target="_blank" rel="noopener noreferrer">
-                        <img style={{ width: '80px' }} src={`https://62.72.59.146:8080/${row.emission}`} alt="Latest Uploaded" />
+                      <a href={`http://62.72.59.146:8080/${row.emission}`} target="_blank" rel="noopener noreferrer">
+                        <img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${row.emission}`} alt="Latest Uploaded" />
                       </a>
                     </td>
                     <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>

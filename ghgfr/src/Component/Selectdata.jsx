@@ -14,7 +14,7 @@ export const Selectdata = () => {
     // Fetch data from the API
     const fetchData = async () => {
       try {
-        const response = await fetch('https://62.72.59.146:8080/getdata');
+        const response = await fetch('http://62.72.59.146:8080/getdata');
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {

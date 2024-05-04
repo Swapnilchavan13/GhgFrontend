@@ -26,7 +26,7 @@ export const Myusers = () => {
       }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    fetch(`https://62.72.59.146:8080/getusers?clientId=${cid}`)
+    fetch(`http://62.72.59.146:8080/getusers?clientId=${cid}`)
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error('Error fetching users:', error));
@@ -35,7 +35,7 @@ export const Myusers = () => {
   
   useEffect(() => {
     // Fetch client's data including logoimg
-    fetch(`https://62.72.59.146:8080/getclients`)
+    fetch(`http://62.72.59.146:8080/getclients`)
       .then(response => response.json())
       .then(data => {
         // Find the client data whose userId matches with the one in local storage

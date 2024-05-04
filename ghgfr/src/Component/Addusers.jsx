@@ -17,7 +17,7 @@ export const Addusers = () => {
     e.preventDefault();
 
     // Send data to the backend here
-    const response = await fetch('https://62.72.59.146:8080/adduser', {
+    const response = await fetch('http://62.72.59.146:8080/adduser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export const Addusers = () => {
 
       useEffect(() => {
         // Fetch client's data including logoimg
-        fetch(`https://62.72.59.146:8080/getclients`)
+        fetch(`http://62.72.59.146:8080/getclients`)
           .then(response => response.json())
           .then(data => {
             // Find the client data whose userId matches with the one in local storage

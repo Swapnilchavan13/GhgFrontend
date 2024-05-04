@@ -25,7 +25,7 @@ export const Myemission = () => {
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    fetch(`https://62.72.59.146:8080/getusers?clientId=${localStorage.getItem('userId')}`)
+    fetch(`http://62.72.59.146:8080/getusers?clientId=${localStorage.getItem('userId')}`)
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error('Error fetching users:', error));
@@ -37,7 +37,7 @@ export const Myemission = () => {
 
       for (const user of users) {
         try {
-          const response = await fetch(`https://62.72.59.146:8080/getdata12?userId=${user.userId}`);
+          const response = await fetch(`http://62.72.59.146:8080/getdata12?userId=${user.userId}`);
           const data = await response.json();
 
           aggregatedDataObj[user.userId] = {};
@@ -69,7 +69,7 @@ export const Myemission = () => {
 
   const handleShowData = async (userId) => {
     try {
-      const response = await fetch(`https://62.72.59.146:8080/getdata12?userId=${userId}`);
+      const response = await fetch(`http://62.72.59.146:8080/getdata12?userId=${userId}`);
       const data = await response.json();
       setSelectedUserEmissionData(data);
       console.log(data)
@@ -81,7 +81,7 @@ export const Myemission = () => {
 
   useEffect(() => {
     // Fetch client's data including logoimg
-    fetch(`https://62.72.59.146:8080/getclients`)
+    fetch(`http://62.72.59.146:8080/getclients`)
       .then(response => response.json())
       .then(data => {
         // Find the client data whose userId matches with the one in local storage
@@ -176,8 +176,8 @@ export const Myemission = () => {
                 <td>{item.sku}</td>
                 <td>{item.unit}</td>
                 <td>
-                  <a href={`https://62.72.59.146:8080/${item.emission}`} target="_blank" rel="noopener noreferrer">
-                    <img style={{ width: '80px' }} src={`https://62.72.59.146:8080/${item.emission}`} alt="Image" />
+                  <a href={`http://62.72.59.146:8080/${item.emission}`} target="_blank" rel="noopener noreferrer">
+                    <img style={{ width: '80px' }} src={`http://62.72.59.146:8080/${item.emission}`} alt="Image" />
                   </a>
                 </td>
                 <td>{item.date}</td>

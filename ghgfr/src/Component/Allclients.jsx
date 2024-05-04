@@ -22,7 +22,7 @@ export const Allclients = () => {
     // Fetch all clients from the backend when the component mounts
     const fetchClients = async () => {
       try {
-        const response = await fetch('https://62.72.59.146:8080/getclients');
+        const response = await fetch('http://62.72.59.146:8080/getclients');
         if (response.ok) {
           const data = await response.json();
           setClients(data);

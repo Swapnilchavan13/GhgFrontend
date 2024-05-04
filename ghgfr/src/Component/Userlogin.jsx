@@ -20,7 +20,7 @@ export const Userlogin = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('https://62.72.59.146:8080/userlogin', {
+      const response = await fetch('http://62.72.59.146:8080/userlogin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
