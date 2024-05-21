@@ -321,6 +321,21 @@ export const Useremission = () => {
     // Apply additional filtering logic if needed
   };
 
+  const handleDeleteData = async (id) => {
+    try {
+      const response = await fetch(`http://62.72.59.146:8080/deleteEmissionData?id=${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setSdata(prevData => prevData.filter(item => item._id !== id));
+      } else {
+        console.error('Error deleting emission data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting emission data:', error);
+    }
+  };
+
   const handleScopeFilter = (selectedScope) => {
     setScopeFilter(selectedScope);
     // Apply additional filtering logic if needed
@@ -652,8 +667,6 @@ export const Useremission = () => {
     </td>
 )}
 
-
-
                         </tr>
                       );
                     })}
@@ -815,6 +828,7 @@ export const Useremission = () => {
                   RESULT
                   {isConsumptionSorted ? ' (High)' : ' (Low)'}
                 </th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -845,7 +859,9 @@ export const Useremission = () => {
                       </a>
                     </td>
                     <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
-
+                    <td>
+                  <button onClick={() => handleDeleteData(row._id)}>Delete</button> {/* Delete button */}
+                </td>
                   </tr>
                 ))}
               <tr>
