@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/addclients.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Usernavbar } from './Usernavbar';
 
 export const Userlogin = () => {
   const storedLoginStatus = localStorage.getItem('isUserLoggedIn') === 'true';
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState(storedLoginStatus);
   const [loggedInUserName, setLoggedInUserName] = useState('');
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export const Userlogin = () => {
       if (response.ok) {
         // Login successful
         setLoggedInUserName(userId);
-        localStorage.setItem('isUserLoggedIn', true);
+        localStorage.setItem('isUserLoggedIn', 'true');
         localStorage.setItem('useruserId', userId); // Save user ID on successful login
         alert('Login successful!');
         navigate('/user/useremission');
@@ -63,10 +64,30 @@ export const Userlogin = () => {
         <br />
         <label>
           Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="password-input-container">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="password-toggle-button"
+              onClick={() => setShowPassword(prevShowPassword => !prevShowPassword)}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
         </label>
         <br />
         <button onClick={handleLogin}>Login</button>
+        <br />
+        <br />
+
+        <Link to='/email'>
+        Forgot password
+        </Link>
+
       </div>
     </>
   );

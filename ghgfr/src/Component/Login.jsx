@@ -7,6 +7,7 @@ export const Login = () => {
   const storedLoginStatus = localStorage.getItem('isLoggedIn') === 'true';
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState(storedLoginStatus);
   const [loggedInUserName, setLoggedInUserName] = useState('');
   const navigate = useNavigate();
@@ -62,7 +63,20 @@ export const Login = () => {
         <br />
         <label>
           Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="password-input-container">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="password-toggle-button"
+              onClick={() => setShowPassword(prevShowPassword => !prevShowPassword)}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
         </label>
         <br />
         <button onClick={handleLogin}>Login</button>

@@ -6,7 +6,10 @@ import { useNavigate } from 'react-router-dom';
 export const Addusers = () => {
   const [username, setName] = useState('');
   const [userId, setUserId] = useState('');
+  const [emailid, setEmailid] = useState('');
+
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [clientId, setClientId] = useState(localStorage.getItem('userId'));
   const [logoimg, setLogoimg] = useState('');
@@ -17,12 +20,12 @@ export const Addusers = () => {
     e.preventDefault();
 
     // Send data to the backend here
-    const response = await fetch('http://62.72.59.146:8080/adduser', {
+    const response = await fetch('http://62.72.59.146:8080/allusers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ clientId, username, userId, password }),
+      body: JSON.stringify({ clientId, username, userId, password, emailid }),
     });
 
     if (response.ok) {
@@ -32,33 +35,31 @@ export const Addusers = () => {
     }
   };
 
-
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     setIsLoggedIn(!!storedIsLoggedIn);
   }, []);
 
+  // Redirect to the login page if not logged in
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/client/login');
+    }
+  }, [isLoggedIn, navigate]);
 
-    // Redirect to the login page if not logged in
-    useEffect(() => {
-        if (!isLoggedIn) {
-          navigate('/client/login');
+  useEffect(() => {
+    // Fetch client's data including logoimg
+    fetch('http://62.72.59.146:8080/getclients')
+      .then((response) => response.json())
+      .then((data) => {
+        // Find the client data whose userId matches with the one in local storage
+        const client = data.find((client) => client.userId === localStorage.getItem('userId'));
+        if (client) {
+          setLogoimg(client.logoimg);
         }
-      }, [isLoggedIn, navigate]);
-
-      useEffect(() => {
-        // Fetch client's data including logoimg
-        fetch(`http://62.72.59.146:8080/getclients`)
-          .then(response => response.json())
-          .then(data => {
-            // Find the client data whose userId matches with the one in local storage
-            const client = data.find(client => client.userId === localStorage.getItem('userId'));
-            if (client) {
-              setLogoimg(client.logoimg);
-            }
-          })
-          .catch(error => console.error('Error fetching client data:', error));
-      }, []);
+      })
+      .catch((error) => console.error('Error fetching client data:', error));
+  }, []);
 
   return (
     <>
@@ -66,28 +67,45 @@ export const Addusers = () => {
       <div className="add-client-container">
         <h2>Add User</h2>
         <form onSubmit={handleSubmit} className="client-form">
-        <label>
-          Client Id:
-          <input type="text" value={clientId} onChange={(e) => setClientId(e.target.value)} readOnly/>
-        </label>
+          <label>
+            Client Id:
+            <input type="text" value={clientId} onChange={(e) => setClientId(e.target.value)} readOnly />
+          </label>
           <label>
             User Name:
             <input type="text" value={username} onChange={(e) => setName(e.target.value)} />
           </label>
           <br />
+         
           <label>
-            User ID:
+            Enter User Email ID:
+            <input type="text" value={emailid} onChange={(e) => setEmailid(e.target.value)} />
+          </label>
+
+          <label>
+            Create User ID:
             <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
           </label>
           <br />
           <label>
-            Password:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            Create Password:
+            <div className="password-input-container">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="password-toggle-button"
+                onClick={() => setShowPassword((prevShowPassword) => !prevShowPassword)}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
           </label>
           <br />
-          <button type="submit" >
-            Add User
-          </button>
+          <button type="submit">Add User</button>
         </form>
       </div>
     </>

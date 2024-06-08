@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const Adminlogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ export const Adminlogin = () => {
   const handleLogin = () => {
     // Dummy authentication logic, replace with actual authentication logic
     if (username === 'admin' && password === 'password') {
-      localStorage.setItem('adminloginstate', true);
+      localStorage.setItem('adminloginstate', 'true');
       navigate('/addemission');
     } else {
       setError('Invalid username or password');
@@ -35,12 +36,21 @@ export const Adminlogin = () => {
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
+      <div className="password-input-container">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button
+          type="button"
+          className="password-toggle-button"
+          onClick={() => setShowPassword(prevShowPassword => !prevShowPassword)}
+        >
+          {showPassword ? 'Hide' : 'Show'}
+        </button>
+      </div>
       <button onClick={handleLogin}>Login</button>
       {error && <div style={{ color: 'red' }}>{error}</div>}
     </div>

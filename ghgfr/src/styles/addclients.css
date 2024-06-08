@@ -32,3 +32,28 @@
     background-color: #45a049;
   }
   
+  .password-toggle-button:hover {
+    background-color: transparent;
+
+  }
+  .password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input-container input {
+    flex: 1;
+    padding-right: 50px; /* Ensure space for the button */
+  }
+  
+  .password-toggle-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+  }
+  

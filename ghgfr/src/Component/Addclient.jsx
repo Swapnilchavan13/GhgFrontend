@@ -9,6 +9,7 @@ export const Addclient = () => {
   const [password, setPassword] = useState('');
   const [logoImg, setLogoImg] = useState(null);
   const [logoImgPreview, setLogoImgPreview] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,7 +19,6 @@ export const Addclient = () => {
       navigate('/');
     }
   }, []);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,7 +75,20 @@ export const Addclient = () => {
           <br />
           <label>
             Password:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <div className="password-input-container">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="password-toggle-button"
+                onClick={() => setShowPassword((prevShowPassword) => !prevShowPassword)}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
           </label>
           <br />
           <label>

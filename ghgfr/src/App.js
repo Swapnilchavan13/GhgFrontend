@@ -12,6 +12,7 @@ import { Useremission } from './Component/Useremission';
 import { Userlogin } from './Component/Userlogin';
 import { Myusers } from './Component/Myusers';
 import { Adminlogin } from './Component/Adminlogin';
+import { Email } from './Component/Email';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           <Route path="user" element={<Useremission />} />
           <Route path="user/useremission" element={<Useremission />} />
           <Route path="user/login" element={<Userlogin />} />
+
+          <Route path="email" element={<Email />} />
+
 
       </Routes>
     </BrowserRouter>
