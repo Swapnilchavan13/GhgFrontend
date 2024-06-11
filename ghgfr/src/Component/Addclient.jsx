@@ -18,7 +18,7 @@ export const Addclient = () => {
     if (adminloginstate !== 'true') {
       navigate('/');
     }
-  }, []);
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +29,6 @@ export const Addclient = () => {
     formData.append('password', password);
     formData.append('logoimg', logoImg);
 
-    // Send data to the backend here
     const response = await fetch('http://62.72.59.146:8080/addclient', {
       method: 'POST',
       body: formData,
@@ -37,6 +36,12 @@ export const Addclient = () => {
 
     if (response.ok) {
       alert('Client added successfully!');
+      // Reset form fields
+      setUsername('');
+      setUserId('');
+      setPassword('');
+      setLogoImg(null);
+      setLogoImgPreview(null);
     } else {
       console.error('Failed to add client');
     }
@@ -45,7 +50,6 @@ export const Addclient = () => {
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
     setLogoImg(file);
-    // Display preview of the selected image
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {

@@ -4,10 +4,9 @@ import { Clientnavbar } from './Clientnavbar';
 import { useNavigate } from 'react-router-dom';
 
 export const Addusers = () => {
-  const [username, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [userId, setUserId] = useState('');
   const [emailid, setEmailid] = useState('');
-
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -20,7 +19,7 @@ export const Addusers = () => {
     e.preventDefault();
 
     // Send data to the backend here
-    const response = await fetch('http://62.72.59.146:8080/allusers', {
+    const response = await fetch('http://62.72.59.146:8080/adduser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,6 +29,11 @@ export const Addusers = () => {
 
     if (response.ok) {
       alert('User added successfully!');
+      // Reset form fields
+      setUsername('');
+      setUserId('');
+      setEmailid('');
+      setPassword('');
     } else {
       console.error('Failed to add User');
     }
@@ -73,7 +77,7 @@ export const Addusers = () => {
           </label>
           <label>
             User Name:
-            <input type="text" value={username} onChange={(e) => setName(e.target.value)} />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
           </label>
           <br />
          
