@@ -59,7 +59,7 @@ export const Homepage = () => {
                         <img src="https://media.exapro.com/product/2023/09/P230919031/2f90c9cbbbdb4cc008908dd5a55be949/462x340/extraktlab-extraktlab-140-p230919031_1.jpg" alt="" />
                         <h4>Nettzero is one of the most prominent companies in the direct air capture field. They develop and operate machines that capture CO2 directly from the air. The captured CO2 can then be stored underground or used in various industrial applications, such as carbonated beverages or synthetic fuels.
                             Technology: Nettzero uses modular CO2 collectors that can be stacked to build larger plants. The technology is based on a cyclic adsorption-desorption process, where air is drawn into the collector, CO2 is captured on a filter, and then released for storage or utilization.
-                            Projects: They have several operational plants, including the Orca plant in Iceland, which is the world's largest direct air capture and storage plant.</h4>
+                            </h4>
                     </div>
                 </div>
                 <div>
