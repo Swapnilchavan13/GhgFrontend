@@ -15,6 +15,7 @@ import { Adminlogin } from './Component/Adminlogin';
 import { Email } from './Component/Email';
 import { Homepage } from './Pages/Homepage';
 import { Navbar } from './Pages/Navbar';
+import { Footer } from './Pages/Footer';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
 
 
       </Routes>
+      <Footer />
     </BrowserRouter>
      
     </div>
