@@ -84,9 +84,9 @@ export const Userlogin = () => {
         <br />
         <br />
 
-        <Link to='/email'>
+        {/* <Link to='/email'>
         Forgot password
-        </Link>
+        </Link> */}
 
       </div>
     </>

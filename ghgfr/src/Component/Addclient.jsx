@@ -50,6 +50,7 @@ export const Addclient = () => {
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
     setLogoImg(file);
+    console.log(file)
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {

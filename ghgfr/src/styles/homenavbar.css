@@ -1,0 +1,26 @@
+#Mainnavbar #logoimg{
+    border-radius: 10px;
+width: 20%;
+}
+
+.btndiv{
+    text-align: right;
+    padding: 10px 80px;
+    font-size: 30px;
+}
+.btndiv button {
+    font-size: 25px;
+}
+
+.navdiv2{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(221, 204, 184);
+}
+
+.navdiv3{
+    display: flex;
+    gap: 30px;
+}
+

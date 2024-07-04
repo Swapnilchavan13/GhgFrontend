@@ -13,13 +13,18 @@ import { Userlogin } from './Component/Userlogin';
 import { Myusers } from './Component/Myusers';
 import { Adminlogin } from './Component/Adminlogin';
 import { Email } from './Component/Email';
+import { Homepage } from './Pages/Homepage';
+import { Navbar } from './Pages/Navbar';
 
 function App() {
   return (
     <div className="App">
        <BrowserRouter>
+       <Navbar />
       <Routes>
           <Route path="/" element={<Adminlogin />} />
+          <Route path="/homepage" element={<Homepage />} />
+
           <Route path="addemission" element={<Addemission />} />
           <Route path="allemissions" element={<Allemissions />} />
           <Route path="addclient" element={<Addclient />} />

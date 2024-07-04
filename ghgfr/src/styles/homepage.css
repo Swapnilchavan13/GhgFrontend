@@ -1,0 +1,94 @@
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .slider-content {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slider-image {
+    min-width: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slider-image img {
+    border-radius: 10px;
+    width: 100%;
+    height: 560px;
+  }
+  
+  .left-arrow,
+  .right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .left-arrow {
+    left: 10px;
+  }
+  
+  .right-arrow {
+    right: 10px;
+  }
+  
+  #climescore{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(153, 151, 151);
+
+  }
+
+  #climescore div{
+    background-color: rgb(212, 243, 247);
+    width: 100%;
+    /* border: 1px solid black; */
+  }
+
+  .cproduct, .tproduct{
+    padding: 10px;
+    display: flex;
+    height: 500px;
+    border: 1px solid rgb(153, 151, 151);
+  }
+  .cproduct img{
+    width: 60%;
+    border-radius: 10px;
+  }
+
+  .tproduct img{
+    width: 60%;
+    border-radius: 10px;
+  }
+
+  .tproduct h4, .cproduct h4{
+    padding: 5px 20px;
+    text-align: left;
+  }
+
+  #Newsdiv{
+    border: 1px solid grey;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(226, 223, 228);
+  }
+  #Newsdiv h1{
+    text-align: left;
+  }
+
+  #Newsdiv h5{
+    margin-top: -16px;
+    text-align: left;
+    border-left: 1px solid rgb(121, 119, 119);
+    line-height: 20px;
+    padding: 10px;
+  }
