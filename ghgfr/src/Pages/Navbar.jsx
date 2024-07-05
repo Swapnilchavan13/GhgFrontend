@@ -22,18 +22,18 @@ export const Navbar = () => {
        
     <img
       id="logoimg"
-      src="https://csabooster.climate-kic.org/wp-content/uploads/2016/11/Climate_KIC_horizontal_logo_JPEG-for-print.jpg"
+      src="clilogo.jpeg"
       alt="Climate KIC Logo"
       style={{ cursor: 'pointer' }} // Optional: change cursor to pointer
       onClick={handleClick}
     />
       
     <div className='navdiv3'>
-        <h2>About CS</h2>
-        <h2>N.E.X.T.</h2>
-        <h2>Marketplace</h2>
-        <h2>Resources</h2>
-        <h2>Calculate</h2>
+        <h4>About CS</h4>
+        <h4>N.E.X.T.</h4>
+        <h4>Marketplace</h4>
+        <h4>Resources</h4>
+        <h4>Calculate</h4>
     </div>
     </div>
     </div>

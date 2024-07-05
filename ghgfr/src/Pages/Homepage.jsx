@@ -1,56 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar } from './Navbar';
 import '../styles/homepage.css';
 
 export const Homepage = () => {
 
-    const images = [
-        'https://economymiddleeast.com/cdn-cgi/imagedelivery/Xfg_b7GtigYi5mxeAzkt9w/economymiddleeast.com/2023/09/Carbon-capture.jpg/w=1200,h=783',
-        'https://d3hnfqimznafg0.cloudfront.net/images/Article_Images/ImageForArticle_1572_16554692125835852.jpg',
-        'https://energyintel.brightspotcdn.com/dims4/default/c826c1d/2147483647/strip/true/crop/917x611+0+0/resize/917x611!/quality/90/?url=http%3A%2F%2Fenergy-intelligence-brightspot.s3.us-east-2.amazonaws.com%2Fed%2F0f%2F0f4640504e96b2888ecbbe6731c6%2Fss-2090747974-co2-emissions-concept.jpg',
-        'https://www.strategyand.pwc.com/de/en/functions/sustainability-strategy/carbon-capture-and-storage/exhibit01-carbon-capture-and-storage.gif'
-    ];
-
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    const goToPrevious = () => {
-        const isFirstSlide = currentIndex === 0;
-        const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-        setCurrentIndex(newIndex);
-    };
-
-    const goToNext = () => {
-        const isLastSlide = currentIndex === images.length - 1;
-        const newIndex = isLastSlide ? 0 : currentIndex + 1;
-        setCurrentIndex(newIndex);
-    };
-
-    useEffect(() => {
-        const interval = setInterval(goToNext, 2000);
-        return () => clearInterval(interval);
-    }, [currentIndex]);
-
     return (
         <div>
-            {/* <Navbar /> */}
-            <div>
-                <div className="slider">
-                    <div className="slider-content" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-                        {images.map((image, index) => (
-                            <div className="slider-image" key={index}>
-                                <img src={image} alt={`slide-${index}`} />
-                            </div>
-                        ))}
-                    </div>
-                    <button className="left-arrow" onClick={goToPrevious}>
-                        ❮
-                    </button>
-                    <button className="right-arrow" onClick={goToNext}>
-                        ❯
-                    </button>
+            <div id='threeimgdiv'>
+                <div>
+                    <img src="https://nettzero.world/wp-content/uploads/2024/02/Group-218-1-1.png" alt="" />
+                    <ul>
+                        <h2>What We Do</h2>
+                        <p>We have enterprise grade technology, globally validated processes & qualified people to help organisations with:</p>
+                        <li>Conducting Climate Literacy Programs that are thorough & bespoke</li>
+                        <li>GHG Accounting & Emissions Management across Scope 1, 2 and 3</li>
+                        <li>Running impact driven EPR & Plastics Programs</li>
+                        <li>Purchasing Carbon Credits that is genuine, validated and hand-picked</li>
+                        <li>Developing Carbon Credit Programs – in the area of GHG Removal – from concept to monetisation </li>
+                    </ul>
+                </div>
+                <div>
+                <img src="https://nettzero.world/wp-content/uploads/2024/02/Rectangle-139-2-1.png" alt="" />
+                    <ul>
+                        <h2>Who Are We For</h2>
+                        <p>Sustainability & Climate Change is a movement that requires everyone to participate in – right now. NettZero works with:</p>
+                        <li>Organisations that wish to become sustainable in a thorough & globally recognised manner – with focus on Carbon Neutrality & Net Zero</li>
+                        <li>Local Administrations that need sustainability & development programs implemented in their areas</li>
+                        <li>Impact Projects that need to earn Carbon credits, find sponsors & get financial support</li>
+                        <li>Individuals who want to make a positive impact</li>
+                        <li>Climate Innovators & Ideators who need a channel to launch</li>
+                    </ul>
+                </div>
+                <div>
+                <img src="https://nettzero.world/wp-content/uploads/2024/02/Rectangle-138-3.png" alt="" />
+                    <ul>
+                        <h2>How We May Align</h2>
+                        <p>If any of these statements describe you, we can help you with the solutions you need:</p>
+                        <li> I want my organisation to move towards Carbon Neutrality and Net Zero in a scientific, scalable & globally recognised manner – while optimising supply chain emissions</li>
+                        <li>I want my organisation and team members to become Climate Literate  in a thorough & action oriented manner</li>
+                        <li>I am a producer who wants to transition to a circular economy and deliver on my EPR goals</li>
+                        <li>I am an individual and want to make a positive difference to the Climate Change movement and individually become Carbon Neutral</li>
+                    </ul>
                 </div>
             </div>
 
+
+<div id='hospityality'>
+    <h1>Climate For Hospitality</h1>
+    <div>
+        <h2>Our Customers</h2>
+
+        <div className='logos'>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+        </div>
+    </div>
+
+</div>
 
             <div id='climescore'>
                 <div>
