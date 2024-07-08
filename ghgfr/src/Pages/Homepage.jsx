@@ -46,7 +46,7 @@ export const Homepage = () => {
 
 <div id='hospityality'>
     <h1>Climate For Hospitality</h1>
-    <div>
+    <div className='hospityalitydiv'>
         <h2>Our Customers</h2>
 
         <div className='logos'>
@@ -57,6 +57,38 @@ export const Homepage = () => {
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
         </div>
+    </div>
+
+    <div className='hospityalitydiv2'>
+        <h1>Our Hospitality Offering</h1>
+        <div className='hdiv21'>
+            <div>
+                <h1>1.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sed odit optio impedit quae. Ea aut facilis quasi sunt quas deserunt porro saepe quam quo? Iure, voluptatibus rem nam atque iste ducimus aliquam in eveniet facere quisquam minima dolorem sint maiores similique expedita tempora pariatur magnam. Vel et quaerat incidunt, necessitatibus nam quidem quibusdam a impedit eaque rerum sit amet culpa laboriosam est totam numquam, iste quae officia possimus repudiandae minus doloremque voluptates ex dolor? Dolorum, excepturi omnis temporibus voluptatum, aliquid praesentium quas quia repellendus optio autem exercitationem. Neque amet eos eaque ipsa in quibusdam sit et veniam quae non excepturi quis, provident ea deleniti dolore incidunt porro sed vero, consectetur suscipit modi molestiae. Earum eligendi voluptate, fuga laborum, dolorum molestiae, praesentium repellat porro dolore esse eius voluptas culpa ut perspiciatis. Nulla ut maxime consectetur similique eligendi quaerat commodi in alias omnis. Vel quibusdam provident officiis veritatis deleniti, minima officia ipsam rerum, architecto omnis, dolor mollitia enim iure aperiam placeat qui voluptatibus magni doloribus. Provident unde perspiciatis quia cum dolor quod veritatis voluptas placeat! Voluptatibus est provident mollitia quas ea. Quaerat veniam distinctio perspiciatis possimus totam reprehenderit earum ipsum reiciendis!</p>
+            </div>
+            <div>
+            <h1>2.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi iste dolores eum ipsam ipsum in perferendis iure vero porro maiores ipsa dicta, voluptas cum. Dolorem nemo quibusdam atque dignissimos deleniti labore, ea vero aspernatur voluptatum illo officiis quos sunt officia amet iusto commodi eveniet totam nisi mollitia magni delectus? Provident, at saepe. Veritatis veniam, accusamus non atque aspernatur quis optio laudantium repellat architecto dolores pariatur minima voluptatem inventore culpa, odit molestiae tempora quo, fugit quos eligendi vitae sapiente eaque saepe. Odit omnis tempora magnam quibusdam non minus, libero natus ea, provident culpa quo reiciendis aspernatur veniam fugiat iste? Numquam iure cumque suscipit dolorum, cupiditate a beatae id voluptatibus illo totam corrupti qui vitae repellat aut ipsam quam molestiae ex quod? Cum nesciunt possimus harum tempore dolorum aspernatur iusto pariatur recusandae distinctio odit fuga alias, optio neque dolore minima! At suscipit temporibus reprehenderit, consequuntur quae, error perspiciatis, fugiat nulla mollitia beatae placeat praesentium sed deserunt aut nesciunt. Autem veniam aspernatur rerum sunt eos optio. Possimus cum sapiente, quam consectetur quod architecto quos est voluptates quis doloribus. Sit repellat quas quos reiciendis esse laboriosam temporibus tempora assumenda quaerat doloribus quis voluptate, maiores vero neque quam laborum blanditiis at voluptas porro fugiat. Ad.</p>
+            </div>
+            <div>
+            <h1>3.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus vel aliquid, voluptatibus beatae inventore, dolorum ratione consectetur suscipit modi, ab sed quae officia? Dolor, laudantium aliquid deserunt amet unde enim assumenda saepe veniam vitae atque necessitatibus quod nam maxime distinctio numquam quisquam reprehenderit dolores. Soluta neque corrupti perferendis odit quae eum adipisci, doloribus commodi, voluptatum placeat sunt vero sint tempore quis architecto dolore? Nihil nisi, ipsa laboriosam exercitationem natus animi odio repudiandae sed nostrum nam vitae sunt aut ut fugiat, atque eaque eius neque voluptatem. Commodi tenetur accusamus voluptas tempore minima quia quidem incidunt veritatis explicabo perspiciatis? Ab, odit deserunt. Porro expedita ipsam distinctio voluptates ullam iure at aliquam, sed, facilis fugit aperiam harum provident reprehenderit ab fugiat quas doloribus repellendus saepe laboriosam non. Architecto beatae quidem veniam, perspiciatis, excepturi sed nihil, et delectus nesciunt quas tempora aut. Error, alias quidem provident sed incidunt temporibus eius, voluptatem corporis necessitatibus, facilis sequi accusantium doloremque quam vero obcaecati velit harum! Ad, nobis. Suscipit magni amet incidunt quia sapiente at beatae, possimus explicabo? Dolore, laborum modi magni illum sint ipsum eius assumenda, aspernatur mollitia nam nulla maxime quis qui accusantium a molestias fugit libero debitis? Quam delectus est consequatur, ab reprehenderit unde.</p>
+            </div>
+            <div>
+            <h1>4.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt asperiores error corporis laborum, numquam est quisquam non quia esse doloribus facilis laboriosam architecto magnam natus eaque labore dolorum voluptates? Odit architecto facilis aliquam corporis quae quam soluta magni laborum a? Necessitatibus modi quam dicta tempore iste veritatis sapiente omnis neque, nisi deleniti. Corporis quod ut autem, voluptatum eum nihil illum. Quod mollitia eligendi laboriosam, repellat cumque ab culpa nesciunt voluptates tenetur modi, nihil repellendus reiciendis porro corporis exercitationem quis commodi consectetur dicta. Animi eligendi dicta nobis non cupiditate alias, quae aliquam asperiores maxime dolores dolor ut culpa vitae ex reprehenderit dolorem hic. Voluptatem, velit minima dolore tenetur ipsum adipisci similique non, ducimus rem aut exercitationem sapiente aliquam mollitia impedit hic.</p>
+            </div>
+            <div>
+                <button>Click ME</button>
+            </div>
+            <div></div>
+        </div>
+
+        
     </div>
 
 </div>

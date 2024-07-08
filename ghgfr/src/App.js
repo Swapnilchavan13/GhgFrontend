@@ -23,7 +23,9 @@ function App() {
        <BrowserRouter>
        <Navbar />
       <Routes>
-          <Route path="/" element={<Adminlogin />} />
+      <Route path="/" element={<Homepage />} />
+
+          <Route path="/admin" element={<Adminlogin />} />
           <Route path="/homepage" element={<Homepage />} />
 
           <Route path="addemission" element={<Addemission />} />

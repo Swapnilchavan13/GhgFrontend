@@ -28,17 +28,46 @@
 }
 
 #hospityality{
+  /* color: white; */
+  border: 1px solid black;
   text-align: left;
   padding: 20px;
-  background-image: url("https://i.makeagif.com/media/5-19-2023/7I2Io9.gif");
+  /* background-image: url("https://i.pinimg.com/originals/8f/c1/c5/8fc1c5a1a9454e0c7ab9f9da4bb625c8.gif"); */
+  /* background-color: rgb(211, 240, 224); */
+}
+.hospityalitydiv{
+  color: white;
+  text-align: left;
+  border-radius: 10px;
+  padding: 20px;
+  background-image: url("https://i.pinimg.com/originals/8f/c1/c5/8fc1c5a1a9454e0c7ab9f9da4bb625c8.gif");
   /* background-color: rgb(211, 240, 224); */
 }
 
+#hospityality h2{
+  color: white;
+}
 .logos img{
   width: 12%;
   border-radius: 50%;
   margin-left: 30px;
 }
+.hdiv21{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.hdiv21 div{
+  box-shadow: rgba(3, 3, 3, 0.24) 0px 3px 8px;
+  background-color: rgb(239, 241, 239);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.hdiv21 img{
+  width: 100%;
+}
+
 
 
 
