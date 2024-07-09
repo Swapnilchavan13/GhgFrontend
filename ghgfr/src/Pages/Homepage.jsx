@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/homepage.css';
 
+
 export const Homepage = () => {
 
     return (
@@ -45,10 +46,10 @@ export const Homepage = () => {
 
 
 <div id='hospityality'>
-    <h1>Climate For Hospitality</h1>
+    <h1>Our Customers</h1>
+        {/* <h2>Our Customers</h2> */}
     <div className='hospityalitydiv'>
-        <h2>Our Customers</h2>
-
+<h2></h2>
         <div className='logos'>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
@@ -85,14 +86,43 @@ export const Homepage = () => {
             <div>
                 <button>Click ME</button>
             </div>
-            <div></div>
+            {/* <div></div> */}
+        </div>
+    </div>
+
+    <div className='hospityalitydiv2'>
+        <h1>Our Acadmic Offering</h1>
+        <div className='hdiv21'>
+            <div>
+                <h1>1.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sed odit optio impedit quae. Ea aut facilis quasi sunt quas deserunt porro saepe quam quo? Iure, voluptatibus rem nam atque iste ducimus aliquam in eveniet facere quisquam minima dolorem sint maiores similique expedita tempora pariatur magnam. Vel et quaerat incidunt, necessitatibus nam quidem quibusdam a impedit eaque rerum sit amet culpa laboriosam est totam numquam, iste quae officia possimus repudiandae minus doloremque voluptates ex dolor? Dolorum, excepturi omnis temporibus voluptatum, aliquid praesentium quas quia repellendus optio autem exercitationem. Neque amet eos eaque ipsa in quibusdam sit et veniam quae non excepturi quis, provident ea deleniti dolore incidunt porro sed vero, consectetur suscipit modi molestiae. Earum eligendi voluptate, fuga laborum, dolorum molestiae, praesentium repellat porro dolore esse eius voluptas culpa ut perspiciatis. Nulla ut maxime consectetur similique eligendi quaerat commodi in alias omnis. Vel quibusdam provident officiis veritatis deleniti, minima officia ipsam rerum, architecto omnis, dolor mollitia enim iure aperiam placeat qui voluptatibus magni doloribus. Provident unde perspiciatis quia cum dolor quod veritatis voluptas placeat! Voluptatibus est provident mollitia quas ea. Quaerat veniam distinctio perspiciatis possimus totam reprehenderit earum ipsum reiciendis!</p>
+            </div>
+            <div>
+            <h1>2.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi iste dolores eum ipsam ipsum in perferendis iure vero porro maiores ipsa dicta, voluptas cum. Dolorem nemo quibusdam atque dignissimos deleniti labore, ea vero aspernatur voluptatum illo officiis quos sunt officia amet iusto commodi eveniet totam nisi mollitia magni delectus? Provident, at saepe. Veritatis veniam, accusamus non atque aspernatur quis optio laudantium repellat architecto dolores pariatur minima voluptatem inventore culpa, odit molestiae tempora quo, fugit quos eligendi vitae sapiente eaque saepe. Odit omnis tempora magnam quibusdam non minus, libero natus ea, provident culpa quo reiciendis aspernatur veniam fugiat iste? Numquam iure cumque suscipit dolorum, cupiditate a beatae id voluptatibus illo totam corrupti qui vitae repellat aut ipsam quam molestiae ex quod? Cum nesciunt possimus harum tempore dolorum aspernatur iusto pariatur recusandae distinctio odit fuga alias, optio neque dolore minima! At suscipit temporibus reprehenderit, consequuntur quae, error perspiciatis, fugiat nulla mollitia beatae placeat praesentium sed deserunt aut nesciunt. Autem veniam aspernatur rerum sunt eos optio. Possimus cum sapiente, quam consectetur quod architecto quos est voluptates quis doloribus. Sit repellat quas quos reiciendis esse laboriosam temporibus tempora assumenda quaerat doloribus quis voluptate, maiores vero neque quam laborum blanditiis at voluptas porro fugiat. Ad.</p>
+            </div>
+            <div>
+            <h1>3.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus vel aliquid, voluptatibus beatae inventore, dolorum ratione consectetur suscipit modi, ab sed quae officia? Dolor, laudantium aliquid deserunt amet unde enim assumenda saepe veniam vitae atque necessitatibus quod nam maxime distinctio numquam quisquam reprehenderit dolores. Soluta neque corrupti perferendis odit quae eum adipisci, doloribus commodi, voluptatum placeat sunt vero sint tempore quis architecto dolore? Nihil nisi, ipsa laboriosam exercitationem natus animi odio repudiandae sed nostrum nam vitae sunt aut ut fugiat, atque eaque eius neque voluptatem. Commodi tenetur accusamus voluptas tempore minima quia quidem incidunt veritatis explicabo perspiciatis? Ab, odit deserunt. Porro expedita ipsam distinctio voluptates ullam iure at aliquam, sed, facilis fugit aperiam harum provident reprehenderit ab fugiat quas doloribus repellendus saepe laboriosam non. Architecto beatae quidem veniam, perspiciatis, excepturi sed nihil, et delectus nesciunt quas tempora aut. Error, alias quidem provident sed incidunt temporibus eius, voluptatem corporis necessitatibus, facilis sequi accusantium doloremque quam vero obcaecati velit harum! Ad, nobis. Suscipit magni amet incidunt quia sapiente at beatae, possimus explicabo? Dolore, laborum modi magni illum sint ipsum eius assumenda, aspernatur mollitia nam nulla maxime quis qui accusantium a molestias fugit libero debitis? Quam delectus est consequatur, ab reprehenderit unde.</p>
+            </div>
+            <div>
+            <h1>4.</h1>
+                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt asperiores error corporis laborum, numquam est quisquam non quia esse doloribus facilis laboriosam architecto magnam natus eaque labore dolorum voluptates? Odit architecto facilis aliquam corporis quae quam soluta magni laborum a? Necessitatibus modi quam dicta tempore iste veritatis sapiente omnis neque, nisi deleniti. Corporis quod ut autem, voluptatum eum nihil illum. Quod mollitia eligendi laboriosam, repellat cumque ab culpa nesciunt voluptates tenetur modi, nihil repellendus reiciendis porro corporis exercitationem quis commodi consectetur dicta. Animi eligendi dicta nobis non cupiditate alias, quae aliquam asperiores maxime dolores dolor ut culpa vitae ex reprehenderit dolorem hic. Voluptatem, velit minima dolore tenetur ipsum adipisci similique non, ducimus rem aut exercitationem sapiente aliquam mollitia impedit hic.</p>
+            </div>
+            <div>
+                <button>Click ME</button>
+            </div>
+            {/* <div></div> */}
         </div>
 
         
     </div>
 
 </div>
-
             <div id='climescore'>
                 <div>
                     <h1>Climescore Products</h1>
@@ -118,35 +148,35 @@ export const Homepage = () => {
 
 
                 <div id='climescore'>
-                    <div className=''>
+                    <div className='newsnews'>
                         <div className='cproduct'>
                             <img src="https://decarbonization.visualcapitalist.com/wp-content/uploads/2022/11/carbon-emissions-per-capita-country.webp" alt="" />
                             <h4>"Tracking Global CO2 Emissions: The Latest Data on Country Contributions"
                                 As climate change continues to be a pressing global issue, understanding the sources of CO2 emissions is crucial for developing effective strategies to mitigate their impact. Our latest infographic, "Global CO2 Emissions by Country," provides a clear and insightful visual representation of how different nations contribute to global carbon dioxide emissions.</h4>
                         </div>
 
-                        <h5>Top Emitters: The infographic highlights the countries with the highest CO2 emissions, showcasing their contributions to the global carbon footprint. As of the latest data, countries like China, the United States, and India are among the top emitters, significantly influencing global climate patterns.
+                        <p>Top Emitters: The infographic highlights the countries with the highest CO2 emissions, showcasing their contributions to the global carbon footprint. As of the latest data, countries like China, the United States, and India are among the top emitters, significantly influencing global climate patterns.
                             Regional Variations: The visual breakdown also reveals regional variations in emissions, offering insights into how industrial activity, energy consumption, and economic development contribute to the emission levels in various parts of the world.
                             Trends and Changes: By examining historical data, the infographic illustrates trends in CO2 emissions over time, highlighting both increases and reductions. This information is vital for understanding progress toward global climate goals and identifying areas needing further attention.
                             Impact of Policies: The data also reflects the impact of national policies and international agreements aimed at reducing emissions. Countries implementing robust climate policies are often shown to have made significant strides in lowering their carbon footprints. Why It Matters:
                             Understanding CO2 emissions by country is essential for policymakers, businesses, and individuals committed to combating climate change. By analyzing this data, stakeholders can better assess the effectiveness of climate strategies, identify opportunities for improvement, and collaborate on global efforts to reduce greenhouse gas emissions.
-                            Explore our infographic to gain a clearer picture of how different countries are contributing to the global challenge of CO2 emissions and how we can work together towards a more sustainable future.</h5>
+                            Explore our infographic to gain a clearer picture of how different countries are contributing to the global challenge of CO2 emissions and how we can work together towards a more sustainable future.</p>
                     </div>
-                    <div>
+                    <div className='newsnews'>
 
                         <div className='tproduct'>
                             <img src="https://i.cbc.ca/1.6203717.1633636414!/fileImage/httpImage/image.jpg_gen/derivatives/original_1180/per-capita-carbon-footprint-by-country-1-5-degree-lifestyles-report.jpg" alt="" />
                             <h4>"Global Per Capita Carbon Footprints: Insights by Country"
                                 As the world grapples with the urgent need to address climate change, understanding carbon emissions on a per capita basis provides a crucial perspective on the environmental impact of different nations. Our latest analysis sheds light on per capita carbon footprints by country, offering a detailed look at how individual lifestyles and economic activities contribute to global carbon emissions.</h4>
                         </div>
-                        <h5>Top Per Capita Emitters: The analysis reveals which countries have the highest per capita carbon footprints. Nations such as Qatar, Kuwait, and the United Arab Emirates lead the rankings, where high levels of industrial activity and energy consumption result in significant individual carbon emissions.
+                        <p>Top Per Capita Emitters: The analysis reveals which countries have the highest per capita carbon footprints. Nations such as Qatar, Kuwait, and the United Arab Emirates lead the rankings, where high levels of industrial activity and energy consumption result in significant individual carbon emissions.
                             Developed vs. Developing Nations: Developed countries often exhibit higher per capita emissions compared to developing nations. This discrepancy highlights the impact of advanced industrialization and high standards of living. Conversely, many developing nations have lower per capita footprints, reflecting their smaller industrial base and lower energy consumption.
                             Regional Differences: The data illustrates significant regional variations in per capita carbon footprints. North America and Europe tend to have higher per capita emissions due to higher energy use and consumption patterns, whereas regions like Sub-Saharan Africa show lower per capita emissions.
                             Trends Over Time: The study also tracks changes in per capita carbon footprints over time, showing how emissions have evolved with economic growth and changes in energy policies. Some countries have successfully reduced their per capita emissions through renewable energy investments and energy efficiency improvements.
                             Impact of Policy and Innovation: Countries that have implemented aggressive climate policies, such as increased renewable energy adoption and stricter emission regulations, often show lower per capita emissions. This underscores the role of policy and technological innovation in mitigating individual carbon footprints.
                             Why It Matters:
                             Per capita carbon footprints offer a more nuanced view of a country’s environmental impact, providing insights into how individual behavior and economic activities contribute to global emissions. By understanding these figures, policymakers, businesses, and individuals can better target strategies for reducing carbon footprints and advancing towards global climate goals.
-                            Explore our detailed analysis to gain a clearer understanding of how per capita carbon footprints vary by country and how these insights can inform more effective climate action strategies.</h5>
+                            Explore our detailed analysis to gain a clearer understanding of how per capita carbon footprints vary by country and how these insights can inform more effective climate action strategies.</p>
                     </div>
                 </div>
             </div>
