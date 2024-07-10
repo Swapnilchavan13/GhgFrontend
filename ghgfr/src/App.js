@@ -16,6 +16,7 @@ import { Email } from './Component/Email';
 import { Homepage } from './Pages/Homepage';
 import { Navbar } from './Pages/Navbar';
 import { Footer } from './Pages/Footer';
+import { Newsform } from './CMS/Newsform';
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
 
           <Route path="email" element={<Email />} />
 
+
+{/* ////CMS//// */}
+          <Route path="newsform" element={<Newsform/>} />
 
       </Routes>
       <Footer />

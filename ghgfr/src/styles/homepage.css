@@ -22,6 +22,10 @@
     width: 33%;
 }
 
+#threeimgdiv img{
+  width: 98%;
+}
+
 #threeimgdiv ul{
     /* padding: 20px; */
     margin: auto;

@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/homepage.css';
+import axios from 'axios';
 
 
 export const Homepage = () => {
+
+    const [newsData, setNewsData] = useState([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/news');
+        setNewsData(response.data.reverse().slice(0, 2));
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      }
+    };
+
+    fetchNews();
+  }, []);
 
     return (
         <div>
@@ -144,42 +160,20 @@ export const Homepage = () => {
             </div>
 
             <div id='Newsdiv'>
-                <h1>Climescore NEWS</h1>
-
-
-                <div id='climescore'>
-                    <div className='newsnews'>
-                        <div className='cproduct'>
-                            <img src="https://decarbonization.visualcapitalist.com/wp-content/uploads/2022/11/carbon-emissions-per-capita-country.webp" alt="" />
-                            <h4>"Tracking Global CO2 Emissions: The Latest Data on Country Contributions"
-                                As climate change continues to be a pressing global issue, understanding the sources of CO2 emissions is crucial for developing effective strategies to mitigate their impact. Our latest infographic, "Global CO2 Emissions by Country," provides a clear and insightful visual representation of how different nations contribute to global carbon dioxide emissions.</h4>
-                        </div>
-
-                        <p>Top Emitters: The infographic highlights the countries with the highest CO2 emissions, showcasing their contributions to the global carbon footprint. As of the latest data, countries like China, the United States, and India are among the top emitters, significantly influencing global climate patterns.
-                            Regional Variations: The visual breakdown also reveals regional variations in emissions, offering insights into how industrial activity, energy consumption, and economic development contribute to the emission levels in various parts of the world.
-                            Trends and Changes: By examining historical data, the infographic illustrates trends in CO2 emissions over time, highlighting both increases and reductions. This information is vital for understanding progress toward global climate goals and identifying areas needing further attention.
-                            Impact of Policies: The data also reflects the impact of national policies and international agreements aimed at reducing emissions. Countries implementing robust climate policies are often shown to have made significant strides in lowering their carbon footprints. Why It Matters:
-                            Understanding CO2 emissions by country is essential for policymakers, businesses, and individuals committed to combating climate change. By analyzing this data, stakeholders can better assess the effectiveness of climate strategies, identify opportunities for improvement, and collaborate on global efforts to reduce greenhouse gas emissions.
-                            Explore our infographic to gain a clearer picture of how different countries are contributing to the global challenge of CO2 emissions and how we can work together towards a more sustainable future.</p>
-                    </div>
-                    <div className='newsnews'>
-
-                        <div className='tproduct'>
-                            <img src="https://i.cbc.ca/1.6203717.1633636414!/fileImage/httpImage/image.jpg_gen/derivatives/original_1180/per-capita-carbon-footprint-by-country-1-5-degree-lifestyles-report.jpg" alt="" />
-                            <h4>"Global Per Capita Carbon Footprints: Insights by Country"
-                                As the world grapples with the urgent need to address climate change, understanding carbon emissions on a per capita basis provides a crucial perspective on the environmental impact of different nations. Our latest analysis sheds light on per capita carbon footprints by country, offering a detailed look at how individual lifestyles and economic activities contribute to global carbon emissions.</h4>
-                        </div>
-                        <p>Top Per Capita Emitters: The analysis reveals which countries have the highest per capita carbon footprints. Nations such as Qatar, Kuwait, and the United Arab Emirates lead the rankings, where high levels of industrial activity and energy consumption result in significant individual carbon emissions.
-                            Developed vs. Developing Nations: Developed countries often exhibit higher per capita emissions compared to developing nations. This discrepancy highlights the impact of advanced industrialization and high standards of living. Conversely, many developing nations have lower per capita footprints, reflecting their smaller industrial base and lower energy consumption.
-                            Regional Differences: The data illustrates significant regional variations in per capita carbon footprints. North America and Europe tend to have higher per capita emissions due to higher energy use and consumption patterns, whereas regions like Sub-Saharan Africa show lower per capita emissions.
-                            Trends Over Time: The study also tracks changes in per capita carbon footprints over time, showing how emissions have evolved with economic growth and changes in energy policies. Some countries have successfully reduced their per capita emissions through renewable energy investments and energy efficiency improvements.
-                            Impact of Policy and Innovation: Countries that have implemented aggressive climate policies, such as increased renewable energy adoption and stricter emission regulations, often show lower per capita emissions. This underscores the role of policy and technological innovation in mitigating individual carbon footprints.
-                            Why It Matters:
-                            Per capita carbon footprints offer a more nuanced view of a country’s environmental impact, providing insights into how individual behavior and economic activities contribute to global emissions. By understanding these figures, policymakers, businesses, and individuals can better target strategies for reducing carbon footprints and advancing towards global climate goals.
-                            Explore our detailed analysis to gain a clearer understanding of how per capita carbon footprints vary by country and how these insights can inform more effective climate action strategies.</p>
-                    </div>
-                </div>
+      <h1>Climescore NEWS</h1>
+      <div id='climescore'>
+        {newsData.map((news) => (
+          <div className='newsnews' key={news._id}>
+            <div className='cproduct'>
+              <img src={`http://localhost:8080${news.image}`} alt="" />
+              <h4>{news.title}</h4>
             </div>
+            <p style={{ whiteSpace: 'pre-wrap' }}>{news.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
 
         </div>
     )
