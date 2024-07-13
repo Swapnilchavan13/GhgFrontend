@@ -10,7 +10,7 @@ export const Homepage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/news');
+        const response = await axios.get('https://backend.climescore.com/news');
         setNewsData(response.data.reverse().slice(0, 2));
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -94,14 +94,7 @@ export const Homepage = () => {
                 <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus vel aliquid, voluptatibus beatae inventore, dolorum ratione consectetur suscipit modi, ab sed quae officia? Dolor, laudantium aliquid deserunt amet unde enim assumenda saepe veniam vitae atque necessitatibus quod nam maxime distinctio numquam quisquam reprehenderit dolores. Soluta neque corrupti perferendis odit quae eum adipisci, doloribus commodi, voluptatum placeat sunt vero sint tempore quis architecto dolore? Nihil nisi, ipsa laboriosam exercitationem natus animi odio repudiandae sed nostrum nam vitae sunt aut ut fugiat, atque eaque eius neque voluptatem. Commodi tenetur accusamus voluptas tempore minima quia quidem incidunt veritatis explicabo perspiciatis? Ab, odit deserunt. Porro expedita ipsam distinctio voluptates ullam iure at aliquam, sed, facilis fugit aperiam harum provident reprehenderit ab fugiat quas doloribus repellendus saepe laboriosam non. Architecto beatae quidem veniam, perspiciatis, excepturi sed nihil, et delectus nesciunt quas tempora aut. Error, alias quidem provident sed incidunt temporibus eius, voluptatem corporis necessitatibus, facilis sequi accusantium doloremque quam vero obcaecati velit harum! Ad, nobis. Suscipit magni amet incidunt quia sapiente at beatae, possimus explicabo? Dolore, laborum modi magni illum sint ipsum eius assumenda, aspernatur mollitia nam nulla maxime quis qui accusantium a molestias fugit libero debitis? Quam delectus est consequatur, ab reprehenderit unde.</p>
             </div>
-            <div>
-            <h1>4.</h1>
-                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt asperiores error corporis laborum, numquam est quisquam non quia esse doloribus facilis laboriosam architecto magnam natus eaque labore dolorum voluptates? Odit architecto facilis aliquam corporis quae quam soluta magni laborum a? Necessitatibus modi quam dicta tempore iste veritatis sapiente omnis neque, nisi deleniti. Corporis quod ut autem, voluptatum eum nihil illum. Quod mollitia eligendi laboriosam, repellat cumque ab culpa nesciunt voluptates tenetur modi, nihil repellendus reiciendis porro corporis exercitationem quis commodi consectetur dicta. Animi eligendi dicta nobis non cupiditate alias, quae aliquam asperiores maxime dolores dolor ut culpa vitae ex reprehenderit dolorem hic. Voluptatem, velit minima dolore tenetur ipsum adipisci similique non, ducimus rem aut exercitationem sapiente aliquam mollitia impedit hic.</p>
-            </div>
-            <div>
-                <button>Click ME</button>
-            </div>
+            
             {/* <div></div> */}
         </div>
     </div>
@@ -124,14 +117,8 @@ export const Homepage = () => {
                 <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae delectus vel aliquid, voluptatibus beatae inventore, dolorum ratione consectetur suscipit modi, ab sed quae officia? Dolor, laudantium aliquid deserunt amet unde enim assumenda saepe veniam vitae atque necessitatibus quod nam maxime distinctio numquam quisquam reprehenderit dolores. Soluta neque corrupti perferendis odit quae eum adipisci, doloribus commodi, voluptatum placeat sunt vero sint tempore quis architecto dolore? Nihil nisi, ipsa laboriosam exercitationem natus animi odio repudiandae sed nostrum nam vitae sunt aut ut fugiat, atque eaque eius neque voluptatem. Commodi tenetur accusamus voluptas tempore minima quia quidem incidunt veritatis explicabo perspiciatis? Ab, odit deserunt. Porro expedita ipsam distinctio voluptates ullam iure at aliquam, sed, facilis fugit aperiam harum provident reprehenderit ab fugiat quas doloribus repellendus saepe laboriosam non. Architecto beatae quidem veniam, perspiciatis, excepturi sed nihil, et delectus nesciunt quas tempora aut. Error, alias quidem provident sed incidunt temporibus eius, voluptatem corporis necessitatibus, facilis sequi accusantium doloremque quam vero obcaecati velit harum! Ad, nobis. Suscipit magni amet incidunt quia sapiente at beatae, possimus explicabo? Dolore, laborum modi magni illum sint ipsum eius assumenda, aspernatur mollitia nam nulla maxime quis qui accusantium a molestias fugit libero debitis? Quam delectus est consequatur, ab reprehenderit unde.</p>
             </div>
-            <div>
-            <h1>4.</h1>
-                <img src="https://media.istockphoto.com/id/2093530578/photo/happy-receptionists-cooperating-while-working-on-a-computer-at-hotel-front-desk.webp?b=1&s=170667a&w=0&k=20&c=MQRgCO0e8UOQqmN2JZCnsSDuFhZpegCjs-5Id1hPLEM=" alt="" />
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt asperiores error corporis laborum, numquam est quisquam non quia esse doloribus facilis laboriosam architecto magnam natus eaque labore dolorum voluptates? Odit architecto facilis aliquam corporis quae quam soluta magni laborum a? Necessitatibus modi quam dicta tempore iste veritatis sapiente omnis neque, nisi deleniti. Corporis quod ut autem, voluptatum eum nihil illum. Quod mollitia eligendi laboriosam, repellat cumque ab culpa nesciunt voluptates tenetur modi, nihil repellendus reiciendis porro corporis exercitationem quis commodi consectetur dicta. Animi eligendi dicta nobis non cupiditate alias, quae aliquam asperiores maxime dolores dolor ut culpa vitae ex reprehenderit dolorem hic. Voluptatem, velit minima dolore tenetur ipsum adipisci similique non, ducimus rem aut exercitationem sapiente aliquam mollitia impedit hic.</p>
-            </div>
-            <div>
-                <button>Click ME</button>
-            </div>
+           
+           
             {/* <div></div> */}
         </div>
 
@@ -165,7 +152,7 @@ export const Homepage = () => {
         {newsData.map((news) => (
           <div className='newsnews' key={news._id}>
             <div className='cproduct'>
-              <img src={`http://localhost:8080${news.image}`} alt="" />
+              <img src={`https://backend.climescore.com${news.image}`} alt="" />
               <h4>{news.title}</h4>
             </div>
             <p style={{ whiteSpace: 'pre-wrap' }}>{news.content}</p>
