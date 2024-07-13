@@ -51,7 +51,7 @@ const Addemission = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://62.72.59.146:8080/addData', {
+      const response = await fetch('https://backend.climescore.com/addData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

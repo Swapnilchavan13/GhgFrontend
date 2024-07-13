@@ -9,7 +9,7 @@ export const Email = () => {
 
   useEffect(() => {
     // Fetch user data from the API
-    fetch('http://62.72.59.146:8080/allusers')
+    fetch('https://backend.climescore.com/allusers')
       .then(response => response.json())
       .then(data => setUserData(data))
       .catch(error => console.error('Error fetching user data:', error));

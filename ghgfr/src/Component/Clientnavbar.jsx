@@ -38,7 +38,7 @@ export const Clientnavbar = ({ logoimg }) => {
           <h3>Login</h3>
         </Link>
       )}
-      {logoimg !== null && <img src={`http://62.72.59.146:8080${logoimg}`} alt="Client Logo" className="client-logo" />}
+      {logoimg !== null && <img src={`https://backend.climescore.com${logoimg}`} alt="Client Logo" className="client-logo" />}
 
     </div>
   );

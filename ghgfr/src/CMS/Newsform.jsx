@@ -19,7 +19,7 @@ export const Newsform = () => {
         formData.append('content', content);
 
         try {
-            await axios.post('http://localhost:8080/addnews', formData, {
+            await axios.post('https://backend.climescore.com/addnews', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

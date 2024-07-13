@@ -29,7 +29,7 @@ export const Addclient = () => {
     formData.append('password', password);
     formData.append('logoimg', logoImg);
 
-    const response = await fetch('http://62.72.59.146:8080/addclient', {
+    const response = await fetch('https://backend.climescore.com/addclient', {
       method: 'POST',
       body: formData,
     });
