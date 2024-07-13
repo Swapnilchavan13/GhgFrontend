@@ -67,12 +67,13 @@ export const Homepage = () => {
     <div className='hospityalitydiv'>
 <h2></h2>
         <div className='logos'>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="" />
+        <img src="https://i.postimg.cc/MG60nd2K/Whats-App-Image-2024-07-13-at-12-32-44-AM.jpg" alt="" />
+        <img src="https://i.postimg.cc/cCSLJk2F/Whats-App-Image-2024-07-13-at-12-32-44-AM-1.jpg" alt="" />
+            <img src="https://i.postimg.cc/rwL3PXWn/Whats-App-Image-2024-07-13-at-12-32-45-AM.jpg" alt="" />
+            <img src="https://i.postimg.cc/85rbGsgh/Whats-App-Image-2024-07-13-at-12-32-45-AM-1.jpg" alt="" />
+            <img src="https://i.postimg.cc/9MtryjG6/Whats-App-Image-2024-07-13-at-12-32-45-AM-2.jpg" alt="" />
+            <img src="https://i.postimg.cc/xj5PSwWp/Whats-App-Image-2024-07-13-at-12-32-46-AM.jpg" alt="" />
+            <img src="https://i.postimg.cc/s22M7Lnx/Whats-App-Image-2024-07-13-at-12-32-47-AM.jpg" alt="" />
         </div>
     </div>
 
