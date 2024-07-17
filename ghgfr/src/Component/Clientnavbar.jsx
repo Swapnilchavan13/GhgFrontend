@@ -14,7 +14,7 @@ export const Clientnavbar = ({ logoimg }) => {
     alert('Logout successful!');
   };
 
-  console.log(logoimg)
+  // console.log(logoimg)
 
   return (
     <div className="navbar-container">
