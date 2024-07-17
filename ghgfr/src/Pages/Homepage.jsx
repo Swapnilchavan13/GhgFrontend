@@ -3,8 +3,10 @@ import '../styles/homepage.css';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Homepage = () => {
+    const navigate = useNavigate();
 
     const [newsData, setNewsData] = useState([]);
 
@@ -26,6 +28,10 @@ export const Homepage = () => {
 
         fetchNews();
     }, []);
+
+    const morenews =() => {
+        navigate('/allnews')
+    }
 
     return (
         <div>
@@ -140,6 +146,7 @@ export const Homepage = () => {
           </div>
         ))}
       </div>
+      <button onClick={morenews}>More News</button>
     </div>
         </div>
     )

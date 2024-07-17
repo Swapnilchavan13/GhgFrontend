@@ -17,6 +17,7 @@ import { Homepage } from './Pages/Homepage';
 import { Navbar } from './Pages/Navbar';
 import { Footer } from './Pages/Footer';
 import { Newsform } from './CMS/Newsform';
+import { Allnews } from './Pages/Allnews';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
           <Route path="/admin" element={<Adminlogin />} />
           <Route path="/homepage" element={<Homepage />} />
+          <Route path='/allnews' element={<Allnews />} />
 
           <Route path="addemission" element={<Addemission />} />
           <Route path="allemissions" element={<Allemissions />} />
@@ -40,12 +42,12 @@ function App() {
           <Route path="client/login" element={<Login />} />
           <Route path="client/myusers" element={<Myusers />} />
 
-
           <Route path="user" element={<Useremission />} />
           <Route path="user/useremission" element={<Useremission />} />
           <Route path="user/login" element={<Userlogin />} />
 
           <Route path="email" element={<Email />} />
+
 
 
 {/* ////CMS//// */}
