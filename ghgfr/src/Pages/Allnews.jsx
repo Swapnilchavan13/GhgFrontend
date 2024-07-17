@@ -8,7 +8,7 @@ export const Allnews = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://62.72.59.146:8080/news');
+        const response = await axios.get('https://backend.climescore.com/news');
         setNews(response.data);
       } catch (error) {
         console.error('Error fetching the news data:', error);
