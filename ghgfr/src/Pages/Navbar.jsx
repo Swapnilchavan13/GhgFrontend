@@ -8,6 +8,11 @@ export const Navbar = () => {
     const handleClick = () => {
         navigate('/homepage');
       };
+
+      const handleClick2 = () => {
+        navigate('https://nettzero.world/');
+      };
+
   return (
     <div id='Mainnavbar'>
         <div className='btndiv'>
@@ -21,7 +26,7 @@ export const Navbar = () => {
     <div className='navdiv2'>
     <img
       id="logoimg"
-      src="clilogo.jpeg"
+      src="/clilogo.jpeg"
       alt="Climate KIC Logo"
       style={{ cursor: 'pointer' }} // Optional: change cursor to pointer
       onClick={handleClick}
@@ -31,6 +36,7 @@ export const Navbar = () => {
    
       <h4>From </h4>
       <img style={{borderRadius:"10px"}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
+ 
       </div>
       
     <div className='navdiv3'>
