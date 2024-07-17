@@ -124,7 +124,7 @@ export const Homepage = () => {
                             <p>At NettZero, we provide tailored strategies to help universities and colleges measure, reduce, and offset their carbon emissions effectively. Through these efforts, academic institutions not only demonstrate their commitment to environmental responsibility but also inspire and educate future generations on the importance of sustainable practices. We take pride in supporting India's first fully carbon-neutral university, showcasing our expertise in driving academic institutions towards a more sustainable future.</p>
                         </div>
                         <div>
-                            <img src="https://i.postimg.cc/kXm84PQ5/s3.jpg" alt="" />
+                            <img src="https://i.postimg.cc/85yDMTRq/s3.jpg" alt="" />
                             <h3>Biochar Production and Carbon Credit Programs for Academic Institutions</h3>
                             <p>Our Biochar Production and Carbon Credit Programs provide academic institutions with the opportunity to engage in sustainable practices while generating valuable carbon credits. By utilising biochar production, universities and colleges can offset their carbon emissions and contribute to climate change mitigation efforts. This innovative approach not only supports sustainability goals but also offers educational and research opportunities for students and faculty. NettZero's expertise ensures that these initiatives are implemented effectively, maximizing both environmental and educational benefits.</p>
                         </div>
