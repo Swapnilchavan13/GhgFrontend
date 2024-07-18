@@ -1,0 +1,25 @@
+/* mobileMessage.css */
+.mobile-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.mobile-message h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.mobile-message p {
+    font-size: 18px;
+}
+
+.mobile-message a {
+    color: blue;
+    text-decoration: underline;
+}

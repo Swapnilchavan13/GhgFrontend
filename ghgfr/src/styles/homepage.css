@@ -63,11 +63,17 @@
   padding: 20px;
 
 }
+.logos{
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
 .logos img{
-  /* width: 5%; */
-  height: 75px;
+  /* width: 70%; */
+  height: 130px;
   border-radius: 10px;
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 .hdiv21{
   display: grid;

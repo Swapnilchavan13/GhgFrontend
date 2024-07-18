@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/homenavbar.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
     const navigate = useNavigate();
@@ -40,11 +40,12 @@ export const Navbar = () => {
       </div>
       
     <div className='navdiv3'>
+      <Link to={'about'}>
         <h4>About</h4>
-        <h4>N.E.X.T.</h4>
-        <h4>Marketplace</h4>
-        <h4>Resources</h4>
-        <h4>Calculate</h4>
+      </Link>
+      <Link to={'contact'}>
+        <h4>Contact</h4>
+      </Link>
     </div>
     </div>
     </div>

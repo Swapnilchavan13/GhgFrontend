@@ -1,0 +1,92 @@
+.aboutdiv1 {
+    background-image: url('https://s1.picswalls.com/wallpapers/2016/03/29/awesome-beautiful-nature-wallpaper_042319501_304.jpg');
+    background-size: cover; /* This ensures the image covers the entire element */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; /* This prevents the image from repeating */
+    height: 100vh; /* Adjust height as needed */
+    width: 100%; /* Adjust width as needed */
+}
+
+.aboutdiv1 h1{
+    position: absolute;    
+    margin-left: 30%;
+    margin-top: 15%;
+    color: white;
+    font-size: 60px;
+}
+
+.aboutdiv1 h2{
+    position: absolute;    
+    margin-left: 35%;
+    margin-top: 25%;
+    color: white;
+    font-size: 40px;
+}
+
+
+.whodiv{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.whodiv img{
+    width: 60%;
+    border-radius: 10px;
+}
+.whodiv h3{
+    line-height: 30px;
+    margin: auto;
+  text-align: left;
+  padding: 40px;
+  width: 45%;
+}
+
+.eightdiv{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: #495338;
+    color: white;
+    padding: 30px;
+    text-align: left;
+
+    }
+.eightdiv div{
+    width: 60%;
+}
+
+.eightdiv div h5{
+    line-height: 24px;
+    font-size: 16px;
+    color: rgb(197, 196, 196);
+    text-align: left;
+}
+
+.eightdiv div h2{
+    font-size: 24px;
+    color: rgb(248, 245, 245);
+    text-align: left;
+}
+.eightdiv hr{
+    width: 120px;
+    height: 1px;
+    background-color: white;
+    margin-left: 0px;
+}
+.ourproject{
+    background-color: #EEEEEE;
+    padding: 20px;
+}
+
+.ourproject p{
+    line-height: 30px;
+    font-size: 18px;
+    color: grey;
+}
+
+.ourp1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.ourp1 img{
+    width: 85%;
+}
