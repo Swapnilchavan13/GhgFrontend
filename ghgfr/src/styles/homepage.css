@@ -61,14 +61,19 @@
 .hospityalitydiv2{
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   padding: 20px;
-
 }
+
+.hospityalitydiv2 p{
+  line-height: 25px;
+} 
+
 .logos{
   margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 }
+
 .logos img{
   /* width: 70%; */
   height: 130px;

@@ -40,6 +40,10 @@ export const Contact = () => {
         
         <button type="submit">Submit</button>
       </form>
+      <br />
+      <br />
+      <br />
+
     </div>
   );
 }
