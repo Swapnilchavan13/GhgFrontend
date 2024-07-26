@@ -39,7 +39,7 @@ export const Allnews = () => {
         {news.map((item) => (
           <div key={item._id} className="news-item">
             <img src={`https://backend.climescore.com/${item.image}`} alt={item.title} className="news-image" />
-            <h2 className="news-title">{item.title}</h2>
+            <h2 className="news-title1">{item.title}</h2>
             <p className="news-content">{truncateText(item.content)}</p>
             <button onClick={() => handleSeeFullNews(item._id)}>See full news</button>
           </div>

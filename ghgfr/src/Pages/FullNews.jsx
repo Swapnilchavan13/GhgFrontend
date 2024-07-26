@@ -10,7 +10,7 @@ export const FullNews = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/news/${newsId}`);
+                const response = await axios.get(`https://backend.climescore.com/news/${newsId}`);
                 setNews(response.data);
             } catch (error) {
                 console.error('Error fetching news:', error);

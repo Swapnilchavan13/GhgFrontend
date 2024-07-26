@@ -1,0 +1,129 @@
+.product-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 20px auto;
+    grid-template-areas:
+        "image"
+        "details";
+}
+
+.product-detail-image {
+    grid-area: image;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.product-detail-info {
+    grid-area: details;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.product-detail-name {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-detail-price {
+    font-size: 1.5em;
+    color: #d9534f; /* Amazon red color */
+    margin: 10px 0;
+}
+
+.product-detail-description {
+    font-size: 1.1em;
+    color: #333;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.product-detail-rating {
+    font-size: 1.2em;
+    color: #f0c14b; /* Amazon gold color */
+    margin: 10px 0;
+}
+
+.product-detail-label {
+    font-weight: bold;
+    color: #555;
+    margin: 10px 0 5px;
+}
+
+.product-detail-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    margin: auto;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-buy-now {
+    background-color: #d9534f; /* Amazon red color */
+}
+
+.btn-buy-now:hover {
+    background-color: #c9302c;
+}
+
+.btn-add-to-cart {
+    background-color: #5bc0de; /* Light blue color */
+}
+
+.btn-add-to-cart:hover {
+    background-color: #31b0d5;
+}
+
+@media (min-width: 768px) {
+    .product-detail {
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas:
+            "image details";
+    }
+    
+    .product-detail-image {
+        grid-column: 1 / 2;
+    }
+
+    .product-detail-info {
+        grid-column: 2 / 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        padding: 15px;
+    }
+
+    .product-detail-image {
+        max-width: 100%;
+    }
+
+    .product-detail-name,
+    .product-detail-price,
+    .product-detail-description,
+    .product-detail-rating {
+        font-size: 1em;
+    }
+}

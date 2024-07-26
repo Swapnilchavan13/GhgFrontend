@@ -23,6 +23,8 @@ import { Contact } from './Pages/Contact';
 import { Mobilemessage } from './Pages/Mobilemessage';
 import { useEffect, useState } from 'react';
 import { FullNews } from './Pages/FullNews';
+import { ProductDetail } from './Pages/ProductDetail';
+import { CategoryPage } from './Pages/CategoryPage';
 
 function App() {
 
@@ -58,7 +60,8 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path="/news/:newsId" element={<FullNews />} />
-
+          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
 
           <Route path="addemission" element={<Addemission />} />
           <Route path="allemissions" element={<Allemissions />} />
