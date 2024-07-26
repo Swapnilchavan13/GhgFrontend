@@ -20,7 +20,7 @@ export const Homepage = () => {
         const fetchNews = async () => {
             try {
                 const response = await axios.get('https://backend.climescore.com/news');
-                setNewsData(response.data.reverse().slice(0, 2));
+                setNewsData(response.data.reverse().slice(0, 4));
             } catch (error) {
                 console.error('Error fetching news:', error);
             }
@@ -29,9 +29,20 @@ export const Homepage = () => {
         fetchNews();
     }, []);
 
-    const morenews =() => {
-        navigate('/allnews')
-    }
+    const morenews = () => {
+        navigate('/allnews');
+    };
+
+    const handleSeeFullNews = (newsId) => {
+        navigate(`/news/${newsId}`);
+    };
+    const truncateText = (text) => {
+        const words = text.split(' ');
+        if (words.length <= 10) {
+            return text;
+        }
+        return words.slice(0, 10).join(' ') + '...';
+    };
 
     return (
         <div>
@@ -140,20 +151,23 @@ export const Homepage = () => {
 
 
             <div id='Newsdiv'>
-      <h1>Climescore NEWS</h1>
-      <div id='climescore' data-aos="zoom-in">
-        {newsData.map((news) => (
-          <div className='newsnews' key={news._id}>
-            <div className='cproduct'>
-              <img src={`https://backend.climescore.com${news.image}`} alt="" />
-              <h4>{news.title}</h4>
+                <h1>Climescore NEWS</h1>
+                <div id='climescore' data-aos="zoom-in">
+                    {newsData.map((news) => (
+                        <div className='newsnews' key={news._id}>
+                            <div className='cproduct'>
+                                <img src={`https://backend.climescore.com${news.image}`} alt="" />
+                                <div>
+                                    <h4>{news.title}</h4>
+                                    <p style={{ whiteSpace: 'pre-wrap' }}>{truncateText(news.content)}</p>
+                                    <button onClick={() => handleSeeFullNews(news._id)}>See full news</button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <button onClick={morenews}>More News</button>
             </div>
-            <p style={{ whiteSpace: 'pre-wrap' }}>{news.content}</p>
-          </div>
-        ))}
-      </div>
-      <button onClick={morenews}>More News</button>
-    </div>
         </div>
-    )
-}
+    );
+};

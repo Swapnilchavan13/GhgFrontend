@@ -22,6 +22,7 @@ import { About } from './Pages/About';
 import { Contact } from './Pages/Contact';
 import { Mobilemessage } from './Pages/Mobilemessage';
 import { useEffect, useState } from 'react';
+import { FullNews } from './Pages/FullNews';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route path='/allnews' element={<Allnews />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path="/news/:newsId" element={<FullNews />} />
 
 
           <Route path="addemission" element={<Addemission />} />
