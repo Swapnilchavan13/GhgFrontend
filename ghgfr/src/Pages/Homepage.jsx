@@ -174,7 +174,7 @@ export const Homepage = () => {
              <div id='Marketplacediv'>
             <h1>Climescore Marketplace</h1>
 
-            <div id='marketdiv1'>
+            <div data-aos="flip-down" id='marketdiv1'>
                 <div onClick={() => handleCategoryClick('Kitchen')}>
                     <h2>Kitchen</h2>
                 </div>
@@ -197,7 +197,7 @@ export const Homepage = () => {
 
             <div id='marketproducts'>
                 {dummyProducts.map((product) => (
-                    <div key={product.id} className="product-item" onClick={() => handleClick(product.id)}>
+                    <div data-aos="flip-right" key={product.id} className="product-item" onClick={() => handleClick(product.id)}>
                         <img src={product.image} alt={product.name} className="product-image" />
                         <h3 className="product-name">{product.name}</h3>
                         <p className="product-price">{product.price}</p>
