@@ -25,6 +25,7 @@ import { useEffect, useState } from 'react';
 import { FullNews } from './Pages/FullNews';
 import { ProductDetail } from './Pages/ProductDetail';
 import { CategoryPage } from './Pages/CategoryPage';
+import { ProductForm } from './CMS/ProductForm.jsx';
 
 function App() {
 
@@ -84,6 +85,8 @@ function App() {
 
 {/* ////CMS//// */}
           <Route path="newsform" element={<Newsform/>} />
+          <Route path="productform" element={<ProductForm/>} />
+
 
       </Routes>
       <Footer />

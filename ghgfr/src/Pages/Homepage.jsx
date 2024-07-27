@@ -7,31 +7,55 @@ import { useNavigate } from 'react-router-dom';
 
 export const Homepage = () => {
     const navigate = useNavigate();
-
+    const [categories, setCategories] = useState([]);
     const [newsData, setNewsData] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const dummyProducts = [
-        { id: 1, name: 'Automatic Hand Soap Dispenser', image: 'https://cms.interiorcompany.com/wp-content/uploads/2024/02/automatic-hand-soap-dispenser-unique-kitchen-appliances.jpg', price: '₹500', description: 'Touchless hand soap dispenser with sleek design for modern kitchens.', rating: '4.5', category: 'Kitchen' },
-        { id: 2, name: 'Smart Kitchen Scale', image: 'https://s.alicdn.com/@sc04/kf/H1bb72dea7de8483f8deb1881b3ce2318N.jpg_300x300.jpg', price: '₹750', description: 'Accurate digital kitchen scale with easy-to-read display and multiple unit conversions.', rating: '4.7', category: 'Kitchen' },
-        { id: 3, name: 'Airtight Food Containers', image: 'https://hometown.gumlet.io/media/cms/icons/Kitchenware/Contaners11.jpg?w=300&dpr=2.6', price: '₹1000', description: 'Set of airtight food containers to keep your kitchen organized and food fresh.', rating: '4.3', category: 'Kitchen' },
-        { id: 4, name: 'Stainless Steel Tea Kettle', image: 'https://www.tasteofhome.com/wp-content/uploads/2021/02/tea-kettle.jpeg?fit=700%2C700', price: '₹1250', description: 'Durable stainless steel tea kettle with ergonomic handle and spout for easy pouring.', rating: '4.8', category: 'Kitchen' },
-        { id: 5, name: 'Smart Induction Cooktop', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmvD3cNXdO-JJ_XUhf_hm83xhqlUK-zohMmg&s', price: '₹1500', description: 'Energy-efficient induction cooktop with touch controls and multiple cooking modes.', rating: '4.6', category: 'Kitchen' },
-        { id: 6, name: 'Multipurpose Folding Table', image: 'https://www.haworth.com/content/dam/haworth-com/global/vertical-markets/healthcare/maari-tablet-environmental-6-1440.jpg', price: '₹1750', description: 'Compact folding table ideal for small spaces and versatile use.', rating: '4.2', category: 'Furniture' },
-        { id: 7, name: 'Glass Door Crockery Unit', image: 'https://5.imimg.com/data5/SELLER/Default/2021/2/RS/NS/OW/30554035/glass-door-crockery-unit-500x500.jpg', price: '₹2000', description: 'Elegant glass door crockery unit to showcase and store your fine china and glassware.', rating: '4.9', category: 'Furniture' },
-        { id: 8, name: 'Bathroom Towel Rack', image: 'https://m.media-amazon.com/images/I/71xD9M5vT6L.jpg', price: '₹300', description: 'Stylish towel rack for modern bathrooms.', rating: '4.4', category: 'Bath & Toiletries' },
-        { id: 9, name: 'Toilet Brush Set', image: 'https://5.imimg.com/data5/SELLER/Default/2022/3/WK/KX/HC/133083788/2-in-1-silicone-toilet-brush-for-wc-tools-drainable-toilet-brush-250x250.jpg', price: '₹150', description: 'Complete toilet brush and holder set.', rating: '4.0', category: 'Bath & Toiletries' },
-        { id: 10, name: 'Comfortable Linen Bed Sheet', image: 'https://cpimg.tistatic.com/05063803/b/4/Hotel-Bed-Sheets.jpeg', price: '₹1200', description: 'Soft and comfortable linen bed sheet set.', rating: '4.7', category: 'Linen & Cloth' },
-        // Add more products as needed
-    ];
+    useEffect(() => {
+        // Fetch products to get categories
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('https://backend.climescore.com/products'); // Replace with your actual API endpoint
+                const data = await response.json();
+                
+                // Extract unique categories from products
+                const uniqueCategories = [...new Set(data.map(product => product.category))];
+                setCategories(uniqueCategories);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    const handleCategoryClick = (category) => {
-        navigate(`/category/${category}`);
+        fetchProducts();
+    }, []);
+
+  
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('https://backend.climescore.com/products'); // Update with your actual API endpoint
+            setProducts(response.data);
+        } catch (err) {
+            setError('Error fetching products');
+            console.error('Error fetching products:', err);
+        } finally {
+            setLoading(false);
+        }
     };
-    
-    const handleClick = (productId) => {
-        navigate(`/product/${productId}`);
+
+    const fetchNews = async () => {
+        try {
+            const response = await axios.get('https://backend.climescore.com/news');
+            setNewsData(response.data.reverse().slice(0, 4));
+        } catch (error) {
+            console.error('Error fetching news:', error);
+        }
     };
-    
+
     useEffect(() => {
         AOS.init({
             duration: 1200,
@@ -39,17 +63,17 @@ export const Homepage = () => {
     }, []);
 
     useEffect(() => {
-        const fetchNews = async () => {
-            try {
-                const response = await axios.get('https://backend.climescore.com/news');
-                setNewsData(response.data.reverse().slice(0, 4));
-            } catch (error) {
-                console.error('Error fetching news:', error);
-            }
-        };
-
+        fetchProducts();
         fetchNews();
     }, []);
+
+    const handleCategoryClick = (category) => {
+        navigate(`/category/${category}`);
+    };
+
+    const handleClick = (productId) => {
+        navigate(`/product/${productId}`);
+    };
 
     const morenews = () => {
         navigate('/allnews');
@@ -58,6 +82,7 @@ export const Homepage = () => {
     const handleSeeFullNews = (newsId) => {
         navigate(`/news/${newsId}`);
     };
+
     const truncateText = (text) => {
         const words = text.split(' ');
         if (words.length <= 10) {
@@ -65,6 +90,7 @@ export const Homepage = () => {
         }
         return words.slice(0, 10).join(' ') + '...';
     };
+
 
     return (
         <div>
@@ -155,12 +181,12 @@ export const Homepage = () => {
                         <div>
                             <img src="https://i.postimg.cc/k5Xp8KTg/s1.jpg" alt="" />
                             <h3>Achieving Carbon Neutrality in Academic Institutions</h3>
-                            <p>At NettZero, we provide tailored strategies to help universities and colleges measure, reduce, and offset their carbon emissions effectively. Through these efforts, academic institutions not only demonstrate their commitment to environmental responsibility but also inspire and educate future generations on the importance of sustainable practices. 
-                             </p>
-<p>
+                            <p>At NettZero, we provide tailored strategies to help universities and colleges measure, reduce, and offset their carbon emissions effectively. Through these efforts, academic institutions not only demonstrate their commitment to environmental responsibility but also inspire and educate future generations on the importance of sustainable practices.
+                            </p>
+                            <p>
 
-                             We take pride in supporting India's first carbon neutral campus, demonstrating leadership in environmental sustainability within the academic sector. Partnering with us ensures that academic institutions can lead by example in climate action, fostering a sustainable future for generations to come.
-</p>
+                                We take pride in supporting India's first carbon neutral campus, demonstrating leadership in environmental sustainability within the academic sector. Partnering with us ensures that academic institutions can lead by example in climate action, fostering a sustainable future for generations to come.
+                            </p>
                         </div>
                         <div>
                             <img src="https://i.postimg.cc/85yDMTRq/s3.jpg" alt="" />
@@ -171,43 +197,44 @@ export const Homepage = () => {
                 </div>
             </div>
 
-             <div id='Marketplacediv'>
+            <div id="Marketplacediv">
             <h1>Climescore Marketplace</h1>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div data-aos="flip-down" id="marketdiv1">
+                    {categories.length > 0 ? (
+                        categories.map(category => (
+                            <div key={category} onClick={() => handleCategoryClick(category)}>
+                                <h2>{category}</h2>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No categories available.</p>
+                    )}
+                </div>
+            )}
+      
 
-            <div data-aos="flip-down" id='marketdiv1'>
-                <div onClick={() => handleCategoryClick('Kitchen')}>
-                    <h2>Kitchen</h2>
-                </div>
-                <div onClick={() => handleCategoryClick('Bath & Toiletries')}>
-                    <h2>Bath & Toiletries</h2>
-                </div>
-                <div onClick={() => handleCategoryClick('Linen & Cloth')}>
-                    <h2>Linen & Cloth</h2>
-                </div>
-                <div onClick={() => handleCategoryClick('Consumables & Housekeeping')}>
-                    <h2>Consumables & Housekeeping</h2>
-                </div>
-                <div onClick={() => handleCategoryClick('Furniture')}>
-                    <h2>Furniture</h2>
-                </div>
-                <div onClick={() => handleCategoryClick('Others')}>
-                    <h2>Others</h2>
+                <div id='marketproducts'>
+                    {loading ? (
+                        <p>Loading products...</p>
+                    ) : error ? (
+                        <p>{error}</p>
+                    ) : (
+                        products.map((product) => (
+                            <div data-aos="flip-right" key={product.id} className="product-item" onClick={() => handleClick(product._id)}>
+                            <img src={`https://backend.climescore.com/${product.images[0]}`} alt={product.name} className="product-image" />
+                            <h3 className="product-name">{product.name}</h3>
+                                <p className="product-price">₹ {product.price} /-</p>
+                                <p className="product-label">Description:</p>
+                                <p className="product-description">{product.description}</p>
+                                <p className="product-label">Climescore Rating: <span>{product.rating}</span></p>
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
-
-            <div id='marketproducts'>
-                {dummyProducts.map((product) => (
-                    <div data-aos="flip-right" key={product.id} className="product-item" onClick={() => handleClick(product.id)}>
-                        <img src={product.image} alt={product.name} className="product-image" />
-                        <h3 className="product-name">{product.name}</h3>
-                        <p className="product-price">{product.price}</p>
-                        <p className="product-label">Description:</p>
-                        <p className="product-description">{product.description}</p>
-                        <p className="product-label">Climescore Rating: <span>{product.rating}</span></p>
-                    </div>
-                ))}
-            </div>
-        </div>
 
 
             <div id='Newsdiv'>
