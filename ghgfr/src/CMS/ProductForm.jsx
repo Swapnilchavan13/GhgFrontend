@@ -17,7 +17,7 @@ export const ProductForm = ({ addProduct }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8080/products');
+                const response = await fetch('https://backend.climescore.com/products');
                 if (response.ok) {
                     const data = await response.json();
                     setProducts(data);
@@ -61,7 +61,7 @@ export const ProductForm = ({ addProduct }) => {
         formData.append('quantity', product.quantity);
 
         try {
-            const response = await fetch('http://localhost:8080/addproduct', {
+            const response = await fetch('https://backend.climescore.com/addproduct', {
                 method: 'POST',
                 body: formData,
             });
@@ -90,7 +90,7 @@ export const ProductForm = ({ addProduct }) => {
     // Handle product deletion
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:8080/products/${id}`, {
+            const response = await fetch(`https://backend.climescore.com/products/${id}`, {
                 method: 'DELETE',
             });
 
