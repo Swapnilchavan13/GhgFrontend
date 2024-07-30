@@ -26,6 +26,7 @@ import { FullNews } from './Pages/FullNews';
 import { ProductDetail } from './Pages/ProductDetail';
 import { CategoryPage } from './Pages/CategoryPage';
 import { ProductForm } from './CMS/ProductForm.jsx';
+import { Marketplace } from './Pages/Marketplace.jsx';
 
 function App() {
 
@@ -63,6 +64,8 @@ function App() {
           <Route path="/news/:newsId" element={<FullNews />} />
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+
 
           <Route path="addemission" element={<Addemission />} />
           <Route path="allemissions" element={<Allemissions />} />

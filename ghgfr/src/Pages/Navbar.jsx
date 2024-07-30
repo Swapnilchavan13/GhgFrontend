@@ -46,6 +46,9 @@ export const Navbar = () => {
       <Link to={'contact'}>
         <h4>Contact</h4>
       </Link>
+      <Link to={'marketplace'}>
+        <h4>Marketplace</h4>
+      </Link>
     </div>
     </div>
     </div>
