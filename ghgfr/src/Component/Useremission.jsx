@@ -287,7 +287,7 @@ export const Useremission = () => {
     setUniqueCountries(countries);
 
     // Extract unique categories from sdata when sdata changes
-    const categories = [...new Set(sdata.map((row) => row.selectedCategory))];
+    const categories = [...new Set(sdata.map((row) => row.mainCategory))];
     setUniqueCategories(categories);
 
 
@@ -314,7 +314,7 @@ export const Useremission = () => {
     setCountryFilter(selectedCountry);
     // Apply additional filtering logic if needed
   };
-
+  
 
   const handleCategoryFilter = (selectedCategory) => {
     setCategoryFilter(selectedCategory);
@@ -375,12 +375,13 @@ export const Useremission = () => {
                     <tr>
                       <th>Sr. No</th>
                       <th>Scope</th>
-                      <th>Name</th>
                       <th>Category</th>
+                      <th>Emission Factor</th>
+                      <th>Description</th>
                       <th>Country</th>
                       <th>Type</th>
                       <th>Brand</th>
-                      <th>Description</th>
+                      <th>Details</th>
                       <th>SKU</th>
                       <th>Unit</th>
                       <th>Extra fields</th>
@@ -410,7 +411,7 @@ export const Useremission = () => {
                           data
                             .filter(
                               (item) =>
-                                (row.selectedCategory === '' || item.Category === row.selectedCategory) &&
+                                (row.mainCategory === '' || item.mainCategory === row.mainCategory) &&
                                 (row.selectedName === '' || item.Name === row.selectedName)
                             )
                             .map((item) => item.Country)
@@ -484,6 +485,8 @@ export const Useremission = () => {
                             .map((item) => item.Unit)
                         )
                       );
+
+
                       const groupOptions = Array.from(
                         new Set(
                           data
@@ -493,11 +496,30 @@ export const Useremission = () => {
                                 (row.selectedType === '' || item.Type === row.selectedType) &&
                                 (row.selectedCountry === '' || item.Country === row.selectedCountry) &&
                                 (row.selectedCategory === '' || item.Category === row.selectedCategory) &&
-                                (row.selectedName === '' || item.Name === row.selectedName)
+                                (row.selectedName === '' || item.Name === row.selectedName) &&
+                                (row.mainCategory === '' || item.mainCategory === row.mainCategory)
                             )
                             .map((item) => item.Group)
                         )
                       );
+
+
+                      const mainCategoryOptions = Array.from(
+                        new Set(
+                          data
+                            .filter(
+                              (item) =>
+                                (row.group === '' || item.Group === row.group) && // Filter by selected group
+                                (row.selectedBrand === '' || item.Brand === row.selectedBrand) &&
+                                (row.selectedType === '' || item.Type === row.selectedType) &&
+                                (row.selectedCountry === '' || item.Country === row.selectedCountry) &&
+                                (row.selectedCategory === '' || item.Category === row.selectedCategory) &&
+                                (row.selectedName === '' || item.Name === row.selectedName)
+                            )
+                            .map((item) => item.mainCategory)
+                        )
+                      );
+
                       return (
                         <tr key={index}>
                           <td>{index + 1}</td>
@@ -515,37 +537,53 @@ export const Useremission = () => {
                               ))}
                             </select>
                           </td>
-                         <td>
-  <input
-    type="text"
-    value={row.selectedName}
-    onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
-    placeholder="Search Name"
-    disabled={row.group === ''}
-  />
-  {row.selectedName.length > 0 && (
-    <div className="search-results" style={{ display: row.selectedName.length >= 2 ? 'none' : 'block' }}>
-      {/* Filter names based on selected scope */}
-      {nameOptions
-        .filter((name) =>
-          data.some(
-            (item) =>
-              item.Name === name &&
-              item.Group === row.group // Filter names based on selected scope
-          ) && name.toLowerCase().startsWith(row.selectedName.toLowerCase())
-        )
-        .map((filteredName) => (
-          <div
-            key={filteredName}
-            onClick={() => handleRowChange(index, 'selectedName', filteredName)}
-            className="search-result-item"
-          >
-            {filteredName}
-          </div>
-        ))}
-    </div>
-  )}
-</td> 
+                          <td>
+
+                            <select
+                              onChange={(e) => handleRowChange(index, 'mainCategory', e.target.value)}
+                              value={row.mainCategory}
+                            >
+                              <option value="select value">Select Category</option>
+                              {mainCategoryOptions.map((mainCategory) => (
+                                <option key={mainCategory} value={mainCategory}>
+                                  {mainCategory}
+                                </option>
+                              ))}
+                            </select>
+
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              value={row.selectedName}
+                              onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
+                              placeholder="Search Name"
+                              disabled={row.mainCategory === "select value"}
+                            />
+                            {row.selectedName.length > 0 && (
+                              <div className="search-results" style={{ display: row.selectedName.length >= 2 ? 'none' : 'block' }}>
+                                {/* Filter names based on selected scope */}
+                                {nameOptions
+                                  .filter((name) =>
+                                    data.some(
+                                      (item) =>
+                                        item.Name === name &&
+                                        item.Group === row.group &&
+                                        item.mainCategory === row.mainCategory // Filter names based on selected scope
+                                    ) && name.toLowerCase().startsWith(row.selectedName.toLowerCase())
+                                  )
+                                  .map((filteredName) => (
+                                    <div
+                                      key={filteredName}
+                                      onClick={() => handleRowChange(index, 'selectedName', filteredName)}
+                                      className="search-result-item"
+                                    >
+                                      {filteredName}
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
+                          </td>
 
                           <td>
                             <select
@@ -553,7 +591,7 @@ export const Useremission = () => {
                               value={row.selectedCategory}
                               disabled={row.selectedName === ''}
                             >
-                              <option value="">Select Category</option>
+                              <option value="">Select Description</option>
                               {categoryOptions.map((category) => (
                                 <option key={category} value={category}>
                                   {category}
@@ -650,22 +688,22 @@ export const Useremission = () => {
                           </td>
 
                           {row.selectedName !== '' && (
-    <td>
-        {fields.map((el, index) => (
-            <div key={index}>
-                {el ? (
-                    Object.entries(el).map(([key, value]) => (
-                        <p key={key}>
-                            {key}: {value}
-                        </p>
-                    ))
-                ) : (
-                    <p>N/A</p>
-                )}
-            </div>
-        ))}
-    </td>
-)}
+                            <td>
+                              {fields.map((el, index) => (
+                                <div key={index}>
+                                  {el ? (
+                                    Object.entries(el).map(([key, value]) => (
+                                      <p key={key}>
+                                        {key}: {value}
+                                      </p>
+                                    ))
+                                  ) : (
+                                    <p>N/A</p>
+                                  )}
+                                </div>
+                              ))}
+                            </td>
+                          )}
 
                         </tr>
                       );
@@ -678,7 +716,7 @@ export const Useremission = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th>Consumption Per Kg</th>
+                      <th>Consumption Per Units</th>
                       <th>Date</th>
                       <th>Upload Image</th>
                       <th>RESULT</th>
@@ -780,9 +818,9 @@ export const Useremission = () => {
                     onChange={(e) => handleCategoryFilter(e.target.value)}
                   >
                     <option value="">All Categories</option>
-                    {uniqueCategories.map((category) => (
-                      <option key={category} value={category}>
-                        {category}
+                    {uniqueCategories.map((mainCategory) => (
+                      <option key={mainCategory} value={mainCategory}>
+                        {mainCategory}
                       </option>
                     ))}
                   </select>
@@ -860,8 +898,8 @@ export const Useremission = () => {
                     </td>
                     <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
                     <td>
-                  <button onClick={() => handleDeleteData(row._id)}>Delete</button> {/* Delete button */}
-                </td>
+                      <button onClick={() => handleDeleteData(row._id)}>Delete</button> {/* Delete button */}
+                    </td>
                   </tr>
                 ))}
               <tr>

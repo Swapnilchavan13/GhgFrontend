@@ -68,6 +68,7 @@ export const Marketplace = () => {
       <div className="product-grid">
         {filteredProducts.map(product => (
           <div key={product._id} className="product-card"  onClick={() => handleClick(product._id)}>
+            
             <img src={`https://backend.climescore.com${product.images[0]}`} alt={product.name} />
             <h2>{product.name}</h2>
             <h4>₹ {product.price} /-</h4>
