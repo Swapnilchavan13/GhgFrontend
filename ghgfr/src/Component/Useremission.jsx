@@ -298,7 +298,7 @@ export const Useremission = () => {
     // Calculate total consumption and total result for the selected country
     const filteredData = sdata.filter((row) =>
       (!countryFilter || row.selectedCountry === countryFilter) &&
-      (!categoryFilter || row.selectedCategory === categoryFilter) &&
+      (!categoryFilter || row.mainCategory === categoryFilter) &&
       (!scopeFilter || row.group === scopeFilter)
     );
 
@@ -718,7 +718,7 @@ export const Useremission = () => {
                     <tr>
                       <th>Consumption Per Units</th>
                       <th>Date</th>
-                      <th>Upload Image</th>
+                      <th>Upload File</th>
                       <th>RESULT</th>
                       <th>Calculate</th>
                       <th>Add Next</th>
@@ -750,7 +750,7 @@ export const Useremission = () => {
                           />
                         </td>
                         <td>
-                          <input type="file" accept="image/*" onChange={handleImageChange} />
+                          <input type="file" onChange={handleImageChange} />
                           {selectedImagePreview && (
                             <>
                               {/* <img src={selectedImagePreview} alt="Selected Image" style={{ width: '80px' }} /> */}
@@ -763,7 +763,7 @@ export const Useremission = () => {
                             </>
                           )}
                           <button onClick={() => handleUpload(index)}>
-                            {isImageUploaded ? 'Upload Image' : 'Upload Image'}
+                            {isImageUploaded ? 'Upload File' : 'Upload File'}
                           </button>
                         </td>
                         <td>
@@ -813,6 +813,20 @@ export const Useremission = () => {
                 <th onClick={() => handleSort('selectedName')}>Name</th>
                 <th>
                   <select
+                    id="scopeFilter"
+                    value={scopeFilter}
+                    onChange={(e) => handleScopeFilter(e.target.value)}
+                  >
+                    <option value="">All Scopes</option>
+                    {uniqueScopes.map((scope) => (
+                      <option key={scope} value={scope}>
+                        {scope}
+                      </option>
+                    ))}
+                  </select>
+                </th>
+                <th>
+                  <select
                     id="categoryFilter"
                     value={categoryFilter}
                     onChange={(e) => handleCategoryFilter(e.target.value)}
@@ -843,25 +857,12 @@ export const Useremission = () => {
                 <th>Type</th>
                 <th>Brand</th>
                 <th>Description</th>
-                <th>
-                  <select
-                    id="scopeFilter"
-                    value={scopeFilter}
-                    onChange={(e) => handleScopeFilter(e.target.value)}
-                  >
-                    <option value="">All Scopes</option>
-                    {uniqueScopes.map((scope) => (
-                      <option key={scope} value={scope}>
-                        {scope}
-                      </option>
-                    ))}
-                  </select>
-                </th>
+                
                 <th>SKU</th>
                 <th>Unit</th>
                 <th>From Date</th>
                 <th>To Date</th>
-                <th>Image</th>
+                <th>File</th>
                 <th onClick={handleConsumptionSort}>
                   RESULT
                   {isConsumptionSorted ? ' (High)' : ' (Low)'}
@@ -873,19 +874,19 @@ export const Useremission = () => {
               {sdata
                 .filter((row) =>
                   (!countryFilter || row.selectedCountry === countryFilter) &&
-                  (!categoryFilter || row.selectedCategory === categoryFilter) &&
+                  (!categoryFilter || row.mainCategory === categoryFilter) &&
                   (!scopeFilter || row.group === scopeFilter)
                 ).map((row, index) => (
 
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{row.selectedName}</td>
-                    <td>{row.selectedCategory}</td>
+                    <td>{row.group}</td>
+                    <td>{row.mainCategory}</td>
                     <td>{row.selectedCountry}</td>
                     <td>{row.selectedType}</td>
                     <td>{row.selectedBrand}</td>
                     <td>{row.description}</td>
-                    <td>{row.group}</td>
                     <td>{row.sku}</td>
                     <td>{row.unit}</td>
                     {/* <td>{row.consumption}</td> */}
@@ -893,7 +894,7 @@ export const Useremission = () => {
                     <td>{row.date1}</td>
                     <td>
                       <a href={`https://backend.climescore.com/${row.emission}`} target="_blank" rel="noopener noreferrer">
-                        <img style={{ width: '80px' }} src={`https://backend.climescore.com/${row.emission}`} alt="Latest Uploaded" />
+                        <p>Click to Download</p>
                       </a>
                     </td>
                     <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
