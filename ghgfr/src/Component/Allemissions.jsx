@@ -11,6 +11,7 @@ export const Allemissions = () => {
     Group: '',
     Emission: '',
     Unit: '',
+    mainCategory: ''
   });
 
   useEffect(() => {
@@ -47,8 +48,8 @@ export const Allemissions = () => {
       Description: selectedData.Description,
       Group: selectedData.Group,
       Emission: selectedData.Emission,
-      method: 'PUT',
       Unit: selectedData.Unit,
+      mainCategory: selectedData.mainCategory, // Add this line
     });
   };
 
@@ -91,6 +92,7 @@ export const Allemissions = () => {
       Group: '',
       Emission: '',
       Unit: '',
+      mainCategory: ''
     });
   };
 
@@ -111,43 +113,46 @@ export const Allemissions = () => {
               <th>Group</th>
               <th>Emission</th>
               <th>Unit</th>
+              <th>Category</th>
               <th>Dynamic Fields</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
-              <tr key={item._id}>
-                <td>{item.Name}</td>
-                <td>{item.Description}</td>
-                <td>{item.Group}</td>
-                <td>{item.Emission}</td>
-                <td>{item.Unit}</td>
-                <td>
-                  {item.dynamicFields ? (
-                    Object.entries(item.dynamicFields).map(([key, value]) => (
-                      <div key={key}>
-                        <strong>{key}: </strong> {value}
-                      </div>
-                    ))
-                  ) : null}
-                </td>
-                <td>
-                  {editingId === item._id ? (
-                    <>
-                      <button onClick={() => handleUpdate(item._id)}>Update</button>
-                      <button onClick={handleCancelEdit}>Cancel</button>
-                    </>
-                  ) : (
-                    <>
-                      <button onClick={() => handleEdit(item._id)}>Edit</button>
-                      <button onClick={() => handleDelete(item._id)}>Delete</button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+  {data.map((item) => (
+    <tr key={item._id}>
+      <td>{item.Name}</td>
+      <td>{item.Description}</td>
+      <td>{item.Group}</td>
+      <td>{item.Emission}</td>
+      <td>{item.Unit}</td>
+      <td>{item.mainCategory}</td> {/* Add this line */}
+      <td>
+        {item.dynamicFields ? (
+          Object.entries(item.dynamicFields).map(([key, value]) => (
+            <div key={key}>
+              <strong>{key}: </strong> {value}
+            </div>
+          ))
+        ) : null}
+      </td>
+      <td>
+        {editingId === item._id ? (
+          <>
+            <button onClick={() => handleUpdate(item._id)}>Update</button>
+            <button onClick={handleCancelEdit}>Cancel</button>
+          </>
+        ) : (
+          <>
+            <button onClick={() => handleEdit(item._id)}>Edit</button>
+            <button onClick={() => handleDelete(item._id)}>Delete</button>
+          </>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
         {editingId && (
           <div className="edit-form">
@@ -163,7 +168,7 @@ export const Allemissions = () => {
               />
             </label>
             <br />
-            <label>
+            {/* <label>
               Description:
               <input
                 type="text"
@@ -172,7 +177,7 @@ export const Allemissions = () => {
                   setEditFormData({ ...editFormData, Description: e.target.value })
                 }
               />
-            </label>
+            </label> */}
             <br />
             <label>
               Group:
@@ -196,6 +201,18 @@ export const Allemissions = () => {
               />
             </label>
             <br />
+            <label>
+ Category:
+  <input
+    type="text"
+    value={editFormData.mainCategory}
+    onChange={(e) =>
+      setEditFormData({ ...editFormData, mainCategory: e.target.value })
+    }
+  />
+</label>
+<br />
+
             <label>
               Unit:
               <input
