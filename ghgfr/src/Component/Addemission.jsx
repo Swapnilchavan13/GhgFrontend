@@ -102,6 +102,8 @@ const Addemission = () => {
             <option value="Downstream Leased Assets">Downstream Leased Assets</option>
             <option value="Franchises">Franchises</option>
             <option value="Investments">Investments</option>
+            <option value="Food">Food</option>
+
           </>
         );
       default:
