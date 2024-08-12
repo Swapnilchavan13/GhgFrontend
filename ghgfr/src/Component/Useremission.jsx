@@ -97,19 +97,25 @@ export const Useremission = () => {
   const fetchData = async () => {
     try {
       const userId = localStorage.getItem('useruserId') || '';
-
+  
       const response = await fetch('https://backend.climescore.com/getdata');
       const jsonData = await response.json();
       setData(jsonData);
-      // Fetch saved data from the backend
+  
+      // Fetch saved data
       const savedDataResponse = await fetch(`https://backend.climescore.com/getdata12?userId=${userId}`);
       const savedData = await savedDataResponse.json();
-      setSdata(savedData)
+      setSdata(savedData);
       setRows(savedData.rows || createInitialRows());
+  
+      // Check that all scopes are included in sdata
+      const scopes = [...new Set(savedData.map((row) => row.group))];
+      setUniqueScopes(scopes);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
+  
   // console.log(data);
 
   function createEmptyRow() {
@@ -301,6 +307,7 @@ export const Useremission = () => {
       (!categoryFilter || row.mainCategory === categoryFilter) &&
       (!scopeFilter || row.group === scopeFilter)
     );
+    
 
     const totalC = filteredData.reduce((acc, row) => acc + parseFloat(row.consumption) || 0, 0);
     setTotalConsumption(totalC);
@@ -496,8 +503,9 @@ export const Useremission = () => {
                                 (row.selectedType === '' || item.Type === row.selectedType) &&
                                 (row.selectedCountry === '' || item.Country === row.selectedCountry) &&
                                 (row.selectedCategory === '' || item.Category === row.selectedCategory) &&
-                                (row.selectedName === '' || item.Name === row.selectedName) &&
-                                (row.mainCategory === '' || item.mainCategory === row.mainCategory)
+                                (row.selectedName === '' || item.Name === row.selectedName)
+                                //  &&
+                                // (row.mainCategory === '' || item.mainCategory === row.mainCategory)
                             )
                             .map((item) => item.Group)
                         )
@@ -543,7 +551,7 @@ export const Useremission = () => {
                               onChange={(e) => handleRowChange(index, 'mainCategory', e.target.value)}
                               value={row.mainCategory}
                             >
-                              <option value="select value">Select Category</option>
+                              <option value="">Select Category</option>
                               {mainCategoryOptions.map((mainCategory) => (
                                 <option key={mainCategory} value={mainCategory}>
                                   {mainCategory}
@@ -558,7 +566,7 @@ export const Useremission = () => {
                               value={row.selectedName}
                               onChange={(e) => handleRowChange(index, 'selectedName', e.target.value)}
                               placeholder="Search Name"
-                              disabled={row.mainCategory === "select value"}
+                              
                             />
                             {row.selectedName.length > 0 && (
                               <div className="search-results" style={{ display: row.selectedName.length >= 2 ? 'none' : 'block' }}>
@@ -810,7 +818,7 @@ export const Useremission = () => {
             <thead>
               <tr>
                 <th>Sr. No</th>
-                <th onClick={() => handleSort('selectedName')}>Name</th>
+                <th onClick={() => handleSort('selectedName')}>Emission Factor</th>
                 <th>
                   <select
                     id="scopeFilter"
