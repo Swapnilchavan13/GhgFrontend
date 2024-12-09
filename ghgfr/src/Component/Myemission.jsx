@@ -119,7 +119,7 @@ export const Myemission = () => {
                 <td key={`${user.userId}-${scope}`}>{(aggregatedData[user.userId]?.[scope] || 0).toFixed(2)}</td>
 
               ))}
-              <td>{Object.values(aggregatedData[user.userId] || {}).reduce((acc, val) => acc + val, 0)}</td>
+              <td>{Object.values(aggregatedData[user.userId] || {}).reduce((acc, val) => acc + val, 0).toFixed(2)}</td>
               <td><button onClick={() => handleShowData(user.userId)}>Show Emission</button></td> {/* Button to show data */}
             </tr>
           ))}
