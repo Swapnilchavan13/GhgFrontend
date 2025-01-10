@@ -58,7 +58,7 @@ export const Useremission = () => {
     const updatedData = { distance: editDistance };
 
     // Call the API to update the data
-    const response = await fetch('http://localhost:8080/editEmissionData', {
+    const response = await fetch('https://backend.climescore.com/editEmissionData', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
