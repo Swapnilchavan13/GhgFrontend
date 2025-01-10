@@ -9,6 +9,11 @@ td {
     padding: 8px;
     font-size: 14px;
   }
+
+  #yearSelect{
+margin-right: 50%;   
+ width: 20%;
+  }
   
   .search-results {
     position: absolute;
