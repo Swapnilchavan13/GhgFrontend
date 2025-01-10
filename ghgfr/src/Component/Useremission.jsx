@@ -35,13 +35,57 @@ export const Useremission = () => {
   const [isConsumptionSorted, setIsConsumptionSorted] = useState("");
   const [consumptionSortOrder, setConsumptionSortOrder] = useState(true);
 
-
   const useruserId = localStorage.getItem('useruserId') || '';
 
   const handleNextButtonClick = () => {
     setShowItem1(!showItem1);
     setBname(showItem1 ? "Previous" : "Next");
   };
+
+
+  ///////////////
+
+  const [editRowId, setEditRowId] = useState(null);
+  const [editDistance, setEditDistance] = useState('');
+
+  const handleEditClick = (rowId, currentDistance) => {
+    setEditRowId(rowId); // Set the row as being edited
+    setEditDistance(currentDistance); // Pre-fill the distance value in the input field
+  };
+
+  const handleSaveClick = async (rowId) => {
+    // Save the updated distance and result value
+    const updatedData = { distance: editDistance };
+
+    // Call the API to update the data
+    const response = await fetch('http://localhost:8080/editEmissionData', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: rowId,
+        updatedData: updatedData,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      // Update the row data locally
+      setSdata((prevData) =>
+        prevData.map((row) =>
+          row._id === rowId
+            ? { ...row, distance: editDistance, result: result.data.result } // Update result
+            : row
+        )
+      );
+      setEditRowId(null); // Exit edit mode
+    }
+    };
+
+
+
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -813,115 +857,145 @@ export const Useremission = () => {
         </div>
 
         <div>
-          <h2>Added Emission Table</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Sr. No</th>
-                <th onClick={() => handleSort('selectedName')}>Emission Factor</th>
-                <th>
-                  <select
-                    id="scopeFilter"
-                    value={scopeFilter}
-                    onChange={(e) => handleScopeFilter(e.target.value)}
-                  >
-                    <option value="">All Scopes</option>
-                    {uniqueScopes.map((scope) => (
-                      <option key={scope} value={scope}>
-                        {scope}
-                      </option>
-                    ))}
-                  </select>
-                </th>
-                <th>
-                  <select
-                    id="categoryFilter"
-                    value={categoryFilter}
-                    onChange={(e) => handleCategoryFilter(e.target.value)}
-                  >
-                    <option value="">All Categories</option>
-                    {uniqueCategories.map((mainCategory) => (
-                      <option key={mainCategory} value={mainCategory}>
-                        {mainCategory}
-                      </option>
-                    ))}
-                  </select>
-                </th>
-
-                <th>
-                  <select
-                    id="countryFilter"
-                    value={countryFilter}
-                    onChange={(e) => handleCountryFilter(e.target.value)}
-                  >
-                    <option value="">All Countries</option>
-                    {uniqueCountries.map((country) => (
-                      <option key={country} value={country}>
-                        {country}
-                      </option>
-                    ))}
-                  </select>
-                </th>
-                <th>Type</th>
-                <th>Brand</th>
-                <th>Description</th>
-                
-                <th>SKU</th>
-                <th>Unit</th>
-                <th>From Date</th>
-                <th>To Date</th>
-                <th>File</th>
-                <th onClick={handleConsumptionSort}>
-                  RESULT
-                  {isConsumptionSorted ? ' (High)' : ' (Low)'}
-                </th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sdata
-                .filter((row) =>
-                  (!countryFilter || row.selectedCountry === countryFilter) &&
-                  (!categoryFilter || row.mainCategory === categoryFilter) &&
-                  (!scopeFilter || row.group === scopeFilter)
-                ).map((row, index) => (
-
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{row.selectedName}</td>
-                    <td>{row.group}</td>
-                    <td>{row.mainCategory}</td>
-                    <td>{row.selectedCountry}</td>
-                    <td>{row.selectedType}</td>
-                    <td>{row.selectedBrand}</td>
-                    <td>{row.description}</td>
-                    <td>{row.sku}</td>
-                    <td>{row.unit}</td>
-                    {/* <td>{row.consumption}</td> */}
-                    <td>{row.date}</td>
-                    <td>{row.date1}</td>
-                    <td>
-                      <a href={`https://backend.climescore.com/${row.emission}`} target="_blank" rel="noopener noreferrer">
-                        <p>Click to Download</p>
-                      </a>
-                    </td>
-                    <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
-                    <td>
-                      <button onClick={() => handleDeleteData(row._id)}>Delete</button> {/* Delete button */}
-                    </td>
-                  </tr>
+      <h2>Added Emission Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. No</th>
+            <th onClick={() => handleSort('selectedName')}>Emission Factor</th>
+            <th>
+              <select
+                id="scopeFilter"
+                value={scopeFilter}
+                onChange={(e) => handleScopeFilter(e.target.value)}
+              >
+                <option value="">All Scopes</option>
+                {uniqueScopes.map((scope) => (
+                  <option key={scope} value={scope}>
+                    {scope}
+                  </option>
                 ))}
-              <tr>
-                <td style={{ fontWeight: 'bolder' }} colSpan="9">Total</td>
-                <td style={{ fontWeight: 'bolder' }}></td>
-                <td style={{ fontWeight: 'bolder' }}></td>
-                <td style={{ fontWeight: 'bolder' }}></td>
-                <td style={{ fontWeight: 'bolder' }}></td>
-                <td style={{ fontWeight: 'bolder' }}>{totalResult.toFixed(2)}</td>
+              </select>
+            </th>
+            <th>
+              <select
+                id="categoryFilter"
+                value={categoryFilter}
+                onChange={(e) => handleCategoryFilter(e.target.value)}
+              >
+                <option value="">All Categories</option>
+                {uniqueCategories.map((mainCategory) => (
+                  <option key={mainCategory} value={mainCategory}>
+                    {mainCategory}
+                  </option>
+                ))}
+              </select>
+            </th>
+
+            <th>
+              <select
+                id="countryFilter"
+                value={countryFilter}
+                onChange={(e) => handleCountryFilter(e.target.value)}
+              >
+                <option value="">All Countries</option>
+                {uniqueCountries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Description</th>
+
+            <th>SKU</th>
+            <th>Unit</th>
+            <th>Consumption</th>
+
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>File</th>
+            <th onClick={handleConsumptionSort}>
+              RESULT
+              {isConsumptionSorted ? ' (High)' : ' (Low)'}
+            </th>
+            <th>Edit</th>
+
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sdata
+            .filter((row) =>
+              (!countryFilter || row.selectedCountry === countryFilter) &&
+              (!categoryFilter || row.mainCategory === categoryFilter) &&
+              (!scopeFilter || row.group === scopeFilter)
+            )
+            .map((row, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{row.selectedName}</td>
+                <td>{row.group}</td>
+                <td>{row.mainCategory}</td>
+                <td>{row.selectedCountry}</td>
+                <td>{row.selectedType}</td>
+                <td>{row.selectedBrand}</td>
+                <td>{row.description}</td>
+                <td>{row.sku}</td>
+                <td>{row.unit}</td>
+                <td>
+                {editRowId === row._id ? (
+                  <input
+                    type="number"
+                    value={editDistance}
+                    onChange={(e) => setEditDistance(e.target.value)}
+                  />
+                ) : (
+                  row.distance
+                )}
+              </td>
+                <td>{row.date}</td>
+                <td>{row.date1}</td>
+                <td>
+                  <a
+                    href={`https://backend.climescore.com/${row.emission}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <p>Click to Download</p>
+                  </a>
+                </td>
+                <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
+
+                <td>
+                {editRowId === row._id ? (
+                  <button onClick={() => handleSaveClick(row._id)}>Save</button>
+                ) : (
+                  <button onClick={() => handleEditClick(row._id, row.distance)}>✏️</button>
+                )}
+              </td>
+
+
+                <td>
+                  <button onClick={() => handleDeleteData(row._id)}>Delete</button>
+                </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
+            ))}
+          <tr>
+            <td style={{ fontWeight: 'bolder' }} colSpan="9">
+              Total
+            </td>
+            <td style={{ fontWeight: 'bolder' }}></td>
+            <td style={{ fontWeight: 'bolder' }}></td>
+            <td style={{ fontWeight: 'bolder' }}></td>
+            <td style={{ fontWeight: 'bolder' }}></td>
+            <td style={{ fontWeight: 'bolder' }}>{totalResult.toFixed(2)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
       </div>
     </>
   );
