@@ -47,16 +47,24 @@ export const Useremission = () => {
 
   const [editRowId, setEditRowId] = useState(null);
   const [editDistance, setEditDistance] = useState('');
-
-  const handleEditClick = (rowId, currentDistance) => {
+  const [editDate, setEditDate] = useState('');
+  const [editDate1, setEditDate1] = useState('');
+  
+  const handleEditClick = (rowId, currentDistance, currentDate, currentDate1) => {
     setEditRowId(rowId); // Set the row as being edited
     setEditDistance(currentDistance); // Pre-fill the distance value in the input field
+    setEditDate(currentDate); // Pre-fill the 'from date' value in the input field
+    setEditDate1(currentDate1); // Pre-fill the 'to date' value in the input field
   };
-
+  
   const handleSaveClick = async (rowId) => {
-    // Save the updated distance and result value
-    const updatedData = { distance: editDistance };
-
+    // Only update date if a new value is provided, otherwise keep the old date
+    const updatedData = {
+      distance: editDistance,
+      date: editDate || sdata.find((row) => row._id === rowId).date, // Keep the old date if not changed
+      date1: editDate1 || sdata.find((row) => row._id === rowId).date1, // Keep the old date1 if not changed
+    };
+  
     // Call the API to update the data
     const response = await fetch('https://backend.climescore.com/editEmissionData', {
       method: 'PUT',
@@ -68,21 +76,29 @@ export const Useremission = () => {
         updatedData: updatedData,
       }),
     });
-
+  
     const result = await response.json();
-
+  
     if (result.success) {
       // Update the row data locally
       setSdata((prevData) =>
         prevData.map((row) =>
           row._id === rowId
-            ? { ...row, distance: editDistance, result: result.data.result } // Update result
+            ? {
+                ...row,
+                distance: editDistance,
+                date: updatedData.date, // Update date with either new or old value
+                date1: updatedData.date1, // Update date1 with either new or old value
+                result: result.data.result, // Update result
+              }
             : row
         )
       );
       setEditRowId(null); // Exit edit mode
     }
-    };
+  };
+  
+
 
 
 
@@ -857,145 +873,159 @@ export const Useremission = () => {
         </div>
 
         <div>
-      <h2>Added Emission Table</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Sr. No</th>
-            <th onClick={() => handleSort('selectedName')}>Emission Factor</th>
-            <th>
-              <select
-                id="scopeFilter"
-                value={scopeFilter}
-                onChange={(e) => handleScopeFilter(e.target.value)}
-              >
-                <option value="">All Scopes</option>
-                {uniqueScopes.map((scope) => (
-                  <option key={scope} value={scope}>
-                    {scope}
-                  </option>
-                ))}
-              </select>
-            </th>
-            <th>
-              <select
-                id="categoryFilter"
-                value={categoryFilter}
-                onChange={(e) => handleCategoryFilter(e.target.value)}
-              >
-                <option value="">All Categories</option>
-                {uniqueCategories.map((mainCategory) => (
-                  <option key={mainCategory} value={mainCategory}>
-                    {mainCategory}
-                  </option>
-                ))}
-              </select>
-            </th>
-
-            <th>
-              <select
-                id="countryFilter"
-                value={countryFilter}
-                onChange={(e) => handleCountryFilter(e.target.value)}
-              >
-                <option value="">All Countries</option>
-                {uniqueCountries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            </th>
-            <th>Type</th>
-            <th>Brand</th>
-            <th>Description</th>
-
-            <th>SKU</th>
-            <th>Unit</th>
-            <th>Consumption</th>
-
-            <th>From Date</th>
-            <th>To Date</th>
-            <th>File</th>
-            <th onClick={handleConsumptionSort}>
-              RESULT
-              {isConsumptionSorted ? ' (High)' : ' (Low)'}
-            </th>
-            <th>Edit</th>
-
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sdata
-            .filter((row) =>
-              (!countryFilter || row.selectedCountry === countryFilter) &&
-              (!categoryFilter || row.mainCategory === categoryFilter) &&
-              (!scopeFilter || row.group === scopeFilter)
-            )
-            .map((row, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{row.selectedName}</td>
-                <td>{row.group}</td>
-                <td>{row.mainCategory}</td>
-                <td>{row.selectedCountry}</td>
-                <td>{row.selectedType}</td>
-                <td>{row.selectedBrand}</td>
-                <td>{row.description}</td>
-                <td>{row.sku}</td>
-                <td>{row.unit}</td>
-                <td>
-                {editRowId === row._id ? (
-                  <input
-                    type="number"
-                    value={editDistance}
-                    onChange={(e) => setEditDistance(e.target.value)}
-                  />
-                ) : (
-                  row.distance
-                )}
-              </td>
-                <td>{row.date}</td>
-                <td>{row.date1}</td>
-                <td>
-                  <a
-                    href={`https://backend.climescore.com/${row.emission}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <p>Click to Download</p>
-                  </a>
-                </td>
-                <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
-
-                <td>
-                {editRowId === row._id ? (
-                  <button onClick={() => handleSaveClick(row._id)}>Save</button>
-                ) : (
-                  <button onClick={() => handleEditClick(row._id, row.distance)}>✏️</button>
-                )}
-              </td>
-
-
-                <td>
-                  <button onClick={() => handleDeleteData(row._id)}>Delete</button>
-                </td>
-              </tr>
+  <h2>Added Emission Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Sr. No</th>
+        <th onClick={() => handleSort('selectedName')}>Emission Factor</th>
+        <th>
+          <select
+            id="scopeFilter"
+            value={scopeFilter}
+            onChange={(e) => handleScopeFilter(e.target.value)}
+          >
+            <option value="">All Scopes</option>
+            {uniqueScopes.map((scope) => (
+              <option key={scope} value={scope}>
+                {scope}
+              </option>
             ))}
-          <tr>
-            <td style={{ fontWeight: 'bolder' }} colSpan="9">
-              Total
+          </select>
+        </th>
+        <th>
+          <select
+            id="categoryFilter"
+            value={categoryFilter}
+            onChange={(e) => handleCategoryFilter(e.target.value)}
+          >
+            <option value="">All Categories</option>
+            {uniqueCategories.map((mainCategory) => (
+              <option key={mainCategory} value={mainCategory}>
+                {mainCategory}
+              </option>
+            ))}
+          </select>
+        </th>
+        <th>
+          <select
+            id="countryFilter"
+            value={countryFilter}
+            onChange={(e) => handleCountryFilter(e.target.value)}
+          >
+            <option value="">All Countries</option>
+            {uniqueCountries.map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+        </th>
+        <th>Type</th>
+        <th>Brand</th>
+        <th>Description</th>
+        <th>SKU</th>
+        <th>Unit</th>
+        <th>Consumption</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>File</th>
+        <th onClick={handleConsumptionSort}>
+          RESULT
+          {isConsumptionSorted ? ' (High)' : ' (Low)'}
+        </th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sdata
+        .filter((row) =>
+          (!countryFilter || row.selectedCountry === countryFilter) &&
+          (!categoryFilter || row.mainCategory === categoryFilter) &&
+          (!scopeFilter || row.group === scopeFilter)
+        )
+        .map((row, index) => (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{row.selectedName}</td>
+            <td>{row.group}</td>
+            <td>{row.mainCategory}</td>
+            <td>{row.selectedCountry}</td>
+            <td>{row.selectedType}</td>
+            <td>{row.selectedBrand}</td>
+            <td>{row.description}</td>
+            <td>{row.sku}</td>
+            <td>{row.unit}</td>
+            <td>
+              {editRowId === row._id ? (
+                <input
+                  type="number"
+                  value={editDistance}
+                  onChange={(e) => setEditDistance(e.target.value)}
+                />
+              ) : (
+                row.distance
+              )}
             </td>
-            <td style={{ fontWeight: 'bolder' }}></td>
-            <td style={{ fontWeight: 'bolder' }}></td>
-            <td style={{ fontWeight: 'bolder' }}></td>
-            <td style={{ fontWeight: 'bolder' }}></td>
-            <td style={{ fontWeight: 'bolder' }}>{totalResult.toFixed(2)}</td>
+            <td>
+              {editRowId === row._id ? (
+                <input
+                  type="date"
+                  value={editDate}
+                  onChange={(e) => setEditDate(e.target.value)}
+                />
+              ) : (
+                row.date
+              )}
+            </td>
+            <td>
+              {editRowId === row._id ? (
+                <input
+                  type="date"
+                  value={editDate1}
+                  onChange={(e) => setEditDate1(e.target.value)}
+                />
+              ) : (
+                row.date1
+              )}
+            </td>
+            <td>
+              <a
+                href={`https://backend.climescore.com/${row.emission}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p>Click to Download</p>
+              </a>
+            </td>
+            <td>{row.result !== null ? parseFloat(row.result).toFixed(2) : 'N/A'}</td>
+            <td>
+              {editRowId === row._id ? (
+                <button onClick={() => handleSaveClick(row._id)}>Save</button>
+              ) : (
+                <button onClick={() => handleEditClick(row._id, row.distance)}>✏️</button>
+              )}
+            </td>
+            <td>
+              <button onClick={() => handleDeleteData(row._id)}>Delete</button>
+            </td>
           </tr>
-        </tbody>
-      </table>
-    </div>
+        ))}
+      <tr>
+        <td style={{ fontWeight: 'bolder' }} colSpan="9">
+          Total
+        </td>
+        <td style={{ fontWeight: 'bolder' }}></td>
+        <td style={{ fontWeight: 'bolder' }}></td>
+        <td style={{ fontWeight: 'bolder' }}></td>
+        <td style={{ fontWeight: 'bolder' }}></td>
+        <td style={{ fontWeight: 'bolder' }}>{totalResult.toFixed(2)}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
       </div>
     </>
   );
