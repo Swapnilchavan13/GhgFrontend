@@ -9,23 +9,19 @@ export const Myemission = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedUserEmissionData, setSelectedUserEmissionData] = useState([]);
   const [logoimg, setLogoimg] = useState('');
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear()); 
+  // const [allusermonthly, setAllusermonthly] = useState([]);  
+  const [monthlyTotals, setMonthlyTotals] = useState([]);  // New state to store the monthly totals for all users
 
-
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  
-    const handleYearChange = (e) => {
-      setSelectedYear(parseInt(e.target.value, 10));
-    };
 
 
   const calculateTotalWithDays = () => {
     return (
       Object.values(aggregatedData).reduce((total, userData) => {
         return total + Object.values(userData).reduce((acc, val) => acc + val, 0);
-      }, 0) 
+      }, 0)
     ).toFixed(2);
   };
-
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
@@ -50,27 +46,47 @@ export const Myemission = () => {
   useEffect(() => {
     const fetchData = async () => {
       const aggregatedDataObj = {};
+      const monthlyTotals = {};   // Object to accumulate monthly totals for all users
 
       for (const user of users) {
         try {
           const response = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
           const data = await response.json();
 
+          // Process the data for the current user
           aggregatedDataObj[user.userId] = {};
+
           for (const item of data) {
+            const month = new Date(item.date).toLocaleString('default', { month: 'long' }); // Extract month from date
+            const result = parseFloat(item.result); // Ensure result is a number
+
+
+            // Aggregating data by group (existing functionality)
             if (!aggregatedDataObj[user.userId].hasOwnProperty(item.group)) {
-              aggregatedDataObj[user.userId][item.group] = parseFloat(item.result);
+              aggregatedDataObj[user.userId][item.group] = result;
             } else {
-              aggregatedDataObj[user.userId][item.group] += parseFloat(item.result);
+              aggregatedDataObj[user.userId][item.group] += result;
             }
+
+            // Calculate monthly totals across all users
+            if (!monthlyTotals[month]) {
+              monthlyTotals[month] = 0;
+            }
+            monthlyTotals[month] += result;
           }
+
+          // Push the processed monthly data into allMonthlyData
+
         } catch (error) {
           console.error('Error fetching emission data:', error);
         }
       }
 
+      // Update states after fetching and processing data
       setAggregatedData(aggregatedDataObj);
+      setMonthlyTotals(monthlyTotals);    // Set monthly totals for all users
 
+      // Process scopes (same as before)
       const allScopes = new Set();
       for (const userId in aggregatedDataObj) {
         for (const scope in aggregatedDataObj[userId]) {
@@ -82,6 +98,8 @@ export const Myemission = () => {
 
     fetchData();
   }, [users]);
+
+  console.log(monthlyTotals);  
 
   const handleShowData = async (userId) => {
     try {
@@ -166,88 +184,57 @@ export const Myemission = () => {
 
 
     <div>
-      <h2>Monthly Emissions Data</h2>
+  <h2>Monthly Emissions Data</h2>
 
-      {/* Dropdown for selecting the year */}
-      <div style={{ textAlign:
-        'left', marginBottom: "10px", padding:'10px' }}>
-        <label htmlFor="yearSelect">Select Year: </label>
-        <select id="yearSelect" value={selectedYear} onChange={handleYearChange}>
-          <option value={2024}>2024</option>
-          <option value={2025}>2025</option>
-        </select>
-      </div>
+  <table>
+    <thead>
+      <tr>
+      <th>All</th>
 
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>January</th>
-            <th>February</th>
-            <th>March</th>
-            <th>April</th>
-            <th>May</th>
-            <th>June</th>
-            <th>July</th>
-            <th>August</th>
-            <th>September</th>
-            <th>October</th>
-            <th>November</th>
-            <th>December</th>
+        <th>January</th>
+        <th>February</th>
+        <th>March</th>
+        <th>April</th>
+        <th>May</th>
+        <th>June</th>
+        <th>July</th>
+        <th>August</th>
+        <th>September</th>
+        <th>October</th>
+        <th>November</th>
+        <th>December</th>
+      </tr>
+    </thead>
+    <tbody>
+      {(() => {
+        // Initialize an array to hold the emission totals for each month
+        const monthlyResults = Array(12).fill(0);
+
+        // Map the months to the appropriate index in the array (January -> 0, February -> 1, etc.)
+        const monthNames = [
+          'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        // Loop through the monthNames and assign the corresponding value from monthlyTotals
+        monthNames.forEach((month, index) => {
+          if (monthlyTotals[month]) {
+            monthlyResults[index] = monthlyTotals[month].toFixed(2); // Use the data from monthlyTotals
+          }
+        });
+
+        // Render a row for the emissions data
+        return (
+          <tr key="total-emissions">
+            <td>Total</td>
+            {monthlyResults.map((result, index) => (
+              <td key={index}>{result}</td>
+            ))}
           </tr>
-        </thead>
-        <tbody>
-          {(() => {
-            // Initialize an array to hold monthly totals
-            const monthlyResults = Array(12).fill(0);
-
-            // Process the selected user's emission data for the selected year
-            selectedUserEmissionData.forEach(item => {
-              const startDate = new Date(item.date);
-              const endDate = new Date(item.date1);
-
-              // Filter data for the selected year
-              if (startDate.getFullYear() === selectedYear || endDate.getFullYear() === selectedYear) {
-                // Iterate through each month in the range
-                for (let d = new Date(startDate); d <= endDate; d.setMonth(d.getMonth() + 1)) {
-                  if (d.getFullYear() === selectedYear) {
-                    const monthIndex = d.getMonth(); // 0 for January, 1 for February, etc.
-                    const result = parseFloat(item.result) || 0;
-                    monthlyResults[monthIndex] += result;
-                  }
-                }
-              }
-            });
-
-            // Render a single row for the selected user
-            if (selectedUserEmissionData.length > 0) {
-              const userId = selectedUserEmissionData[0].userId;
-              return (
-                <tr key={userId}>
-                  <td>{userId}</td>
-                  {monthlyResults.map((result, index) => (
-                    <td key={index}>{result.toFixed(2)}</td>
-                  ))}
-                </tr>
-              );
-            } else {
-              return (
-                <tr>
-                  <td colSpan="13">No data available for the selected year</td>
-                </tr>
-              );
-            }
-          })()}
-        </tbody>
-      </table>
-    </div>
-
-
-
-    
-
-
-
+        );
+      })()}
+    </tbody>
+  </table>
+</div>
 
 
       <div>
