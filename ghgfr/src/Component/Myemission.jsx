@@ -3,6 +3,9 @@ import { Clientnavbar } from './Clientnavbar';
 import { useNavigate } from 'react-router-dom';
 
 export const Myemission = () => {
+
+  const currentYear = new Date().getFullYear();
+
   const [users, setUsers] = useState([]);
   const [aggregatedData, setAggregatedData] = useState({});
   const [scopes, setScopes] = useState([]);
@@ -13,11 +16,26 @@ export const Myemission = () => {
   const [monthlyTotals, setMonthlyTotals] = useState([]);  // New state to store the monthly totals for all users
 
 
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  
-  const handleYearChange = (e) => {
-    setSelectedYear(parseInt(e.target.value, 10));
-  };
+ // Separate states for each dropdown (Financial Year)
+ const [selectedTotalYear, setSelectedTotalYear] = useState(currentYear);
+ const [selectedUserYear, setSelectedUserYear] = useState(currentYear);
+
+ const handleTotalYearChange = (event) => {
+   setSelectedTotalYear(parseInt(event.target.value, 10));
+ };
+
+ const handleUserYearChange = (event) => {
+   setSelectedUserYear(parseInt(event.target.value, 10));
+ };
+
+ // Format financial year (April to March)
+ const getFinancialYear = (year) => `${year} April - ${year + 1} March`;
+
+ // Define month order (April - March)
+ const monthNames = [
+   "April", "May", "June", "July", "August", "September",
+   "October", "November", "December", "January", "February", "March"
+ ];
 
 
   const calculateTotalWithDays = () => {
@@ -184,71 +202,76 @@ export const Myemission = () => {
         </tr>
       </tfoot>
     </table>
+
+
     <div>
-  <h2>Monthly Total Emissions</h2>
+      {/* Monthly Total Emissions Section */}
+      <h2>Monthly Total Emissions ({getFinancialYear(selectedTotalYear)})</h2>
 
-  <table>
-    <thead>
-      <tr>
-      <th>All</th>
+      {/* Year Dropdown for Total Emissions */}
+      <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
+        <label htmlFor="totalYearSelect">Select Year: </label>
+        <select id="totalYearSelect" value={selectedTotalYear} onChange={handleTotalYearChange}>
+          {[...Array(5)].map((_, index) => {
+            const year = currentYear - 2 + index;
+            return (
+              <option key={year} value={year}>
+                {year} April - {year + 1} March
+              </option>
+            );
+          })}
+        </select>
+      </div>
 
-        <th>January</th>
-        <th>February</th>
-        <th>March</th>
-        <th>April</th>
-        <th>May</th>
-        <th>June</th>
-        <th>July</th>
-        <th>August</th>
-        <th>September</th>
-        <th>October</th>
-        <th>November</th>
-        <th>December</th>
-      </tr>
-    </thead>
-    <tbody>
-      {(() => {
-        // Initialize an array to hold the emission totals for each month
-        const monthlyResults = Array(12).fill(0);
-
-        // Map the months to the appropriate index in the array (January -> 0, February -> 1, etc.)
-        const monthNames = [
-          'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-
-        // Loop through the monthNames and assign the corresponding value from monthlyTotals
-        monthNames.forEach((month, index) => {
-          if (monthlyTotals[month]) {
-            monthlyResults[index] = monthlyTotals[month].toFixed(2); // Use the data from monthlyTotals
-          }
-        });
-
-        // Render a row for the emissions data
-        return (
-          <tr key="total-emissions">
-            <td>Total</td>
-            {monthlyResults.map((result, index) => (
-              <td key={index}>{result}</td>
+      <table>
+        <thead>
+          <tr>
+            <th>All</th>
+            {monthNames.map((month, index) => (
+              <th key={index}>{month}</th>
             ))}
           </tr>
-        );
-      })()}
-    </tbody>
-  </table>
-</div>
+        </thead>
+        <tbody>
+          {(() => {
+            const monthlyResults = Array(12).fill(0);
 
-<br />
-<hr />
+            monthNames.forEach((month, index) => {
+              if (monthlyTotals[month]) {
+                monthlyResults[index] = monthlyTotals[month].toFixed(2);
+              }
+            });
 
-<div>
-      <h2>Monthly User's Emissions</h2>
-      {/* Dropdown for selecting the year */}
-      <div style={{ textAlign:
-        'left', marginBottom: "10px", padding:'10px' }}>
-        <label htmlFor="yearSelect">Select Year: </label>
-        <select id="yearSelect" value={selectedYear} onChange={handleYearChange}>
-          <option value={2024}>2024</option>
-          <option value={2025}>2025</option>
+            return (
+              <tr key="total-emissions">
+                <td>Total</td>
+                {monthlyResults.map((result, index) => (
+                  <td key={index}>{result}</td>
+                ))}
+              </tr>
+            );
+          })()}
+        </tbody>
+      </table>
+
+      <br />
+      <hr />
+
+      {/* Monthly User's Emissions Section */}
+      <h2>Monthly User's Emissions ({getFinancialYear(selectedUserYear)})</h2>
+
+      {/* Year Dropdown for User's Emissions */}
+      <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
+        <label htmlFor="userYearSelect">Select Year: </label>
+        <select id="userYearSelect" value={selectedUserYear} onChange={handleUserYearChange}>
+          {[...Array(5)].map((_, index) => {
+            const year = currentYear - 2 + index;
+            return (
+              <option key={year} value={year}>
+                {year} April - {year + 1} March
+              </option>
+            );
+          })}
         </select>
       </div>
 
@@ -256,36 +279,35 @@ export const Myemission = () => {
         <thead>
           <tr>
             <th>User ID</th>
-            <th>January</th>
-            <th>February</th>
-            <th>March</th>
-            <th>April</th>
-            <th>May</th>
-            <th>June</th>
-            <th>July</th>
-            <th>August</th>
-            <th>September</th>
-            <th>October</th>
-            <th>November</th>
-            <th>December</th>
+            {monthNames.map((month, index) => (
+              <th key={index}>{month}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {(() => {
-            // Initialize an array to hold monthly totals
             const monthlyResults = Array(12).fill(0);
 
-            // Process the selected user's emission data for the selected year
-            selectedUserEmissionData.forEach(item => {
+            selectedUserEmissionData.forEach((item) => {
               const startDate = new Date(item.date);
               const endDate = new Date(item.date1);
 
-              // Filter data for the selected year
-              if (startDate.getFullYear() === selectedYear || endDate.getFullYear() === selectedYear) {
-                // Iterate through each month in the range
+              // Extracting correct financial year (April - March)
+              const startYear = startDate.getFullYear();
+              const endYear = endDate.getFullYear();
+              const selectedFYStart = selectedUserYear;
+              const selectedFYEnd = selectedUserYear + 1;
+
+              if (
+                (startYear === selectedFYStart && startDate.getMonth() >= 3) ||
+                (endYear === selectedFYEnd && endDate.getMonth() <= 2)
+              ) {
                 for (let d = new Date(startDate); d <= endDate; d.setMonth(d.getMonth() + 1)) {
-                  if (d.getFullYear() === selectedYear) {
-                    const monthIndex = d.getMonth(); // 0 for January, 1 for February, etc.
+                  if (
+                    (d.getFullYear() === selectedFYStart && d.getMonth() >= 3) ||
+                    (d.getFullYear() === selectedFYEnd && d.getMonth() <= 2)
+                  ) {
+                    const monthIndex = (d.getMonth() + 9) % 12; // Adjust to April-March index
                     const result = parseFloat(item.result) || 0;
                     monthlyResults[monthIndex] += result;
                   }
@@ -293,7 +315,6 @@ export const Myemission = () => {
               }
             });
 
-            // Render a single row for the selected user
             if (selectedUserEmissionData.length > 0) {
               const userId = selectedUserEmissionData[0].userId;
               return (
@@ -307,15 +328,16 @@ export const Myemission = () => {
             } else {
               return (
                 <tr>
-                  <td colSpan="13">No data available for the selected year</td>
+                  <td colSpan="13">No data available for the selected financial year</td>
                 </tr>
               );
             }
           })()}
         </tbody>
       </table>
+
+      <hr />
     </div>
-<hr />
 
 
 
