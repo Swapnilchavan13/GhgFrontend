@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Clientnavbar } from './Clientnavbar';
 import { useNavigate } from 'react-router-dom';
+import { Bar, Pie } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
+ 
 export const Myemission = () => {
 
   const currentYear = new Date().getFullYear();
@@ -16,6 +37,9 @@ export const Myemission = () => {
   const [monthlyTotalsByYear, setMonthlyTotals] = useState([]);  // New state to store the monthly totals for all users
   const [selectedFinancialYear, setSelectedFinancialYear] = useState("2024-2025");
 
+  const [showGraph, setShowGraph] = useState(false); // State to control the visibility of the graph
+
+
 // Extract available financial years dynamically from data
 const availableYears = Object.keys(monthlyTotalsByYear).sort();
 
@@ -23,6 +47,11 @@ const availableYears = Object.keys(monthlyTotalsByYear).sort();
 const handleFinancialYearChange = (event) => {
   setSelectedFinancialYear(event.target.value);
 };
+
+const handleShowGraph = () => {
+  setShowGraph(!showGraph); // Toggle the graph visibility
+};
+
 
  // Separate states for each dropdown (Financial Year)
  const [selectedTotalYear, setSelectedTotalYear] = useState(currentYear-1);
@@ -154,26 +183,89 @@ const handleFinancialYearChange = (event) => {
       const response = await fetch(`https://backend.climescore.com/getdata12?userId=${userId}`);
       const data = await response.json();
       setSelectedUserEmissionData(data);
-      console.log(data)
     } catch (error) {
       console.error('Error fetching emission data:', error);
     }
   };
 
-
   useEffect(() => {
-    // Fetch client's data including logoimg
-    fetch(`https://backend.climescore.com/getclients`)
-      .then(response => response.json())
-      .then(data => {
-        // Find the client data whose userId matches with the one in local storage
-        const client = data.find(client => client.userId === localStorage.getItem('userId'));
-        if (client) {
-          setLogoimg(client.logoimg);
+    const fetchData = async () => {
+      const agg = {}, monthly = {};
+      for (const user of users) {
+        try {
+          const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+          const data = await res.json();
+          agg[user.userId] = {};
+
+          for (const item of data) {
+            const date = new Date(item.date);
+            const year = date.getFullYear();
+            const month = date.toLocaleString('default', { month: 'long' });
+            const result = parseFloat(item.result) || 0;
+            const fy = date.getMonth() >= 3 ? `${year}-${year + 1}` : `${year - 1}-${year}`;
+
+            if (!monthly[fy]) monthly[fy] = {};
+            if (!monthly[fy][month]) monthly[fy][month] = 0;
+            monthly[fy][month] += result;
+
+            if (!agg[user.userId][item.group]) agg[user.userId][item.group] = 0;
+            agg[user.userId][item.group] += result;
+          }
+        } catch (err) {
+          console.error(err);
         }
-      })
-      .catch(error => console.error('Error fetching client data:', error));
-  }, []);
+      }
+
+      setAggregatedData(agg);
+      setMonthlyTotals(monthly);
+
+      const scopeSet = new Set();
+      Object.values(agg).forEach(userData => {
+        Object.keys(userData).forEach(scope => scopeSet.add(scope));
+      });
+      setScopes([...scopeSet]);
+    };
+    fetchData();
+  }, [users]);
+
+  const chartData = {
+    labels: Object.keys(monthlyTotalsByYear[selectedFinancialYear] || {}),
+    datasets: [{
+      label: 'Monthly Emissions',
+      data: Object.values(monthlyTotalsByYear[selectedFinancialYear] || {}),
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+    }],
+  };
+
+  const userLabels = users.map(u => u.userId);
+  const userTotals = users.map(u => {
+    const total = Object.values(aggregatedData[u.userId] || {}).reduce((a, b) => a + b, 0);
+    return +total.toFixed(2);
+  });
+
+  const userChartData = {
+    labels: userLabels,
+    datasets: [{
+      label: 'User-wise Total Emissions',
+      data: userTotals,
+      backgroundColor: 'rgba(153, 102, 255, 0.5)',
+      borderColor: 'rgba(153, 102, 255, 1)',
+      borderWidth: 1,
+    }],
+  };
+
+  const pieChartData = {
+    labels: userLabels,
+    datasets: [{
+      data: userTotals,
+      backgroundColor: userLabels.map(() => `hsl(${Math.random() * 360}, 70%, 70%)`),
+      borderWidth: 1,
+    }],
+  };
+
+
 
   return (
     <div>
@@ -275,6 +367,38 @@ const handleFinancialYearChange = (event) => {
       <br />
       <hr />
 
+      <div style={{ marginTop: '20px' }}>
+        <button className='toggle-btn' onClick={handleShowGraph}>
+          {showGraph ? 'Hide Graphical Data' : 'Show Graphical Data'}
+        </button>
+
+        {showGraph && (
+  <div className="graph-wrapper">
+    <h2>Graph of Monthly Total Emissions ({selectedFinancialYear})</h2>
+    <div className="chart-container1">
+      <Bar data={chartData} />
+    </div>
+
+<div className='graphdiv'>
+  <div>
+    <h2>User-wise Total Emissions</h2>
+    <div className="chart-container">
+      <Bar data={userChartData} />
+    </div>
+  </div>
+<div>
+
+    <h2>User-wise Emission Pie Chart</h2>
+    <div className="chart-container pie">
+      <Pie data={pieChartData} />
+    </div>
+</div>
+</div>
+  </div>
+)}
+
+      </div>
+
       {/* Monthly User's Emissions Section */}
       <h2>Monthly User's Emissions ({getFinancialYear(selectedUserYear)})</h2>
 
@@ -292,6 +416,8 @@ const handleFinancialYearChange = (event) => {
           })}
         </select>
       </div>
+
+      
 
       <table>
         <thead>
