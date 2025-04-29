@@ -38,6 +38,8 @@ export const Myemission = () => {
   const [selectedFinancialYear, setSelectedFinancialYear] = useState("2024-2025");
 
   const [showGraph, setShowGraph] = useState(false); // State to control the visibility of the graph
+  const [showGraph2, setShowGraph2] = useState(false); // State to control the visibility of the graph
+
 
 
 // Extract available financial years dynamically from data
@@ -50,6 +52,10 @@ const handleFinancialYearChange = (event) => {
 
 const handleShowGraph = () => {
   setShowGraph(!showGraph); // Toggle the graph visibility
+};
+
+const handleShowGraph2 = () => {
+  setShowGraph2(!showGraph2); // Toggle the graph visibility
 };
 
 
@@ -487,6 +493,59 @@ const handleShowGraph = () => {
 
       <hr />
     </div>
+
+
+
+    <div style={{ padding: '1rem' }}>
+  
+
+  <button
+    onClick={handleShowGraph2}
+    
+    style={{
+      padding: '0.5rem 1rem',
+      backgroundColor: '#4CAF50',
+      color: 'white',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+    }}
+  >
+  {showGraph2 ? 'Hide Highest Emission Activity Pie' : 'Show Highest Emission Activity Pie'}
+    
+  </button>
+</div>
+
+
+
+{showGraph2 && selectedUserEmissionData.length > 0 && (
+  <div style={{ width: '600px', margin: '2rem auto' }}>
+    <h4 style={{ textAlign: 'center' }}>Emission by Activity (Selected User)</h4>
+    <Pie
+      data={{
+        labels: Object.keys(
+          selectedUserEmissionData.reduce((acc, item) => {
+            acc[item.selectedName] = (acc[item.selectedName] || 0) + parseFloat(item.result);
+            return acc;
+          }, {})
+        ),
+        datasets: [{
+          data: Object.values(
+            selectedUserEmissionData.reduce((acc, item) => {
+              acc[item.selectedName] = (acc[item.selectedName] || 0) + parseFloat(item.result);
+              return acc;
+            }, {})
+          ),
+          backgroundColor: Object.keys(selectedUserEmissionData.reduce((acc, item) => {
+            acc[item.selectedName] = true;
+            return acc;
+          }, {})).map(() => `hsl(${Math.random() * 360}, 70%, 70%)`)
+        }]
+      }}
+    />
+  </div>
+)}
+
 
 
 
