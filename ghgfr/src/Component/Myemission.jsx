@@ -445,7 +445,7 @@ const handleShowGraph2 = () => {
 </div>
 
 <div style={{ marginTop: '40px' }}>
-  <h3>Download by User ID and Name</h3>
+  <h3>Download by User and Emission Type</h3>
 
   <label>Select User: </label>
   <select style={{ width: '580px' }} onChange={(e) => handleUserChange(e.target.value)} value={selectedUserId}>
