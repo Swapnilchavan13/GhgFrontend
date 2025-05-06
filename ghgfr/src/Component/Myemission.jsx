@@ -40,6 +40,13 @@ export const Myemission = () => {
   const [showGraph, setShowGraph] = useState(false); // State to control the visibility of the graph
   const [showGraph2, setShowGraph2] = useState(false); // State to control the visibility of the graph
 
+  const [selectedScope, setSelectedScope] = useState('');
+
+
+  const [selectedUserId, setSelectedUserId] = useState('');
+const [userNames, setUserNames] = useState([]);
+const [selectedName, setSelectedName] = useState('');
+
 
 
 // Extract available financial years dynamically from data
@@ -79,6 +86,70 @@ const handleShowGraph2 = () => {
    "April", "May", "June", "July", "August", "September",
    "October", "November", "December", "January", "February", "March"
  ];
+
+
+
+ const handleDownloadScopeData = async () => {
+  if (!selectedScope) {
+    alert("Please select a scope.");
+    return;
+  }
+
+  let allData = [];
+
+  for (const user of users) {
+    try {
+      const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+      const data = await res.json();
+
+      const filtered = data.filter(item => item.group === selectedScope);
+
+      const enriched = filtered.map(item => ({
+        userId: user.userId,
+        name: item.name || '',
+        category: item.category || '',
+        country: item.country || '',
+        type: item.type || '',
+        brand: item.brand || '',
+        emission: item.result || '',
+        description: item.description || '',
+        group: item.group || '',
+        sku: item.sku || '',
+        unit: item.unit || '',
+        image: item.image || '',
+        fromDate: item.fromDate || '',
+        toDate: item.toDate || ''
+      }));
+
+      allData.push(...enriched);
+
+    } catch (err) {
+      console.error('Error fetching user data:', err);
+    }
+  }
+
+  if (allData.length === 0) {
+    alert("No data found for selected scope.");
+    return;
+  }
+
+  const csvRows = [
+    Object.keys(allData[0]).join(','), // Header
+    ...allData.map(row => Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`).join(','))
+  ];
+
+  const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.setAttribute('hidden', '');
+  a.setAttribute('href', url);
+  a.setAttribute('download', `emissions_${selectedScope}.csv`);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
 
 
   const calculateTotalWithDays = () => {
@@ -184,6 +255,87 @@ const handleShowGraph2 = () => {
 
   // console.log(monthlyTotals);  
 
+
+  const handleUserChange = async (userId) => {
+    setSelectedUserId(userId);
+    setSelectedName('');
+    setUserNames([]);
+  
+    if (!userId) return;
+  
+    try {
+      const res = await fetch(`https://backend.climescore.com/getdata12?userId=${userId}`);
+      const data = await res.json();
+  
+      const uniqueNames = [...new Set(data.map(item => item.selectedName).filter(Boolean))];
+      setUserNames(uniqueNames);
+    } catch (err) {
+      console.error("Failed to fetch names for user:", err);
+    }
+  };
+
+  
+
+  const handleDownloadByName = async () => {
+    if (!selectedUserId || !selectedName) {
+      alert("Please select both User ID and Name.");
+      return;
+    }
+  
+    try {
+      const res = await fetch(`https://backend.climescore.com/getdata12?userId=${selectedUserId}`);
+      const data = await res.json();
+  
+      const filtered = data.filter(item => item.selectedName === selectedName);
+  
+      if (filtered.length === 0) {
+        alert("No data found for selected name.");
+        return;
+      }
+  
+      const enriched = filtered.map(item => ({
+        userId: selectedUserId,
+        name: item.selectedName || '',
+        category: item.category || '',
+        country: item.country || '',
+        type: item.type || '',
+        brand: item.brand || '',
+        emission: item.result || '',
+        description: item.description || '',
+        group: item.group || '',
+        sku: item.sku || '',
+        unit: item.unit || '',
+        image: item.image || '',
+        fromDate: item.fromDate || '',
+        toDate: item.toDate || ''
+      }));
+  
+      const csvRows = [
+        Object.keys(enriched[0]).join(','), // Header
+        ...enriched.map(row => Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`).join(','))
+      ];
+  
+      const blob = new Blob([csvRows.join('\n')], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+  
+      const a = document.createElement('a');
+      a.setAttribute('hidden', '');
+      a.setAttribute('href', url);
+      a.setAttribute('download', `data_${selectedName}.csv`);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+  
+    } catch (err) {
+      console.error("Error downloading name data:", err);
+    }
+  };
+  
+
+
+
+
+
   const handleShowData = async (userId) => {
     try {
       const response = await fetch(`https://backend.climescore.com/getdata12?userId=${userId}`);
@@ -276,6 +428,51 @@ const handleShowGraph2 = () => {
   return (
     <div>
       <Clientnavbar logoimg={logoimg} />
+
+
+      <div style={{ marginTop: '20px' }}>
+  <h3>Select Scope For Download: </h3>
+  <select style={{ width: '580px' }} onChange={(e) => setSelectedScope(e.target.value)} value={selectedScope}>
+    <option value="">-- Select Scope --</option>
+    {scopes.map(scope => (
+      <option key={scope} value={scope}>{scope}</option>
+    ))}
+  </select>
+<br />
+  <button onClick={handleDownloadScopeData} style={{ marginLeft: '10px' }}>
+    Download Scope Data
+  </button>
+</div>
+
+<div style={{ marginTop: '40px' }}>
+  <h3>Download by User ID and Name</h3>
+
+  <label>Select User: </label>
+  <select style={{ width: '580px' }} onChange={(e) => handleUserChange(e.target.value)} value={selectedUserId}>
+    <option value="">-- Select User --</option>
+    {users.map(user => (
+      <option key={user.userId} value={user.userId}>{user.userId}</option>
+    ))}
+  </select>
+
+  {userNames.length > 0 && (
+    <>
+      <label style={{ marginLeft: '10px' }}>Select Emission Type: </label>
+      <select style={{ width: '580px' }} onChange={(e) => setSelectedName(e.target.value)} value={selectedName}>
+        <option value="">-- Select Emission Type --</option>
+        {userNames.map((name, index) => (
+          <option key={index} value={name}>{name}</option>
+        ))}
+      </select>
+    </>
+  )}
+  <br />
+
+  <button onClick={handleDownloadByName} style={{ marginLeft: '10px' }} disabled={!selectedName}>
+    Download Name Data
+  </button>
+</div>
+
 
       <h2>Aggregated Data by Scope</h2>
       <h4>Total Users: {users.length}</h4>
@@ -421,9 +618,7 @@ const handleShowGraph2 = () => {
             );
           })}
         </select>
-      </div>
-
-      
+      </div>      
 
       <table>
         <thead>
