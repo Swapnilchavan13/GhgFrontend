@@ -430,48 +430,7 @@ const handleShowGraph2 = () => {
       <Clientnavbar logoimg={logoimg} />
 
 
-      <div style={{ marginTop: '20px' }}>
-  <h3>Select Scope For Download: </h3>
-  <select style={{ width: '580px' }} onChange={(e) => setSelectedScope(e.target.value)} value={selectedScope}>
-    <option value="">-- Select Scope --</option>
-    {scopes.map(scope => (
-      <option key={scope} value={scope}>{scope}</option>
-    ))}
-  </select>
-<br />
-  <button onClick={handleDownloadScopeData} style={{ marginLeft: '10px' }}>
-    Download Scope Data
-  </button>
-</div>
-
-<div style={{ marginTop: '40px' }}>
-  <h3>Download by User and Emission Type</h3>
-
-  <label>Select User: </label>
-  <select style={{ width: '580px' }} onChange={(e) => handleUserChange(e.target.value)} value={selectedUserId}>
-    <option value="">-- Select User --</option>
-    {users.map(user => (
-      <option key={user.userId} value={user.userId}>{user.userId}</option>
-    ))}
-  </select>
-
-  {userNames.length > 0 && (
-    <>
-      <label style={{ marginLeft: '10px' }}>Select Emission Type: </label>
-      <select style={{ width: '580px' }} onChange={(e) => setSelectedName(e.target.value)} value={selectedName}>
-        <option value="">-- Select Emission Type --</option>
-        {userNames.map((name, index) => (
-          <option key={index} value={name}>{name}</option>
-        ))}
-      </select>
-    </>
-  )}
-  <br />
-
-  <button onClick={handleDownloadByName} style={{ marginLeft: '10px' }} disabled={!selectedName}>
-    Download Name Data
-  </button>
-</div>
+      
 
 
       <h2>Aggregated Data by Scope</h2>

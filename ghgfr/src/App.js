@@ -27,6 +27,7 @@ import { ProductDetail } from './Pages/ProductDetail';
 import { CategoryPage } from './Pages/CategoryPage';
 import { ProductForm } from './CMS/ProductForm.jsx';
 import { Marketplace } from './Pages/Marketplace.jsx';
+import { Reports } from './Component/Reports.jsx';
 
 function App() {
 
@@ -77,6 +78,8 @@ function App() {
           <Route path="client/addusers" element={<Addusers />} />
           <Route path="client/login" element={<Login />} />
           <Route path="client/myusers" element={<Myusers />} />
+          <Route path="client/reports" element={<Reports />} />
+
 
           <Route path="user" element={<Useremission />} />
           <Route path="user/useremission" element={<Useremission />} />

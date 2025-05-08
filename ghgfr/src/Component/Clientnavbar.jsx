@@ -29,6 +29,9 @@ export const Clientnavbar = ({ logoimg }) => {
       <Link to='/client/myusers' className="nav-link">
         <h3>My Users</h3>
       </Link>
+      <Link to='/client/reports' className="nav-link">
+        <h3>Reports</h3>
+      </Link>
       {isLoggedIn ? (
         // <button className="nav-link">
           <h3 style={{marginTop:'10px'}} className="nav-link" onClick={handleLogout} >Logout</h3>
