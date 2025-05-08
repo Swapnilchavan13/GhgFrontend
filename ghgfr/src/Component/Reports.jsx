@@ -213,7 +213,7 @@ export const Reports = () => {
     <div>
       <Clientnavbar />
       <div className="container">
-        <h2>Reports</h2>
+        <h2>Download Reports</h2>
 
         <button onClick={handleDownloadAllScopes}>Download All Scope Data</button>
 
@@ -222,6 +222,7 @@ export const Reports = () => {
           <select
             value={selectedUserId}
             onChange={(e) => setSelectedUserId(e.target.value)}
+            style={{width:'400px'}}
           >
             <option value="">-- Select a user --</option>
             {users.map(user => (
@@ -230,7 +231,7 @@ export const Reports = () => {
               </option>
             ))}
           </select>
-
+<br />
           <button onClick={handleDownloadSelectedUserData} disabled={!selectedUserId}>
             Download Selected User Report
           </button>
