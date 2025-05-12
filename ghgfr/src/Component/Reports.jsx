@@ -63,75 +63,92 @@ export const Reports = () => {
   }, [users]);
 
   const handleDownloadAllScopes = async () => {
-    const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
-    let reportRows = [];
-    let grandTotal = 0;
+  const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
+  let reportRows = [];
+  let grandTotal = 0;
 
-    reportRows.push(['Emission Report for All Scopes']);
-    reportRows.push(['Generated on:', new Date().toLocaleString()]);
-    reportRows.push([]);
+  reportRows.push(['Emission Report for All Scopes']);
+  reportRows.push(['Generated on:', new Date().toLocaleString()]);
+  reportRows.push([]);
 
-    for (const scope of scopesToDownload) {
-      let scopeData = [];
-      let scopeTotal = 0;
+  for (const scope of scopesToDownload) {
+    let scopeData = [];
+    let scopeTotal = 0;
+    const nameTotals = {};
 
-      for (const user of users) {
-        try {
-          const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
-          const data = await res.json();
+    for (const user of users) {
+      try {
+        const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+        const data = await res.json();
 
-          const filtered = data.filter(item => item.group === scope);
+        const filtered = data.filter(item => item.group === scope);
 
-          const enriched = filtered.map(item => {
-            const emission = parseFloat(item.result || 0);
-            scopeTotal += emission;
-            return {
-              userId: user.userId,
-              name: item.selectedName || '',
-              category: item.selectedCategory || '',
-              country: item.country || '',
-              type: item.selectedType || '',
-              brand: item.brand || '',
-              emission: emission.toFixed(2),
-              scope: item.group || '',
-              unit: item.unit || '',
-              fromDate: item.date || '',
-              toDate: item.date1 || ''
-            };
-          });
+        const enriched = filtered.map(item => {
+          const emission = parseFloat(item.result || 0);
+          scopeTotal += emission;
 
-          scopeData.push(...enriched);
-        } catch (err) {
-          console.error(`Error fetching data for ${user.userId}:`, err);
-        }
-      }
+          const name = item.selectedName || 'Unknown';
+          nameTotals[name] = (nameTotals[name] || 0) + emission;
 
-      if (scopeData.length > 0) {
-        reportRows.push([`${scope} Data:`]);
-        reportRows.push(Object.keys(scopeData[0]));
-        reportRows.push(...scopeData.map(row =>
-          Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
-        ));
-        reportRows.push([`Total Emission for ${scope}:`, scopeTotal.toFixed(2)]);
-        reportRows.push([]);
-        grandTotal += scopeTotal;
+          return {
+            userId: user.userId,
+            name: name,
+            category: item.selectedCategory || '',
+            country: item.country || '',
+            type: item.selectedType || '',
+            brand: item.brand || '',
+            emission: emission.toFixed(2),
+            scope: item.group || '',
+            unit: item.unit || '',
+            fromDate: item.date || '',
+            toDate: item.date1 || ''
+          };
+        });
+
+        scopeData.push(...enriched);
+      } catch (err) {
+        console.error(`Error fetching data for ${user.userId}:`, err);
       }
     }
 
-    reportRows.push(['Grand Total Emission (All Scopes):', grandTotal.toFixed(2)]);
+    if (scopeData.length > 0) {
+      reportRows.push([`${scope} Data:`]);
+      reportRows.push(Object.keys(scopeData[0]));
+      
+      // Ensure each value in a row is properly quoted and formatted for CSV
+      reportRows.push(...scopeData.map(row =>
+        Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
+      ));
 
-    const csvContent = reportRows.map(row => row.join(',')).join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
+      reportRows.push([]);
+      reportRows.push([`Total Emissions per Item in ${scope}:`]);
+      Object.entries(nameTotals).forEach(([name, total]) => {
+        reportRows.push([name, `"${total.toFixed(2)}"`]); // Ensure total is quoted
+      });
 
-    const a = document.createElement('a');
-    a.setAttribute('hidden', '');
-    a.setAttribute('href', url);
-    a.setAttribute('download', `Emission_Report_All_Scopes.csv`);
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
+      // Show total for each name below the respective scope
+      reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]); // Ensure scope total is quoted
+      reportRows.push([]);
+      grandTotal += scopeTotal;
+    }
+  }
+
+  reportRows.push(['Grand Total Emission (All Scopes):', `"${grandTotal.toFixed(2)}"`]); // Ensure grand total is quoted
+
+  const csvContent = reportRows.map(row => row.join(',')).join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.setAttribute('hidden', '');
+  a.setAttribute('href', url);
+  a.setAttribute('download', `Emission_Report_All_Scopes.csv`);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
+
 
   const handleDownloadSelectedUserData = async () => {
     if (!selectedUserId) {
@@ -155,41 +172,55 @@ export const Reports = () => {
 
       const scopes = ['Scope 1', 'Scope 2', 'Scope 3'];
       let grandTotal = 0;
+for (const scope of scopes) {
+  const scopeData = data.filter(item => item.group === scope);
+  if (scopeData.length === 0) continue;
 
-      for (const scope of scopes) {
-        const scopeData = data.filter(item => item.group === scope);
-        if (scopeData.length === 0) continue;
+  let scopeTotal = 0;
+  const nameTotals = {};
 
-        let scopeTotal = 0;
+  const formattedData = scopeData.map(item => {
+    const emission = parseFloat(item.result || 0);
+    scopeTotal += emission;
 
-        const formattedData = scopeData.map(item => {
-          const emission = parseFloat(item.result || 0);
-          scopeTotal += emission;
-          return {
-            name: item.userId || '',
-            category: item.selectedCategory || '',
-            country: item.selectedCountry || '',
-            type: item.selectedType || '',
-            brand: item.brand || '',
-            emission: emission.toFixed(2),
-            description: item.description || '',
-            Scope: item.group || '',
-            unit: item.unit || '',
-            fromDate: item.date || '',
-            toDate: item.date1 || ''
-          };
-        });
+    const name = item.selectedName || 'Unknown';
+    if (!nameTotals[name]) nameTotals[name] = 0;
+    nameTotals[name] += emission;
 
-        reportRows.push([`${scope} Emissions`]);
-        reportRows.push(Object.keys(formattedData[0]));
-        reportRows.push(...formattedData.map(row =>
-          Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
-        ));
-        reportRows.push([`Total for ${scope}:`, scopeTotal.toFixed(2)]);
-        reportRows.push([]);
+    return {
+      name: name,
+      category: item.selectedCategory || '',
+      country: item.selectedCountry || '',
+      type: item.selectedType || '',
+      brand: item.brand || '',
+      emission: emission.toFixed(2),
+      description: item.description || '',
+      Scope: item.group || '',
+      unit: item.unit || '',
+      fromDate: item.date || '',
+      toDate: item.date1 || ''
+    };
+  });
 
-        grandTotal += scopeTotal;
-      }
+  reportRows.push([`${scope} Emissions`]);
+  reportRows.push(Object.keys(formattedData[0]));
+  reportRows.push(...formattedData.map(row =>
+    Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
+  ));
+
+  reportRows.push([]);
+  reportRows.push([`Total Emission per Name in ${scope}:`]);
+  for (const [name, total] of Object.entries(nameTotals)) {
+    reportRows.push([name, total.toFixed(2)]);
+  }
+
+  reportRows.push([]);
+  reportRows.push([`Total for ${scope}:`, scopeTotal.toFixed(2)]);
+  reportRows.push([]);
+
+  grandTotal += scopeTotal;
+}
+
 
       reportRows.push([`Grand Total Emissions:`, grandTotal.toFixed(2)]);
 
