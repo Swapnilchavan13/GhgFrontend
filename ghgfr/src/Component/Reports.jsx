@@ -9,6 +9,10 @@ export const Reports = () => {
   const [selectedUserId, setSelectedUserId] = useState('');
   const navigate = useNavigate();
 
+  let grandDistanceTotal = 0;
+let distanceUnit = '';
+
+
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) navigate('/client/login');
@@ -66,6 +70,7 @@ export const Reports = () => {
   const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
   let reportRows = [];
   let grandTotal = 0;
+
 
   reportRows.push(['Emission Report for All Scopes']);
   reportRows.push(['Generated on:', new Date().toLocaleString()]);
@@ -172,6 +177,8 @@ export const Reports = () => {
 
     const scopes = ['Scope 1', 'Scope 2', 'Scope 3'];
     let grandTotal = 0;
+    const overallDistanceTotalsByName = {};
+    const overallDistanceUnits = {};
 
     for (const scope of scopes) {
       const scopeData = data.filter(item => item.group === scope);
@@ -179,12 +186,24 @@ export const Reports = () => {
 
       let scopeTotal = 0;
       const nameTotals = {};
+      const distanceTotals = {};
+      const distanceUnits = {};
 
       const formattedData = scopeData.map(item => {
         const emission = parseFloat(item.result || 0);
         scopeTotal += emission;
 
+        const distance = parseFloat(item.distance || 0);
         const name = item.selectedName || 'Unknown';
+
+        if (distance > 0) {
+          distanceTotals[name] = (distanceTotals[name] || 0) + distance;
+          distanceUnits[name] = item.unit || '';
+
+          overallDistanceTotalsByName[name] = (overallDistanceTotalsByName[name] || 0) + distance;
+          overallDistanceUnits[name] = item.unit || '';
+        }
+
         nameTotals[name] = (nameTotals[name] || 0) + emission;
 
         return {
@@ -204,7 +223,6 @@ export const Reports = () => {
 
       reportRows.push([`${scope} Emissions`]);
 
-      // If there’s at least one row, add headers
       if (formattedData.length > 0) {
         reportRows.push(Object.keys(formattedData[0]));
       }
@@ -219,6 +237,14 @@ export const Reports = () => {
         reportRows.push([name, `"${total.toFixed(2)}"`]);
       });
 
+      reportRows.push([]);
+      reportRows.push([`Total Units per Item in ${scope}:`]);
+      Object.entries(distanceTotals).forEach(([name, total]) => {
+        const unit = distanceUnits[name] || '';
+        reportRows.push([name, `"${total.toFixed(2)}"`, `${unit}`]);
+      });
+
+      reportRows.push([]);
       reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]);
       reportRows.push([]);
 
@@ -226,6 +252,14 @@ export const Reports = () => {
     }
 
     reportRows.push(['Grand Total Emissions:', `"${grandTotal.toFixed(2)}"`]);
+    reportRows.push([]);
+    reportRows.push(['Total Units (All Scopes) by Item:']);
+    Object.entries(overallDistanceTotalsByName).forEach(([name, total]) => {
+      const unit = overallDistanceUnits[name] || '';
+      reportRows.push([name, `"${total.toFixed(2)}"`, `Unit: ${unit}`]);
+    });
+
+
 
     const csvContent = reportRows.map(row => row.join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv' });
