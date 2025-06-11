@@ -7,6 +7,12 @@ export const Reports = () => {
   const [scopes, setScopes] = useState([]);
   const [aggregatedData, setAggregatedData] = useState({});
   const [selectedUserId, setSelectedUserId] = useState('');
+    const [selectedYear, setSelectedYear] = useState('2024-2025');
+
+const financialYears = [
+  '2024-2025', // April 2024 to March 2025
+  '2025-2026', // April 2025 to March 2026
+];
   const navigate = useNavigate();
 
   let grandDistanceTotal = 0;
@@ -66,12 +72,10 @@ let distanceUnit = '';
     if (users.length > 0) fetchData();
   }, [users]);
 
-  const handleDownloadAllScopes = async () => {
+const handleDownloadAllScopes = async () => {
   const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
   let reportRows = [];
   let grandTotal = 0;
-  const overallDistanceTotalsByName = {};
-  const overallDistanceUnits = {};
 
   reportRows.push(['Emission Report for All Scopes']);
   reportRows.push(['Generated on:', new Date().toLocaleString()]);
@@ -84,12 +88,27 @@ let distanceUnit = '';
     const distanceTotals = {};
     const distanceUnits = {};
 
+
+    const isInSelectedFinancialYear = (item) => {
+  const [startYear, endYear] = selectedYear.split('-').map(Number);
+  const fromDate = new Date(item.date);
+  const toDate = new Date(item.date1);
+
+  const start = new Date(`${startYear}-04-01`);
+  const end = new Date(`${endYear}-03-31`);
+
+  return fromDate >= start && toDate <= end;
+};
+
+
+
     for (const user of users) {
       try {
         const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
         const data = await res.json();
 
-        const filtered = data.filter(item => item.group === scope);
+        const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+
 
         const enriched = filtered.map(item => {
           const emission = parseFloat(item.result || 0);
@@ -99,14 +118,11 @@ let distanceUnit = '';
           nameTotals[name] = (nameTotals[name] || 0) + emission;
 
           const distance = parseFloat(item.distance || 0);
-          const unit = item.unit || '';
-
           if (distance > 0) {
             distanceTotals[name] = (distanceTotals[name] || 0) + distance;
-            distanceUnits[name] = unit;
-
-            overallDistanceTotalsByName[name] = (overallDistanceTotalsByName[name] || 0) + distance;
-            overallDistanceUnits[name] = unit;
+            if (!distanceUnits[name]) {
+              distanceUnits[name] = item.unit || '';
+            }
           }
 
           return {
@@ -118,7 +134,8 @@ let distanceUnit = '';
             brand: item.brand || '',
             emission: emission.toFixed(2),
             scope: item.group || '',
-            unit: unit,
+            unit: item.unit || '',
+            distance: distance.toFixed(2),
             fromDate: item.date || '',
             toDate: item.date1 || ''
           };
@@ -133,38 +150,33 @@ let distanceUnit = '';
     if (scopeData.length > 0) {
       reportRows.push([`${scope} Data:`]);
       reportRows.push(Object.keys(scopeData[0]));
-
       reportRows.push(...scopeData.map(row =>
         Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
       ));
-
       reportRows.push([]);
-      reportRows.push([`Total Emissions per Item in ${scope}:`]);
-      Object.entries(nameTotals).forEach(([name, total]) => {
-        reportRows.push([name, `"${total.toFixed(2)}"`]);
-      });
 
-      reportRows.push([]);
-      reportRows.push([`Total Units per Item in ${scope}:`]);
-      Object.entries(distanceTotals).forEach(([name, total]) => {
+      reportRows.push([`Total Emissions and Units per Item in ${scope}:`]);
+      reportRows.push(['Item Name', 'Total Emissions', 'Total Units']);
+
+      Object.entries(nameTotals).forEach(([name, totalEmission]) => {
+        const totalDistance = distanceTotals[name] || 0;
         const unit = distanceUnits[name] || '';
-        reportRows.push([name, `"${total.toFixed(2)}"`, `${unit}`]);
+        reportRows.push([
+          name,
+          `"${totalEmission.toFixed(2)}"`,
+          totalDistance > 0 ? `"${totalDistance.toFixed(2)} ${unit}"` : ''
+        ]);
       });
 
       reportRows.push([]);
       reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]);
       reportRows.push([]);
+
       grandTotal += scopeTotal;
     }
   }
 
   reportRows.push(['Grand Total Emission (All Scopes):', `"${grandTotal.toFixed(2)}"`]);
-  reportRows.push([]);
-  reportRows.push(['Total Units (All Scopes) by Item:']);
-  Object.entries(overallDistanceTotalsByName).forEach(([name, total]) => {
-    const unit = overallDistanceUnits[name] || '';
-    reportRows.push([name, `"${total.toFixed(2)}"`, `Unit: ${unit}`]);
-  });
 
   const csvContent = reportRows.map(row => row.join(',')).join('\n');
   const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -182,111 +194,108 @@ let distanceUnit = '';
 
 
 
+
+
  const handleDownloadSelectedUserData = async () => {
-  if (!selectedUserId) {
-    alert("Please select a user first.");
-    return;
-  }
+  if (!selectedUserId) return;
+
+  const scopes = ['Scope 1', 'Scope 2', 'Scope 3'];
+  let reportRows = [];
+  let grandTotal = 0;
+
+  reportRows.push([`Emission Report for ${selectedUserId}`]);
+  reportRows.push(['Generated on:', new Date().toLocaleString()]);
+  reportRows.push([]);
 
   try {
     const res = await fetch(`https://backend.climescore.com/getdata12?userId=${selectedUserId}`);
     const data = await res.json();
 
-    if (data.length === 0) {
-      alert("No data found for selected user.");
-      return;
-    }
-
-    let reportRows = [];
-    reportRows.push(['Emission Report for User:', selectedUserId]);
-    reportRows.push(['Generated on:', new Date().toLocaleString()]);
-    reportRows.push([]);
-
-    const scopes = ['Scope 1', 'Scope 2', 'Scope 3'];
-    let grandTotal = 0;
-    const overallDistanceTotalsByName = {};
-    const overallDistanceUnits = {};
-
     for (const scope of scopes) {
-      const scopeData = data.filter(item => item.group === scope);
-      if (scopeData.length === 0) continue;
-
+      let scopeData = [];
       let scopeTotal = 0;
       const nameTotals = {};
       const distanceTotals = {};
       const distanceUnits = {};
 
-      const formattedData = scopeData.map(item => {
+      const isInSelectedFinancialYear = (item) => {
+  const [startYear, endYear] = selectedYear.split('-').map(Number);
+  const fromDate = new Date(item.date);
+  const toDate = new Date(item.date1);
+
+  const start = new Date(`${startYear}-04-01`);
+  const end = new Date(`${endYear}-03-31`);
+
+  return fromDate >= start && toDate <= end;
+};
+
+
+      const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+
+
+      const enriched = filtered.map(item => {
         const emission = parseFloat(item.result || 0);
         scopeTotal += emission;
 
-        const distance = parseFloat(item.distance || 0);
         const name = item.selectedName || 'Unknown';
-
-        if (distance > 0) {
-          distanceTotals[name] = (distanceTotals[name] || 0) + distance;
-          distanceUnits[name] = item.unit || '';
-
-          overallDistanceTotalsByName[name] = (overallDistanceTotalsByName[name] || 0) + distance;
-          overallDistanceUnits[name] = item.unit || '';
-        }
-
         nameTotals[name] = (nameTotals[name] || 0) + emission;
 
+        const distance = parseFloat(item.distance || 0);
+        if (distance > 0) {
+          distanceTotals[name] = (distanceTotals[name] || 0) + distance;
+          if (!distanceUnits[name]) {
+            distanceUnits[name] = item.unit || '';
+          }
+        }
+
         return {
-          name: name,
+          userId: selectedUserId,
+          name,
           category: item.selectedCategory || '',
-          country: item.selectedCountry || '',
+          country: item.country || '',
           type: item.selectedType || '',
           brand: item.brand || '',
           emission: emission.toFixed(2),
-          description: item.description || '',
           scope: item.group || '',
           unit: item.unit || '',
+          distance: distance.toFixed(2),
           fromDate: item.date || '',
           toDate: item.date1 || ''
         };
       });
 
-      reportRows.push([`${scope} Emissions`]);
+      scopeData.push(...enriched);
 
-      if (formattedData.length > 0) {
-        reportRows.push(Object.keys(formattedData[0]));
+      if (scopeData.length > 0) {
+        reportRows.push([`${scope} Data:`]);
+        reportRows.push(Object.keys(scopeData[0]));
+        reportRows.push(...scopeData.map(row =>
+          Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
+        ));
+        reportRows.push([]);
+
+        reportRows.push([`Total Emissions and Units per Item in ${scope}:`]);
+        reportRows.push(['Item Name', 'Total Emissions', 'Total Units']);
+
+        Object.entries(nameTotals).forEach(([name, totalEmission]) => {
+          const totalDistance = distanceTotals[name] || 0;
+          const unit = distanceUnits[name] || '';
+          reportRows.push([
+            name,
+            `"${totalEmission.toFixed(2)}"`,
+            totalDistance > 0 ? `"${totalDistance.toFixed(2)} ${unit}"` : ''
+          ]);
+        });
+
+        reportRows.push([]);
+        reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]);
+        reportRows.push([]);
+
+        grandTotal += scopeTotal;
       }
-
-      reportRows.push(...formattedData.map(row =>
-        Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
-      ));
-
-      reportRows.push([]);
-      reportRows.push([`Total Emissions per Item in ${scope}:`]);
-      Object.entries(nameTotals).forEach(([name, total]) => {
-        reportRows.push([name, `"${total.toFixed(2)}"`]);
-      });
-
-      reportRows.push([]);
-      reportRows.push([`Total Units per Item in ${scope}:`]);
-      Object.entries(distanceTotals).forEach(([name, total]) => {
-        const unit = distanceUnits[name] || '';
-        reportRows.push([name, `"${total.toFixed(2)}"`, `${unit}`]);
-      });
-
-      reportRows.push([]);
-      reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]);
-      reportRows.push([]);
-
-      grandTotal += scopeTotal;
     }
 
-    reportRows.push(['Grand Total Emissions:', `"${grandTotal.toFixed(2)}"`]);
-    reportRows.push([]);
-    reportRows.push(['Total Units (All Scopes) by Item:']);
-    Object.entries(overallDistanceTotalsByName).forEach(([name, total]) => {
-      const unit = overallDistanceUnits[name] || '';
-      reportRows.push([name, `"${total.toFixed(2)}"`, `Unit: ${unit}`]);
-    });
-
-
+    reportRows.push(['Grand Total Emission (All Scopes):', `"${grandTotal.toFixed(2)}"`]);
 
     const csvContent = reportRows.map(row => row.join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -299,40 +308,60 @@ let distanceUnit = '';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
   } catch (err) {
-    console.error('Error downloading user report:', err);
+    console.error('Error downloading data:', err);
   }
 };
 
 
   return (
     <div>
-      <Clientnavbar />
-      <div className="container">
-        <h2>Download Reports</h2>
+    <Clientnavbar />
+    <div className="container">
+      <h2>Download Reports</h2>
 
-        <button onClick={handleDownloadAllScopes}>Download All Scope Data</button>
+      {/* Financial Year Dropdown */}
+     <div style={{ marginTop: '20px' }}>
+  <label>Select Financial Year: </label>
+  <select
+    value={selectedYear}
+    onChange={(e) => setSelectedYear(e.target.value)}
+    style={{ width: '300px', marginLeft: '10px' }}
+  >
+    {financialYears.map((year) => (
+      <option key={year} value={year}>
+        {year}
+      </option>
+    ))}
+  </select>
+</div>
 
-        <div style={{ marginTop: '20px' }}>
-          <label>Select User: </label>
-          <select
-            value={selectedUserId}
-            onChange={(e) => setSelectedUserId(e.target.value)}
-            style={{width:'400px'}}
-          >
-            <option value="">-- Select a user --</option>
-            {users.map(user => (
-              <option key={user.userId} value={user.userId}>
-                {user.userId}
-              </option>
-            ))}
-          </select>
-<br />
-          <button onClick={handleDownloadSelectedUserData} disabled={!selectedUserId}>
-            Download Selected User Report
-          </button>
-        </div>
+
+      <button onClick={() => handleDownloadAllScopes(selectedYear)} disabled={!selectedYear}>
+        Download All Scope Data
+      </button>
+
+      <div style={{ marginTop: '20px' }}>
+        <label>Select User: </label>
+        <select
+          value={selectedUserId}
+          onChange={(e) => setSelectedUserId(e.target.value)}
+          style={{ width: '400px' }}
+        >
+          <option value="">-- Select a user --</option>
+          {users.map(user => (
+            <option key={user.userId} value={user.userId}>
+              {user.userId}
+            </option>
+          ))}
+        </select>
+        <br />
+        <button onClick={handleDownloadSelectedUserData} disabled={!selectedUserId}>
+          Download Selected User Report
+        </button>
       </div>
     </div>
+  </div>
   );
 };
