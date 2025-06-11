@@ -70,7 +70,8 @@ let distanceUnit = '';
   const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
   let reportRows = [];
   let grandTotal = 0;
-
+  const overallDistanceTotalsByName = {};
+  const overallDistanceUnits = {};
 
   reportRows.push(['Emission Report for All Scopes']);
   reportRows.push(['Generated on:', new Date().toLocaleString()]);
@@ -80,6 +81,8 @@ let distanceUnit = '';
     let scopeData = [];
     let scopeTotal = 0;
     const nameTotals = {};
+    const distanceTotals = {};
+    const distanceUnits = {};
 
     for (const user of users) {
       try {
@@ -95,6 +98,17 @@ let distanceUnit = '';
           const name = item.selectedName || 'Unknown';
           nameTotals[name] = (nameTotals[name] || 0) + emission;
 
+          const distance = parseFloat(item.distance || 0);
+          const unit = item.unit || '';
+
+          if (distance > 0) {
+            distanceTotals[name] = (distanceTotals[name] || 0) + distance;
+            distanceUnits[name] = unit;
+
+            overallDistanceTotalsByName[name] = (overallDistanceTotalsByName[name] || 0) + distance;
+            overallDistanceUnits[name] = unit;
+          }
+
           return {
             userId: user.userId,
             name: name,
@@ -104,7 +118,7 @@ let distanceUnit = '';
             brand: item.brand || '',
             emission: emission.toFixed(2),
             scope: item.group || '',
-            unit: item.unit || '',
+            unit: unit,
             fromDate: item.date || '',
             toDate: item.date1 || ''
           };
@@ -119,8 +133,7 @@ let distanceUnit = '';
     if (scopeData.length > 0) {
       reportRows.push([`${scope} Data:`]);
       reportRows.push(Object.keys(scopeData[0]));
-      
-      // Ensure each value in a row is properly quoted and formatted for CSV
+
       reportRows.push(...scopeData.map(row =>
         Object.values(row).map(value => `"${String(value).replace(/"/g, '""')}"`)
       ));
@@ -128,17 +141,30 @@ let distanceUnit = '';
       reportRows.push([]);
       reportRows.push([`Total Emissions per Item in ${scope}:`]);
       Object.entries(nameTotals).forEach(([name, total]) => {
-        reportRows.push([name, `"${total.toFixed(2)}"`]); // Ensure total is quoted
+        reportRows.push([name, `"${total.toFixed(2)}"`]);
       });
 
-      // Show total for each name below the respective scope
-      reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]); // Ensure scope total is quoted
+      reportRows.push([]);
+      reportRows.push([`Total Units per Item in ${scope}:`]);
+      Object.entries(distanceTotals).forEach(([name, total]) => {
+        const unit = distanceUnits[name] || '';
+        reportRows.push([name, `"${total.toFixed(2)}"`, `${unit}`]);
+      });
+
+      reportRows.push([]);
+      reportRows.push(['Total for this Scope:', `"${scopeTotal.toFixed(2)}"`]);
       reportRows.push([]);
       grandTotal += scopeTotal;
     }
   }
 
-  reportRows.push(['Grand Total Emission (All Scopes):', `"${grandTotal.toFixed(2)}"`]); // Ensure grand total is quoted
+  reportRows.push(['Grand Total Emission (All Scopes):', `"${grandTotal.toFixed(2)}"`]);
+  reportRows.push([]);
+  reportRows.push(['Total Units (All Scopes) by Item:']);
+  Object.entries(overallDistanceTotalsByName).forEach(([name, total]) => {
+    const unit = overallDistanceUnits[name] || '';
+    reportRows.push([name, `"${total.toFixed(2)}"`, `Unit: ${unit}`]);
+  });
 
   const csvContent = reportRows.map(row => row.join(',')).join('\n');
   const blob = new Blob([csvContent], { type: 'text/csv' });
@@ -152,6 +178,7 @@ let distanceUnit = '';
   a.click();
   document.body.removeChild(a);
 };
+
 
 
 
