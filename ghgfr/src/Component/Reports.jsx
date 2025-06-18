@@ -78,7 +78,8 @@ const handleDownloadAllScopes = async () => {
   let reportRows = [];
   let grandTotal = 0;
 
-  reportRows.push(['Emission Report for All Scopes']);
+  reportRows.push([`Emission Report for All Scopes (${selectedYear})`]);
+
   reportRows.push(['Generated on:', new Date().toLocaleString()]);
   reportRows.push([]);
 
@@ -115,28 +116,28 @@ const handleDownloadAllScopes = async () => {
           const emission = parseFloat(item.result || 0);
           scopeTotal += emission;
 
-          const name = item.selectedName || 'Unknown';
-          nameTotals[name] = (nameTotals[name] || 0) + emission;
+          const Name = item.selectedName || 'Unknown';
+          nameTotals[Name] = (nameTotals[Name] || 0) + emission;
 
           const distance = parseFloat(item.distance || 0);
           if (distance > 0) {
-            distanceTotals[name] = (distanceTotals[name] || 0) + distance;
-            if (!distanceUnits[name]) {
-              distanceUnits[name] = item.unit || '';
+            distanceTotals[Name] = (distanceTotals[Name] || 0) + distance;
+            if (!distanceUnits[Name]) {
+              distanceUnits[Name] = item.unit || '';
             }
           }
 
           return {
             userId: user.userId,
-            name: name,
-            category: item.selectedCategory || '',
-            country: item.country || '',
-            type: item.selectedType || '',
-            brand: item.brand || '',
-            emission: emission.toFixed(2),
-            scope: item.group || '',
-            unit: item.unit || '',
-            distance: distance.toFixed(2),
+            Name: Name,
+            Category: item.selectedCategory || '',
+            // country: item.country || '',
+            // type: item.selectedType || '',
+            // brand: item.brand || '',
+            Emission: emission.toFixed(2),
+            Scope: item.group || '',
+            Unit: item.unit || '',
+            Quantity: distance.toFixed(2),
             fromDate: item.date || '',
             toDate: item.date1 || ''
           };
@@ -159,11 +160,11 @@ const handleDownloadAllScopes = async () => {
       reportRows.push([`Total Emissions and Units per Item in ${scope}:`]);
       reportRows.push(['Item Name', 'Total Emissions', 'Total Units']);
 
-      Object.entries(nameTotals).forEach(([name, totalEmission]) => {
-        const totalDistance = distanceTotals[name] || 0;
-        const unit = distanceUnits[name] || '';
+      Object.entries(nameTotals).forEach(([Name, totalEmission]) => {
+        const totalDistance = distanceTotals[Name] || 0;
+        const unit = distanceUnits[Name] || '';
         reportRows.push([
-          name,
+          Name,
           `"${totalEmission.toFixed(2)}"`,
           totalDistance > 0 ? `"${totalDistance.toFixed(2)} ${unit}"` : ''
         ]);
@@ -193,10 +194,6 @@ const handleDownloadAllScopes = async () => {
 };
 
 
-
-
-
-
  const handleDownloadSelectedUserData = async () => {
   if (!selectedUserId) return;
 
@@ -204,7 +201,7 @@ const handleDownloadAllScopes = async () => {
   let reportRows = [];
   let grandTotal = 0;
 
-  reportRows.push([`Emission Report for ${selectedUserId}`]);
+  reportRows.push([`Emission Report for ${selectedUserId} (${selectedYear})`]);
   reportRows.push(['Generated on:', new Date().toLocaleString()]);
   reportRows.push([]);
 
@@ -238,28 +235,28 @@ const handleDownloadAllScopes = async () => {
         const emission = parseFloat(item.result || 0);
         scopeTotal += emission;
 
-        const name = item.selectedName || 'Unknown';
-        nameTotals[name] = (nameTotals[name] || 0) + emission;
+        const Name = item.selectedName || 'Unknown';
+        nameTotals[Name] = (nameTotals[Name] || 0) + emission;
 
         const distance = parseFloat(item.distance || 0);
         if (distance > 0) {
-          distanceTotals[name] = (distanceTotals[name] || 0) + distance;
-          if (!distanceUnits[name]) {
-            distanceUnits[name] = item.unit || '';
+          distanceTotals[Name] = (distanceTotals[Name] || 0) + distance;
+          if (!distanceUnits[Name]) {
+            distanceUnits[Name] = item.unit || '';
           }
         }
 
         return {
           userId: selectedUserId,
-          name,
-          category: item.selectedCategory || '',
-          country: item.country || '',
-          type: item.selectedType || '',
-          brand: item.brand || '',
-          emission: emission.toFixed(2),
-          scope: item.group || '',
-          unit: item.unit || '',
-          distance: distance.toFixed(2),
+          Name,
+          Category: item.selectedCategory || '',
+          // country: item.country || '',
+          // type: item.selectedType || '',
+          // brand: item.brand || '',
+          Emission: emission.toFixed(2),
+          Scope: item.group || '',
+          Unit: item.unit || '',
+          Quantity: distance.toFixed(2),
           fromDate: item.date || '',
           toDate: item.date1 || ''
         };
@@ -278,11 +275,11 @@ const handleDownloadAllScopes = async () => {
         reportRows.push([`Total Emissions and Units per Item in ${scope}:`]);
         reportRows.push(['Item Name', 'Total Emissions', 'Total Units']);
 
-        Object.entries(nameTotals).forEach(([name, totalEmission]) => {
-          const totalDistance = distanceTotals[name] || 0;
-          const unit = distanceUnits[name] || '';
+        Object.entries(nameTotals).forEach(([Name, totalEmission]) => {
+          const totalDistance = distanceTotals[Name] || 0;
+          const unit = distanceUnits[Name] || '';
           reportRows.push([
-            name,
+            Name,
             `"${totalEmission.toFixed(2)}"`,
             totalDistance > 0 ? `"${totalDistance.toFixed(2)} ${unit}"` : ''
           ]);
