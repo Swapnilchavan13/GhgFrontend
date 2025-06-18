@@ -8,6 +8,14 @@ export const Reports = () => {
   const [aggregatedData, setAggregatedData] = useState({});
   const [selectedUserId, setSelectedUserId] = useState('');
     const [selectedYear, setSelectedYear] = useState('2024-2025');
+
+const [formattedReport, setFormattedReport] = useState('');
+const [isGenerating, setIsGenerating] = useState(false);
+const [isReadyToPrint, setIsReadyToPrint] = useState(false);
+
+const [formattedUserReport, setFormattedUserReport] = useState('');
+const [isUserGenerating, setIsUserGenerating] = useState(false);
+const [isUserReadyToPrint, setIsUserReadyToPrint] = useState(false);
     
 
 const financialYears = [
@@ -313,6 +321,218 @@ const handleDownloadAllScopes = async () => {
 };
 
 
+const handleGenerateOrPrint = async () => {
+  if (isReadyToPrint) {
+    // Print if report is already generated
+    const printWindow = window.open('', '', 'width=1000,height=800');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Printable Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h2, h3 { margin-bottom: 5px; }
+            table { margin-top: 10px; border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+          </style>
+        </head>
+        <body>${formattedReport}</body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+  } else {
+    // Generate report
+    setIsGenerating(true);
+    const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
+    let html = `<h2>Emission Report for All Scopes (${selectedYear})</h2>`;
+    html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
+
+    for (const scope of scopesToDownload) {
+      let scopeData = [];
+      let scopeTotal = 0;
+
+      const isInSelectedFinancialYear = (item) => {
+        const [startYear, endYear] = selectedYear.split('-').map(Number);
+        const fromDate = new Date(item.date);
+        const toDate = new Date(item.date1);
+        const start = new Date(`${startYear}-04-01`);
+        const end = new Date(`${endYear}-03-31`);
+        return fromDate >= start && toDate <= end;
+      };
+
+      for (const user of users) {
+        try {
+          const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+          const data = await res.json();
+          const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+          const enriched = filtered.map(item => {
+            const emission = parseFloat(item.result || 0);
+            scopeTotal += emission;
+            return `
+              <tr>
+                <td>${user.userId}</td>
+                <td>${item.selectedName || ''}</td>
+                <td>${item.selectedCategory || ''}</td>
+                
+                <td>${item.group || ''}</td>
+                <td>${emission.toFixed(2)}</td>
+                <td>${item.unit || ''}</td>
+                <td>${item.distance || ''}</td>
+                <td>${item.date || ''}</td>
+                <td>${item.date1 || ''}</td>
+              </tr>
+            `;
+          });
+          scopeData.push(...enriched);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      if (scopeData.length > 0) {
+        html += `<h3>${scope} Data</h3>`;
+        html += `
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Scope</th>
+                <th>Emission</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>From</th>
+                <th>To</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${scopeData.join('')}
+            </tbody>
+          </table>
+          <p><strong>Total for ${scope}:</strong> ${scopeTotal.toFixed(2)}</p>
+          <hr/>
+        `;
+      }
+    }
+
+    setFormattedReport(html);
+    setIsGenerating(false);
+    setIsReadyToPrint(true);
+  }
+};
+
+
+
+const handleUserGenerateOrPrint = async () => {
+  if (isUserReadyToPrint) {
+    // Print already generated user report
+    const printWindow = window.open('', '', 'width=1000,height=800');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>User Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h2, h3 { margin-bottom: 5px; }
+            table { margin-top: 10px; border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+          </style>
+        </head>
+        <body>${formattedUserReport}</body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+
+     // Reset to show Generate Report button again
+  setIsUserReadyToPrint(false);
+  } else {
+    if (!selectedUserId) {
+      alert('Please select a user.');
+      return;
+    }
+
+    setIsUserGenerating(true);
+    const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
+    let html = `<h2>Emission Report for User: ${selectedUserId} (${selectedYear})</h2>`;
+    html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
+
+    for (const scope of scopesToDownload) {
+      let scopeData = [];
+      let scopeTotal = 0;
+
+      const isInSelectedFinancialYear = (item) => {
+        const [startYear, endYear] = selectedYear.split('-').map(Number);
+        const fromDate = new Date(item.date);
+        const toDate = new Date(item.date1);
+        const start = new Date(`${startYear}-04-01`);
+        const end = new Date(`${endYear}-03-31`);
+        return fromDate >= start && toDate <= end;
+      };
+
+      try {
+        const res = await fetch(`https://backend.climescore.com/getdata12?userId=${selectedUserId}`);
+        const data = await res.json();
+        const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+        const enriched = filtered.map(item => {
+          const emission = parseFloat(item.result || 0);
+          scopeTotal += emission;
+          return `
+            <tr>
+              <td>${item.selectedName || ''}</td>
+              <td>${item.selectedCategory || ''}</td>
+              
+              <td>${item.group || ''}</td>
+              <td>${emission.toFixed(2)}</td>
+              <td>${item.unit || ''}</td>
+              <td>${item.distance || ''}</td>
+              <td>${item.date || ''}</td>
+              <td>${item.date1 || ''}</td>
+            </tr>
+          `;
+        });
+        if (enriched.length > 0) {
+          html += `<h3>${scope} Data</h3>`;
+          html += `
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Scope</th>
+                  <th>Emission</th>
+                  <th>Unit</th>
+                  <th>Quantity</th>
+                  <th>From</th>
+                  <th>To</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${enriched.join('')}
+              </tbody>
+            </table>
+            <p><strong>Total for ${scope}:</strong> ${scopeTotal.toFixed(2)}</p>
+            <hr/>
+          `;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    setFormattedUserReport(html);
+    setIsUserGenerating(false);
+    setIsUserReadyToPrint(true);
+  }
+};
+
+
   return (
     <div>
     <Clientnavbar />
@@ -340,6 +560,15 @@ const handleDownloadAllScopes = async () => {
         Download All Scope Data
       </button>
 
+      <button
+  onClick={handleGenerateOrPrint}
+  disabled={isGenerating}
+  style={{ marginTop: '20px' }}
+>
+  {isGenerating ? 'Generating...' : isReadyToPrint ? 'Print Report' : 'Generate Report'}
+</button>
+
+
       <div style={{ marginTop: '20px' }}>
         <label>Select User: </label>
         <select
@@ -358,6 +587,19 @@ const handleDownloadAllScopes = async () => {
         <button onClick={handleDownloadSelectedUserData} disabled={!selectedUserId}>
           Download Selected User Report
         </button>
+
+        <button
+  onClick={handleUserGenerateOrPrint}
+  disabled={isUserGenerating}
+  style={{ marginTop: '20px' }}
+>
+  {isUserGenerating
+    ? 'Generating...'
+    : isUserReadyToPrint
+    ? 'Print User Report'
+    : 'Generate User Report'}
+</button>
+
       </div>
     </div>
   </div>
