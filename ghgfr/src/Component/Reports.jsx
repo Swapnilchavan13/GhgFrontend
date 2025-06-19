@@ -16,6 +16,14 @@ const [isReadyToPrint, setIsReadyToPrint] = useState(false);
 const [formattedUserReport, setFormattedUserReport] = useState('');
 const [isUserGenerating, setIsUserGenerating] = useState(false);
 const [isUserReadyToPrint, setIsUserReadyToPrint] = useState(false);
+
+const [selectedScope, setSelectedScope] = useState('All');
+const [selectedCategory, setSelectedCategory] = useState('All');
+const [categories, setCategories] = useState([]);
+
+const [scopeCategoryMap, setScopeCategoryMap] = useState({});
+
+
     
 
 const financialYears = [
@@ -49,34 +57,59 @@ let distanceUnit = '';
 
   useEffect(() => {
     const fetchData = async () => {
-      const aggregatedDataObj = {};
-      const allScopesSet = new Set();
+  const aggregatedDataObj = {};
+  const allScopesSet = new Set();
+const allCategoriesSet = new Set();
+const map = {}; // temporary map for scope to categories
 
-      for (const user of users) {
-        try {
-          const response = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
-          const data = await response.json();
 
-          aggregatedDataObj[user.userId] = {};
 
-          for (const item of data) {
-            const result = parseFloat(item.result) || 0;
-            const group = item.group;
+  for (const user of users) {
+    try {
+      const response = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+      const data = await response.json();
 
-            if (!aggregatedDataObj[user.userId][group]) {
-              aggregatedDataObj[user.userId][group] = 0;
-            }
-            aggregatedDataObj[user.userId][group] += result;
-            allScopesSet.add(group);
-          }
-        } catch (error) {
-          console.error("Error fetching emission data:", error);
+      aggregatedDataObj[user.userId] = {};
+
+      for (const item of data) {
+        const result = parseFloat(item.result) || 0;
+        const group = item.group;
+        const category = item.selectedCategory;
+
+        if (!aggregatedDataObj[user.userId][group]) {
+          aggregatedDataObj[user.userId][group] = 0;
         }
-      }
 
-      setAggregatedData(aggregatedDataObj);
-      setScopes([...allScopesSet]);
-    };
+        aggregatedDataObj[user.userId][group] += result;
+
+       allScopesSet.add(group);
+if (category) {
+  allCategoriesSet.add(category);
+
+  if (!map[group]) {
+    map[group] = new Set();
+  }
+  map[group].add(category);
+}
+
+      }
+    } catch (error) {
+      console.error("Error fetching emission data:", error);
+    }
+  }
+
+ setAggregatedData(aggregatedDataObj);
+setScopes([...allScopesSet]);
+setCategories([...allCategoriesSet]); // for default "All"
+setScopeCategoryMap(
+  Object.fromEntries(
+    Object.entries(map).map(([scope, set]) => [scope, Array.from(set)])
+  )
+); // ✅ Correct closing
+
+  
+  
+};
 
     if (users.length > 0) fetchData();
   }, [users]);
@@ -117,7 +150,14 @@ const handleDownloadAllScopes = async () => {
         const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
         const data = await res.json();
 
-        const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+       const filtered = data.filter(item =>
+  item.group === scope &&
+  isInSelectedFinancialYear(item) &&
+  (selectedCategory === 'All' || item.selectedCategory === selectedCategory) &&
+  item.date // Ensure date exists to avoid runtime errors
+);
+
+
 
 
         const enriched = filtered.map(item => {
@@ -209,7 +249,15 @@ const handleDownloadAllScopes = async () => {
   let reportRows = [];
   let grandTotal = 0;
 
-  reportRows.push([`Emission Report for ${selectedUserId} (${selectedYear})`]);
+reportRows.push([`Emission Report for ${selectedUserId}`]);
+reportRows.push([`Selected Year: ${selectedYear}`]);
+
+if (selectedCategory !== 'All') {
+  reportRows.push([`Selected Department: ${selectedCategory}`]);
+}
+
+reportRows.push(['Generated on:', new Date().toLocaleString()]);
+reportRows.push([]);
   reportRows.push(['Generated on:', new Date().toLocaleString()]);
   reportRows.push([]);
 
@@ -343,11 +391,18 @@ const handleGenerateOrPrint = async () => {
     printWindow.document.close();
     printWindow.focus();
     printWindow.print();
+    
+    setIsReadyToPrint(false);
   } else {
     // Generate report
-    setIsGenerating(true);
-    const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
-    let html = `<h2>Emission Report for All Scopes (${selectedYear})</h2>`;
+
+      setIsGenerating(true); // 🔄 Set loading state
+
+    
+const scopesToDownload = selectedScope === 'All'
+  ? ['Scope 1', 'Scope 2', 'Scope 3']
+  : [selectedScope];
+    let html = `<h2>Emission Report for ${selectedScope} (${selectedYear})</h2>`;
     html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
 
     for (const scope of scopesToDownload) {
@@ -367,7 +422,11 @@ const handleGenerateOrPrint = async () => {
         try {
           const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
           const data = await res.json();
-          const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+const filtered = data.filter(item =>
+  item.group === selectedScope &&
+  isInSelectedFinancialYear(item) &&
+  (selectedCategory === 'All' || item.selectedCategory === selectedCategory)
+);
           const enriched = filtered.map(item => {
             const emission = parseFloat(item.result || 0);
             scopeTotal += emission;
@@ -420,7 +479,8 @@ const handleGenerateOrPrint = async () => {
     }
 
     setFormattedReport(html);
-    setIsGenerating(false);
+          setIsGenerating(false); // 🔄 Set loading state
+
     setIsReadyToPrint(true);
   }
 };
@@ -457,7 +517,6 @@ const handleUserGenerateOrPrint = async () => {
       alert('Please select a user.');
       return;
     }
-
     setIsUserGenerating(true);
     const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
     let html = `<h2>Emission Report for User: ${selectedUserId} (${selectedYear})</h2>`;
@@ -479,7 +538,7 @@ const handleUserGenerateOrPrint = async () => {
       try {
         const res = await fetch(`https://backend.climescore.com/getdata12?userId=${selectedUserId}`);
         const data = await res.json();
-        const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
         const enriched = filtered.map(item => {
           const emission = parseFloat(item.result || 0);
           scopeTotal += emission;
@@ -555,9 +614,37 @@ const handleUserGenerateOrPrint = async () => {
   </select>
 </div>
 
+<div style={{ marginBottom: '20px' }}>
+  <label>
+    Scope-wise Emissions:{' '}
+    <br />
+    <select style={{ width: '400px' }} value={selectedScope} onChange={(e) => setSelectedScope(e.target.value)}>
+      <option value="All">All Scopes</option>
+      {scopes.map((scope, idx) => (
+        <option key={idx} value={scope}>{scope}</option>
+      ))}
+    </select>
+  </label>
+
+<label style={{ marginLeft: '20px' }}>
+  Department-wise Emissions:{' '}
+  <br />
+  <select disabled={!selectedScope || selectedScope === 'All'} style={{ width: '400px' }} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+    <option value="All">All Departments</option>
+    {(selectedScope === 'All'
+      ? categories
+      : scopeCategoryMap[selectedScope] || []
+    ).map((cat, idx) => (
+      <option key={idx} value={cat}>{cat}</option>
+    ))}
+  </select>
+</label>
+
+</div>
+
 
       <button onClick={() => handleDownloadAllScopes(selectedYear)} disabled={!selectedYear}>
-        Download All Scope Data
+        Download {selectedScope} Data
       </button>
 
       <button
