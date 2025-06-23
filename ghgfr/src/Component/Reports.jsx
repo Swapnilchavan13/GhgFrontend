@@ -643,9 +643,9 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
 </div>
 
 
-      <button onClick={() => handleDownloadAllScopes(selectedYear)} disabled={!selectedYear}>
+      {/* <button onClick={() => handleDownloadAllScopes(selectedYear)} disabled={!selectedYear}>
         Download {selectedScope} Data
-      </button>
+      </button> */}
 
       <button
   onClick={handleGenerateOrPrint}
@@ -671,9 +671,9 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
           ))}
         </select>
         <br />
-        <button onClick={handleDownloadSelectedUserData} disabled={!selectedUserId}>
+        {/* <button onClick={handleDownloadSelectedUserData} disabled={!selectedUserId}>
           Download Selected User Report
-        </button>
+        </button> */}
 
         <button
   onClick={handleUserGenerateOrPrint}
