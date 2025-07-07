@@ -399,9 +399,8 @@ const handleGenerateOrPrint = async () => {
       setIsGenerating(true); // 🔄 Set loading state
 
     
-const scopesToDownload = selectedScope === 'All'
-  ? ['Scope 1', 'Scope 2', 'Scope 3']
-  : [selectedScope];
+const scopesToDownload = selectedScope == 'All' ? scopes : [selectedScope];
+
     let html = `<h2>Emission Report for ${selectedScope} (${selectedYear})</h2>`;
     html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
 
@@ -423,9 +422,9 @@ const scopesToDownload = selectedScope === 'All'
           const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
           const data = await res.json();
 const filtered = data.filter(item =>
-  item.group === selectedScope &&
+  item.group === scope &&
   isInSelectedFinancialYear(item) &&
-  (selectedCategory === 'All' || item.selectedCategory === selectedCategory)
+  (selectedCategory == 'All' || item.selectedCategory === selectedCategory)
 );
           const enriched = filtered.map(item => {
             const emission = parseFloat(item.result || 0);
@@ -629,7 +628,7 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
 <label style={{ marginLeft: '20px' }}>
   Department-wise Emissions:{' '}
   <br />
-  <select disabled={!selectedScope || selectedScope === 'All'} style={{ width: '400px' }} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+  <select disabled={selectedScope == 'All'} style={{ width: '400px' }} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
     <option value="All">All Departments</option>
     {(selectedScope === 'All'
       ? categories

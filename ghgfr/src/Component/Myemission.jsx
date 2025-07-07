@@ -37,8 +37,8 @@ export const Myemission = () => {
   const [monthlyTotalsByYear, setMonthlyTotals] = useState([]);  // New state to store the monthly totals for all users
   const [selectedFinancialYear, setSelectedFinancialYear] = useState("2024-2025");
 
-  const [showGraph, setShowGraph] = useState(false); // State to control the visibility of the graph
-  const [showGraph2, setShowGraph2] = useState(false); // State to control the visibility of the graph
+  const [showGraph, setShowGraph] = useState(true); // State to control the visibility of the graph
+  const [showGraph2, setShowGraph2] = useState(true); // State to control the visibility of the graph
 
   const [selectedScope, setSelectedScope] = useState('');
 
@@ -590,10 +590,10 @@ for (const user of users) {
 
         {showGraph && (
   <div className="graph-wrapper">
-    <h2>Graph of Monthly Total Emissions ({selectedFinancialYear})</h2>
-    <div className="chart-container1">
+    <h2>Graph of Monthly Total Emissions </h2>
+    {/* <div className="chart-container1">
       <Bar data={chartData} />
-    </div>
+    </div> */}
 
 <div className='graphdiv'>
   <div>
@@ -618,6 +618,20 @@ for (const user of users) {
       {/* Monthly User's Emissions Section */}
       <h2>Monthly User's Emissions ({selectedYear})</h2>
 
+      {/* Year Dropdown for User's Emissions */}
+      {/* <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
+        <label htmlFor="userYearSelect">Select Year: </label>
+        <select id="userYearSelect" value={selectedUserYear} onChange={handleUserYearChange}>
+          {[...Array(5)].map((_, index) => {
+            const year = currentYear - 2 + index;
+            return (
+              <option key={year} value={year}>
+                {year} April - {year + 1} March
+              </option>
+            );
+          })}
+        </select>
+      </div>       */}
 
       <table>
         <thead>
@@ -714,7 +728,7 @@ for (const user of users) {
 
 {showGraph2 && selectedUserEmissionData.length > 0 && (
   <div style={{ width: '600px', margin: '2rem auto' }}>
-    <h4 style={{ textAlign: 'center' }}>Emission by Activity (Selected User)</h4>
+    <h4 style={{ textAlign: 'center' }}>Emission by Activity {selectedUserId}</h4>
     <Pie
       data={{
         labels: Object.keys(
