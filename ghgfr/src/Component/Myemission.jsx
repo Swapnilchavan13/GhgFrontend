@@ -44,6 +44,11 @@ export const Myemission = () => {
 
   const scopeOrder = ['Scope 1', 'Scope 2', 'Scope 3'];
 
+const [selectedYear, setSelectedYear] = useState('2024-2025');
+
+
+  const [financialYearTotals, setFinancialYearTotals] = useState({});
+  const [yearWiseUserScopeData, setYearWiseUserScopeData] = useState({});
 
 
   const [selectedUserId, setSelectedUserId] = useState('');
@@ -183,80 +188,113 @@ const handleShowGraph2 = () => {
       .catch(error => console.error('Error fetching users:', error));
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const aggregatedDataObj = {}; // Stores emissions per user
-      const financialYearTotals = {}; // Stores emissions per financial year
-      const monthlyTotalsByYear = {}; // Stores emissions per month within each financial year
-  
-      for (const user of users) {
-        try {
-          const response = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
-          const data = await response.json();
-  
-          aggregatedDataObj[user.userId] = {};
-  
-          for (const item of data) {
-            const itemDate = new Date(item.date);
-            const itemYear = itemDate.getFullYear();
-            const itemMonth = itemDate.toLocaleString('default', { month: 'long' });
-            const result = parseFloat(item.result) || 0; // Ensure result is a number
-  
-            // ✅ Determine Financial Year (April - March Cycle)
-            const financialYear =
-              itemDate.getMonth() >= 3 // April - Dec → Current Year
-                ? `${itemYear}-${itemYear + 1}`
-                : `${itemYear - 1}-${itemYear}`;
-  
-            // ✅ Initialize storage for the financial year if not exists
-            if (!financialYearTotals[financialYear]) {
-              financialYearTotals[financialYear] = 0;
-              monthlyTotalsByYear[financialYear] = {}; // Initialize monthly storage
-            }
-  
-            // ✅ Aggregate total emissions for the financial year
-            financialYearTotals[financialYear] += result;
-  
-            // ✅ Aggregate monthly emissions within the financial year
-            if (!monthlyTotalsByYear[financialYear][itemMonth]) {
-              monthlyTotalsByYear[financialYear][itemMonth] = 0;
-            }
-            monthlyTotalsByYear[financialYear][itemMonth] += result;
-  
-            // ✅ Aggregating data by group (existing functionality)
-            if (!aggregatedDataObj[user.userId].hasOwnProperty(item.group)) {
-              aggregatedDataObj[user.userId][item.group] = result;
-            } else {
-              aggregatedDataObj[user.userId][item.group] += result;
-            }
-          }
-        } catch (error) {
-          console.error("Error fetching emission data:", error);
-        }
-      }
-  
-      // ✅ Update states after processing data
-      setAggregatedData(aggregatedDataObj);
-      // setFinancialYearTotals(financialYearTotals); // Store total emissions per financial year
-      setMonthlyTotals(monthlyTotalsByYear); // Store monthly totals per financial year
+useEffect(() => {
+  const fetchData = async () => {
+    const aggregatedDataObj = {};
+    const financialYearTotals = {};
+    const monthlyTotalsByYear = {};
+    const yearWiseUserScope = {}; // ✅ New structure
 
-      console.log(monthlyTotalsByYear)
-  
-      // ✅ Process scopes (same as before)
-      const allScopes = new Set();
-      for (const userId in aggregatedDataObj) {
-        for (const scope in aggregatedDataObj[userId]) {
-          allScopes.add(scope);
-        }
+
+for (const user of users) {
+  try {
+    const response = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+    const data = await response.json();
+
+    aggregatedDataObj[user.userId] = {};
+
+    for (const item of data) {
+      const itemDate = new Date(item.date);
+      const itemYear = itemDate.getFullYear();
+      const itemMonth = itemDate.toLocaleString('default', { month: 'long' });
+      const result = parseFloat(item.result) || 0;
+      const scope = item.group;
+
+      // Financial Year
+      const financialYear =
+        itemDate.getMonth() >= 3
+          ? `${itemYear}-${itemYear + 1}`
+          : `${itemYear - 1}-${itemYear}`;
+
+      // Init structures
+      if (!financialYearTotals[financialYear]) {
+        financialYearTotals[financialYear] = 0;
+        monthlyTotalsByYear[financialYear] = {};
       }
-      setScopes([...allScopes]);
-    };
-  
-    fetchData();
-  }, [users]);
+      financialYearTotals[financialYear] += result;
+
+      if (!monthlyTotalsByYear[financialYear][itemMonth]) {
+        monthlyTotalsByYear[financialYear][itemMonth] = 0;
+      }
+      monthlyTotalsByYear[financialYear][itemMonth] += result;
+
+      if (!aggregatedDataObj[user.userId][scope]) {
+        aggregatedDataObj[user.userId][scope] = result;
+      } else {
+        aggregatedDataObj[user.userId][scope] += result;
+      }
+
+      // ✅ Year → User → Scope
+      if (!yearWiseUserScope[financialYear]) {
+        yearWiseUserScope[financialYear] = {
+          _scopeTotals: {},
+          _grandTotal: 0
+        };
+      }
+
+      // Init user block
+      if (!yearWiseUserScope[financialYear][user.userId]) {
+        yearWiseUserScope[financialYear][user.userId] = {
+          _userTotal: 0
+        };
+      }
+
+      // Add to user scope
+      if (!yearWiseUserScope[financialYear][user.userId][scope]) {
+        yearWiseUserScope[financialYear][user.userId][scope] = 0;
+      }
+      yearWiseUserScope[financialYear][user.userId][scope] += result;
+
+      // ✅ Update user total
+      yearWiseUserScope[financialYear][user.userId]._userTotal += result;
+
+      // ✅ Update year’s scope total
+      if (!yearWiseUserScope[financialYear]._scopeTotals[scope]) {
+        yearWiseUserScope[financialYear]._scopeTotals[scope] = 0;
+      }
+      yearWiseUserScope[financialYear]._scopeTotals[scope] += result;
+
+      // ✅ Update grand total
+      yearWiseUserScope[financialYear]._grandTotal += result;
+    }
+  } catch (error) {
+    console.error("Error fetching emission data:", error);
+  }
+}
+
+    setAggregatedData(aggregatedDataObj);
+    setMonthlyTotals(monthlyTotalsByYear);
+    setFinancialYearTotals(financialYearTotals);
+    setYearWiseUserScopeData(yearWiseUserScope); // ✅ Store result here
+
+    console.log(yearWiseUserScope);
+
+    // Get unique scopes
+    const allScopes = new Set();
+    for (const userId in aggregatedDataObj) {
+      for (const scope in aggregatedDataObj[userId]) {
+        allScopes.add(scope);
+      }
+    }
+    setScopes([...allScopes]);
+  };
+
+  fetchData();
+}, [users]);
+
+
   
 
-  // console.log(monthlyTotals);  
 
 
   const handleUserChange = async (userId) => {
@@ -435,56 +473,68 @@ const handleShowGraph2 = () => {
       <h2>Aggregated Data by Scope</h2>
       <h4>Total Users: {users.length}</h4>
 
-      <table>
-      <thead>
-        <tr>
-          <th>User ID</th>
-          {[...scopes]
-  .sort((a, b) => scopeOrder.indexOf(a) - scopeOrder.indexOf(b))
-  .map((scope) => (
-    <th key={scope}>{scope}</th>
-))}
-          <th>Total</th>
-          <th>Show Emission</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((user) => (
-          <tr key={user.userId}>
-            <td>{user.userId}</td>
-            {scopeOrder
-  .filter(scope => scopes.includes(scope))
-  .map((scope) => (
-    <td key={`${user.userId}-${scope}`}>
-      {(aggregatedData[user.userId]?.[scope] || 0).toFixed(2)}
-    </td>
-))}
+      {yearWiseUserScopeData && (
+  <div style={{ marginBottom: '1rem' }}>
+    <label>Select Financial Year: </label>
+    <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+      <option value="">-- Select --</option>
+      {Object.keys(yearWiseUserScopeData)
+        .filter((year) => /^\d{4}-\d{4}$/.test(year)) // ✅ Match pattern like 2023-2024
+        .map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
+    </select>
+  </div>
+)}
 
+
+
+      {selectedYear && yearWiseUserScopeData[selectedYear] && (
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        {[...scopeOrder].map((scope) => (
+          <th key={scope}>{scope}</th>
+        ))}
+        <th>User Total</th>
+        <th>Show Emission</th>
+      </tr>
+    </thead>
+    <tbody>
+      {Object.entries(yearWiseUserScopeData[selectedYear])
+        .filter(([key]) => !key.startsWith('_')) // Skip _scopeTotals and _grandTotal
+        .map(([userId, userScopes]) => (
+          <tr key={userId}>
+            <td>{userId}</td>
+            {scopeOrder.map((scope) => (
+              <td key={`${userId}-${scope}`}>
+                {(userScopes[scope] || 0).toFixed(2)}
+              </td>
+            ))}
+            <td><strong>{(userScopes._userTotal || 0).toFixed(2)}</strong></td>
             <td>
-              {Object.values(aggregatedData[user.userId] || {})
-                .reduce((acc, val) => acc + val, 0)
-                .toFixed(2)}
-            </td>
-            <td>
-              <button onClick={() => handleShowData(user.userId)}>
-                Show Emission
-              </button>
+              <button onClick={() => handleShowData(userId)}>Show Emission</button>
             </td>
           </tr>
         ))}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colSpan={scopes.length + 1}>
-            <strong>Total</strong>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><strong>Scope Totals</strong></td>
+        {scopeOrder.map((scope) => (
+          <td key={`total-${scope}`}>
+            <strong>{(yearWiseUserScopeData[selectedYear]._scopeTotals?.[scope] || 0).toFixed(2)}</strong>
           </td>
-          <td>
-            <strong>{calculateTotalWithDays()}</strong>
-          </td>
-        
-        </tr>
-      </tfoot>
-    </table>
+        ))}
+        <td colSpan="2"><strong>Grand Total: {(yearWiseUserScopeData[selectedYear]._grandTotal || 0).toFixed(2)}</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+)}
+
 
 
     <div>
@@ -566,22 +616,8 @@ const handleShowGraph2 = () => {
       </div>
 
       {/* Monthly User's Emissions Section */}
-      <h2>Monthly User's Emissions ({getFinancialYear(selectedUserYear)})</h2>
+      <h2>Monthly User's Emissions ({selectedYear})</h2>
 
-      {/* Year Dropdown for User's Emissions */}
-      <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
-        <label htmlFor="userYearSelect">Select Year: </label>
-        <select id="userYearSelect" value={selectedUserYear} onChange={handleUserYearChange}>
-          {[...Array(5)].map((_, index) => {
-            const year = currentYear - 2 + index;
-            return (
-              <option key={year} value={year}>
-                {year} April - {year + 1} March
-              </option>
-            );
-          })}
-        </select>
-      </div>      
 
       <table>
         <thead>
