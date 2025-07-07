@@ -42,6 +42,9 @@ export const Myemission = () => {
 
   const [selectedScope, setSelectedScope] = useState('');
 
+  const scopeOrder = ['Scope 1', 'Scope 2', 'Scope 3'];
+
+
 
   const [selectedUserId, setSelectedUserId] = useState('');
 const [userNames, setUserNames] = useState([]);
@@ -429,10 +432,6 @@ const handleShowGraph2 = () => {
     <div>
       <Clientnavbar logoimg={logoimg} />
 
-
-      
-
-
       <h2>Aggregated Data by Scope</h2>
       <h4>Total Users: {users.length}</h4>
 
@@ -440,9 +439,11 @@ const handleShowGraph2 = () => {
       <thead>
         <tr>
           <th>User ID</th>
-          {scopes.map((scope) => (
-            <th key={scope}>{scope}</th>
-          ))}
+          {[...scopes]
+  .sort((a, b) => scopeOrder.indexOf(a) - scopeOrder.indexOf(b))
+  .map((scope) => (
+    <th key={scope}>{scope}</th>
+))}
           <th>Total</th>
           <th>Show Emission</th>
         </tr>
@@ -451,11 +452,14 @@ const handleShowGraph2 = () => {
         {users.map((user) => (
           <tr key={user.userId}>
             <td>{user.userId}</td>
-            {scopes.map((scope) => (
-              <td key={`${user.userId}-${scope}`}>
-                {(aggregatedData[user.userId]?.[scope] || 0).toFixed(2)}
-              </td>
-            ))}
+            {scopeOrder
+  .filter(scope => scopes.includes(scope))
+  .map((scope) => (
+    <td key={`${user.userId}-${scope}`}>
+      {(aggregatedData[user.userId]?.[scope] || 0).toFixed(2)}
+    </td>
+))}
+
             <td>
               {Object.values(aggregatedData[user.userId] || {})
                 .reduce((acc, val) => acc + val, 0)
