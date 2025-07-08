@@ -295,8 +295,6 @@ for (const user of users) {
 
   
 
-
-
   const handleUserChange = async (userId) => {
     setSelectedUserId(userId);
     setSelectedName('');
@@ -619,7 +617,7 @@ for (const user of users) {
       <h2>Monthly User's Emissions ({selectedYear})</h2>
 
       {/* Year Dropdown for User's Emissions */}
-      {/* <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
+      <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
         <label htmlFor="userYearSelect">Select Year: </label>
         <select id="userYearSelect" value={selectedUserYear} onChange={handleUserYearChange}>
           {[...Array(5)].map((_, index) => {
@@ -631,7 +629,7 @@ for (const user of users) {
             );
           })}
         </select>
-      </div>       */}
+      </div>      
 
       <table>
         <thead>

@@ -443,7 +443,7 @@ export const Useremission = () => {
                       <th>Sr. No</th>
                       <th>Scope</th>
                       <th>Category</th>
-                      <th>Emission Factor</th>
+                      <th>Item Consumed</th>
                       <th>Description</th>
                       <th>Country</th>
                       <th>Type</th>

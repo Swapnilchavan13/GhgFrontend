@@ -7,7 +7,7 @@ export const Reports = () => {
   const [scopes, setScopes] = useState([]);
   const [aggregatedData, setAggregatedData] = useState({});
   const [selectedUserId, setSelectedUserId] = useState('');
-    const [selectedYear, setSelectedYear] = useState('2024-2025');
+  const [selectedYear, setSelectedYear] = useState('2024-2025');
 
 const [formattedReport, setFormattedReport] = useState('');
 const [isGenerating, setIsGenerating] = useState(false);
@@ -33,7 +33,7 @@ const financialYears = [
   const navigate = useNavigate();
 
   let grandDistanceTotal = 0;
-let distanceUnit = '';
+  let distanceUnit = '';
 
 
   useEffect(() => {
@@ -451,7 +451,7 @@ const filtered = data.filter(item =>
       }
 
       if (scopeData.length > 0) {
-        html += `<h3>${scope} Data</h3>`;
+        html += `<h3>${scope}</h3>`;
         html += `
           <table>
             <thead>
@@ -556,7 +556,7 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
           `;
         });
         if (enriched.length > 0) {
-          html += `<h3>${scope} Data</h3>`;
+          html += `<h3>${scope}</h3>`;
           html += `
             <table>
               <thead>
