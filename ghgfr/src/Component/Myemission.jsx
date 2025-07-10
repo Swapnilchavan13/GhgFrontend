@@ -25,7 +25,10 @@ ChartJS.register(
  
 export const Myemission = () => {
 
-  const currentYear = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
+
+
+
 
   const [users, setUsers] = useState([]);
   const [aggregatedData, setAggregatedData] = useState({});
@@ -58,7 +61,9 @@ const [selectedName, setSelectedName] = useState('');
 
 
 // Extract available financial years dynamically from data
-const availableYears = Object.keys(monthlyTotalsByYear).sort();
+const availableYears = Object.keys(monthlyTotalsByYear)
+  .filter(year => year && !year.includes('NaN') && year.includes('-')) // Valid format like "2023-2024"
+  .sort();
 
 // Function to handle dropdown change
 const handleFinancialYearChange = (event) => {
@@ -472,19 +477,26 @@ for (const user of users) {
       <h4>Total Users: {users.length}</h4>
 
       {yearWiseUserScopeData && (
-  <div style={{ marginBottom: '1rem' }}>
-    <label>Select Financial Year: </label>
-    <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-      <option value="">-- Select --</option>
-      {Object.keys(yearWiseUserScopeData)
-        .filter((year) => /^\d{4}-\d{4}$/.test(year)) // ✅ Match pattern like 2023-2024
-        .map((year) => (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        ))}
-    </select>
-  </div>
+  <div style={{ marginBottom: '1rem', padding: '10px' }}>
+  <label>Select Financial Year: </label>
+  <select
+    value={selectedFinancialYear}
+    onChange={(e) => {
+      const selected = e.target.value;
+      setSelectedFinancialYear(selected);
+      setSelectedYear(selected);           // for Aggregated Data table
+      setSelectedUserYear(Number(selected.split('-')[0])); // for Monthly User Emissions
+    }}
+  >
+    <option value="">-- Select --</option>
+    {availableYears.map((year) => (
+      <option key={year} value={year}>
+        {year} (April - March)
+      </option>
+    ))}
+  </select>
+</div>
+
 )}
 
 
@@ -541,7 +553,7 @@ for (const user of users) {
 
       <div>
     {/* Dropdown for selecting financial year */}
-    <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
+    {/* <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
       <label htmlFor="financialYearSelect">Select Financial Year: </label>
       <select id="financialYearSelect" value={selectedFinancialYear} onChange={handleFinancialYearChange}>
         {availableYears.map((year) => (
@@ -550,10 +562,9 @@ for (const user of users) {
           </option>
         ))}
       </select>
-    </div>
+    </div> */}
 
     {/* Monthly Total Emissions Table (Horizontal) */}
-    <h2>Monthly Total Emissions ({selectedFinancialYear})</h2>
 
     <table border="1" cellPadding="8" style={{ width: "100%", textAlign: "center" }}>
       <thead>
@@ -603,7 +614,7 @@ for (const user of users) {
 <div>
 
     <h2>User-wise Emission Pie Chart</h2>
-    <div className="chart-container pie">
+    <div className="chart-containerpie">
       <Pie data={pieChartData} />
     </div>
 </div>
@@ -617,7 +628,7 @@ for (const user of users) {
       <h2>Monthly User's Emissions ({selectedYear})</h2>
 
       {/* Year Dropdown for User's Emissions */}
-      <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
+      {/* <div style={{ textAlign: "left", marginBottom: "10px", padding: "10px" }}>
         <label htmlFor="userYearSelect">Select Year: </label>
         <select id="userYearSelect" value={selectedUserYear} onChange={handleUserYearChange}>
           {[...Array(5)].map((_, index) => {
@@ -629,7 +640,7 @@ for (const user of users) {
             );
           })}
         </select>
-      </div>      
+      </div>       */}
 
       <table>
         <thead>
@@ -725,7 +736,7 @@ for (const user of users) {
 
 
 {showGraph2 && selectedUserEmissionData.length > 0 && (
-  <div style={{ width: '600px', margin: '2rem auto' }}>
+  <div style={{ width: '300px', margin: '2rem auto' }}>
     <h4 style={{ textAlign: 'center' }}>Emission by Activity {selectedUserId}</h4>
     <Pie
       data={{
