@@ -7,7 +7,7 @@ export const Reports = () => {
   const [scopes, setScopes] = useState([]);
   const [aggregatedData, setAggregatedData] = useState({});
   const [selectedUserId, setSelectedUserId] = useState('');
-  const [selectedYear, setSelectedYear] = useState('2024-2025');
+const [selectedYear, setSelectedYear] = useState('');
 
 const [formattedReport, setFormattedReport] = useState('');
 const [isGenerating, setIsGenerating] = useState(false);
@@ -24,12 +24,17 @@ const [categories, setCategories] = useState([]);
 const [scopeCategoryMap, setScopeCategoryMap] = useState({});
 
 
-    
 
-const financialYears = [
-  '2024-2025', // April 2024 to March 2025
-  '2025-2026', // April 2025 to March 2026
-];
+useEffect(() => {
+  const storedYear = localStorage.getItem('selectedYear');
+  if (storedYear) {
+    setSelectedYear(storedYear);
+  } else {
+    setSelectedYear('2024-2025'); // fallback
+  }
+}, []);
+
+
   const navigate = useNavigate();
 
   let grandDistanceTotal = 0;
@@ -537,7 +542,12 @@ const handleUserGenerateOrPrint = async () => {
       try {
         const res = await fetch(`https://backend.climescore.com/getdata12?userId=${selectedUserId}`);
         const data = await res.json();
-const filtered = data.filter(item => item.group === scope && isInSelectedFinancialYear(item));
+        const filtered = data.filter(
+  item =>
+    item.group === scope &&
+    isInSelectedFinancialYear(item) &&
+    (selectedCategory === 'All')
+);
         const enriched = filtered.map(item => {
           const emission = parseFloat(item.result || 0);
           scopeTotal += emission;
@@ -598,7 +608,7 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
       <h2>Download Reports</h2>
 
       {/* Financial Year Dropdown */}
-     <div style={{ marginTop: '20px' }}>
+     {/* <div style={{ marginTop: '20px' }}>
   <label>Select Financial Year: </label>
   <select
     value={selectedYear}
@@ -611,9 +621,11 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
       </option>
     ))}
   </select>
-</div>
+</div> */}
 
 <div style={{ marginBottom: '20px' }}>
+  <h3>Selected Year: {selectedYear}</h3>
+
   <label>
     Scope-wise Emissions:{' '}
     <br />
@@ -651,7 +663,7 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
   disabled={isGenerating}
   style={{ marginTop: '20px' }}
 >
-  {isGenerating ? 'Generating...' : isReadyToPrint ? 'Print Report' : 'Generate Report'}
+  {isGenerating ? 'Generating...' : isReadyToPrint ? 'View Report' : 'Generate Report'}
 </button>
 
 
@@ -682,7 +694,7 @@ const filtered = data.filter(item => item.group === scope && isInSelectedFinanci
   {isUserGenerating
     ? 'Generating...'
     : isUserReadyToPrint
-    ? 'Print User Report'
+    ? 'View User Report'
     : 'Generate User Report'}
 </button>
 

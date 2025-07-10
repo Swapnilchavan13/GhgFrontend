@@ -60,6 +60,8 @@ const [selectedName, setSelectedName] = useState('');
 
 
 
+
+
 // Extract available financial years dynamically from data
 const availableYears = Object.keys(monthlyTotalsByYear)
   .filter(year => year && !year.includes('NaN') && year.includes('-')) // Valid format like "2023-2024"
@@ -281,6 +283,8 @@ for (const user of users) {
     setMonthlyTotals(monthlyTotalsByYear);
     setFinancialYearTotals(financialYearTotals);
     setYearWiseUserScopeData(yearWiseUserScope); // ✅ Store result here
+    localStorage.setItem('selectedYear', selectedYear); // wherever year is selected
+
 
     console.log(yearWiseUserScope);
 
@@ -483,9 +487,11 @@ for (const user of users) {
     value={selectedFinancialYear}
     onChange={(e) => {
       const selected = e.target.value;
+      
       setSelectedFinancialYear(selected);
       setSelectedYear(selected);           // for Aggregated Data table
       setSelectedUserYear(Number(selected.split('-')[0])); // for Monthly User Emissions
+      localStorage.setItem("selectedYear", selected); // ✅ update localStorage
     }}
   >
     <option value="">-- Select --</option>
