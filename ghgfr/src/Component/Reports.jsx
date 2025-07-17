@@ -23,8 +23,6 @@ const [categories, setCategories] = useState([]);
 
 const [scopeCategoryMap, setScopeCategoryMap] = useState({});
 
-
-
 useEffect(() => {
   const storedYear = localStorage.getItem('selectedYear');
   if (storedYear) {
@@ -39,7 +37,6 @@ useEffect(() => {
 
   let grandDistanceTotal = 0;
   let distanceUnit = '';
-
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -67,8 +64,6 @@ useEffect(() => {
 const allCategoriesSet = new Set();
 const map = {}; // temporary map for scope to categories
 
-
-
   for (const user of users) {
     try {
       const response = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
@@ -79,7 +74,7 @@ const map = {}; // temporary map for scope to categories
       for (const item of data) {
         const result = parseFloat(item.result) || 0;
         const group = item.group;
-        const category = item.selectedCategory;
+        const category = item.userId;
 
         if (!aggregatedDataObj[user.userId][group]) {
           aggregatedDataObj[user.userId][group] = 0;
@@ -111,8 +106,6 @@ setScopeCategoryMap(
     Object.entries(map).map(([scope, set]) => [scope, Array.from(set)])
   )
 ); // ✅ Correct closing
-
-  
   
 };
 
@@ -148,8 +141,6 @@ const handleDownloadAllScopes = async () => {
   return fromDate >= start && toDate <= end;
 };
 
-
-
     for (const user of users) {
       try {
         const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
@@ -158,12 +149,9 @@ const handleDownloadAllScopes = async () => {
        const filtered = data.filter(item =>
   item.group === scope &&
   isInSelectedFinancialYear(item) &&
-  (selectedCategory === 'All' || item.selectedCategory === selectedCategory) &&
+  (selectedCategory === 'All' || item.userId === selectedCategory) &&
   item.date // Ensure date exists to avoid runtime errors
 );
-
-
-
 
         const enriched = filtered.map(item => {
           const emission = parseFloat(item.result || 0);
@@ -429,7 +417,7 @@ const scopesToDownload = selectedScope == 'All' ? scopes : [selectedScope];
 const filtered = data.filter(item =>
   item.group === scope &&
   isInSelectedFinancialYear(item) &&
-  (selectedCategory == 'All' || item.selectedCategory === selectedCategory)
+  (selectedCategory == 'All' || user.userId == selectedCategory)
 );
           const enriched = filtered.map(item => {
             const emission = parseFloat(item.result || 0);
@@ -439,7 +427,6 @@ const filtered = data.filter(item =>
                 <td>${user.userId}</td>
                 <td>${item.selectedName || ''}</td>
                 <td>${item.selectedCategory || ''}</td>
-                
                 <td>${item.group || ''}</td>
                 <td>${emission.toFixed(2)}</td>
                 <td>${item.unit || ''}</td>
@@ -489,6 +476,8 @@ const filtered = data.filter(item =>
   }
 };
 
+
+console.log("Hello User" + selectedCategory  )
 
 
 const handleUserGenerateOrPrint = async () => {
@@ -555,7 +544,6 @@ const handleUserGenerateOrPrint = async () => {
             <tr>
               <td>${item.selectedName || ''}</td>
               <td>${item.selectedCategory || ''}</td>
-              
               <td>${item.group || ''}</td>
               <td>${emission.toFixed(2)}</td>
               <td>${item.unit || ''}</td>
@@ -638,10 +626,10 @@ const handleUserGenerateOrPrint = async () => {
   </label>
 
 <label style={{ marginLeft: '20px' }}>
-  Department-wise Emissions:{' '}
+  User-wise Emissions:{' '}
   <br />
   <select disabled={selectedScope == 'All'} style={{ width: '400px' }} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-    <option value="All">All Departments</option>
+    <option value="All">All Users</option>
     {(selectedScope === 'All'
       ? categories
       : scopeCategoryMap[selectedScope] || []
