@@ -21,6 +21,11 @@ const [selectedScope, setSelectedScope] = useState('All');
 const [selectedCategory, setSelectedCategory] = useState('All');
 const [categories, setCategories] = useState([]);
 
+const [showReportModal, setShowReportModal] = useState(false);
+const [showUserReportModal, setShowUserReportModal] = useState(false);
+
+
+
 const [scopeCategoryMap, setScopeCategoryMap] = useState({});
 
 useEffect(() => {
@@ -31,6 +36,23 @@ useEffect(() => {
     setSelectedYear('2024-2025'); // fallback
   }
 }, []);
+
+
+useEffect(() => {
+  // Reset report state when filters change
+  setIsReadyToPrint(false);
+  setFormattedReport('');
+  setShowReportModal(false);
+}, [selectedScope, selectedCategory, users]);
+
+
+useEffect(() => {
+  setIsUserReadyToPrint(false);
+  setFormattedUserReport('');
+  setShowUserReportModal(false);
+}, [selectedUserId, selectedCategory, selectedYear]);
+
+
 
 
   const navigate = useNavigate();
@@ -364,117 +386,95 @@ reportRows.push([]);
 
 const handleGenerateOrPrint = async () => {
   if (isReadyToPrint) {
-    // Print if report is already generated
-    const printWindow = window.open('', '', 'width=1000,height=800');
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Printable Report</title>
-          <style>
-            body { font-family: Arial, sans-serif; padding: 20px; }
-            h2, h3 { margin-bottom: 5px; }
-            table { margin-top: 10px; border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-            th { background-color: #f2f2f2; }
-          </style>
-        </head>
-        <body>${formattedReport}</body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    
-    setIsReadyToPrint(false);
-  } else {
-    // Generate report
+    setShowReportModal(true); // Show the preview modal
+    return;
+  }
 
-      setIsGenerating(true); // 🔄 Set loading state
+  // Generate report
+  setIsGenerating(true);
 
-    
-const scopesToDownload = selectedScope == 'All' ? scopes : [selectedScope];
+  const scopesToDownload = selectedScope == 'All' ? scopes : [selectedScope];
+  let html = `<h2>Emission Report for ${selectedScope} (${selectedYear})</h2>`;
+  html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
 
-    let html = `<h2>Emission Report for ${selectedScope} (${selectedYear})</h2>`;
-    html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
+  for (const scope of scopesToDownload) {
+    let scopeData = [];
+    let scopeTotal = 0;
 
-    for (const scope of scopesToDownload) {
-      let scopeData = [];
-      let scopeTotal = 0;
+    const isInSelectedFinancialYear = (item) => {
+      const [startYear, endYear] = selectedYear.split('-').map(Number);
+      const fromDate = new Date(item.date);
+      const toDate = new Date(item.date1);
+      const start = new Date(`${startYear}-04-01`);
+      const end = new Date(`${endYear}-03-31`);
+      return fromDate >= start && toDate <= end;
+    };
 
-      const isInSelectedFinancialYear = (item) => {
-        const [startYear, endYear] = selectedYear.split('-').map(Number);
-        const fromDate = new Date(item.date);
-        const toDate = new Date(item.date1);
-        const start = new Date(`${startYear}-04-01`);
-        const end = new Date(`${endYear}-03-31`);
-        return fromDate >= start && toDate <= end;
-      };
-
-      for (const user of users) {
-        try {
-          const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
-          const data = await res.json();
-const filtered = data.filter(item =>
-  item.group === scope &&
-  isInSelectedFinancialYear(item) &&
-  (selectedCategory == 'All' || user.userId == selectedCategory)
-);
-          const enriched = filtered.map(item => {
-            const emission = parseFloat(item.result || 0);
-            scopeTotal += emission;
-            return `
-              <tr>
-                <td>${user.userId}</td>
-                <td>${item.selectedName || ''}</td>
-                <td>${item.selectedCategory || ''}</td>
-                <td>${item.group || ''}</td>
-                <td>${emission.toFixed(2)}</td>
-                <td>${item.unit || ''}</td>
-                <td>${item.distance || ''}</td>
-                <td>${item.date || ''}</td>
-                <td>${item.date1 || ''}</td>
-              </tr>
-            `;
-          });
-          scopeData.push(...enriched);
-        } catch (err) {
-          console.error(err);
-        }
-      }
-
-      if (scopeData.length > 0) {
-        html += `<h3>${scope}</h3>`;
-        html += `
-          <table>
-            <thead>
-              <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Scope</th>
-                <th>Emission</th>
-                <th>Unit</th>
-                <th>Quantity</th>
-                <th>From</th>
-                <th>To</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${scopeData.join('')}
-            </tbody>
-          </table>
-          <p><strong>Total for ${scope}:</strong> ${scopeTotal.toFixed(2)}</p>
-          <hr/>
-        `;
+    for (const user of users) {
+      try {
+        const res = await fetch(`https://backend.climescore.com/getdata12?userId=${user.userId}`);
+        const data = await res.json();
+        const filtered = data.filter(item =>
+          item.group === scope &&
+          isInSelectedFinancialYear(item) &&
+          (selectedCategory == 'All' || user.userId == selectedCategory)
+        );
+        const enriched = filtered.map(item => {
+          const emission = parseFloat(item.result || 0);
+          scopeTotal += emission;
+          return `
+            <tr>
+              <td>${user.userId}</td>
+              <td>${item.selectedName || ''}</td>
+              <td>${item.selectedCategory || ''}</td>
+              <td>${item.group || ''}</td>
+              <td>${emission.toFixed(2)}</td>
+              <td>${item.unit || ''}</td>
+              <td>${item.distance || ''}</td>
+              <td>${item.date || ''}</td>
+              <td>${item.date1 || ''}</td>
+            </tr>
+          `;
+        });
+        scopeData.push(...enriched);
+      } catch (err) {
+        console.error(err);
       }
     }
 
-    setFormattedReport(html);
-          setIsGenerating(false); // 🔄 Set loading state
-
-    setIsReadyToPrint(true);
+    if (scopeData.length > 0) {
+      html += `<h3>${scope}</h3>`;
+      html += `
+        <table>
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Scope</th>
+              <th>Emission</th>
+              <th>Unit</th>
+              <th>Quantity</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${scopeData.join('')}
+          </tbody>
+        </table>
+        <p><strong>Total for ${scope}:</strong> ${scopeTotal.toFixed(2)}</p>
+        <hr/>
+      `;
+    }
   }
+
+  setFormattedReport(html);
+  setIsGenerating(false);
+  setIsReadyToPrint(true);
+  setShowReportModal(true); // 👈 Show modal after generating
 };
+
 
 
 console.log("Hello User" + selectedCategory  )
@@ -482,35 +482,16 @@ console.log("Hello User" + selectedCategory  )
 
 const handleUserGenerateOrPrint = async () => {
   if (isUserReadyToPrint) {
-    // Print already generated user report
-    const printWindow = window.open('', '', 'width=1000,height=800');
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>User Report</title>
-          <style>
-            body { font-family: Arial, sans-serif; padding: 20px; }
-            h2, h3 { margin-bottom: 5px; }
-            table { margin-top: 10px; border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-            th { background-color: #f2f2f2; }
-          </style>
-        </head>
-        <body>${formattedUserReport}</body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-
-     // Reset to show Generate Report button again
-  setIsUserReadyToPrint(false);
+    // Show preview popup instead of printing directly
+    setShowUserReportModal(true); // 👈 Show the user report modal
   } else {
     if (!selectedUserId) {
       alert('Please select a user.');
       return;
     }
-    setIsUserGenerating(true);
+
+    setIsUserGenerating(true); // Show loader while generating
+
     const scopesToDownload = ['Scope 1', 'Scope 2', 'Scope 3'];
     let html = `<h2>Emission Report for User: ${selectedUserId} (${selectedYear})</h2>`;
     html += `<p><strong>Generated on:</strong> ${new Date().toLocaleString()}</p><hr/>`;
@@ -531,12 +512,14 @@ const handleUserGenerateOrPrint = async () => {
       try {
         const res = await fetch(`https://backend.climescore.com/getdata12?userId=${selectedUserId}`);
         const data = await res.json();
+
         const filtered = data.filter(
-  item =>
-    item.group === scope &&
-    isInSelectedFinancialYear(item) &&
-    (selectedCategory === 'All')
-);
+          item =>
+            item.group === scope &&
+            isInSelectedFinancialYear(item) &&
+            (selectedCategory === 'All')
+        );
+
         const enriched = filtered.map(item => {
           const emission = parseFloat(item.result || 0);
           scopeTotal += emission;
@@ -553,6 +536,7 @@ const handleUserGenerateOrPrint = async () => {
             </tr>
           `;
         });
+
         if (enriched.length > 0) {
           html += `<h3>${scope}</h3>`;
           html += `
@@ -585,13 +569,196 @@ const handleUserGenerateOrPrint = async () => {
     setFormattedUserReport(html);
     setIsUserGenerating(false);
     setIsUserReadyToPrint(true);
+    setShowUserReportModal(true); // 👈 Show the preview after generation
   }
 };
+
 
 
   return (
     <div>
     <Clientnavbar />
+
+    {showReportModal && (
+  <div style={{
+    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex',
+    justifyContent: 'center', alignItems: 'center', zIndex: 9999
+  }}>
+    <div style={{
+      width: '80%', maxHeight: '80%', background: '#fff',
+      padding: '20px', overflowY: 'auto', borderRadius: '8px',
+      boxShadow: '0 0 20px rgba(0,0,0,0.3)'
+    }}>
+      <h2>Report Preview</h2>
+      <div dangerouslySetInnerHTML={{ __html: formattedReport }} />
+
+      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+        <button onClick={() => {
+          const printWindow = window.open('', '', 'width=1000,height=800');
+          printWindow.document.write(`
+            <html>
+              <head>
+                <title>Printable Report</title>
+                <style>
+                  body { font-family: Arial, sans-serif; padding: 20px; }
+                  h2, h3 { margin-bottom: 5px; }
+                  table { margin-top: 10px; border-collapse: collapse; width: 100%; }
+                  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+                  th { background-color: #f2f2f2; }
+                </style>
+              </head>
+              <body>${formattedReport}</body>
+            </html>
+          `);
+          printWindow.document.close();
+          printWindow.focus();
+          printWindow.print();
+          setShowReportModal(false);
+          setIsReadyToPrint(false);
+        }}>Print</button>
+
+        <button onClick={() => setShowReportModal(false)}>Close</button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+
+{showUserReportModal && (
+  <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: 'rgba(0,0,0,0.4)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 9999
+    }}
+  >
+    <div
+      style={{
+        backgroundColor: '#fff',
+        padding: '20px',
+        width: '95%',
+        maxWidth: '1200px',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+        fontSize: '12px',
+        fontFamily: 'Arial, sans-serif',
+        boxShadow: '0 0 20px rgba(0,0,0,0.2)',
+        borderRadius: '10px',
+        position: 'relative',
+        lineHeight: '1.5'
+      }}
+    >
+      {/* Close icon button (X) */}
+      <button
+        onClick={() => setShowUserReportModal(false)}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          right: '15px',
+          background: 'transparent',
+          border: 'none',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          cursor: 'pointer'
+        }}
+        title="Close"
+      >
+        ✖
+      </button>
+
+      {/* Optional Title */}
+      <h2 style={{ fontSize: '14px', marginBottom: '10px' }}>
+        Emission Report
+      </h2>
+
+      {/* Report HTML content */}
+      <div
+        dangerouslySetInnerHTML={{ __html: formattedUserReport }}
+        style={{
+          width: '100%'
+        }}
+      />
+
+      {/* Buttons at bottom */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: '10px',
+          marginTop: '20px'
+        }}
+      >
+        {/* Print Report Button */}
+        <button
+          onClick={() => {
+            const printWindow = window.open('', '', 'width=1000,height=800');
+            printWindow.document.write(`
+              <html>
+                <head>
+                  <title>User Report</title>
+                  <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; font-size: 12px; }
+                    h2, h3 { margin-bottom: 5px; }
+                    table { margin-top: 10px; border-collapse: collapse; width: 100%; }
+                    th, td { border: 1px solid #ccc; padding: 4px; text-align: left; }
+                    th { background-color: #f2f2f2; }
+                  </style>
+                </head>
+                <body>${formattedUserReport}</body>
+              </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+          }}
+          style={{
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            padding: '6px 12px',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '12px',
+            cursor: 'pointer'
+          }}
+        >
+          Print Report
+        </button>
+
+        {/* Full Close Button */}
+        <button
+          onClick={() => setShowUserReportModal(false)}
+          style={{
+            backgroundColor: '#d9534f',
+            color: 'white',
+            padding: '6px 12px',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '12px',
+            cursor: 'pointer'
+          }}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+
+
+
     <div className="container">
       <h2>Download Reports</h2>
 
