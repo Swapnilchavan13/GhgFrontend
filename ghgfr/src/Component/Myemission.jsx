@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import ClimeLanding from './ClimeLanding';
 
 ChartJS.register(
   CategoryScale,
@@ -57,6 +58,9 @@ const [selectedYear, setSelectedYear] = useState('2024-2025');
   const [selectedUserId, setSelectedUserId] = useState('');
 const [userNames, setUserNames] = useState([]);
 const [selectedName, setSelectedName] = useState('');
+
+  const [hasProceeded, setHasProceeded] = useState(false);
+
 
 
 
@@ -474,8 +478,13 @@ for (const user of users) {
 
 
   return (
-    <div>
-      <Clientnavbar logoimg={logoimg} />
+ <>
+      {!hasProceeded ? (
+        <ClimeLanding onProceed={() => setHasProceeded(true)} />
+      ) : (    
+
+      <div>
+     <Clientnavbar logoimg={logoimg} />
 
       <h2>Aggregated Data by Scope</h2>
       <h4>Total Users: {users.length}</h4>
@@ -868,5 +877,7 @@ for (const user of users) {
 </div>
 
     </div>
+     )}
+    </>
   );
 };
