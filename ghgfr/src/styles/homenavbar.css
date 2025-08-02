@@ -19,7 +19,7 @@ body{
 
 .navdiv2{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     text-align: center;
     height: 60px;
     background-color: rgb(221, 204, 184);
@@ -27,7 +27,15 @@ body{
 }
 
 .navdiv3{
+    /* border: 1px solid red; */
+    width: 280%;
     display: flex;
-    gap: 30px;
+    gap: 15px;
+    margin-left: 70px;
+}
+
+.navdiv3 h4{
+    font: 8px;
+    color: red;
 }
 

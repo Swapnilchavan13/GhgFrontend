@@ -1,0 +1,129 @@
+import React from 'react';
+
+const blogPosts = [
+  {
+    title: 'Understanding Your Carbon Footprint',
+    summary: 'Learn what contributes to your carbon emissions and how to reduce them.',
+    image: 'https://cdn.prod.website-files.com/64b78e9db44da70d86b3b47f/662383dde0a0f7cd33b6319f_Carbon%20Footprint.jpg',
+    link: '#'
+  },
+  {
+    title: 'Top 10 Sustainable Products in 2025',
+    summary: 'Discover innovative and eco-friendly products making a difference this year.',
+    image: 'https://www.dsers.com/blog/content/images/2025/01/sustainable-product.png',
+    link: '#'
+  },
+  {
+    title: 'How Carbon Credits Work',
+    summary: 'An easy guide to how carbon credits help the planet and how you can get involved.',
+    image: 'https://climatecarbon.com/wp-content/uploads/2023/05/1_1dbQNPRGrukYs2wFej0Hvg.png',
+    link: '#'
+  },
+  {
+    title: 'Sustainability Success Stories',
+    summary: 'Real-life stories of communities and businesses making an impact.',
+    image: 'https://t4.ftcdn.net/jpg/01/42/78/73/360_F_142787339_RkyaHN7hVIxYa9Mf75vCRUgZtbqHtSxA.jpg',
+    link: '#'
+  }
+];
+
+const BlogResources = () => {
+  return (
+    <>
+      <div className="blog-container">
+        <h1 className="blog-title">Blog & Resources</h1>
+        <p className="blog-subtitle">
+          Insights, tips, and tools to help you live and work more sustainably.
+        </p>
+
+        <div className="blog-grid">
+          {blogPosts.map((post, index) => (
+            <div className="blog-card" key={index}>
+              <img src={post.image} alt={post.title} className="blog-image" />
+              <div className="blog-content">
+                <h3>{post.title}</h3>
+                <p>{post.summary}</p>
+                <a href={post.link} className="blog-link">
+                  Read More →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .blog-container {
+          padding: 40px 20px;
+          font-family: 'Arial', sans-serif;
+          background-color: #f9fafc;
+        }
+
+        .blog-title {
+          text-align: center;
+          font-size: 36px;
+          color: #2c3e50;
+          margin-bottom: 10px;
+        }
+
+        .blog-subtitle {
+          text-align: center;
+          font-size: 18px;
+          color: #666;
+          margin-bottom: 40px;
+        }
+
+        .blog-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .blog-card {
+          background-color: #fff;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          transition: transform 0.2s ease-in-out;
+        }
+
+        .blog-card:hover {
+          transform: translateY(-5px);
+        }
+
+        .blog-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .blog-content {
+          padding: 20px;
+        }
+
+        .blog-content h3 {
+          font-size: 20px;
+          color: #2c3e50;
+          margin-bottom: 10px;
+        }
+
+        .blog-content p {
+          font-size: 16px;
+          color: #555;
+          margin-bottom: 15px;
+        }
+
+        .blog-link {
+          font-size: 14px;
+          text-decoration: none;
+          color: #1e88e5;
+          font-weight: bold;
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default BlogResources;

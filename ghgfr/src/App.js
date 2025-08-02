@@ -28,6 +28,8 @@ import { CategoryPage } from './Pages/CategoryPage';
 import { ProductForm } from './CMS/ProductForm.jsx';
 import { Marketplace } from './Pages/Marketplace.jsx';
 import { Reports } from './Component/Reports.jsx';
+import LandingPage from './Pages/LandingPage.jsx';
+import BlogResources from './Pages/BlogResources.jsx';
 
 function App() {
 
@@ -55,7 +57,14 @@ function App() {
        <BrowserRouter>
        <Navbar />
       <Routes>
-      <Route path="/" element={<Homepage />} />
+      {/* <Route path="/" element={<Homepage />} /> */}
+
+      <Route path="/" element={<LandingPage />} />
+
+      <Route path="/blog" element={<BlogResources />} />
+
+
+      
 
           <Route path="/admin" element={<Adminlogin />} />
           <Route path="/homepage" element={<Homepage />} />

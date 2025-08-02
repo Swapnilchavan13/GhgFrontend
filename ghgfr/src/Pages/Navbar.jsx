@@ -34,22 +34,21 @@ export const Navbar = () => {
 <div style={{display:'flex', gap:"5px", width: "100%", height:"60px", marginLeft:"10px"}}>
 
    
-      <h4>From </h4>
+      <h5>From </h5>
       <img style={{borderRadius:"10px"}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
  
       </div>
       
     <div className='navdiv3'>
-      <Link to={'about'}>
-        <h4>About</h4>
-      </Link>
-      <Link to={'contact'}>
-        <h4>Contact</h4>
-      </Link>
-      <Link to={'marketplace'}>
-        <h4>Marketplace</h4>
-      </Link>
-    </div>
+  <Link to={'/'}><h5>Home</h5></Link>
+  <Link to={'/about'}><h5>About Us</h5></Link>
+  <Link to={'/emissions'}><h5>Emissions Measurement</h5></Link>
+  <Link to={'/carbon-market'}><h5>Carbon Credit Marketplace</h5></Link>
+  <Link to={'/sustainable-marketplace'}><h5>Sustainable Marketplace</h5></Link>
+  <Link to={'/blog'}><h5>Blog / Resources</h5></Link>
+  <Link to={'/login'}><h5>Login / Sign Up</h5></Link>
+</div>
+
     </div>
     </div>
   )
