@@ -30,6 +30,7 @@ import { Marketplace } from './Pages/Marketplace.jsx';
 import { Reports } from './Component/Reports.jsx';
 import LandingPage from './Pages/LandingPage.jsx';
 import BlogResources from './Pages/BlogResources.jsx';
+import Ecomemission from './Ecom/Ecomemission.jsx';
 
 function App() {
 
@@ -59,7 +60,10 @@ function App() {
       <Routes>
       {/* <Route path="/" element={<Homepage />} /> */}
 
-      <Route path="/" element={<LandingPage />} />
+      {/* <Route path="/" element={<LandingPage />} /> */}
+
+      <Route path="/" element={<Ecomemission />} />
+      
 
       <Route path="/blog" element={<BlogResources />} />
 
