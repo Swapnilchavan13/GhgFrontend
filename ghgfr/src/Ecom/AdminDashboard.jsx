@@ -18,7 +18,7 @@ const AdminDashboard = () => {
       setBusinesses(admin.businesses || []);
     }
 
-    const allEmissions = JSON.parse(localStorage.getItem("business_emissions") || "{}");
+    const allEmissions = JSON.parse(localStorage.getItem("business_emission_entries_by_user") || "{}");
     setEmissions(allEmissions);
   }, []);
 
