@@ -42,7 +42,7 @@ export const Navbar = () => {
     <div className='navdiv3'>
   <Link to={'/'}><h5>Home</h5></Link>
   <Link to={'/about'}><h5>About Us</h5></Link>
-  <Link to={'/emissions'}><h5>Emissions Measurement</h5></Link>
+  <Link to={'/ecomemissions'}><h5>Emissions Measurement</h5></Link>
   <Link to={'/carbon-market'}><h5>Carbon Credit Marketplace</h5></Link>
   <Link to={'/sustainable-marketplace'}><h5>Sustainable Marketplace</h5></Link>
   <Link to={'/blog'}><h5>Blog / Resources</h5></Link>

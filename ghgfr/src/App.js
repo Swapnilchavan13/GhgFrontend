@@ -31,6 +31,12 @@ import { Reports } from './Component/Reports.jsx';
 import LandingPage from './Pages/LandingPage.jsx';
 import BlogResources from './Pages/BlogResources.jsx';
 import Ecomemission from './Ecom/Ecomemission.jsx';
+import AdminDashboard from './Ecom/AdminDashboard.jsx';
+import AdminLogin from './Ecom/EcomAdminLogin.jsx';
+import EcomAdminLogin from './Ecom/EcomAdminLogin.jsx';
+import BusinessLogin from './Ecom/BusinessLogin.jsx';
+import AdminRegister from './Ecom/AdminRegister.jsx';
+import BusinessDashboard from './Ecom/BusinessDashboard.jsx';
 
 function App() {
 
@@ -62,7 +68,6 @@ function App() {
 
       {/* <Route path="/" element={<LandingPage />} /> */}
 
-      <Route path="/" element={<Ecomemission />} />
       
 
       <Route path="/blog" element={<BlogResources />} />
@@ -99,8 +104,19 @@ function App() {
           <Route path="user/login" element={<Userlogin />} />
 
           <Route path="email" element={<Email />} />
+{/* ECOM EMISSION */}
+
+      <Route path="/admindashboard" element={<AdminDashboard />} />
+      <Route path="/ecomadminlogin" element={<EcomAdminLogin />} />
+      <Route path="/businesslogin" element={<BusinessLogin />} />
+      <Route path="/ecomadminregister" element={<AdminRegister />} />
+      <Route path="/businessdashboard" element={<BusinessDashboard />} />
 
 
+
+
+
+      <Route path="/ecomemissions" element={<Ecomemission />} />
 
 {/* ////CMS//// */}
           <Route path="newsform" element={<Newsform/>} />

@@ -38,7 +38,7 @@ function calculateEmission(weightKg, distanceKm, factorPerTonneKm) {
 
 const styles = {
   container: {
-    maxWidth: '980px',
+    maxWidth: '12 80px',
     margin: '28px auto',
     padding: '32px',
     background: '#f6f9fd',
