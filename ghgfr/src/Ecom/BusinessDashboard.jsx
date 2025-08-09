@@ -1,3 +1,4 @@
+// src/pages/BusinessDashboard.jsx
 import React, { useEffect, useState } from "react";
 
 const AREAS = ['Delhi', 'Mumbai', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Indore', 'Bhopal', 'Chandigarh', 'Coimbatore', 'Kochi'];
@@ -13,8 +14,6 @@ const PACK_MATERIALS = [
   { name: "Thermal Paper", factor: 0.012 },
   { name: "Copier Paper", factor: 0.05 },
 ];
-
-const STORAGE_KEY = "business_emission_entries_by_user";
 
 const styles = {
   container: { maxWidth: '1280px', margin: '28px auto', padding: '32px', background: '#f6f9fd', borderRadius: '14px', fontFamily: '"Segoe UI",sans-serif', boxShadow: '0 2px 18px #b1b5bc14' },
@@ -42,30 +41,52 @@ const BusinessDashboard = () => {
   const [form, setForm] = useState({
     transactionType: 'Sale', pickup: '', drop: '', transportMode: '', vehicle: '', weightKg: '', distanceKm: '', packMaterial: '', packWeightKg: ''
   });
-
+  const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
+  // logged_in_business expected in localStorage (set at login)
   const loggedInBusiness = JSON.parse(localStorage.getItem("logged_in_business"));
 
+  console.log(loggedInBusiness)
 
-    const handleLogout = () => {
-    localStorage.removeItem("loggedInBusiness");
-    window.location.href = "/businesslogin"; // update this path if your login route is different
-  };
+  // Replace with your real API base if needed (or leave empty and use same host)
+  const API_BASE = "http://localhost:8080"; // e.g. "http://localhost:5000" or "" if proxied
 
   useEffect(() => {
-    if (!loggedInBusiness?.username) return;
-    const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    setEntries(all[loggedInBusiness.username] || []);
-  }, []);
+    if (!loggedInBusiness) return;
+    const fetchEntries = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${API_BASE}/emissions/${encodeURIComponent(loggedInBusiness.username)}`);
+        if (!res.ok) {
+          // If server returns 404 or empty, treat as empty array
+          console.warn("Failed fetching emissions, status:", res.status);
+          setEntries([]);
+        } else {
+          const data = await res.json();
+          // If backend returns { entries: [...] } or array directly, handle both
+          const arr = Array.isArray(data) ? data : (data.entries || []);
+          setEntries(arr);
+        }
+      } catch (err) {
+        console.error("Error fetching emissions:", err);
+        setEntries([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const updateStorage = (newEntries) => {
-    const all = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    all[loggedInBusiness.username] = newEntries;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+    fetchEntries();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedInBusiness?.username]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("logged_in_business");
+    window.location.href = "/businesslogin";
   };
 
   const onChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const onAdd = e => {
+  const onAdd = async (e) => {
     e.preventDefault();
     const { transactionType, pickup, drop, transportMode, vehicle, weightKg, distanceKm, packMaterial, packWeightKg } = form;
     if (!(pickup && drop && transportMode && vehicle && weightKg && distanceKm)) {
@@ -90,27 +111,66 @@ const BusinessDashboard = () => {
     const emission = calculateEmission(Number(weightKg), Number(distanceKm), emissionFactor);
 
     const newEntry = {
-      transactionType, pickup, drop, transportMode, vehicle,
-      weightKg, distanceKm, emissionFactor, emission,
-      packMaterial, packWeightKg, packFactor, packEmission,
+      transactionType,
+      pickup,
+      drop,
+      transportMode,
+      vehicle,
+      weightKg: Number(weightKg),
+      distanceKm: Number(distanceKm),
+      emissionFactor,
+      emission,
+      packMaterial: packMaterial || null,
+      packWeightKg: packWeightKg ? Number(packWeightKg) : 0,
+      packFactor,
+      packEmission,
+      // createdAt will be set by backend if desired
     };
 
-    const updated = [...entries, newEntry];
-    setEntries(updated);
-    updateStorage(updated);
+    // local optimistic update + save to backend
+    setSaving(true);
+    try {
+      const payload = { username: loggedInBusiness, ...newEntry };
+      const res = await fetch(`${API_BASE}/emissions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    setForm({
-      transactionType: 'Sale', pickup: '', drop: '', transportMode: '', vehicle: '', weightKg: '', distanceKm: '', packMaterial: '', packWeightKg: ''
-    });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.message || `Server responded ${res.status}`);
+      }
+
+      const saved = await res.json();
+      // backend may return saved object directly or { entry: saved }
+      const savedEntry = saved.entry || saved;
+
+      // append saved entry to UI
+      setEntries(prev => [...prev, savedEntry]);
+      // reset form
+      setForm({
+        transactionType: 'Sale', pickup: '', drop: '', transportMode: '', vehicle: '', weightKg: '', distanceKm: '', packMaterial: '', packWeightKg: ''
+      });
+    } catch (err) {
+      console.error("Failed to save emission entry:", err);
+      alert("Failed to save emission entry. See console for details.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const totalEmission = entries.reduce((acc, curr) => acc + (Number(curr.emission) || 0) + (Number(curr.packEmission) || 0), 0);
   const totalReturnEmission = entries.filter(r => r.transactionType === 'Return').reduce((sum, r) => sum + Number(r.emission || 0) + Number(r.packEmission || 0), 0);
   const totalSaleEmission = entries.filter(r => r.transactionType !== 'Return').reduce((sum, r) => sum + Number(r.emission || 0) + Number(r.packEmission || 0), 0);
 
+  if (!loggedInBusiness) {
+    return <div style={{ padding: 20 }}>Not logged in. Please login as a business to view this page.</div>;
+  }
+
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Welcome, {loggedInBusiness?.businessName}</h2>
+      <h2 style={styles.title}>Welcome, {loggedInBusiness}</h2>
       <button onClick={handleLogout} style={{ marginTop: "30px", background: "red", color: "white" }}>
         Logout
       </button>
@@ -122,96 +182,111 @@ const BusinessDashboard = () => {
             <option value="Return">Return</option>
           </select>
         </label>
+
         <label style={styles.label}>Pickup Area
           <select name="pickup" style={styles.input} value={form.pickup} onChange={onChange}>
             <option value="">Select</option>
             {AREAS.map(a => <option key={a} value={a}>{a}</option>)}
           </select>
         </label>
+
         <label style={styles.label}>Drop Area
           <select name="drop" style={styles.input} value={form.drop} onChange={onChange}>
             <option value="">Select</option>
             {AREAS.map(a => <option key={a} value={a}>{a}</option>)}
           </select>
         </label>
+
         <label style={styles.label}>Mode
           <select name="transportMode" style={styles.input} value={form.transportMode} onChange={onChange}>
             <option value="">Select</option>
             {TRANSPORT_MODES.map(m => <option key={m} value={m}>{m}</option>)}
           </select>
         </label>
+
         <label style={styles.label}>Vehicle
           <select name="vehicle" style={styles.input} value={form.vehicle} onChange={onChange}>
             <option value="">Select</option>
             {VEHICLES.map(v => <option key={v} value={v}>{v}</option>)}
           </select>
         </label>
+
         <label style={styles.label}>Weight (Kg)
           <input type="number" name="weightKg" min={0} style={styles.input} value={form.weightKg} onChange={onChange} />
         </label>
+
         <label style={styles.label}>Distance (Km)
           <input type="number" name="distanceKm" min={0} style={styles.input} value={form.distanceKm} onChange={onChange} />
         </label>
+
         <label style={styles.label}>Packing Material Type
           <select name="packMaterial" style={styles.input} value={form.packMaterial} onChange={onChange}>
             <option value="">Select</option>
             {PACK_MATERIALS.map(m => <option key={m.name} value={m.name}>{m.name}</option>)}
           </select>
         </label>
+
         <label style={styles.label}>Packing Material Weight (Kg)
           <input type="number" name="packWeightKg" min={0} style={styles.input} value={form.packWeightKg} onChange={onChange} />
         </label>
-        <button type="submit" style={styles.button}>Add Entry</button>
+
+        <button type="submit" style={styles.button} disabled={saving}>
+          {saving ? "Saving..." : "Add Entry"}
+        </button>
       </form>
 
-      <table style={styles.table}>
-        <thead>
-          <tr>
-            <th style={styles.th}>Type</th>
-            <th style={styles.th}>Pickup</th>
-            <th style={styles.th}>Drop</th>
-            <th style={styles.th}>Mode</th>
-            <th style={styles.th}>Vehicle</th>
-            <th style={styles.th}>Weight (Kg)</th>
-            <th style={styles.th}>Distance (Km)</th>
-            <th style={styles.th}>Factor</th>
-            <th style={styles.th}>Emission</th>
-            <th style={styles.th}>Packing Material</th>
-            <th style={styles.th}>Packing Weight</th>
-            <th style={styles.th}>Pack Factor</th>
-            <th style={styles.th}>Pack Emission</th>
-          </tr>
-        </thead>
-        <tbody>
-          {entries.length ? entries.map((row, idx) => (
-            <tr key={idx}>
-              <td style={styles.td}>
-                <span style={{ ...styles.typeBadge, ...(row.transactionType === 'Return' ? styles.badgeReturn : styles.badgeSale) }}>{row.transactionType}</span>
-              </td>
-              <td style={styles.td}>{row.pickup}</td>
-              <td style={styles.td}>{row.drop}</td>
-              <td style={styles.td}>{row.transportMode}</td>
-              <td style={styles.td}>{row.vehicle}</td>
-              <td style={styles.td}>{row.weightKg}</td>
-              <td style={styles.td}>{row.distanceKm}</td>
-              <td style={styles.td}>{row.emissionFactor}</td>
-              <td style={styles.td}>{Number(row.emission).toFixed(3)}</td>
-              <td style={styles.td}>{row.packMaterial || '-'}</td>
-              <td style={styles.td}>{row.packWeightKg || '-'}</td>
-              <td style={styles.td}>{row.packFactor || '-'}</td>
-              <td style={styles.td}>{row.packEmission ? Number(row.packEmission).toFixed(3) : '-'}</td>
-            </tr>
-          )) : (
-            <tr><td style={styles.td} colSpan={13}>No data yet, please add an entry.</td></tr>
-          )}
-        </tbody>
-      </table>
+      {loading ? <p>Loading entries...</p> : (
+        <>
+          <table style={styles.table}>
+            <thead>
+              <tr>
+                <th style={styles.th}>Type</th>
+                <th style={styles.th}>Pickup</th>
+                <th style={styles.th}>Drop</th>
+                <th style={styles.th}>Mode</th>
+                <th style={styles.th}>Vehicle</th>
+                <th style={styles.th}>Weight (Kg)</th>
+                <th style={styles.th}>Distance (Km)</th>
+                <th style={styles.th}>Factor</th>
+                <th style={styles.th}>Emission</th>
+                <th style={styles.th}>Packing Material</th>
+                <th style={styles.th}>Packing Weight</th>
+                <th style={styles.th}>Pack Factor</th>
+                <th style={styles.th}>Pack Emission</th>
+              </tr>
+            </thead>
+            <tbody>
+              {entries.length ? entries.map((row, idx) => (
+                <tr key={idx}>
+                  <td style={styles.td}>
+                    <span style={{ ...styles.typeBadge, ...(row.transactionType === 'Return' ? styles.badgeReturn : styles.badgeSale) }}>{row.transactionType}</span>
+                  </td>
+                  <td style={styles.td}>{row.pickup}</td>
+                  <td style={styles.td}>{row.drop}</td>
+                  <td style={styles.td}>{row.transportMode}</td>
+                  <td style={styles.td}>{row.vehicle}</td>
+                  <td style={styles.td}>{row.weightKg}</td>
+                  <td style={styles.td}>{row.distanceKm}</td>
+                  <td style={styles.td}>{row.emissionFactor}</td>
+                  <td style={styles.td}>{Number(row.emission).toFixed(3)}</td>
+                  <td style={styles.td}>{row.packMaterial || '-'}</td>
+                  <td style={styles.td}>{row.packWeightKg || '-'}</td>
+                  <td style={styles.td}>{row.packFactor || '-'}</td>
+                  <td style={styles.td}>{row.packEmission ? Number(row.packEmission).toFixed(3) : '-'}</td>
+                </tr>
+              )) : (
+                <tr><td style={styles.td} colSpan={13}>No data yet, please add an entry.</td></tr>
+              )}
+            </tbody>
+          </table>
 
-      <div style={styles.total}>
-        Total Sale Emissions: {totalSaleEmission.toFixed(3)} kg CO₂e<br />
-        Total Return Emissions: {totalReturnEmission.toFixed(3)} kg CO₂e<br />
-        <strong>Combined Total: {totalEmission.toFixed(3)} kg CO₂e</strong>
-      </div>
+          <div style={styles.total}>
+            Total Sale Emissions: {totalSaleEmission.toFixed(3)} kg CO₂e<br />
+            Total Return Emissions: {totalReturnEmission.toFixed(3)} kg CO₂e<br />
+            <strong>Combined Total: {totalEmission.toFixed(3)} kg CO₂e</strong>
+          </div>
+        </>
+      )}
     </div>
   );
 };

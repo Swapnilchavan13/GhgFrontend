@@ -163,7 +163,7 @@ const LandingPage = () => {
   return (
     <div style={styles.container}>
       {/* Top Navigation Bar */}
-      <nav style={styles.navbar}>
+      {/* <nav style={styles.navbar}>
         <div style={styles.navLogo}>ClimeScore</div>
         <ul style={styles.navLinks}>
           <li style={styles.navLink}>Home</li>
@@ -174,7 +174,7 @@ const LandingPage = () => {
           <li style={styles.navLink}>Blog / Resources</li>
           <li style={{ ...styles.navLink, ...styles.navLogin }}>Login / Sign Up</li>
         </ul>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
       <section style={styles.hero}>
