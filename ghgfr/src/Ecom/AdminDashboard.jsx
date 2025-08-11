@@ -49,7 +49,7 @@ const AdminDashboard = () => {
   const fetchEmissions = async () => {
     if (!adminId) return;
     try {
-      const res = await fetch(`${API_BASE}/admin/emissions/${adminId}`);
+      const res = await fetch(`${API_BASE}/admin/emission/${adminId}`);
       if (!res.ok) throw new Error("Failed to fetch emissions");
       const emissions = await res.json();
 
@@ -129,7 +129,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div style={{ maxWidth: 900, margin: "auto", padding: 20 }}>
+    <div style={{ width: "auto", margin: "auto", padding: 20 }}>
       <div
         style={{
           display: "flex",
@@ -196,7 +196,7 @@ const AdminDashboard = () => {
       key={businessId}
       style={{ marginBottom: 20, border: "1px solid #ccc", borderRadius: 6, padding: 10 }}
     >
-      <strong>{getBusinessName(businessId)}</strong>
+      <strong>{getBusinessName(username)}</strong>
       <table
         style={{ width: "100%", borderCollapse: "collapse", marginTop: 10 }}
         border="1"

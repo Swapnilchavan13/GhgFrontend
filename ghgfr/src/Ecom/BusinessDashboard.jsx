@@ -45,8 +45,11 @@ const BusinessDashboard = () => {
   const [saving, setSaving] = useState(false);
   // logged_in_business expected in localStorage (set at login)
   const loggedInBusiness = JSON.parse(localStorage.getItem("logged_in_business"));
+const username = loggedInBusiness.businessName; // This should be "Demo"
+const adminId = loggedInBusiness.adminId; // This should be "Demo"
 
-  console.log(loggedInBusiness)
+
+  console.log("Hello" + adminId)
 
   // Replace with your real API base if needed (or leave empty and use same host)
   const API_BASE = "http://localhost:8080"; // e.g. "http://localhost:5000" or "" if proxied
@@ -56,7 +59,7 @@ const BusinessDashboard = () => {
     const fetchEntries = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${API_BASE}/emissions/${encodeURIComponent(loggedInBusiness.username)}`);
+        const res = await fetch(`${API_BASE}/emission/${encodeURIComponent(username)}`);
         if (!res.ok) {
           // If server returns 404 or empty, treat as empty array
           console.warn("Failed fetching emissions, status:", res.status);
@@ -130,7 +133,7 @@ const BusinessDashboard = () => {
     // local optimistic update + save to backend
     setSaving(true);
     try {
-      const payload = { username: loggedInBusiness, ...newEntry };
+      const payload = {adminId: adminId, username: username, ...newEntry };
       const res = await fetch(`${API_BASE}/emissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -170,7 +173,7 @@ const BusinessDashboard = () => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Welcome, {loggedInBusiness}</h2>
+      <h2 style={styles.title}>Welcome, {loggedInBusiness.businessName}</h2>
       <button onClick={handleLogout} style={{ marginTop: "30px", background: "red", color: "white" }}>
         Logout
       </button>
