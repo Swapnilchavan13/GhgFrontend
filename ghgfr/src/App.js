@@ -37,6 +37,7 @@ import EcomAdminLogin from './Ecom/EcomAdminLogin.jsx';
 import BusinessLogin from './Ecom/BusinessLogin.jsx';
 import AdminRegister from './Ecom/AdminRegister.jsx';
 import BusinessDashboard from './Ecom/BusinessDashboard.jsx';
+import MeasureEmissions from './Pages/MeasureEmissions.jsx';
 
 function App() {
 
@@ -111,6 +112,13 @@ function App() {
       <Route path="/businesslogin" element={<BusinessLogin />} />
       <Route path="/ecomadminregister" element={<AdminRegister />} />
       <Route path="/businessdashboard" element={<BusinessDashboard />} />
+
+
+      {/* Measure Your Emissions */}
+
+      <Route path="/measureemission" element={<MeasureEmissions />} />
+
+
 
 
 
