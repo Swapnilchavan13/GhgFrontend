@@ -1,0 +1,107 @@
+.review-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #1f3c88;
+}
+
+.total-summary {
+  background: linear-gradient(90deg, #1f3c88, #2c5bb5);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.total-value {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.category-breakdown {
+  margin-bottom: 25px;
+}
+
+.category-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  flex: 1 1 200px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+}
+
+.comparison-section, .ghg-report, .recommendations {
+  background: #ffffff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0px 1px 4px rgba(0,0,0,0.05);
+}
+
+.recommendations ul {
+  padding-left: 20px;
+}
+
+.offset-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.offset-btn {
+  background: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.offset-btn:hover {
+  background: #218838;
+}
+
+.download-section {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.download-section button {
+  background: #1f3c88;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.download-section button:hover {
+  background: #163172;
+}
+
+.climescore {
+  text-align: center;
+  font-size: 22px;
+  background: #f1f3f6;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.climescore span {
+  color: #1f3c88;
+  font-weight: bold;
+}
