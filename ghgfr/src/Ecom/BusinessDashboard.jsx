@@ -1,5 +1,6 @@
 // src/pages/BusinessDashboard.jsx
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AREAS = ['Delhi', 'Mumbai', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Indore', 'Bhopal', 'Chandigarh', 'Coimbatore', 'Kochi'];
 const TRANSPORT_MODES = ['Surface', 'Air', 'Sea'];
@@ -43,13 +44,17 @@ const BusinessDashboard = () => {
   });
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+    const navigate = useNavigate(); // for navigation
+
   // logged_in_business expected in localStorage (set at login)
   const loggedInBusiness = JSON.parse(localStorage.getItem("logged_in_business"));
+
+
 const username = loggedInBusiness.businessName; // This should be "Demo"
 const adminId = loggedInBusiness.adminId; // This should be "Demo"
 
 
-  console.log("Hello" + adminId)
+  // console.log("Hello" + adminId)
 
   // Replace with your real API base if needed (or leave empty and use same host)
   const API_BASE = "http://localhost:8080"; // e.g. "http://localhost:5000" or "" if proxied

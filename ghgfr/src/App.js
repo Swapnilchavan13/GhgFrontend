@@ -41,6 +41,10 @@ import MeasureEmissions from './Pages/MeasureEmissions.jsx';
 import EmissionsWorkflow from './Pages/EmissionsWorkflow.jsx';
 import EmissionsWorkflowDasboard from './Pages/EmissionsWorkflowDasboard.jsx';
 import ReviewAndAction from './Pages/ReviewAndAction.jsx';
+import { CMSDashboard } from './CMS/CMSDashboard.jsx';
+import { ProjectDetail } from './Pages/ProjectDetail.jsx';
+import { Checkout } from './Pages/Checkout.jsx';
+import { MarketplaceHome } from './Pages/MarketplaceHome.jsx';
 
 function App() {
 
@@ -133,6 +137,14 @@ function App() {
 {/* ////CMS//// */}
           <Route path="newsform" element={<Newsform/>} />
           <Route path="productform" element={<ProductForm/>} />
+
+          <Route path="carboncms" element={<CMSDashboard/>} />
+
+{/* Carbon Marketplace */}
+
+      <Route path="/marketplacehome" element={<MarketplaceHome />} />
+      <Route path="/project/:id" element={<ProjectDetail />} />
+      <Route path="/checkout/:id" element={<Checkout />} />
 
 
       </Routes>
