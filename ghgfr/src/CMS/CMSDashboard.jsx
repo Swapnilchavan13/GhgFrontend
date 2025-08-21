@@ -20,7 +20,7 @@ export const CMSDashboard = () => {
 
   // Fetch projects from DB
   useEffect(() => {
-    fetch("http://localhost:8080/getprojects")
+    fetch("https://backend.climescore.com/getprojects")
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, []);
@@ -40,7 +40,7 @@ export const CMSDashboard = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/addprojects", {
+      const res = await fetch("https://backend.climescore.com/addprojects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
