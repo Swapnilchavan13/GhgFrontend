@@ -18,14 +18,12 @@ export const CMSDashboard = () => {
 
   const [projects, setProjects] = useState([]);
 
+  // Fetch projects from DB
   useEffect(() => {
-    const stored = localStorage.getItem("carbonProjects");
-    if (stored) setProjects(JSON.parse(stored));
+    fetch("http://localhost:8080/getprojects")
+      .then((res) => res.json())
+      .then((data) => setProjects(data));
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("carbonProjects", JSON.stringify(projects));
-  }, [projects]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,25 +33,38 @@ export const CMSDashboard = () => {
     });
   };
 
-  const handleAddProject = () => {
+  const handleAddProject = async () => {
     if (!formData.projectName || !formData.price) {
       alert("Project name & price required!");
       return;
     }
-    setProjects([...projects, { ...formData, id: Date.now() }]);
-    setFormData({
-      projectName: "",
-      description: "",
-      projectType: "",
-      location: "",
-      methodology: "",
-      rating: "",
-      price: "",
-      quantity: "",
-      coBenefits: "",
-      verification: "",
-      featured: false,
-    });
+
+    try {
+      const res = await fetch("http://localhost:8080/addprojects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const newProject = await res.json();
+
+      setProjects([newProject, ...projects]); // Update list instantly
+      setFormData({
+        projectName: "",
+        description: "",
+        projectType: "",
+        location: "",
+        methodology: "",
+        rating: "",
+        price: "",
+        quantity: "",
+        coBenefits: "",
+        verification: "",
+        featured: false,
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Error adding project");
+    }
   };
 
   return (

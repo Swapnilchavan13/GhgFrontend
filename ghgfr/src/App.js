@@ -137,7 +137,6 @@ function App() {
 {/* ////CMS//// */}
           <Route path="newsform" element={<Newsform/>} />
           <Route path="productform" element={<ProductForm/>} />
-
           <Route path="carboncms" element={<CMSDashboard/>} />
 
 {/* Carbon Marketplace */}
