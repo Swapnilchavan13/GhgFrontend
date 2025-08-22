@@ -1,0 +1,131 @@
+/* Container */
+.add-client-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.add-client-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Note */
+.note {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Form Layout (2 columns) */
+.client-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px 0;
+}
+
+/* Each field */
+.client-form label {
+  flex: 0 0 48%; /* left/right half */
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Full width items */
+.client-form .full-width {
+  flex: 0 0 100%;
+}
+
+/* Inputs */
+.client-form input,
+.client-form select {
+  margin-top: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.client-form input:focus,
+.client-form select:focus {
+  border-color: #3498db;
+  box-shadow: 0px 0px 4px rgba(52, 152, 219, 0.3);
+}
+
+/* Password input with toggle */
+.password-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-input-container input {
+  flex: 1;
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #3498db;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Logo Preview */
+.logo-preview {
+  display: block;
+  margin: 10px auto;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+}
+
+/* Submit Button */
+.submit-button {
+  background: #3498db;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.submit-button:active {
+  transform: translateY(0px);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .client-form label {
+    flex: 0 0 100%; /* stack on mobile */
+  }
+}

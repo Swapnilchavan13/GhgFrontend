@@ -45,6 +45,7 @@ import { CMSDashboard } from './CMS/CMSDashboard.jsx';
 import { ProjectDetail } from './Pages/ProjectDetail.jsx';
 import { Checkout } from './Pages/Checkout.jsx';
 import { MarketplaceHome } from './Pages/MarketplaceHome.jsx';
+import { ClientRegister } from './Component/ClientRegister.jsx';
 
 function App() {
 
@@ -96,8 +97,10 @@ function App() {
 
           <Route path="addemission" element={<Addemission />} />
           <Route path="allemissions" element={<Allemissions />} />
-          <Route path="addclient" element={<Addclient />} />
+          <Route path="addclients" element={<Addclient />} />
           <Route path="allclients" element={<Allclients />} />
+          <Route path="clientregister" element={<ClientRegister />} />
+
 
           <Route path="client" element={<Myemission />} />
           <Route path="client/myemission" element={<Myemission />} />
