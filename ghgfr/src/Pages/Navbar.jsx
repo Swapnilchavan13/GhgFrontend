@@ -44,9 +44,9 @@ export const Navbar = () => {
   <Link to={'/about'}><h5>About Us</h5></Link>
   <Link to={'/ecomemissions'}><h5>Emissions Measurement</h5></Link>
   <Link to={'/carbon-market'}><h5>Carbon Credit Marketplace</h5></Link>
-  <Link to={'/sustainable-marketplace'}><h5>Sustainable Marketplace</h5></Link>
+  <Link to={'/marketplace'}><h5>Sustainable Marketplace</h5></Link>
   <Link to={'/blog'}><h5>Blog / Resources</h5></Link>
-  <Link to={'/login'}><h5>Login / Sign Up</h5></Link>
+  <Link to={'/lient/login'}><h5>Login / Sign Up</h5></Link>
 </div>
 
     </div>
