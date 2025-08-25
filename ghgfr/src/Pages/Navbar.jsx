@@ -46,7 +46,7 @@ export const Navbar = () => {
   <Link to={'/carbon-market'}><h5>Carbon Credit Marketplace</h5></Link>
   <Link to={'/marketplace'}><h5>Sustainable Marketplace</h5></Link>
   <Link to={'/blog'}><h5>Blog / Resources</h5></Link>
-  <Link to={'/lient/login'}><h5>Login / Sign Up</h5></Link>
+  <Link to={'/client/login'}><h5>Login / Sign Up</h5></Link>
 </div>
 
     </div>
