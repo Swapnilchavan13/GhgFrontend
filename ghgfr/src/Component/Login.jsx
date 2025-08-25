@@ -62,6 +62,8 @@ export const Login = () => {
   </p>
 </div>
 
+<button onClick={() => navigate('/clientregister')}>Register Here</button>
+
       <div className="add-client-container">
         <h2>Login</h2>
         <label>
