@@ -391,7 +391,7 @@ testimonialSection: {
         <div style={styles.heroButtons}>
           <button style={styles.primaryBtn} onClick={() => navigate('/client/login')}>Measure Your Carbon Footprint</button>
           <button style={styles.secondaryBtn}>Browse Carbon Credits</button>
-          <button style={styles.primaryBtn}>Shop Sustainable</button>
+          <button style={styles.primaryBtn} onClick={() => navigate('/marketplace')}>Shop Sustainable</button>
         </div>
       </section>
 
@@ -631,7 +631,7 @@ testimonialSection: {
         <p style={styles.blogDesc}>
           A deep dive into the most challenging but critical emissions category for businesses.
         </p>
-        <button style={styles.blogButton}>Read Article</button>
+        <button style={styles.blogButton} onClick={() => navigate('/blog')}>Read Article</button>
       </div>
     </div>
 
@@ -648,7 +648,7 @@ testimonialSection: {
         <p style={styles.blogDesc}>
           Our curated list of brands making a real difference through sustainable practices.
         </p>
-        <button style={styles.blogButton}>Read Article</button>
+        <button style={styles.blogButton} onClick={() => navigate('/blog')}>Read Article</button>
       </div>
     </div>
 
@@ -665,7 +665,7 @@ testimonialSection: {
         <p style={styles.blogDesc}>
           A beginner's guide to understanding carbon credits and how they benefit the planet.
         </p>
-        <button style={styles.blogButton}>Read Article</button>
+        <button style={styles.blogButton} onClick={() => navigate('/blog')}>Read Article</button>
       </div>
     </div>
   </div>
