@@ -3,25 +3,37 @@ import React from 'react';
 const blogPosts = [
   {
     title: 'Understanding Your Carbon Footprint',
-    summary: 'Learn what contributes to your carbon emissions and how to reduce them.',
+    subtitle: 'Measure, Reduce & Contribute',
+    category: 'Climate Awareness',
+    description: 'Learn what contributes to your carbon emissions and how to reduce them with practical steps.',
+    views: 1240,
     image: 'https://cdn.prod.website-files.com/64b78e9db44da70d86b3b47f/662383dde0a0f7cd33b6319f_Carbon%20Footprint.jpg',
     link: '#'
   },
   {
     title: 'Top 10 Sustainable Products in 2025',
-    summary: 'Discover innovative and eco-friendly products making a difference this year.',
+    subtitle: 'Eco-friendly Innovations',
+    category: 'Green Lifestyle',
+    description: 'Discover innovative and eco-friendly products that are making a difference this year.',
+    views: 980,
     image: 'https://www.dsers.com/blog/content/images/2025/01/sustainable-product.png',
     link: '#'
   },
   {
     title: 'How Carbon Credits Work',
-    summary: 'An easy guide to how carbon credits help the planet and how you can get involved.',
+    subtitle: 'A Simple Guide',
+    category: 'Carbon Market',
+    description: 'An easy guide to how carbon credits help the planet and how you can get involved.',
+    views: 765,
     image: 'https://climatecarbon.com/wp-content/uploads/2023/05/1_1dbQNPRGrukYs2wFej0Hvg.png',
     link: '#'
   },
   {
     title: 'Sustainability Success Stories',
-    summary: 'Real-life stories of communities and businesses making an impact.',
+    subtitle: 'Real-world Impact',
+    category: 'Case Studies',
+    description: 'Real-life stories of communities and businesses making an impact in sustainability.',
+    views: 1540,
     image: 'https://t4.ftcdn.net/jpg/01/42/78/73/360_F_142787339_RkyaHN7hVIxYa9Mf75vCRUgZtbqHtSxA.jpg',
     link: '#'
   }
@@ -42,7 +54,10 @@ const BlogResources = () => {
               <img src={post.image} alt={post.title} className="blog-image" />
               <div className="blog-content">
                 <h3>{post.title}</h3>
-                <p>{post.summary}</p>
+                <h4 className="blog-sub">{post.subtitle}</h4>
+                <p className="blog-category">Category: {post.category}</p>
+                <p>{post.description}</p>
+                <p className="blog-views">👁 {post.views} views</p>
                 <a href={post.link} className="blog-link">
                   Read More →
                 </a>
@@ -106,12 +121,31 @@ const BlogResources = () => {
         .blog-content h3 {
           font-size: 20px;
           color: #2c3e50;
+          margin-bottom: 5px;
+        }
+
+        .blog-sub {
+          font-size: 16px;
+          font-weight: 500;
+          color: #1e88e5;
+          margin-bottom: 10px;
+        }
+
+        .blog-category {
+          font-size: 14px;
+          color: #888;
           margin-bottom: 10px;
         }
 
         .blog-content p {
-          font-size: 16px;
+          font-size: 15px;
           color: #555;
+          margin-bottom: 10px;
+        }
+
+        .blog-views {
+          font-size: 14px;
+          color: #444;
           margin-bottom: 15px;
         }
 

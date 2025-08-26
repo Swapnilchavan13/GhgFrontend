@@ -46,6 +46,7 @@ import { ProjectDetail } from './Pages/ProjectDetail.jsx';
 import { Checkout } from './Pages/Checkout.jsx';
 import { MarketplaceHome } from './Pages/MarketplaceHome.jsx';
 import { ClientRegister } from './Component/ClientRegister.jsx';
+import BlogCMS from './CMS/BlogCMS.jsx';
 
 function App() {
 
@@ -141,6 +142,8 @@ function App() {
           <Route path="newsform" element={<Newsform/>} />
           <Route path="productform" element={<ProductForm/>} />
           <Route path="carboncms" element={<CMSDashboard/>} />
+          <Route path="blogcms" element={<BlogCMS/>} />
+
 
 {/* Carbon Marketplace */}
 
