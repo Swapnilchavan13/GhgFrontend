@@ -47,6 +47,7 @@ import { Checkout } from './Pages/Checkout.jsx';
 import { MarketplaceHome } from './Pages/MarketplaceHome.jsx';
 import { ClientRegister } from './Component/ClientRegister.jsx';
 import BlogCMS from './CMS/BlogCMS.jsx';
+import { BuyersData } from './CMS/BuyersData.jsx';
 
 function App() {
 
@@ -143,6 +144,9 @@ function App() {
           <Route path="productform" element={<ProductForm/>} />
           <Route path="carboncms" element={<CMSDashboard/>} />
           <Route path="blogcms" element={<BlogCMS/>} />
+
+          <Route path="buyerscms" element={<BuyersData/>} />
+
 
 
 {/* Carbon Marketplace */}

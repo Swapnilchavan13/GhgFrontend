@@ -11,6 +11,15 @@ const BlogCMS = ({ onAddBlog }) => {
     link: "#",
   });
 
+  const categories = [
+    "Climate Awareness",
+    "Green Lifestyle",
+    "Carbon Market",
+    "Case Studies",
+    "Innovations",
+    "Renewable Energy",
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -54,13 +63,21 @@ const BlogCMS = ({ onAddBlog }) => {
           value={formData.subtitle}
           onChange={handleChange}
         />
-        <input
-          type="text"
+
+        {/* Dropdown for Categories */}
+        <select
           name="category"
-          placeholder="Blog Category"
           value={formData.category}
           onChange={handleChange}
-        />
+        >
+          <option value="">-- Select Category --</option>
+          {categories.map((cat, idx) => (
+            <option key={idx} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+
         <textarea
           name="description"
           placeholder="Blog Description"
@@ -105,7 +122,9 @@ const BlogCMS = ({ onAddBlog }) => {
           flex-direction: column;
           gap: 12px;
         }
-        .cms-form input, .cms-form textarea {
+        .cms-form input, 
+        .cms-form textarea,
+        .cms-form select {
           padding: 10px;
           font-size: 16px;
           border: 1px solid #ccc;
