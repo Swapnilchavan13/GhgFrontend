@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export const BuyersData = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +30,23 @@ export const BuyersData = () => {
   });
 
   const [csvData, setCsvData] = useState([]);
+  const [buyers, setBuyers] = useState([]); // <-- store buyers data
+
+  // Fetch all buyers on load
+  useEffect(() => {
+    fetchBuyers();
+  }, []);
+
+  const fetchBuyers = async () => {
+    try {
+      const res = await fetch("http://62.72.59.146:8080/getbuyers");
+      const data = await res.json();
+      setBuyers(data.data);
+    } catch (err) {
+      console.error(err);
+      alert("Error fetching buyers");
+    }
+  };
 
   // Handle input change
   const handleChange = (e) => {
@@ -40,13 +57,14 @@ export const BuyersData = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8080/addbuyer", {
+      const res = await fetch("http://62.72.59.146:8080/addbuyer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
       alert(`Added: ${data.inserted} | Skipped (duplicate): ${data.skipped}`);
+      fetchBuyers(); // refresh table
     } catch (error) {
       console.error(error);
       alert("Error saving buyer");
@@ -62,15 +80,12 @@ export const BuyersData = () => {
     reader.onload = (event) => {
       const text = event.target.result;
       const rows = text.split("\n").map((row) => row.split(","));
-
       const headers = rows[0].map((h) => h.trim());
 
       const data = rows.slice(1).map((row) => {
         let obj = {};
         row.forEach((value, index) => {
-          if (headers[index]) {
-            obj[headers[index]] = value.trim();
-          }
+          if (headers[index]) obj[headers[index]] = value.trim();
         });
         return obj;
       });
@@ -83,13 +98,14 @@ export const BuyersData = () => {
   // Upload CSV parsed data
   const handleCSVSubmit = async () => {
     try {
-      const res = await fetch("http://localhost:8080/addbuyer", {
+      const res = await fetch("http://62.72.59.146:8080/addbuyer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(csvData),
       });
       const result = await res.json();
       alert(`Added: ${result.inserted} | Skipped (duplicate): ${result.skipped}`);
+      fetchBuyers(); // refresh table
     } catch (err) {
       console.error(err);
       alert("Error uploading CSV data");
@@ -154,6 +170,39 @@ export const BuyersData = () => {
         <button onClick={handleCSVSubmit} disabled={csvData.length === 0}>
           Upload CSV
         </button>
+      </div>
+
+      {/* Buyers Table */}
+      <div className="buyers-table">
+        <h3>All Buyers</h3>
+        <table border="1" cellPadding="5">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Industry</th>
+              <th>Country</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {buyers.map((b, i) => (
+              <tr key={i}>
+                <td>{b.buyerName}</td>
+                <td>{b.buyerType}</td>
+                <td>{b.industry}</td>
+                <td>{b.country}</td>
+                <td>{b.contactPerson}</td>
+                <td>{b.email}</td>
+                <td>{b.phone}</td>
+                <td>{b.buyerStatus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
