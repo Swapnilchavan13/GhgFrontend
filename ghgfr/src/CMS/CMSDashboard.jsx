@@ -28,7 +28,7 @@ export const CMSDashboard = () => {
 
   // Fetch projects
   useEffect(() => {
-    fetch("http://localhost:8080/getprojects")
+    fetch("http://62.72.59.146:8080/getprojects")
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, []);
@@ -82,7 +82,7 @@ export const CMSDashboard = () => {
       if (video) dataToSend.append("video", video);
       if (document) dataToSend.append("document", document);
 
-      const res = await fetch("http://localhost:8080/addprojects", {
+      const res = await fetch("http://62.72.59.146:8080/addprojects", {
         method: "POST",
         body: dataToSend,
       });
@@ -316,10 +316,10 @@ export const CMSDashboard = () => {
                 {p.rating}
               </p>
               <p>{p.description}</p>
-              {p.photo && <img src={`http://localhost:8080${p.photo}`} alt="project" />}
-              {p.video && <video src={`http://localhost:8080${p.video}`} controls />}
+              {p.photo && <img src={`http://62.72.59.146:8080${p.photo}`} alt="project" />}
+              {p.video && <video src={`http://62.72.59.146:8080${p.video}`} controls />}
               {p.document && (
-                <a href={`http://localhost:8080${p.document}`} target="_blank" rel="noreferrer">
+                <a href={`http://62.72.59.146:8080${p.document}`} target="_blank" rel="noreferrer">
                   Download Document
                 </a>
               )}
