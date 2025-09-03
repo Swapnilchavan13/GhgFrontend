@@ -390,7 +390,7 @@ testimonialSection: {
         </h1>
         <div style={styles.heroButtons}>
           <button style={styles.primaryBtn} onClick={() => navigate('/client/login')}>Measure Your Carbon Footprint</button>
-          <button style={styles.secondaryBtn}>Browse Carbon Credits</button>
+          <button style={styles.secondaryBtn} onClick={() => navigate('/marketplacehome')}>Browse Carbon Credits</button>
           <button style={styles.primaryBtn} onClick={() => navigate('/marketplace')}>Shop Sustainable</button>
         </div>
       </section>
@@ -455,7 +455,7 @@ testimonialSection: {
         <p style={styles.featureText}>
           Offset with verified, high-impact credits from around the world.
         </p>
-        <button style={styles.featureButton}>Browse Projects</button>
+        <button style={styles.featureButton} onClick={() => navigate('/marketplacehome')}>Browse Projects</button>
       </div>
 
       <div style={styles.featureCard}>

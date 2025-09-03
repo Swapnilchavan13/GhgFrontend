@@ -13,11 +13,21 @@ export const MarketplaceHome = () => {
 
   const navigate = useNavigate();
 
+  // Fetch projects from backend API
   useEffect(() => {
-    const stored = localStorage.getItem("carbonProjects");
-    if (stored) setProjects(JSON.parse(stored));
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("http://62.72.59.146:8080/getprojects");
+        const data = await res.json();
+        setProjects(data);
+      } catch (err) {
+        console.error("Error fetching projects:", err);
+      }
+    };
+    fetchProjects();
   }, []);
 
+  // Apply filters
   const filteredProjects = projects.filter((p) => {
     return (
       (filters.search === "" ||
@@ -78,17 +88,24 @@ export const MarketplaceHome = () => {
       <div className="carousel">
         <h3>⭐ Featured Projects</h3>
         <div className="carousel-track">
-          {projects.filter((p) => p.featured).map((p) => (
-            <div
-              key={p.id}
-              className="carousel-card"
-              onClick={() => navigate(`/project/${p.id}`)}
-            >
-              <h4>{p.projectName}</h4>
-              <p>{p.projectType}</p>
-              <p>💰 ₹{p.price}/tonne</p>
-            </div>
-          ))}
+          {projects
+            .filter((p) => p.featured)
+            .map((p) => (
+              <div
+                key={p._id}
+                className="carousel-card"
+                onClick={() => navigate(`/project/${p._id}`)}
+              >
+                <img
+                  src={`http://62.72.59.146:8080${p.photo}`}
+                  alt={p.projectName}
+                  className="carousel-img"
+                />
+                <h4>{p.projectName}</h4>
+                <p>{p.projectType}</p>
+                <p>💰 ₹{p.price}/tonne</p>
+              </div>
+            ))}
         </div>
       </div>
 
@@ -96,21 +113,26 @@ export const MarketplaceHome = () => {
       <div className="project-grid">
         {filteredProjects.map((p) => (
           <div
-            key={p.id}
+            key={p._id}
             className="project-card"
-            onClick={() => navigate(`/project/${p.id}`)}
+            onClick={() => navigate(`/project/${p._id}`)}
           >
+            <img
+              src={`http://62.72.59.146:8080${p.photo}`}
+              alt={p.projectName}
+              className="project-img"
+            />
             <h3 className="project-title">{p.projectName}</h3>
             <p className="project-meta">
               🌱 <strong>Type:</strong> {p.projectType} | 📍{" "}
-              <strong>Location:</strong> {p.location}
+              <strong>Location:</strong> {p.location || "N/A"}
             </p>
             <p>
               ⭐ <strong>Rating:</strong> {p.rating} | 🔎{" "}
               <strong>Methodology:</strong> {p.methodology || "N/A"}
             </p>
             <p>
-              ✅ <strong>Certifier:</strong> {p.certifier || "Independent"}
+              ✅ <strong>Verification:</strong> {p.verification || "Independent"}
             </p>
             <p>
               📄 <strong>Description:</strong>{" "}
@@ -119,7 +141,8 @@ export const MarketplaceHome = () => {
                 : "No description available."}
             </p>
             <p className="price">
-              💰 <strong>Price:</strong> ₹{p.price}/tonne
+              💰 <strong>Price:</strong> ₹{p.price}/tonne | 📦{" "}
+              <strong>Available:</strong> {p.quantity}
             </p>
             <button className="buy-btn">View Details →</button>
           </div>
