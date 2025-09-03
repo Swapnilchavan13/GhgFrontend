@@ -8,7 +8,7 @@ export const ProjectDetail = () => {
   const [project, setProject] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/getprojects/${id}`)
+    fetch(`http://62.72.59.146:8080/getprojects/${id}`)
       .then((res) => res.json())
       .then((data) => setProject(data))
       .catch((err) => console.error("Error fetching project:", err));
