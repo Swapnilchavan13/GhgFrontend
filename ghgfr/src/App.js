@@ -48,6 +48,7 @@ import { MarketplaceHome } from './Pages/MarketplaceHome.jsx';
 import { ClientRegister } from './Component/ClientRegister.jsx';
 import BlogCMS from './CMS/BlogCMS.jsx';
 import { BuyersData } from './CMS/BuyersData.jsx';
+import { NewHomePage } from './Pages/NewHomePage.jsx';
 
 function App() {
 
@@ -77,14 +78,11 @@ function App() {
       <Routes>
       {/* <Route path="/" element={<Homepage />} /> */}
 
-      <Route path="/" element={<LandingPage />} />
+      {/* <Route path="/" element={<LandingPage />} /> */}
 
-      
+      <Route path="/" element={<NewHomePage />} />
 
       <Route path="/blog" element={<BlogResources />} />
-
-
-      
 
           <Route path="/admin" element={<Adminlogin />} />
           <Route path="/homepage" element={<Homepage />} />
@@ -125,17 +123,12 @@ function App() {
       <Route path="/ecomadminregister" element={<AdminRegister />} />
       <Route path="/businessdashboard" element={<BusinessDashboard />} />
 
-
       {/* Measure Your Emissions */}
 
       <Route path="/measureemission" element={<MeasureEmissions />} />
       <Route path="/emissionworkflow" element={<EmissionsWorkflow />} />
       <Route path="/emissionworkflowdashboard" element={<EmissionsWorkflowDasboard />} />
       <Route path="/review" element={<ReviewAndAction />} />
-
-
-
-
 
       <Route path="/ecomemissions" element={<Ecomemission />} />
 
@@ -146,7 +139,6 @@ function App() {
           <Route path="blogcms" element={<BlogCMS/>} />
 
           <Route path="buyerscms" element={<BuyersData/>} />
-
 
 
 {/* Carbon Marketplace */}

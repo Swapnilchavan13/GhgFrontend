@@ -117,11 +117,16 @@ export const MarketplaceHome = () => {
             className="project-card"
             onClick={() => navigate(`/project/${p._id}`)}
           >
-            <img
-              src={`http://62.72.59.146:8080${p.photo}`}
-              alt={p.projectName}
-              className="project-img"
-            />
+          <img
+  src={`http://62.72.59.146:8080${p.photo}`}
+  alt={p.projectName}
+  className="project-img"
+  onError={(e) => {
+    e.currentTarget.src =
+      "https://cdn.prod.website-files.com/63f86f47576a6732f24a776a/6623f07d9fef8cf1fd318213_Blog%20Banner%20(64).png";
+  }}
+/>
+
             <h3 className="project-title">{p.projectName}</h3>
             <p className="project-meta">
               🌱 <strong>Type:</strong> {p.projectType} | 📍{" "}
@@ -132,7 +137,7 @@ export const MarketplaceHome = () => {
               <strong>Methodology:</strong> {p.methodology || "N/A"}
             </p>
             <p>
-              ✅ <strong>Verification:</strong> {p.verification || "Independent"}
+              ✅ <strong>Registry:</strong> {p.registry || "Independent"}
             </p>
             <p>
               📄 <strong>Description:</strong>{" "}
