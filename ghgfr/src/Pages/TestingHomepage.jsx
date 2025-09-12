@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/testcss.css";
 import { Link } from "react-router-dom";
+import { Footer } from "./Footer";
 
 const images = [
   {
@@ -153,7 +154,7 @@ export const TestingHomepage = () => {
       {/* Navbar */}
       <nav className="navbar">
         {/* Left side logo */}
-        <div className="logo">Climescore</div>
+        <div className="logo"><Link to="/">Climescore</Link></div>
 
         {/* Right side menu */}
        <ul className="nav-links">
@@ -285,6 +286,7 @@ export const TestingHomepage = () => {
 
 </div>
     </div>
+    <Footer />
     </div>
     </div>
      </div>

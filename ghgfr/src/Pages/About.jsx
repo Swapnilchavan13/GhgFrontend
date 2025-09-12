@@ -3,6 +3,7 @@ import '../styles/about.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { Footer } from './Footer';
 
 export const About = () => {
 
@@ -147,6 +148,7 @@ export const About = () => {
         </div>
     </div>
     </div>
+    <Footer />
     </div>
   );
 }

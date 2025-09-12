@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
     <div className="footer-content">
-      <p>&copy; {new Date().getFullYear()} Nettzero. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} ClimeScore. All rights reserved.</p>
       <p>
         <a href="/about">About</a> | <a href="/contact">Contact</a>
       </p>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Footer } from "./Footer";
 
 export const Jobs = () => {
   const jobs = [
@@ -36,7 +37,7 @@ export const Jobs = () => {
     {/* Navbar */}
       <nav className="navbar">
         {/* Left side logo */}
-        <div className="logo">Climescore</div>
+        <div className="logo"><Link to="/">Climescore</Link></div>
 
         {/* Right side menu */}
        <ul className="nav-links">
@@ -129,6 +130,7 @@ export const Jobs = () => {
         ))}
       </div>
     </div>
+    <Footer />
                 </>
   );
 };

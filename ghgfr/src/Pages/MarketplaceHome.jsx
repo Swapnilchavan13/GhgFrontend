@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Marketplacehome.css";
+import { Footer } from "./Footer";
 
 export const MarketplaceHome = () => {
   const [projects, setProjects] = useState([]);
@@ -43,7 +44,7 @@ export const MarketplaceHome = () => {
  {/* Navbar */}
       <nav className="navbar">
         {/* Left side logo */}
-        <div className="logo">Climescore</div>
+        <div className="logo"><Link to="/">Climescore</Link></div>
 
         {/* Right side menu */}
        <ul className="nav-links">
@@ -176,7 +177,7 @@ export const MarketplaceHome = () => {
         ))}
       </div>
     </div>
-
+<Footer />
     </>
   );
 };

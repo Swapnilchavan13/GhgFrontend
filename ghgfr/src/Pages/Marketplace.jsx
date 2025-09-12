@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../styles/marketplace.css"
 import { Link, useNavigate } from 'react-router-dom';
+import { Footer } from './Footer';
 
 export const Marketplace = () => {
     const navigate = useNavigate();
@@ -46,7 +47,7 @@ export const Marketplace = () => {
     {/* Navbar */}
       <nav className="navbar">
         {/* Left side logo */}
-        <div className="logo">Climescore</div>
+        <div className="logo"><Link to="/">Climescore</Link></div>
 
         {/* Right side menu */}
        <ul className="nav-links">
@@ -93,6 +94,8 @@ export const Marketplace = () => {
         ))}
       </div>
     </div>
+
+    <Footer/>
           </>
   );
 }
