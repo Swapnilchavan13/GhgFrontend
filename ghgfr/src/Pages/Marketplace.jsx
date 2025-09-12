@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../styles/marketplace.css"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Marketplace = () => {
     const navigate = useNavigate();
@@ -42,6 +42,22 @@ export const Marketplace = () => {
   }, [products, selectedCategory, searchTerm]);
 
   return (
+    <>
+    {/* Navbar */}
+      <nav className="navbar">
+        {/* Left side logo */}
+        <div className="logo">Climescore</div>
+
+        {/* Right side menu */}
+       <ul className="nav-links">
+  <li><Link to="/client/login">Measure Carbon Emission</Link></li>
+  <li><Link to="/marketplacehome">Carbon Credits</Link></li>
+  <li><Link to="/marketplace">Green Marketplace</Link></li>
+  <li><Link to="/blog">Resources</Link></li>
+  <li><Link to="/jobs">Jobs</Link></li>
+  <li><Link to="/about">About</Link></li>
+</ul>
+      </nav>
     <div>
       <h1>Marketplace</h1>
       <div id='mainmarket'>
@@ -77,6 +93,7 @@ export const Marketplace = () => {
         ))}
       </div>
     </div>
+          </>
   );
 }
 

@@ -42,46 +42,98 @@
 
 /* ⭐ Featured Carousel */
 .carousel {
-  margin-bottom: 3rem;
+  width: 95% !important;;
+  height: 400px !important;
+  padding: 40px 20px;
+  background: #f9fafb;
+  border-radius: 12px;
 }
 
 .carousel h3 {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  color: #34495e;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
+/* Track */
 .carousel-track {
   display: flex;
-  gap: 1rem;
+  gap: 20px;
   overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #c8e6c9 transparent;
+  padding-bottom: 10px;
+  height: 300px !important;
+    align-items: stretch; /* Force cards to stretch full height */
 }
 
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: #c8e6c9;
+  border-radius: 10px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Each Card */
 .carousel-card {
+  flex: 0 0 280px;
+  height: 100%; /* Now fills 400px track */
+  scroll-snap-align: start;
   background: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  min-width: 220px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 18px;
+  text-align: center;
   cursor: pointer;
-  flex: 0 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .carousel-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.carousel-card img {
+/* Image */
+.project-img {
   width: 100%;
-  height: 140px;
+  flex: 1; /* Take available space */
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 0.8rem;
+  border-radius: 12px;
+  margin-bottom: 12px;
 }
+
+/* Text */
+.carousel-card h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 8px 0;
+}
+
+.carousel-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+.carousel-card p:last-child {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+
 
 /* 📦 Project Grid */
 .project-grid {

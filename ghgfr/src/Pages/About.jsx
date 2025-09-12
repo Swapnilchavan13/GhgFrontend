@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import '../styles/about.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 
 export const About = () => {
 
@@ -13,6 +14,21 @@ export const About = () => {
 
   return (
     <div>
+      {/* Navbar */}
+      <nav className="navbar">
+        {/* Left side logo */}
+        <div className="logo">Climescore</div>
+
+        {/* Right side menu */}
+       <ul className="nav-links">
+  <li><Link to="/client/login">Measure Carbon Emission</Link></li>
+  <li><Link to="/marketplacehome">Carbon Credits</Link></li>
+  <li><Link to="/marketplace">Green Marketplace</Link></li>
+  <li><Link to="/blog">Resources</Link></li>
+  <li><Link to="/jobs">Jobs</Link></li>
+  <li><Link to="/about">About</Link></li>
+</ul>
+      </nav>
       <div className='aboutdiv1'>
         <h1 data-aos="slide-up">Walking The Green Talk.</h1>
         <h2 data-aos="slide-up">For Over Two Decades.</h2>

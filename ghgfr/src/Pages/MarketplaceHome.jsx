@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Marketplacehome.css";
 
 export const MarketplaceHome = () => {
@@ -39,7 +39,25 @@ export const MarketplaceHome = () => {
   });
 
   return (
+<>
+ {/* Navbar */}
+      <nav className="navbar">
+        {/* Left side logo */}
+        <div className="logo">Climescore</div>
+
+        {/* Right side menu */}
+       <ul className="nav-links">
+  <li><Link to="/client/login">Measure Carbon Emission</Link></li>
+  <li><Link to="/marketplacehome">Carbon Credits</Link></li>
+  <li><Link to="/marketplace">Green Marketplace</Link></li>
+  <li><Link to="/blog">Resources</Link></li>
+  <li><Link to="/jobs">Jobs</Link></li>
+  <li><Link to="/about">About</Link></li>
+</ul>
+      </nav>
+    
     <div className="marketplace-container">
+      
       <h2>🌍 Carbon Credit Marketplace</h2>
 
       {/* Search & Filters */}
@@ -97,10 +115,14 @@ export const MarketplaceHome = () => {
                 onClick={() => navigate(`/project/${p._id}`)}
               >
                 <img
-                  src={`http://62.72.59.146:8080${p.photo}`}
-                  alt={p.projectName}
-                  className="carousel-img"
-                />
+  src={`http://62.72.59.146:8080${p.photo}`}
+  alt={p.projectName}
+  className="project-img"
+  onError={(e) => {
+    e.currentTarget.src =
+      "https://cdn.prod.website-files.com/63f86f47576a6732f24a776a/6623f07d9fef8cf1fd318213_Blog%20Banner%20(64).png";
+  }}
+/>
                 <h4>{p.projectName}</h4>
                 <p>{p.projectType}</p>
                 <p>💰 ₹{p.price}/tonne</p>
@@ -154,6 +176,8 @@ export const MarketplaceHome = () => {
         ))}
       </div>
     </div>
+
+    </>
   );
 };
 

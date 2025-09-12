@@ -55,12 +55,7 @@ export const Userlogin = () => {
     <>
       <Usernavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} />
 
-      <div className='loginnote'>
-  <p>
-    Need access to the globally validated Carbon Accounting methodologies across Scope 1, 2 & 3 - along with scientific verification and internationally recognised reporting? 
-    Reach out to Vidhi on <a href="tel:+9306205810">9306205810</a>.
-  </p>
-</div>
+    
       <div className="add-client-container">
         <h2>User Login</h2>
        

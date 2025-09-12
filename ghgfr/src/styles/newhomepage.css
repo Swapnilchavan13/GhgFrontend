@@ -1,9 +1,4 @@
-/* .firstdiv {
-border: 3px solid black;
-border-radius: 10px;
-width: 80%;
-margin: auto;
-} */
+/*
 
 .firstdiv {
   position: relative;
@@ -23,7 +18,7 @@ margin: auto;
   object-fit: cover;
 }
 
-/* Overlay Container */
+/* Overlay Container 
 .overlay-content {
   position: absolute;
   inset: 0;
@@ -36,14 +31,14 @@ margin: auto;
   text-align: center;
 }
 
-/* Text */
+/* Text 
 .overlay-text {
   font-size: 2rem;
   font-weight: bold;
   color: white;
 }
 
-/* Button */
+/* Button 
 .overlay-btn {
   padding: 10px 20px;
   font-size: 16px;
@@ -79,8 +74,9 @@ margin: auto;
 
 .nav-button.next {
   right: 15px;
-}
+} 
 
+*/
 
 /* ///// */
 

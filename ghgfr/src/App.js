@@ -49,6 +49,8 @@ import { ClientRegister } from './Component/ClientRegister.jsx';
 import BlogCMS from './CMS/BlogCMS.jsx';
 import { BuyersData } from './CMS/BuyersData.jsx';
 import { NewHomePage } from './Pages/NewHomePage.jsx';
+import { TestingHomepage } from './Pages/TestingHomepage.jsx';
+import { Jobs } from './Pages/Jobs.jsx';
 
 function App() {
 
@@ -74,13 +76,16 @@ function App() {
   return (
     <div className="App">
        <BrowserRouter>
-       <Navbar />
+       {/* <Navbar /> */}
       <Routes>
       {/* <Route path="/" element={<Homepage />} /> */}
 
       {/* <Route path="/" element={<LandingPage />} /> */}
 
-      <Route path="/" element={<NewHomePage />} />
+      {/* <Route path="/" element={<NewHomePage />} /> */}
+
+      <Route path="/" element={<TestingHomepage />} />
+
 
       <Route path="/blog" element={<BlogResources />} />
 
@@ -131,6 +136,8 @@ function App() {
       <Route path="/review" element={<ReviewAndAction />} />
 
       <Route path="/ecomemissions" element={<Ecomemission />} />
+      <Route path="/jobs" element={<Jobs />} />
+
 
 {/* ////CMS//// */}
           <Route path="newsform" element={<Newsform/>} />
@@ -149,7 +156,7 @@ function App() {
 
 
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
      
     </div>
