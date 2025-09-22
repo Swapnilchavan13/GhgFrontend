@@ -49,8 +49,11 @@ import { ClientRegister } from './Component/ClientRegister.jsx';
 import BlogCMS from './CMS/BlogCMS.jsx';
 import { BuyersData } from './CMS/BuyersData.jsx';
 import { NewHomePage } from './Pages/NewHomePage.jsx';
-import { TestingHomepage } from './Pages/TestingHomepage.jsx';
+import { TestingHomepage2 } from './Pages/TestingHomepage2.jsx';
 import { Jobs } from './Pages/Jobs.jsx';
+import { TestingHomepage } from "./Pages/TestingHomepage.jsx";
+import ScrollSection from './Pages/ScrollSection.jsx';
+import { Testing3 } from './Pages/Testing3.jsx';
 
 function App() {
 
@@ -84,7 +87,7 @@ function App() {
 
       {/* <Route path="/" element={<NewHomePage />} /> */}
 
-      <Route path="/" element={<TestingHomepage />} />
+      <Route path="/" element={<Testing3 />} />
 
 
       <Route path="/blog" element={<BlogResources />} />

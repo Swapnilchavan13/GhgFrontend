@@ -29,6 +29,9 @@ const images = [
 
 export const TestingHomepage = () => {
 
+    const rafRef = useRef(null);
+      const finishedRef = useRef(false);
+
     const countersData = [
   {
     value: 200000,
@@ -80,51 +83,68 @@ export const TestingHomepage = () => {
 
 
 
- const slides =[
+// ---------------- Slides ----------------
+  const slides = [
     {
       title: "Measure Carbon Emission",
-      img: "https://www.carbongate.io/Assets/images/services/carbonemission.png",
-      text: "Track and measure your carbon emissions with advanced analytics."
+      contents: [
+        { img: "https://www.carbongate.io/Assets/images/services/carbonemission.png", text: "Track and measure your carbon emissions with advanced analytics and real-time monitoring systems." },
+        { img: "https://miro.medium.com/1*YMLLZCyqIap586ayhcaqdQ.jpeg", text: "Generate accurate reports with scientific methods and internationally recognized standards." },
+        { img: "https://cdn.tapinvest.in/strapi-assets/Credit_Creation_1_8ac29ba9ba.jpg", text: "Identify key hotspots of your organization's carbon footprint with detailed analysis." },
+      ],
     },
     {
       title: "Earn / Buy Carbon Credits",
-      img: "https://climatecarbon.com/wp-content/uploads/2023/05/Carbon-Credit.jpg",
-      text: "Earn credits by reducing emissions or buy credits to offset impact."
+      contents: [
+        { img: "https://climatecarbon.com/wp-content/uploads/2023/05/Carbon-Credit.jpg", text: "Earn credits by reducing emissions through verified sustainability initiatives." },
+        { img: "https://static1.squarespace.com/static/650bf3ee96714871f4364ce8/652d0ba2958f231b73106e32/67125d543943cf1dbe41a26a/1752728063907/epr+-+Copy.png", text: "Buy certified credits to offset your impact and achieve carbon neutrality." },
+        { img: "https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2025/07/climate-literacy-image.png?fit=1280%2C720&ssl=1", text: "Participate in verified climate-positive projects around the globe." },
+      ],
     },
     {
       title: "Explore Sustainable Marketplace",
-      img: "https://miro.medium.com/1*YMLLZCyqIap586ayhcaqdQ.jpeg",
-      text: "Discover sustainable products and services in our marketplace."
-    }
+      contents: [
+        { img: "https://miro.medium.com/1*YMLLZCyqIap586ayhcaqdQ.jpeg", text: "Discover eco-friendly products and services from sustainable brands." },
+        { img: "https://shopequo.com/cdn/shop/articles/Cover_642d8475-e5b3-4074-a452-8d054a621b9e.jpg?v=1709275662&width=1600", text: "Support businesses contributing to sustainability and environmental protection." },
+        { img: "https://climatecarbon.com/wp-content/uploads/2023/05/Carbon-Credit.jpg", text: "Build a green supply chain with trusted partners and verified suppliers." },
+      ],
+    },
   ];
 
-  const [active, setActive] = useState(0);
-  const wrapperRef = useRef(null);
+  const totalItems = slides.reduce((acc, slide) => acc + slide.contents.length, 0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentText, setCurrentText] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
+  // -------- Sticky Scroll Handler --------
   useEffect(() => {
-    const wrapper = wrapperRef.current;
+    const section = document.getElementById("scroll-section");
     const handleScroll = () => {
-      const rect = wrapper.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // total scrollable area inside wrapper
-      const progress = Math.min(
-        1,
-        Math.max(0, (windowHeight - rect.top) / (rect.height - windowHeight))
-      );
-
-      // split progress into equal parts for slides
-      const index = Math.min(
-        slides.length - 1,
-        Math.floor(progress * slides.length)
-      );
-
-      setActive(index);
+      if (!section) return;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = window.innerHeight * 4; // 400vh
+      const scrollY = window.scrollY - sectionTop;
+      if (scrollY < 0 || scrollY > sectionHeight) return;
+      const progress = scrollY / sectionHeight;
+      const totalSteps = totalItems;
+      const step = Math.floor(progress * (totalSteps - 1.01));
+      let slideIndex = 0, textIndex = 0, itemCount = 0;
+      for (let i = 0; i < slides.length; i++) {
+        if (step >= itemCount && step < itemCount + slides[i].contents.length) {
+          slideIndex = i;
+          textIndex = step - itemCount;
+          break;
+        }
+        itemCount += slides[i].contents.length;
+      }
+      setCurrentSlide(slideIndex);
+      setCurrentText(textIndex);
+      setScrollProgress(progress);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [slides.length]);
+  }, [totalItems, slides]);
+
 
 
     const [current, setCurrent] = useState(0);
@@ -148,6 +168,26 @@ export const TestingHomepage = () => {
   const handleButtonClick = () => {
     alert(`You clicked: ${images[current].text}`);
   };
+
+
+  const [mode, setMode] = useState("sticky"); // sticky | fixed | released
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY < 500) {
+        setMode("sticky"); // up to 50vh
+      } else if (scrollY >= 500 && scrollY < 2500) {
+        setMode("fixed"); // fixed for next 200vh
+      } else {
+        setMode("released"); // released afterwards
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
         
   return (
     <div>
@@ -192,47 +232,53 @@ export const TestingHomepage = () => {
     </div>
 
 
-      <div className="clime-wrapper" ref={wrapperRef}>
-  <h1 style={{ color: "#03AFF8" }} className="heading">
-    Clime Score Suites
-  </h1>
+      <div className="clime-wrapper">
+  
 
-  {/* Tabs */}
-  <div className="tabs">
-    {slides.map((s, i) => (
-      <button
-        key={i}
-        className={active === i ? "active" : ""}
-        onClick={() => setActive(i)}
-      >
-        {s.title}
-      </button>
-    ))}
-  </div>
 
-  {/* Sticky Section */}
-  <div className="sticky-container">
-    <img
-      key={slides[active].img}   // 👈 key ensures re-render triggers animation
-      src={slides[active].img}
-      alt={slides[active].title}
-      className="section-img slide-left"
-    />
-    <div
-      key={slides[active].title} // 👈 key ensures re-render triggers animation
-      className="section-content slide-right"
-    >
-      <h2>{slides[active].title}</h2>
-      <p>{slides[active].text}</p>
-    </div>
-  </div>
+  <div id="scroll-section">
+        <h1 className="sticky-title">Clime Score Suite</h1>
+        <div className="sticky-container">
+          <div className="sticky-inner">
+            {/* Left */}
+            <div>
+              <h2 className="sticky-subtitle">{slides[currentSlide]?.title}</h2>
+              <div className="sticky-text-container">
+                {slides[currentSlide]?.contents.map((content, index) => (
+                  <p
+                    key={index}
+                    className={`sticky-text ${currentText === index ? "active" : ""}`}
+                  >
+                    {content.text}
+                  </p>
+                ))}
+              </div>
+            </div>
+            {/* Right */}
+            <div className="sticky-image-wrapper">
+              <div className="sticky-image">
+                <img src={slides[currentSlide]?.contents[currentText]?.img} alt="Content visual" />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Progress */}
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div className="progress-fill" style={{ height: `${scrollProgress * 100}%` }}></div>
+          </div>
+        </div>
+      </div>
+
+
+ 
 
    
 <hr />
 
     <div className="divthree">
         <div>
-        <h1 style={{"color":"#03AFF8"}}>The ClimeScore Footprints</h1>
+        <h1 style={{"color":"#03AFF8"}}>The ClimeScore Footprint</h1>
         <img src="http://nettzero.world/wp-content/uploads/2025/03/Locality-Name-Nubra-Valley-State-Laddakh-UT.gif" alt="" />
         </div>
     <hr />
