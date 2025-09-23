@@ -130,22 +130,17 @@ const [start, setStart] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setStart(true);
-          observer.disconnect(); // trigger only once
-        }
-      },
-      { threshold: 0.3 }
-    );
+  ScrollTrigger.create({
+    trigger: ".numberdiv",
+    start: "top 85%", // when 80% of viewport reaches numberdiv
+    once: true,
+    onEnter: () => setStart(true),
+  });
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+  return () => ScrollTrigger.getAll().forEach(t => t.kill());
+}, []);
+;
 
-    return () => observer.disconnect();
-  }, []);
 
 
   useEffect(() => {
@@ -291,25 +286,28 @@ const [start, setStart] = useState(false);
 
 
       {/* Div 3 */}
-      <section className="section section3">
-        <div>
-               <h1 style={{"color":"#03AFF8"}}>ClimeScore in Numbers</h1>
-                <div className="numberdiv" ref={sectionRef}>
-             {countersData.map((item, i) => (
-               <div key={i}>
-                 <h1>
-                   {start ? <Counter target={item.value} /> : "0"}
-                 </h1>
-                 <h3>{item.label}</h3>
-                 <p>{item.desc}</p>
-               </div>
-             ))}
-           </div>
-           </div>
+      <section className="section section3" ref={sectionRef}>
+  <div>
+    <h1 className="sticky-title">ClimeScore in Numbers</h1>
+    <div className="numberdiv">
+      {countersData.map((item, i) => (
+        <div key={i}>
+          <div className="numcontent">
+            <h3>{item.label}</h3>
+            <p>{item.desc}</p>
+          </div>
+          <div className="counternum">
+            <h1>{start ? <Counter target={item.value} /> : "0"}</h1>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
        {/* <hr /> */}
 
         <div className="hero-content">
-          <h1 className="hero-title">The ClimeScore Footprint</h1>
+          <h1 className="sticky-title">The ClimeScore Footprint</h1>
           <div className="hero-image-container">
             <img 
               src="http://nettzero.world/wp-content/uploads/2025/03/Locality-Name-Nubra-Valley-State-Laddakh-UT.gif" 
@@ -318,7 +316,7 @@ const [start, setStart] = useState(false);
             />
           </div>
         </div>
-               <h1 style={{"color":"#03AFF8"}}>ClimeScore For You</h1>
+               <h1 className="sticky-title">ClimeScore For You</h1>
            <div className="divfour">
        <div>
            <img src="https://shopequo.com/cdn/shop/articles/Cover_642d8475-e5b3-4074-a452-8d054a621b9e.jpg?v=1709275662&width=1600" alt="" />
