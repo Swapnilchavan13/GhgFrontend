@@ -86,9 +86,9 @@ function App() {
 
       {/* <Route path="/" element={<NewHomePage />} /> */}
 
-      {/* <Route path="/" element={<Testing3 />} /> */}
+      <Route path="/" element={<Testing3 />} />
 
-<Route path="/" element={<ExternalRedirect />} />
+{/* <Route path="/" element={<ExternalRedirect />} /> */}
 
 
 

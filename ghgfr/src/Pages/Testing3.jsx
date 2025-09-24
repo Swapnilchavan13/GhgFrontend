@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/3t.css";
 import { Link } from "react-router-dom";
+import {Footer} from "./Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -351,6 +352,7 @@ const [start, setStart] = useState(false);
        </div>
            </div>
       </section>
+      <Footer />
     </div>
   );
 };
