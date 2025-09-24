@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 
 import { Allemissions } from './Component/Allemissions';
 import { Myemission } from './Component/Myemission';
@@ -52,6 +52,7 @@ import { NewHomePage } from './Pages/NewHomePage.jsx';
 import { Jobs } from './Pages/Jobs.jsx';
 import ScrollSection from './Pages/ScrollSection.jsx';
 import { Testing3 } from './Pages/Testing3.jsx';
+import ExternalRedirect from './Component/ExternalRedirect.jsx';
 
 function App() {
 
@@ -85,7 +86,10 @@ function App() {
 
       {/* <Route path="/" element={<NewHomePage />} /> */}
 
-      <Route path="/" element={<Testing3 />} />
+      {/* <Route path="/" element={<Testing3 />} /> */}
+
+<Route path="/" element={<ExternalRedirect />} />
+
 
 
       <Route path="/blog" element={<BlogResources />} />
