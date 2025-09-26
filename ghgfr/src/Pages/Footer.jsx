@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Footer.css";
+import "../styles/footer.css";
 // import { FaPaperPlane, FaEnvelope } from "react-icons/fa";
 
 export const Footer = () => {
