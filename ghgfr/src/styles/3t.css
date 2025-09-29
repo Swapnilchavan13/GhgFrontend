@@ -148,13 +148,12 @@
 
 .section3 {
   /* background: #eee; */
-  top: -15px;
+  /* border: 1px solid red; */
 }
 
 .hero-content{
     margin-top: -20px;
 }
-
 
 /* Sticky slideshow */
 .sticky-box {
@@ -220,6 +219,88 @@
 }
 
 /* Div 3 */
+.counters-container { 
+ /* border: 2px solid red;  */
+ padding-top: 20px;
+ height: fit-content;
+ /* margin-top: 20px; */
+}
+.counters-sticky { /* inner pinned area */
+  width: 100%;
+  max-width: 1100px;
+  height: 400px;
+  margin: auto;
+  /* border: 2px solid black; */
+}
+
+/* .sticky-title2{
+margin-top: -80px;
+} */
+/* each counter-step stacked absolutely like section2 */
+.counter-step {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 36px;
+  /* border: 2px solid yellow; */
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px 80px 20px 20px;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+/* left: image with number overlay */
+.counter-left { flex: 1; }
+.counter-image-box {
+   position: relative;
+   border-radius: 12px; 
+  overflow: hidden; 
+  margin-top: 40px;
+}
+.counter-image-box img {
+ width: 740px;
+   height: 650px;
+    /* display: block;  */
+    /* object-fit: cover; */
+    border-radius: 20px;
+
+   }
+
+/* number overlay on top of image */
+.counter-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.7);
+  padding: 18px 28px;
+  border-radius: 12px;
+}
+.counter-number { 
+  color: #fff; 
+  font-size: 60px; 
+  font-weight: 800; 
+  text-align: center; }
+
+/* right: label & desc */
+.counter-right {
+/* border: 2px solid red;  */
+background-color: black;
+z-index: 111;
+padding: 20px;
+width: 26%;
+border-radius: 20px;
+height: 500px;
+margin-left: -160px;
+text-align: left;
+}
+.counter-right h2 { margin: 0 0 12px; font-size: 22px; color: white; margin-top: 20px; }
+.counter-right p { margin: 0; line-height: 1.6; color: white; }
+
 .section3 h1 {
   font-size: 2rem;
   margin-bottom: 15px;
@@ -229,22 +310,23 @@
 .title-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  /* gap: -20px; */
   margin-bottom:9px;
-  margin-left: -75px;
+  margin-left: -70px;
   /* border: 1px solid red; */
   width: 120%;
 }
 
 .title-btn {
   padding: 10px;
-  border: 2px solid #333;
-  border-radius: 5px;
+  /* border: 2px solid #333; */
+  border-radius: 15px;
   background: #2a2929;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
   width: 400px;
+  margin-left: -10px;
 }
 
 .title-btn.active {
@@ -256,6 +338,8 @@
 .sticky-title{
     color:#97e47f ;
 }
+
+
 
 .divthree{
 width: 100%;
@@ -281,6 +365,8 @@ width: 100%;
     width: 500px;
     text-align: left;
     border-radius: 20px;
+
+    
     padding-right: 100px;
     background-color: #e2e0e0;
 }
