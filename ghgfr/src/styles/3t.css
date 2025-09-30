@@ -148,7 +148,7 @@
 }
 
 .hero-content{
-    margin-top: 330px;
+    margin-top: 30px;
 }
 
 /* Sticky slideshow */
@@ -265,7 +265,6 @@
     /* display: block;  */
     /* object-fit: cover; */
     border-radius: 20px;
-
    }
 
 /* number overlay on top of image */
@@ -338,17 +337,13 @@ text-align: left;
     color:#97e47f ;
 }
 
-
-
 .divthree{
 width: 100%;
-
 }
 
 .numberdiv{
     width: 60%;
     margin: auto;
-    
 }
 
 .numberdiv>div{
@@ -364,8 +359,6 @@ width: 100%;
     width: 500px;
     text-align: left;
     border-radius: 20px;
-
-    
     padding-right: 100px;
     background-color: #e2e0e0;
 }
@@ -382,7 +375,6 @@ width: 100%;
   color: white;
   background-color: #1d1d1d;
   padding: 20px;
-
   display: flex;
   align-items: center;   /* vertical centering */
   justify-content: center; /* horizontal centering */
