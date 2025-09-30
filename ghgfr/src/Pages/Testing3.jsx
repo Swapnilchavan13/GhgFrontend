@@ -19,8 +19,8 @@ const slides = [
   {
     title: "Measure Carbon Emission",
     contents: [
-      { img: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&h=400&fit=crop", text: "Track and measure your carbon emissions with advanced analytics and real-time monitoring systems." },
-      { img: "https://unearthed.greenpeace.org/wp-content/uploads/2018/05/GettyImages-625668026-600x396.jpg", text: "Generate accurate reports with scientific methods and internationally recognized standards." },
+      { img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-6-3-2.png", text: "Track and measure your carbon emissions with advanced analytics and real-time monitoring systems." },
+      { img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png", text: "Generate accurate reports with scientific methods and internationally recognized standards." },
       { img: "https://iasgyan.in/ig-uploads/images/CO2_EMISSIONS.jpg", text: "Identify key hotspots of your organization's carbon footprint with detailed analysis." },
     ],
   },
@@ -273,7 +273,7 @@ export const Testing3 = () => {
                 <div className="counter-left">
                   <div className="counter-image-box">
                     {/* placeholder image — replace with actual image if available */}
-                    <img src={`https://picsum.photos/seed/counter${i}/900/600`} alt={item.label} />
+                    <img src={`https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png`} alt={item.label} />
                     <div className="counter-overlay">
                       <h1 className="counter-number">
                         {activeCounterIndex === i ? <Counter key={i} target={item.value} /> : "0"}
