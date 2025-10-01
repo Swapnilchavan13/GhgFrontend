@@ -50,6 +50,53 @@
 }
 
 
+/* Position dropdowns */
+.nav-links .dropdown {
+  position: relative;
+}
+
+.nav-links .dropdown span {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px
+}
+
+/* Dropdown menu hidden by default */
+.nav-links .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* just below the parent */
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  min-width: 180px;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+/* Show on hover */
+.nav-links .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown links styling */
+.nav-links .dropdown-menu li {
+  padding: 8px 16px;
+}
+
+.nav-links .dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.nav-links .dropdown-menu li a:hover {
+  background: #f4f4f4;
+}
+
 
 /* firt Div// */
 
@@ -147,9 +194,9 @@
   height: 105vh;
 }
 
-.hero-content{
+/* .hero-content{
     margin-top: 30px;
-}
+} */
 
 /* Sticky slideshow */
 .sticky-box {
@@ -167,7 +214,6 @@
 
 .sticky-box h1{
   margin-top: -1.5%;
-    color: #97e47f;
 }
 
 .step {
@@ -262,7 +308,7 @@
   overflow: hidden; 
   margin-top: 40px;
  /* border: 2px solid red;  */
- width: 1180px;
+ width: 101%;
  text-align: left;
  background-color: #e7e6e6;
 
@@ -283,7 +329,7 @@
 .counter-overlay {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 35%;
   transform: translate(-50%, -50%);
   background: rgba(13, 13, 13, 0.7);
   padding: 18px 28px;
@@ -301,7 +347,7 @@
 background-color: rgb(38, 38, 38);
 z-index: 111;
 padding: 20px 40px;
-width: 600px;
+width: 250px;
 border-radius: 20px;
 height: 550px;
 margin-left: -500px;
@@ -344,9 +390,9 @@ text-align: left;
   border-color: #333;
 }
 
-.sticky-title{
-    color:#97e47f ;
-}
+.sticky-title, .sticky-title2{
+    color:#6ad585 ;
+} 
 
 .divthree{
 width: 100%;
