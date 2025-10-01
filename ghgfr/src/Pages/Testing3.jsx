@@ -49,12 +49,38 @@ const steps = slides.flatMap((slide) =>
 
 /* -------- counters data -------- */
 const countersData = [
-  { value: 200000, label: "LITRES OF BIOCHAR PRODUCED", desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem." },
-  { value: 120, label: "HECTARES", desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares..." },
-  { value: 40000, label: "TREES", desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species..." },
-  { value: 250, label: "GMS/HOUR", desc: "The capacity of the Direct Air Capture consumer machine prototyped by us..." },
-  { value: 300000, label: "TONS OF CO2", desc: "Emissions accurately measured & reported as per GRJ standards on our platform – CLIME SCORE" },
+  { 
+    value: 200000, 
+    label: "LITRES OF BIOCHAR PRODUCED", 
+    desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem.",
+    image: "https://lumenor.ai/cdn-cgi/imagedelivery/F5KOmplEz0rStV2qDKhYag/adb828ab-680a-40dd-1d04-6862026c9e00/tn"
+  },
+  { 
+    value: 120, 
+    label: "HECTARES", 
+    desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares...",
+    image: "https://t3.ftcdn.net/jpg/07/56/60/38/360_F_756603814_ukzf1prOo54RBS8Q3bZfyeG2CvZSnPIK.jpg"
+  },
+  { 
+    value: 40000, 
+    label: "TREES", 
+    desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species...",
+    image: "https://static.vecteezy.com/system/resources/previews/035/884/391/non_2x/green-nature-forest-background-template-green-nature-landscape-and-forest-with-origami-paper-layer-cut-abstract-background-ecology-and-environment-conservation-concept-vector.jpg"
+  },
+  { 
+    value: 250, 
+    label: "GMS/HOUR", 
+    desc: "The capacity of the Direct Air Capture consumer machine prototyped by us...",
+    image: "https://img.freepik.com/premium-photo/concept-carbon-emissions-represented-by-smoke-ai-generative_407474-11204.jpg"
+  },
+  { 
+    value: 300000, 
+    label: "TONS OF CO2", 
+    desc: "Emissions accurately measured & reported as per GRJ standards on our platform – CLIME SCORE",
+    image: "https://lumenor.ai/cdn-cgi/imagedelivery/F5KOmplEz0rStV2qDKhYag/61b93862-53c6-4eb6-0699-eadad982bd00/tn"
+  },
 ];
+
 
 /* ---------- Counter component (keeps same behaviour) ---------- */
 export const Counter = ({ target, duration = 1200 }) => {
@@ -272,14 +298,14 @@ export const Testing3 = () => {
               <div key={i} className="counter-step">
                 <div className="counter-left">
                   <div className="counter-image-box">
-                    {/* placeholder image — replace with actual image if available */}
-                    <img src={`https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png`} alt={item.label} />
-                    <div className="counter-overlay">
-                      <h1 className="counter-number">
-                        {activeCounterIndex === i ? <Counter key={i} target={item.value} /> : "0"}
-                      </h1>
-                    </div>
-                  </div>
+  <img src={item.image} alt={item.label} />
+  <div className="counter-overlay">
+    <h1 className="counter-number">
+      {activeCounterIndex === i ? <Counter key={i} target={item.value} /> : "0"}
+    </h1>
+  </div>
+</div>
+
                 </div>
 
                 <div className="counter-right">

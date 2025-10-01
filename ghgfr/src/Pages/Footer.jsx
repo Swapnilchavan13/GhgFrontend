@@ -16,7 +16,7 @@ export const Footer = () => {
       <div className="footer-center">
         <h3>GET IN TOUCH</h3>
         <p>
-          ClimeScore Environmental Advisory Technologies Pvt. Ltd.
+          NettZero Environmental Advisory Technologies Pvt. Ltd.
         </p>
         <p>
           1230, 12th floor, Hubtown Solaris,
