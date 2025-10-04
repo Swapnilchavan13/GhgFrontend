@@ -515,6 +515,11 @@ width: 100%;
 
   .hamburger {
     display: flex; /* show only on mobile */
+background-color: #848383;
+width: 30px;
+height: 20px;
+ margin-top: 10px;
+ border-radius: 20px;
   }
 
   .nav-links {
