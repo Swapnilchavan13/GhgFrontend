@@ -104,6 +104,9 @@ export const Counter = ({ target, duration = 1200 }) => {
 
 /* -------------------- Main component -------------------- */
 export const Testing3 = () => {
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
   // section2 refs & state
   const containerRef = useRef(null); // section2 trigger
   const stickyRef = useRef(null); // section2 sticky box
@@ -235,35 +238,45 @@ export const Testing3 = () => {
 
   return (
     <div className="wrapper">
-      <nav className="navbar">
-  <div className="logo">
-    <Link to="/">
-      <img src="/ClimeScore.png" alt="Climescore Logo" />
-    </Link>
-    <span style={{ fontSize: '12px', marginTop: '16px' }}>By NettZero</span>
-  </div>
-  <ul className="nav-links">
-    <li><Link to="/client/login">Measure Carbon Emission</Link></li>
-    <li><Link to="/marketplacehome">Carbon Credits</Link></li>
-    
-    {/* New Dropdown */}
-    <li className="dropdown">
-      <span>Our Scope ▾</span>
-      <ul className="dropdown-menu">
-        <li><Link to="/scope/clime">Clime Score</Link></li>
-        <li><Link to="/scope/credits">Carbon Credits</Link></li>
-        <li><Link to="/scope/plastic">Plastic Credits</Link></li>
-        <li><Link to="/scope/climate">Climate Literacy</Link></li>
-      </ul>
-    </li>
-    
-    <li><Link to="/marketplace">Green Marketplace</Link></li>
-    <li><Link to="/blog">Resources</Link></li>
-    <li><Link to="/jobs">Jobs</Link></li>
-    <li><Link to="/about">About</Link></li>
-  </ul>
-</nav>
+     <nav className="navbar">
+      <div className="logo">
+        <Link to="/">
+          <img src="/ClimeScore.png" alt="Climescore Logo" />
+        </Link>
+        <span style={{ fontSize: "12px", marginTop: "16px" }}>By NettZero</span>
+      </div>
 
+      {/* Hamburger Button */}
+      <div
+        className="hamburger"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      {/* Nav Links */}
+      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <li><Link to="/client/login">Measure Carbon Emission</Link></li>
+        <li><Link to="/marketplacehome">Carbon Credits</Link></li>
+
+        <li className="dropdown">
+          <span>Our Scope ▾</span>
+          <ul className="dropdown-menu">
+            <li><Link to="/scope/clime">Clime Score</Link></li>
+            <li><Link to="/scope/credits">Carbon Credits</Link></li>
+            <li><Link to="/scope/plastic">Plastic Credits</Link></li>
+            <li><Link to="/scope/climate">Climate Literacy</Link></li>
+          </ul>
+        </li>
+
+        <li><Link to="/marketplace">Green Marketplace</Link></li>
+        <li><Link to="/blog">Resources</Link></li>
+        <li><Link to="/jobs">Jobs</Link></li>
+        <li><Link to="/about">About</Link></li>
+      </ul>
+    </nav>
 
       {/* Div 1 — top carousel */}
       <section className="section section1">

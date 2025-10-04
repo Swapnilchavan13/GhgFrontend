@@ -194,9 +194,9 @@
   height: 105vh;
 }
 
-/* .hero-content{
-    margin-top: 30px;
-} */
+.hero-content{
+    margin-top: 190px;
+}
 
 /* Sticky slideshow */
 .sticky-box {
@@ -477,3 +477,226 @@ width: 100%;
     border-radius: 10px;
 }
 
+
+
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+@media (max-width: 768px) {
+  /* General wrapper */
+  .wrapper {
+    padding: 0 10px;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0 15px;
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    display: none; /* hide default nav links on mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #f5f5f5;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-links.show {
+    display: flex; /* toggle with JS */
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .hamburger {
+    display: flex; /* show only on mobile */
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background: #f5f5f5;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    display: none; /* hidden by default */
+  }
+
+  .nav-links.active {
+    display: flex; /* show when toggled */
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  .nav-links .dropdown-menu li a {
+    padding: 8px 0;
+    display: block;
+  }
+
+  /* First div carousel */
+  .firstdiv {
+    height: 250px;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .overlay-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .carousel-image{
+    height: 230px;
+  }
+
+  .sticky-title{
+    font-size: 20px;
+  }
+
+  .section2{
+    margin-top: 0px !important;
+  }
+
+   .title-buttons{
+     margin-left: -80px;
+     gap: 5px;
+   
+   }
+  .title-buttons button{
+    width: 100px;
+    font-size: 10px;
+  }
+
+  /* Step / Section2 */
+  .step {
+    flex-direction: column;
+    margin: 0;
+    padding: 15px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .step img {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 15px;
+  }
+
+  .conbox {
+    width: 70%;
+    height: 250px;
+    margin-top: -60px;
+    margin-left: 2px;
+  }
+
+  .section3{
+    margin-top: -180px;
+    height: fit-content;
+  }
+  
+  .sticky-title2{
+    margin-top: 0px !important;
+    font-size: 20px !important;
+    margin-left: -20%;
+  }
+  /* Counters Section */
+  .counter-step {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .counter-image-box img {
+    width: 350px;
+    /* margin-top: 0px; */
+    height: 250px;
+    
+  }
+
+  .counter-image-box{
+    margin-left: -9%;
+  }
+
+  .counter-right {
+    margin: -120px auto 0 -22%;
+    width: 90%;
+    height: 300px;
+  }
+
+  .counter-number {
+    font-size: 36px;
+  }
+
+  /* Div 3 numbers */
+  .numberdiv {
+    width: 95%;
+    flex-direction: column;
+  }
+
+  .numberdiv > div {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .numcontent {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .counternum {
+    width: 80% !important;
+    height: auto !important;
+    margin: 20px auto 0 auto;
+  }
+
+  .numberdiv h1 {
+    font-size: 36px;
+  }
+
+  .numberdiv h3 {
+    font-size: 18px;
+  }
+
+  .hero-image-container img{
+    width: 300px;
+  }  
+
+  /* Div 4 (cards row) */
+  .divfour {
+    flex-direction: column;
+    align-items: center;
+        width: 92% !important;
+
+  }
+
+  .divfour div {
+    width: 90%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .divfour h2 {
+    font-size: 22px;
+  }
+}

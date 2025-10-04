@@ -97,3 +97,58 @@
 .footer-right li:hover {
   text-decoration: underline;
 }
+
+
+/* ====== Footer Responsive (Mobile) ====== */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    flex: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Logo */
+  .logo {
+    font-size: 28px;
+    justify-content: center;
+  }
+
+  .circle {
+    width: 14px;
+    height: 14px;
+    margin-left: 6px;
+  }
+
+  /* Description */
+  .description {
+    font-size: 13px;
+    max-width: 90%;
+    margin: 10px auto 0 auto;
+  }
+
+  /* Section titles */
+  .footer-center h3,
+  .footer-right h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  /* Footer center text */
+  .footer-center p {
+    font-size: 13px;
+  }
+
+  /* Links list */
+  .footer-right li {
+    font-size: 13px;
+  }
+}

@@ -60,7 +60,7 @@ function App() {
 
   useEffect(() => {
       const handleResize = () => {
-          setIsMobile(window.innerWidth <= 768); // Adjust the width as needed for your mobile breakpoint
+          setIsMobile(window.innerWidth <= 8); // Adjust the width as needed for your mobile breakpoint
       };
 
       handleResize();
