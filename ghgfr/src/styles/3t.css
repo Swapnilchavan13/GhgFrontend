@@ -630,6 +630,10 @@ height: 20px;
     text-align: center;
   }
 
+  .hero-content{
+    margin-top: 10px;
+}
+
   .counter-image-box img {
     width: 350px;
     /* margin-top: 0px; */
