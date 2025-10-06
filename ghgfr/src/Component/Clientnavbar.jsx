@@ -18,7 +18,7 @@ export const Clientnavbar = ({ logoimg }) => {
 
   return (
     <div className="navbar-container">
-        <img style={{borderRadius:'15px', marginLeft:"-60px"}} src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
+        <img className='logimg' src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
 
       <Link to='/client/myemission' className="nav-link">
         <h3>My Emission</h3>

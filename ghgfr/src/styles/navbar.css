@@ -22,4 +22,33 @@
     color: black;
     text-decoration: none;
   }
+
+  .logimg{
+     border-radius:15px;
+      margin-left:-60px
+  }
   
+/* ✅ Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* show hamburger icon */
+  }
+
+  .nav-link {
+    margin-top: 5px;
+  
+    font-size: 10px;
+  }
+
+   .navh3{
+    color: white;
+    margin-top: 10px;
+  }
+  
+  .logimg{
+    width: 100px;
+margin-left:0px;
+margin-top: 12px;
+height:20px
+  }
+}

@@ -27,3 +27,38 @@
     width: 400px;
   }
 
+/* 📱 Tablet View (2 columns) */
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  #mainmarket select,
+  #mainmarket input {
+    width: 300px;
+  }
+}
+
+/* 📱 Mobile View (1 column) */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #mainmarket {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #mainmarket select,
+  #mainmarket input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .product-card {
+    padding: 14px;
+  }
+}
