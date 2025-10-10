@@ -1,43 +1,48 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+
 import "../styles/3t.css";
 import { Link } from "react-router-dom";
 import { Footer } from "./Footer";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+// gsap.registerPlugin(ScrollTrigger);
 
 /* -- your top carousel images -- */
 const images = [
-  { src: "https://eponline.com/-/media/ENV/eponline/Images/2023/08,-d-,17,-d-,23pollution.jpg", text: "Our emissions currently exceed our Carbon Quota by a whopping", button: "Learn More" },
-  { src: "https://ilotusland.com/wp-content/uploads/2023/11/ella-ivanescu-JbfhNrpQ_dw-unsplash-1-scaled.jpg", text: "ClimeScore develops Carbon Dioxide Removal Programs across scalable pathways, to enable a billion ton removal at", button: "Learn More" },
-  { src: "https://images.theconversation.com/files/562291/original/file-20231128-23-zrg8sr.jpg", text: "ClimeScore helps you accurately measure, reduce & analyse your Scope 1, 2 & 3 emissions with our", button: "Learn More" },
-  { src: "https://22313216.fs1.hubspotusercontent-na1.net/hubfs/22313216/co2e-meaning-definition-calculation-and-examples.png", text: "To be ClimeScore in time we will all need to", button: "Learn More" },
+  { src: "https://eponline.com/-/media/ENV/eponline/Images/2023/08,-d-,17,-d-,23pollution.jpg", text: "ClimeScore helps you measure, reduce, and analyze your carbon emissions.", dec: "Our AI-driven platform has accurately measured over 200,000 tons of CO₂." },
+  { src: "https://ilotusland.com/wp-content/uploads/2023/11/ella-ivanescu-JbfhNrpQ_dw-unsplash-1-scaled.jpg", text: "ClimeScore develops valuable, high-integrity carbon credits.", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation, and DAC projects — creating carbon sinks that you can be part of." },
+  { src: "https://images.theconversation.com/files/562291/original/file-20231128-23-zrg8sr.jpg", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact, and methodology.", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free, and cost-effective." },
+  { src: "https://22313216.fs1.hubspotusercontent-na1.net/hubfs/22313216/co2e-meaning-definition-calculation-and-examples.png", text: "ClimeScore delivers customized, implementation-oriented training related to sustainability and climate change, and carbon credits.", dec: "Our precise and effective modules are delivered by experts with thousands of hours and over 5 years of experience in corporate education." },
 ];
 
 const slides = [
   {
-    title: "Measure Carbon Emission",
+    title: "Manage Carbon Emission",
     contents: [
-      { img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-6-3-2.png", text: "Track and measure your carbon emissions with advanced analytics and real-time monitoring systems." },
-      { img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png", text: "Generate accurate reports with scientific methods and internationally recognized standards." },
-      { img: "https://iasgyan.in/ig-uploads/images/CO2_EMISSIONS.jpg", text: "Identify key hotspots of your organization's carbon footprint with detailed analysis." },
+      { title2: "Measure",img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-6-3-2.png", text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Wcope 1 , Scope 2 and Scope 3. It’s robust, globally validated and incredibly simple." },
+      { title2: "Report",img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png", text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally validated reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
+      { title2: "Offset",img: "https://iasgyan.in/ig-uploads/images/CO2_EMISSIONS.jpg", text: "ClimeScore helps you become Carbon Neitral by a process of reduction and offsetting. Take the second step, after accurate carbon measurement, to offset emissions and become Verified Carbob Neutral." },
     ],
   },
   {
-    title: "Earn / Buy Carbon Credits",
+    title: "Manage Carbon Credits",
     contents: [
-      { img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop", text: "Earn credits by reducing emissions through verified sustainability initiatives." },
-      { img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop", text: "Buy certified credits to offset your impact and achieve carbon neutrality." },
-      { img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop", text: "Participate in verified climate-positive projects around the globe." },
+      { title2: "Generate",img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop", text: "ClimeScore is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Invest",img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop", text: "ClimeScore actively identifies in development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
+      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop", text: "ClimeScore sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfulnones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
     title: "Explore Sustainable Marketplace",
+    title2: "Offset",
     contents: [
-      { img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop", text: "Discover eco-friendly products and services from sustainable brands." },
-      { img: "https://images.unsplash.com/photo-1523906921802-b5d2d899e93b?w=600&h=400&fit=crop", text: "Support businesses contributing to sustainability and environmental protection." },
-      { img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&h=400&fit=crop", text: "Build a green supply chain with trusted partners and verified suppliers." },
+      { title2: "Decarbonise Supply Chain",img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop", text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
+      { title2: "Reduce Costs",img: "https://images.unsplash.com/photo-1523906921802-b5d2d899e93b?w=600&h=400&fit=crop", text: "Moving to sustainable vendors nee not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      {title2: "Support Green Businesses",img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&h=400&fit=crop", text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business." },
     ],
   },
 ];
@@ -51,12 +56,14 @@ const steps = slides.flatMap((slide) =>
 const countersData = [
   { 
     value: 200000, 
+    title:"Biochar",
     label: "LITRES OF BIOCHAR PRODUCED", 
     desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem.",
     image: "https://lumenor.ai/cdn-cgi/imagedelivery/F5KOmplEz0rStV2qDKhYag/adb828ab-680a-40dd-1d04-6862026c9e00/tn"
   },
   { 
     value: 120, 
+    title:"Field Weathering",
     label: "HECTARES", 
     desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares...",
     image: "https://t3.ftcdn.net/jpg/07/56/60/38/360_F_756603814_ukzf1prOo54RBS8Q3bZfyeG2CvZSnPIK.jpg"
@@ -64,18 +71,23 @@ const countersData = [
   { 
     value: 40000, 
     label: "TREES", 
+    title:"Field Weathering",
     desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species...",
     image: "https://static.vecteezy.com/system/resources/previews/035/884/391/non_2x/green-nature-forest-background-template-green-nature-landscape-and-forest-with-origami-paper-layer-cut-abstract-background-ecology-and-environment-conservation-concept-vector.jpg"
   },
   { 
     value: 250, 
     label: "GMS/HOUR", 
+        title:"Field Weathering",
+
     desc: "The capacity of the Direct Air Capture consumer machine prototyped by us...",
     image: "https://img.freepik.com/premium-photo/concept-carbon-emissions-represented-by-smoke-ai-generative_407474-11204.jpg"
   },
   { 
     value: 300000, 
     label: "TONS OF CO2", 
+        title:"Field Weathering",
+
     desc: "Emissions accurately measured & reported as per GRJ standards on our platform – CLIME SCORE",
     image: "https://lumenor.ai/cdn-cgi/imagedelivery/F5KOmplEz0rStV2qDKhYag/61b93862-53c6-4eb6-0699-eadad982bd00/tn"
   },
@@ -120,7 +132,7 @@ export const Testing3 = () => {
   // Div1 carousel
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 3000);
+    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 7000);
     return () => clearInterval(interval);
   }, []);
 
@@ -152,12 +164,14 @@ export const Testing3 = () => {
         trigger: containerRef.current,
         start: () => `top+=${i * window.innerHeight} top`,
         end: () => `+=${window.innerHeight}`,
-        onEnter: () => {
-          gsap.to(sectionSteps, { autoAlpha: 0, duration: 0.45 });
-          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-          const slideIndex = slides.findIndex((sl) => sl.title === steps[i].title);
-          setActiveTitleIndex(slideIndex >= 0 ? slideIndex : 0);
-        },
+       onEnter: () => {
+  gsap.killTweensOf(sectionSteps);
+  gsap.to(sectionSteps, { autoAlpha: 0, duration: 0.45 });
+  gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+  const slideIndex = slides.findIndex((sl) => sl.title === steps[i].title);
+  setActiveTitleIndex(slideIndex >= 0 ? slideIndex : 0);
+},
+
         onEnterBack: () => {
           gsap.to(sectionSteps, { autoAlpha: 0, duration: 0.45 });
           gsap.to(step, { autoAlpha: 1, duration: 0.45 });
@@ -166,6 +180,7 @@ export const Testing3 = () => {
         },
       })
     );
+
 
     // pin the whole section & let GSAP manage the scroll distance
     const pinTrigger = ScrollTrigger.create({
@@ -236,6 +251,30 @@ export const Testing3 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+// Smoothly scroll to the specific step within Section 2 (3x slower)
+const handleTitleClick = (index) => {
+  const section = containerRef.current;
+  if (!section) return;
+
+  const stepsPerSlide = steps.length / slides.length;
+  const lastStepIndex = (index + 1) * stepsPerSlide - 1;
+  const totalSteps = document.querySelectorAll(".step").length;
+
+  const clampedStepIndex = Math.min(lastStepIndex, totalSteps - 1);
+  const targetY = section.offsetTop + clampedStepIndex * window.innerHeight;
+
+  gsap.to(window, {
+    scrollTo: { y: targetY, autoKill: true },
+    duration: 2.5,
+    ease: "power2.inOut",
+  });
+
+  setActiveTitleIndex(index);
+};
+
+
+
+
   return (
     <div className="wrapper">
      <nav className="navbar">
@@ -284,7 +323,8 @@ export const Testing3 = () => {
           <img src={images[current].src} alt="carousel" className="carousel-image" />
           <div className="overlay-content">
             <h2 className="overlay-text">{images[current].text}</h2>
-            <button className="overlay-btn" onClick={handleButtonClick}>{images[current].button}</button>
+            {/* <button className="overlay-btn" onClick={handleButtonClick}>{images[current].button}</button> */}
+            <h3 className="overlay-dec">{images[current].dec}</h3>
           </div>
           <button onClick={prevSlide} className="nav-button prev">◀</button>
           <button onClick={nextSlide} className="nav-button next">▶</button>
@@ -297,23 +337,31 @@ export const Testing3 = () => {
           <h1 className="sticky-title">The ClimeScore Suite</h1>
 
           <div className="title-buttons">
-            {slides.map((slide, idx) => (
-              <button key={idx} className={`title-btn ${activeTitleIndex === idx ? "active" : ""}`}>
-                {slide.title}
-              </button>
-            ))}
+           {slides.map((slide, idx) => (
+    <button
+      key={idx}
+      className={`title-btn ${activeTitleIndex === idx ? "active" : ""}`}
+      onClick={() => handleTitleClick(idx)}
+    >
+      {slide.title}
+    </button>
+  ))}
           </div>
 
-          {steps.map((s, i) => (
-            <div key={i} className="step">
-              <img src={s.img} alt={s.text} />
-              <div className="conbox">
-                <h2>{s.title}</h2>
-                <hr />
-                <p>{s.text}</p>
-              </div>
-            </div>
-          ))}
+        {steps.map((s, i) => (
+  <div key={i} className="step">
+    <div className="step-image-wrapper">
+      <img src={s.img} alt={s.text} />
+      <span className="step-image-text">{"Carbon Emission"}</span>
+    </div>
+
+    <div className="conbox">
+      <h2>{s.title2}</h2>
+      <hr />
+      <p>{s.text}</p>
+    </div>
+  </div>
+))}
         </div>
       </section>
 
@@ -323,8 +371,19 @@ export const Testing3 = () => {
           <div className="sticky-box counters-sticky" ref={countersStickyRef}>
             <h1 className="sticky-title2">ClimeScore in Numbers</h1>
 
+              <div className="title-buttons2">
+          {countersData.slice(0, 3).map((item, idx) => (
+           <button
+           key={idx}
+           className={`title-btn ${activeTitleIndex === idx ? "active" : ""}`}
+           onClick={() => handleTitleClick(idx)}
+           >
+           {item.title}
+           </button>
+            ))}
+               </div>
             {countersData.map((item, i) => (
-              <div key={i} className="counter-step">
+              <div key={i} className="counter-step">  
                 <div className="counter-left">
                   <div className="counter-image-box">
   <img src={item.image} alt={item.label} />

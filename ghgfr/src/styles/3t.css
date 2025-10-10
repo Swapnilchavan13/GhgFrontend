@@ -103,7 +103,7 @@
 
 .firstdiv {
   width: 100%;
-  height: 400px; 
+  height: 530px; 
   margin: 30px auto 0px auto;
   overflow: hidden;
   border-radius: 12px;
@@ -136,6 +136,14 @@
   color: white;
 }
 
+.overlay-dec {
+  font-size: 1.2rem;
+font-style: italic;
+  font-weight: bold;
+  color: white;
+}
+
+
 /* Button */
 .overlay-btn {
   padding: 10px 20px;
@@ -153,7 +161,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(179, 185, 249, 0.7);
+  background: rgba(37, 37, 38, 0.7);
   border: none;
   padding: 10px 15px;
   font-size: 18px;
@@ -264,6 +272,24 @@
   line-height: 1.6;
 }
 
+/* === Overlay Text for Step Images === */
+
+/* Overlay text */
+.step-image-text {
+  position: absolute;
+  bottom: 80%;
+  left: 35%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 16px;
+  border-radius: 8px;
+  pointer-events: none; /* so clicks go through */
+}
+
 /* Div 3 */
 .counters-container { 
  padding-top: 20px;
@@ -286,7 +312,7 @@
 /* each counter-step stacked absolutely like section2 */
 .counter-step {
   position: absolute;
-  top: 0;
+  top: 47px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -372,6 +398,12 @@ text-align: left;
   width: 148%;
 }
 
+.title-buttons2 {
+  margin-left: -207px;
+  width: 148%;
+
+}
+
 .title-btn {
   padding: 10px;
   /* border: 2px solid #333; */
@@ -385,13 +417,17 @@ text-align: left;
 }
 
 .title-btn.active {
-  background: #97e47f;
-  color: #060606;
+  background-color:rgb(78, 78, 78) ;
+  color: #fffefe;
   border-color: #333;
 }
 
+.title-btn:hover{
+  background-color: rgb(78, 78, 78) !important;
+}
+
 .sticky-title, .sticky-title2{
-    color:#6ad585 ;
+    color:rgb(78, 78, 78) ;
 } 
 
 .divthree{
