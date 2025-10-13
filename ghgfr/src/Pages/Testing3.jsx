@@ -634,7 +634,7 @@ const handlePartnersClick = (index) => {
     <img
       src={testimonials[current].img}
       alt={testimonials[current].name}
-      className="carousel-image"
+      className="carousel-image2"
     />
 
     <div className="overlay-content">
