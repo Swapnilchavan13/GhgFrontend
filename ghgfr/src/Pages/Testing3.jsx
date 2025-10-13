@@ -94,6 +94,74 @@ const countersData = [
 ];
 
 
+const Partners = [
+  {
+    title: "Customers",
+    label: "UNITED NATIONS DEVELOPMENT PROGRAMME",
+    desc: "Working together on sustainable projects and carbon reduction initiatives across multiple geographies.",
+    image: "https://imapharmaceuticals.com/worldwide.jpeg",
+    value: 1,
+  },
+  {
+    title: "Partners",
+    label: "INTERNATIONAL DEVELOPMENT PARTNER",
+    desc: "Supporting innovative climate finance mechanisms through verified carbon credits.",
+    image: "https://www.indiafilings.com/learn/wp-content/uploads/2023/03/Who-is-eligible-for-partnership.jpg",
+    value: 2,
+  },
+  {
+    title: "Standards",
+    label: "INTERNATIONAL UNION FOR CONSERVATION OF NATURE",
+    desc: "Collaborating to promote biodiversity and sustainable carbon offset projects globally.",
+    image: "https://www.hrmagazine.co.uk/media/dxnbx4h2/article-images-2f156794-2fstandards.jpg",
+    value: 3,
+  },
+  
+];
+
+
+const testimonials = [
+  {
+    img: "https://www.shutterstock.com/image-photo/business-team-meeting-600nw-107480708.jpg", 
+    name: "Varun Hooja",
+    designation: "Founder & Partner, Machan Resorts LLP",
+    text: `“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”`
+  },
+  {
+    img: "https://parsadi.com/wp-content/uploads/2022/05/Business.jpg", 
+    name: "Ananya Mehta",
+    designation: "CEO, GreenWatt Energy",
+    text: `“Working with NettZero transformed our approach to sustainability. Their insights on carbon accounting and project implementation were invaluable.”`
+  },
+  {
+    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
+    name: "Rohit Sharma",
+    designation: "Director, EcoBuild Solutions",
+    text: `“The team’s expertise and attention to detail make NettZero a trusted partner for any organization aiming to achieve real climate impact.”`
+  },
+  {
+    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
+    name: "Priya Desai",
+    designation: "Sustainability Head, AgroPure Pvt Ltd",
+    text: `“NettZero helped us measure and offset emissions across our operations. The process was smooth and the results were transparent.”`
+  },
+  {
+    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
+    name: "Aditya Rao",
+    designation: "Managing Partner, EnviroEdge Consulting",
+    text: `“Their technology-driven approach brings both accuracy and accountability to sustainability efforts. Highly recommended!”`
+  },
+  {
+    img: "https://www.winsavvy.com/wp-content/uploads/2024/06/60255e7341de62c988dd08aa_DigitalAdvertising.jpg",
+    name: "Sneha Kapoor",
+    designation: "Founder, Urban Roots Foundation",
+    text: `“The NettZero team truly understands the balance between business goals and environmental responsibility.”`
+  }
+];
+
+
+
+
 /* ---------- Counter component (keeps same behaviour) ---------- */
 export const Counter = ({ target, duration = 1200 }) => {
   const [count, setCount] = useState(0);
@@ -128,6 +196,13 @@ export const Testing3 = () => {
   const countersContainerRef = useRef(null); // section3 trigger element
   const countersStickyRef = useRef(null); // inner sticky box for counters
   const [activeCounterIndex, setActiveCounterIndex] = useState(0);
+
+
+
+  const partnersContainerRef = useRef(null);
+const partnersStickyRef = useRef(null);
+const [activePartnersIndex, setActivePartnersIndex] = useState(0);
+
 
   // Div1 carousel
   const [current, setCurrent] = useState(0);
@@ -252,6 +327,59 @@ export const Testing3 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+  useEffect(() => {
+  const partnerSteps = gsap.utils.toArray(".partner-step");
+  if (!partnerSteps.length) return;
+
+  gsap.set(partnerSteps, { autoAlpha: 0 });
+  gsap.set(partnerSteps[0], { autoAlpha: 1 });
+
+  const measureAndSet = () => {
+    let maxH = 0;
+    partnerSteps.forEach((el) => (maxH = Math.max(maxH, el.offsetHeight)));
+    if (partnersStickyRef.current)
+      partnersStickyRef.current.style.height = `${maxH}px`;
+  };
+
+  setTimeout(measureAndSet, 80);
+  window.addEventListener("resize", measureAndSet);
+
+  const stepTriggers = partnerSteps.map((step, i) =>
+    ScrollTrigger.create({
+      trigger: partnersContainerRef.current,
+      start: () => `top+=${i * window.innerHeight} top`,
+      end: () => `+=${window.innerHeight}`,
+      onEnter: () => {
+        gsap.to(partnerSteps, { autoAlpha: 0, duration: 0.45 });
+        gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+        setActivePartnersIndex(i);
+      },
+      onEnterBack: () => {
+        gsap.to(partnerSteps, { autoAlpha: 0, duration: 0.45 });
+        gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+        setActivePartnersIndex(i);
+      },
+    })
+  );
+
+  const pinTrigger = ScrollTrigger.create({
+    id: "section4Pin",
+    trigger: partnersContainerRef.current,
+    pin: true,
+    start: "top top",
+    end: `+=${partnerSteps.length * window.innerHeight}`,
+    scrub: false,
+  });
+
+  return () => {
+    window.removeEventListener("resize", measureAndSet);
+    stepTriggers.forEach((t) => t.kill());
+    pinTrigger.kill();
+  };
+}, []);
+
+
 // Smoothly scroll to the specific step within Section 2 (3x slower)
 const handleTitleClick = (index) => {
   const section = containerRef.current;
@@ -296,6 +424,26 @@ const handleTitleClick2 = (index) => {
   setActiveCounterIndex(clampedIndex);
 };
 
+
+
+const handlePartnersClick = (index) => {
+  const partnerSteps = gsap.utils.toArray(".partner-step");
+  if (!partnerSteps.length) return;
+
+  const clampedIndex = Math.min(index, partnerSteps.length - 1);
+  const trigger = ScrollTrigger.getById("section4Pin");
+
+  if (trigger) {
+    const targetY = trigger.start + clampedIndex * window.innerHeight + 100;
+    gsap.to(window, {
+      scrollTo: { y: targetY, autoKill: true },
+      duration: 2,
+      ease: "power2.inOut",
+    });
+  }
+
+  setActivePartnersIndex(clampedIndex);
+};
 
 
 
@@ -432,6 +580,76 @@ const handleTitleClick2 = (index) => {
           </div>
         </div>
       </section>
+
+
+
+
+
+
+        {/* Partners Div*/}
+   <section className="section section4">
+ <div className="partners-container" ref={partnersContainerRef}>
+  <div className="sticky-box partners-sticky" ref={partnersStickyRef}>
+
+      <h1 className="sticky-title3">ClimeScore Partners</h1>
+
+      <div className="title-buttons3">
+        {Partners.slice(0, 3).map((item, idx) => (
+          <button
+            key={idx}
+            className={`title-btn ${activePartnersIndex === idx ? "active" : ""}`}
+            onClick={() => handlePartnersClick(idx)}
+          >
+            {item.title}
+          </button>
+        ))}
+      </div>
+
+      {Partners.map((item, i) => (
+        <div key={i} className="partner-step">
+          <div className="partner-left">
+            <div className="partner-image-box">
+              <img src={item.image} alt={item.label} />
+              
+            </div>
+          </div>
+
+          <div className="partner-right">
+            <h2>{item.label}</h2>
+            <hr />
+            <p>{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+<section className="section section-testimonials">
+  <h1 className="testimonial-title">What Our Clients Say</h1>
+  
+  <div className="testimonial-carousel">
+    <img
+      src={testimonials[current].img}
+      alt={testimonials[current].name}
+      className="carousel-image"
+    />
+
+    <div className="overlay-content">
+      <h2 className="customer-name">{testimonials[current].name}</h2>
+      <h3 className="customer-designation">{testimonials[current].designation}</h3>
+      <p className="testimonial-text">{testimonials[current].text}</p>
+    </div>
+
+    <button onClick={prevSlide} className="nav-button prev">◀</button>
+    <button onClick={nextSlide} className="nav-button next">▶</button>
+  </div>
+</section>
+
+
+
 
       {/* rest of page content */}
       <div className="hero-content">
