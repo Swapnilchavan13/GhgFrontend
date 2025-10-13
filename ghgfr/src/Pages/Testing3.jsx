@@ -71,14 +71,14 @@ const countersData = [
   { 
     value: 40000, 
     label: "TREES", 
-    title:"Field Weathering",
+    title:"Direction Capture",
     desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species...",
     image: "https://static.vecteezy.com/system/resources/previews/035/884/391/non_2x/green-nature-forest-background-template-green-nature-landscape-and-forest-with-origami-paper-layer-cut-abstract-background-ecology-and-environment-conservation-concept-vector.jpg"
   },
   { 
     value: 250, 
     label: "GMS/HOUR", 
-        title:"Field Weathering",
+     title:"Direction Capture",
 
     desc: "The capacity of the Direct Air Capture consumer machine prototyped by us...",
     image: "https://img.freepik.com/premium-photo/concept-carbon-emissions-represented-by-smoke-ai-generative_407474-11204.jpg"
@@ -86,7 +86,7 @@ const countersData = [
   { 
     value: 300000, 
     label: "TONS OF CO2", 
-        title:"Field Weathering",
+     title:"Direction Capture",
 
     desc: "Emissions accurately measured & reported as per GRJ standards on our platform – CLIME SCORE",
     image: "https://lumenor.ai/cdn-cgi/imagedelivery/F5KOmplEz0rStV2qDKhYag/61b93862-53c6-4eb6-0699-eadad982bd00/tn"
@@ -138,7 +138,6 @@ export const Testing3 = () => {
 
   const nextSlide = () => setCurrent((p) => (p + 1) % images.length);
   const prevSlide = () => setCurrent((p) => (p - 1 + images.length) % images.length);
-  const handleButtonClick = () => alert(`You clicked: ${images[current].text}`);
 
   /* ---------------- Section 2 Setup (same pattern you've been using) ---------------- */
   useEffect(() => {
@@ -234,13 +233,15 @@ export const Testing3 = () => {
       })
     );
 
-    const pinTrigger = ScrollTrigger.create({
-      trigger: countersContainerRef.current,
-      pin: true,
-      start: "top top",
-      end: `+=${counterSteps.length * window.innerHeight}`,
-      scrub: false,
-    });
+ const pinTrigger = ScrollTrigger.create({
+  id: "section3Pin",  // ✅ add this line
+  trigger: countersContainerRef.current,
+  pin: true,
+  start: "top top",
+  end: `+=${counterSteps.length * window.innerHeight}`,
+  scrub: false,
+});
+
 
     return () => {
       window.removeEventListener("resize", measureAndSet);
@@ -271,6 +272,30 @@ const handleTitleClick = (index) => {
 
   setActiveTitleIndex(index);
 };
+
+
+const handleTitleClick2 = (index) => {
+  const counterSteps = gsap.utils.toArray(".counter-step");
+  if (!counterSteps.length) return;
+
+  const clampedIndex = Math.min(index, counterSteps.length - 1);
+  const trigger = ScrollTrigger.getById("section3Pin");
+
+  if (trigger) {
+    // Calculate scroll distance relative to the pinned section
+    const targetY =
+      trigger.start + clampedIndex * window.innerHeight + 100;
+
+    gsap.to(window, {
+      scrollTo: { y: targetY, autoKill: true },
+      duration: 2,
+      ease: "power2.inOut",
+    });
+  }
+
+  setActiveCounterIndex(clampedIndex);
+};
+
 
 
 
@@ -370,18 +395,19 @@ const handleTitleClick = (index) => {
         <div className="counters-container" ref={countersContainerRef}>
           <div className="sticky-box counters-sticky" ref={countersStickyRef}>
             <h1 className="sticky-title2">ClimeScore in Numbers</h1>
+<div className="title-buttons2">
+  {countersData.slice(0, 3).map((item, idx) => (
+    <button
+      key={idx}
+      className={`title-btn ${activeCounterIndex === idx ? "active" : ""}`}
+      onClick={() => handleTitleClick2(idx)}
+    >
+      {item.title}
+    </button>
+  ))}
+</div>
 
-              <div className="title-buttons2">
-          {countersData.slice(0, 3).map((item, idx) => (
-           <button
-           key={idx}
-           className={`title-btn ${activeTitleIndex === idx ? "active" : ""}`}
-           onClick={() => handleTitleClick(idx)}
-           >
-           {item.title}
-           </button>
-            ))}
-               </div>
+
             {countersData.map((item, i) => (
               <div key={i} className="counter-step">  
                 <div className="counter-left">
