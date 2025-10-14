@@ -13,36 +13,36 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /* -- your top carousel images -- */
 const images = [
-  { src: "https://eponline.com/-/media/ENV/eponline/Images/2023/08,-d-,17,-d-,23pollution.jpg", text: "ClimeScore helps you measure, reduce, and analyze your carbon emissions.", dec: "Our AI-driven platform has accurately measured over 200,000 tons of CO₂." },
-  { src: "https://ilotusland.com/wp-content/uploads/2023/11/ella-ivanescu-JbfhNrpQ_dw-unsplash-1-scaled.jpg", text: "ClimeScore develops valuable, high-integrity carbon credits.", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation, and DAC projects — creating carbon sinks that you can be part of." },
-  { src: "https://images.theconversation.com/files/562291/original/file-20231128-23-zrg8sr.jpg", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact, and methodology.", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free, and cost-effective." },
-  { src: "https://22313216.fs1.hubspotusercontent-na1.net/hubfs/22313216/co2e-meaning-definition-calculation-and-examples.png", text: "ClimeScore delivers customized, implementation-oriented training related to sustainability and climate change, and carbon credits.", dec: "Our precise and effective modules are delivered by experts with thousands of hours and over 5 years of experience in corporate education." },
+  { src: "https://eponline.com/-/media/ENV/eponline/Images/2023/08,-d-,17,-d-,23pollution.jpg", text: "ClimeScore helps you measure, reduce and analyze your carbon emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
+  { src: "https://ilotusland.com/wp-content/uploads/2023/11/ella-ivanescu-JbfhNrpQ_dw-unsplash-1-scaled.jpg", text: "ClimeScore develops valuable, high-integrity carbon credits", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation and DAC projects — creating carbon sinks that you can be part of." },
+  { src: "https://images.theconversation.com/files/562291/original/file-20231128-23-zrg8sr.jpg", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact and methodology", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
+  { src: "https://22313216.fs1.hubspotusercontent-na1.net/hubfs/22313216/co2e-meaning-definition-calculation-and-examples.png", text: "ClimeScore delivers customized, implementation-oriented training related to sustainability and climate change and carbon credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
 const slides = [
   {
     title: "Manage Carbon Emission",
     contents: [
-      { title2: "Measure",img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-6-3-2.png", text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Wcope 1 , Scope 2 and Scope 3. It’s robust, globally validated and incredibly simple." },
-      { title2: "Report",img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png", text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally validated reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
-      { title2: "Offset",img: "https://iasgyan.in/ig-uploads/images/CO2_EMISSIONS.jpg", text: "ClimeScore helps you become Carbon Neitral by a process of reduction and offsetting. Take the second step, after accurate carbon measurement, to offset emissions and become Verified Carbob Neutral." },
+      { title2: "Measure",img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-6-3-2.png",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
+      { title2: "Report",img: "https://nettzero.world/wp-content/uploads/2024/02/Frame-7-1.png", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
+      { title2: "Offset",img: "https://iasgyan.in/ig-uploads/images/CO2_EMISSIONS.jpg", imgtext:'Carbon Emission',text: "ClimeScore helps you become Carbon Neutral through a process of reduction and offsetting. Take the second step, after accurate carbon measurement, to offset emissions and become Verified Carbon Neutral." },
     ],
   },
   {
     title: "Manage Carbon Credits",
     contents: [
-      { title2: "Generate",img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop", text: "ClimeScore is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
-      { title2: "Invest",img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop", text: "ClimeScore actively identifies in development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop", text: "ClimeScore sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfulnones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Generate",img: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeScore is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Invest",img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeScore actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
+      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeScore sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfuln ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
     title: "Explore Sustainable Marketplace",
     title2: "Offset",
     contents: [
-      { title2: "Decarbonise Supply Chain",img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop", text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
-      { title2: "Reduce Costs",img: "https://images.unsplash.com/photo-1523906921802-b5d2d899e93b?w=600&h=400&fit=crop", text: "Moving to sustainable vendors nee not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
-      {title2: "Support Green Businesses",img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&h=400&fit=crop", text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business." },
+      { title2: "Decarbonise Supply Chain",img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
+      { title2: "Reduce Costs",img: "https://images.unsplash.com/photo-1523906921802-b5d2d899e93b?w=600&h=400&fit=crop",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      {title2: "Support Green Businesses",img: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&h=400&fit=crop",imgtext:'Sustainable Marketplace', text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business." },
     ],
   },
 ];
@@ -65,14 +65,14 @@ const countersData = [
     value: 120, 
     title:"Field Weathering",
     label: "HECTARES", 
-    desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares...",
+    desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares.",
     image: "https://t3.ftcdn.net/jpg/07/56/60/38/360_F_756603814_ukzf1prOo54RBS8Q3bZfyeG2CvZSnPIK.jpg"
   },
   { 
     value: 40000, 
     label: "TREES", 
     title:"Direction Capture",
-    desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species...",
+    desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species.",
     image: "https://static.vecteezy.com/system/resources/previews/035/884/391/non_2x/green-nature-forest-background-template-green-nature-landscape-and-forest-with-origami-paper-layer-cut-abstract-background-ecology-and-environment-conservation-concept-vector.jpg"
   },
   { 
@@ -80,7 +80,7 @@ const countersData = [
     label: "GMS/HOUR", 
      title:"Direction Capture",
 
-    desc: "The capacity of the Direct Air Capture consumer machine prototyped by us...",
+    desc: "The capacity of the Direct Air Capture consumer machine prototyped by us.",
     image: "https://img.freepik.com/premium-photo/concept-carbon-emissions-represented-by-smoke-ai-generative_407474-11204.jpg"
   },
   { 
@@ -88,36 +88,93 @@ const countersData = [
     label: "TONS OF CO2", 
      title:"Direction Capture",
 
-    desc: "Emissions accurately measured & reported as per GRJ standards on our platform – CLIME SCORE",
+    desc: "Emissions accurately measured & reported as per GRJ standards on our platform – ClimeScore",
     image: "https://lumenor.ai/cdn-cgi/imagedelivery/F5KOmplEz0rStV2qDKhYag/61b93862-53c6-4eb6-0699-eadad982bd00/tn"
   },
 ];
 
 
 const Partners = [
+  // CUSTOMERS
   {
     title: "Customers",
-    label: "UNITED NATIONS DEVELOPMENT PROGRAMME",
-    desc: "Working together on sustainable projects and carbon reduction initiatives across multiple geographies.",
-    image: "https://imapharmaceuticals.com/worldwide.jpeg",
-    value: 1,
+    label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
+    desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
+    image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+  },
+  {
+    title: "Customers",
+    label: "Shobha Rudra - Founder, RARE India",
+    desc: "“ClimeScore has been a great partner in measuring emissions of Bridges by RARE...”",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+  },
+  {
+    title: "Customers",
+    label: "Hashim Tyebji - Director, Kafila & Tiger Conservationist",
+    desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
+    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+  },
+
+  // PARTNERS
+  {
+    title: "Partners",
+    label: "Carbon Standards International",
+    desc: "Working with global organizations to ensure carbon projects follow internationally recognized standards.",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
   },
   {
     title: "Partners",
-    label: "INTERNATIONAL DEVELOPMENT PARTNER",
-    desc: "Supporting innovative climate finance mechanisms through verified carbon credits.",
-    image: "https://www.indiafilings.com/learn/wp-content/uploads/2023/03/Who-is-eligible-for-partnership.jpg",
-    value: 2,
+    label: "Circonomy",
+    desc: "Supporting circular economy initiatives that reduce waste and improve sustainability.",
+    image: "https://images.unsplash.com/photo-1532635241-17e820acc59f",
+  },
+  {
+    title: "Partners",
+    label: "RARE India",
+    desc: "A long-term sustainability partner promoting responsible tourism.",
+    image: "https://images.unsplash.com/photo-1534854638093-bada1813ca19",
+  },
+  {
+    title: "Partners",
+    label: "ISN (Indian Sustainability Network)",
+    desc: "Collaborating to develop India-specific sustainability benchmarks.",
+    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+  },
+
+  // STANDARDS
+  {
+    title: "Standards",
+    label: "GHG Protocol",
+    desc: "Provides globally accepted tools to measure and manage GHG emissions.",
+    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
   },
   {
     title: "Standards",
-    label: "INTERNATIONAL UNION FOR CONSERVATION OF NATURE",
-    desc: "Collaborating to promote biodiversity and sustainable carbon offset projects globally.",
-    image: "https://www.hrmagazine.co.uk/media/dxnbx4h2/article-images-2f156794-2fstandards.jpg",
-    value: 3,
+    label: "PAS 2060",
+    desc: "International standard for demonstrating carbon neutrality.",
+    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
   },
-  
+  {
+    title: "Standards",
+    label: "GRI – Global Reporting Initiative",
+    desc: "Used for sustainability reporting ensuring transparency and accountability.",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+  },
+  {
+    title: "Standards",
+    label: "CSI – C-Sink Methodologies",
+    desc: "Defines robust, science-based approaches for verifying carbon sink projects.",
+    image: "https://images.unsplash.com/photo-1542744095-291d1f67b221",
+  },
+  {
+    title: "Standards",
+    label: "ISO 14068",
+    desc: "A new ISO framework for climate change management and carbon neutrality.",
+    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+  },
 ];
+
+
 
 
 const testimonials = [
@@ -207,7 +264,7 @@ const [activePartnersIndex, setActivePartnersIndex] = useState(0);
   // Div1 carousel
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 7000);
+    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -426,24 +483,25 @@ const handleTitleClick2 = (index) => {
 
 
 
-const handlePartnersClick = (index) => {
+const handlePartnersCategoryClick = (category) => {
   const partnerSteps = gsap.utils.toArray(".partner-step");
   if (!partnerSteps.length) return;
 
-  const clampedIndex = Math.min(index, partnerSteps.length - 1);
-  const trigger = ScrollTrigger.getById("section4Pin");
+  // Find first item index matching that title
+  const targetIndex = Partners.findIndex((p) => p.title === category);
+  if (targetIndex === -1) return;
 
+  const trigger = ScrollTrigger.getById("section4Pin");
   if (trigger) {
-    const targetY = trigger.start + clampedIndex * window.innerHeight + 100;
+    const targetY = trigger.start + targetIndex * window.innerHeight;
     gsap.to(window, {
       scrollTo: { y: targetY, autoKill: true },
-      duration: 2,
+      duration: 1.5,
       ease: "power2.inOut",
     });
   }
-
-  setActivePartnersIndex(clampedIndex);
 };
+
 
 
 
@@ -525,7 +583,7 @@ const handlePartnersClick = (index) => {
   <div key={i} className="step">
     <div className="step-image-wrapper">
       <img src={s.img} alt={s.text} />
-      <span className="step-image-text">{"Carbon Emission"}</span>
+      <span className="step-image-text">{s.imgtext}</span>
     </div>
 
     <div className="conbox">
@@ -586,21 +644,20 @@ const handlePartnersClick = (index) => {
 
 
 
-        {/* Partners Div*/}
-   <section className="section section4">
- <div className="partners-container" ref={partnersContainerRef}>
-  <div className="sticky-box partners-sticky" ref={partnersStickyRef}>
-
+    <section className="section section4">
+  <div className="partners-container" ref={partnersContainerRef}>
+    <div className="sticky-box partners-sticky" ref={partnersStickyRef}>
       <h1 className="sticky-title3">ClimeScore Partners</h1>
 
+      {/* ✅ Only 3 main buttons */}
       <div className="title-buttons3">
-        {Partners.slice(0, 3).map((item, idx) => (
+        {["Customers", "Partners", "Standards"].map((category, idx) => (
           <button
             key={idx}
             className={`title-btn ${activePartnersIndex === idx ? "active" : ""}`}
-            onClick={() => handlePartnersClick(idx)}
+            onClick={() => handlePartnersCategoryClick(category)}
           >
-            {item.title}
+            {category}
           </button>
         ))}
       </div>
@@ -610,10 +667,8 @@ const handlePartnersClick = (index) => {
           <div className="partner-left">
             <div className="partner-image-box">
               <img src={item.image} alt={item.label} />
-              
             </div>
           </div>
-
           <div className="partner-right">
             <h2>{item.label}</h2>
             <hr />
@@ -624,6 +679,7 @@ const handlePartnersClick = (index) => {
     </div>
   </div>
 </section>
+
 
 
 
