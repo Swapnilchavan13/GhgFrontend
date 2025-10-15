@@ -217,6 +217,65 @@ const testimonials = [
 ];
 
 
+const mapPoints = [
+  {
+    name: "Delhi",
+    desc: "Our capital city project focuses on corporate emission tracking and green building initiatives.",
+    x: "52%", // x position of point on map
+    y: "25%",
+  },
+  {
+    name: "Jaipur",
+    desc: "In Jaipur, our efforts are directed towards tourism sustainability and heritage conservation.",
+    x: "45%",
+    y: "35%",
+  },
+  {
+    name: "Mumbai",
+    desc: "Our Mumbai project drives emission data integration with logistics and maritime sectors.",
+    x: "38%",
+    y: "75%",
+  },
+  {
+    name: "Bhopal",
+    desc: "Centered around agricultural carbon measurement for central India farmlands.",
+    x: "50%",
+    y: "55%",
+  },
+  {
+    name: "Kolkata",
+    desc: "Focusing on renewable energy adoption in the eastern region’s industries.",
+    x: "70%",
+    y: "45%",
+  },
+  {
+    name: "Chennai",
+    desc: "Developing blue carbon and coastal emission offset projects.",
+    x: "60%",
+    y: "80%",
+  },
+  {
+    name: "Hyderabad",
+    desc: "Smart city-based emission reduction monitoring through IoT solutions.",
+    x: "55%",
+    y: "68%",
+  },
+  {
+    name: "Ahmedabad",
+    desc: "Driving textile and industrial cluster decarbonization initiatives.",
+    x: "40%",
+    y: "50%",
+  },
+  {
+    name: "Bandhavgarh",
+    desc: "Our forest-based biochar project positively impacts the local ecosystem.",
+    x: "54%",
+    y: "48%",
+  },
+];
+
+
+
 
 
 /* ---------- Counter component (keeps same behaviour) ---------- */
@@ -259,6 +318,15 @@ export const Testing3 = () => {
   const partnersContainerRef = useRef(null);
 const partnersStickyRef = useRef(null);
 const [activePartnersIndex, setActivePartnersIndex] = useState(0);
+
+
+
+
+const mapContainerRef = useRef(null);
+const mapStickyRef = useRef(null);
+const mapPointRef = useRef(null);
+const [activeMapIndex, setActiveMapIndex] = useState(0);
+
 
 
   // Div1 carousel
@@ -432,6 +500,62 @@ const [activePartnersIndex, setActivePartnersIndex] = useState(0);
   return () => {
     window.removeEventListener("resize", measureAndSet);
     stepTriggers.forEach((t) => t.kill());
+    pinTrigger.kill();
+  };
+}, []);
+
+
+
+useEffect(() => {
+  if (!mapPoints.length) return;
+
+  const total = mapPoints.length;
+  const mapPoint = mapPointRef.current;
+
+  gsap.set(mapPoint, {
+    xPercent: -50,
+    yPercent: -50,
+    left: mapPoints[0].x,
+    top: mapPoints[0].y,
+  });
+
+  const triggers = mapPoints.map((point, i) =>
+    ScrollTrigger.create({
+      trigger: mapContainerRef.current,
+      start: () => `top+=${i * window.innerHeight} top`,
+      end: () => `+=${window.innerHeight}`,
+      onEnter: () => {
+        gsap.to(mapPoint, {
+          left: point.x,
+          top: point.y,
+          duration: 1,
+          ease: "power2.inOut",
+        });
+        setActiveMapIndex(i);
+      },
+      onEnterBack: () => {
+        gsap.to(mapPoint, {
+          left: point.x,
+          top: point.y,
+          duration: 1,
+          ease: "power2.inOut",
+        });
+        setActiveMapIndex(i);
+      },
+    })
+  );
+
+  const pinTrigger = ScrollTrigger.create({
+    id: "sectionMapPin",
+    trigger: mapContainerRef.current,
+    pin: true,
+    start: "top top",
+    end: `+=${total * window.innerHeight}`,
+    scrub: false,
+  });
+
+  return () => {
+    triggers.forEach((t) => t.kill());
     pinTrigger.kill();
   };
 }, []);
@@ -708,12 +832,48 @@ const handlePartnersCategoryClick = (category) => {
 
 
       {/* rest of page content */}
-      <div className="hero-content">
+      {/* <div className="hero-content">
         <h1 className="sticky-title">The ClimeScore Footprint</h1>
         <div className="hero-image-container">
           <img src="http://nettzero.world/wp-content/uploads/2025/03/Locality-Name-Nubra-Valley-State-Laddakh-UT.gif" alt="Nubra Valley" className="hero-image" />
         </div>
+      </div> */}
+
+
+
+      <section className="sectionsection-map">
+  <div className="map-container" ref={mapContainerRef}>
+    <div className="sticky-box map-sticky" ref={mapStickyRef}>
+      <h1 className="sticky-title4">The ClimeScore Footprint</h1>
+
+      <div className="map-box">
+        {/* Map background */}
+        <div className="map-image-wrapper">
+          <img
+            src="https://maps-india-in.com/img/1200/3d-map-of-india.jpg"
+            alt="India Map"
+            className="india-map"
+          />
+          {/* Moving point */}
+          <div className="map-point" ref={mapPointRef}></div>
+        </div>
+
+        {/* Right side info box */}
+        <div className="map-info-box">
+          <h2>{mapPoints[activeMapIndex].name}</h2>
+          <hr />
+          <p>{mapPoints[activeMapIndex].desc}</p>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
 
       <h1 className="sticky-title">ClimeScore For You</h1>
       <div className="divfour">
