@@ -58,6 +58,11 @@ margin-right: 50%;
     width: 100%;
     min-width: 100%; /* Ensure table takes full width */
   }
+
+  .carousel-item1 {
+    width: 120%;
+    margin-left: -10%;
+  }
   
   .carousel-item:not(:first-child) {
     margin-left: 20px; /* Adjust margin as needed */

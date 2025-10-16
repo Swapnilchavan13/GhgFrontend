@@ -219,58 +219,76 @@ const testimonials = [
 
 const mapPoints = [
   {
-    name: "Delhi",
-    desc: "Our capital city project focuses on corporate emission tracking and green building initiatives.",
-    x: "52%", // x position of point on map
-    y: "25%",
+    Locality: "Nubra Vally",
+    District: "Laddakh (UH)",
+    State: "NA",
+    desc: "ClimeScore deployment to create Ladakh`s first carbon Neutral Resort.",
+    x: "50%", // x position of point on map
+    y: "10%",
   },
   {
-    name: "Jaipur",
-    desc: "In Jaipur, our efforts are directed towards tourism sustainability and heritage conservation.",
+    Locality: "Phagu",
+    District: "Sirmaur",
+    State: "Himachal Pradesh",
+    desc: "Biochar Project with installed capacity of 2,000 tons per year.",
     x: "45%",
+    y: "20%",
+  },
+  {
+    Locality: "Sukki",
+    District: "Uttarkashi",
+    State: "Uttarakhand",
+    desc: "Biochar Project with installed capacity of 2,000 tons per year.",
+    x: "55%",
+    y: "24%",
+  },
+  {
+    Locality: "Mandawa",
+    District: "NA",
+    State: "Rajastan",
+    desc: "ClimeScore deployment to create Rajastan`s first Carbon Neutral Resort.",
+    x: "35%",
     y: "35%",
   },
   {
-    name: "Mumbai",
-    desc: "Our Mumbai project drives emission data integration with logistics and maritime sectors.",
-    x: "38%",
-    y: "75%",
+    Locality: "Bandhavgarh",
+    District: "Umaria",
+    State: "Madhya Pradesh",
+    desc: "Biochar Project with an inastalled capacity of 2,000 tons per year and over 1.5 lakh litres of biochar already produced.",
+    x: "48%",
+    y: "60%",
   },
   {
-    name: "Bhopal",
-    desc: "Centered around agricultural carbon measurement for central India farmlands.",
-    x: "50%",
-    y: "55%",
+    Locality: "Sawantwadi",
+    District: "NA",
+    State: "Maharashtra",
+    desc: "Biochar Project with installed capacity of 2,000 tons per year",
+    x: "42%",
+    y: "65%",
   },
   {
-    name: "Kolkata",
-    desc: "Focusing on renewable energy adoption in the eastern region’s industries.",
-    x: "70%",
-    y: "45%",
-  },
-  {
-    name: "Chennai",
-    desc: "Developing blue carbon and coastal emission offset projects.",
-    x: "60%",
-    y: "80%",
-  },
-  {
-    name: "Hyderabad",
-    desc: "Smart city-based emission reduction monitoring through IoT solutions.",
-    x: "55%",
-    y: "68%",
-  },
-  {
-    name: "Ahmedabad",
-    desc: "Driving textile and industrial cluster decarbonization initiatives.",
+    Locality: "Lonavla",
+    District: "Pune",
+    State: "Maharashtra",
+    desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
     x: "40%",
-    y: "50%",
+    y: "66%",
   },
   {
-    name: "Bandhavgarh",
-    desc: "Our forest-based biochar project positively impacts the local ecosystem.",
-    x: "54%",
-    y: "48%",
+    Locality: "Mumbai",
+    District: "Mumbai",
+    State: "Maharashtra",
+    desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
+    x: "48%",
+    y: "72%",
+  },
+  {
+    Locality: "Coorg",
+    District: "Kodagu",
+    State: "Karnataka",
+    desc: "VlimeScore deployment and Biochar Project with installed capacity 2,000 tons per year.",
+    x: "34%",
+    y: "80%",
   },
 ];
 
@@ -860,7 +878,11 @@ const handlePartnersCategoryClick = (category) => {
 
         {/* Right side info box */}
         <div className="map-info-box">
-          <h2>{mapPoints[activeMapIndex].name}</h2>
+          <h2>{mapPoints[activeMapIndex].Locality}</h2>
+          <h2>{mapPoints[activeMapIndex].District}</h2>
+          <h2>{mapPoints[activeMapIndex].State}</h2>
+
+
           <hr />
           <p>{mapPoints[activeMapIndex].desc}</p>
         </div>
