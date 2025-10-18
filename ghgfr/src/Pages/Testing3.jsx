@@ -859,7 +859,7 @@ const handlePartnersCategoryClick = (category) => {
 
 
 
-      <section className="sectionsection-map">
+  <section className="section section-map">
   <div className="map-container" ref={mapContainerRef}>
     <div className="sticky-box map-sticky" ref={mapStickyRef}>
       <h1 className="sticky-title4">The ClimeScore Footprint</h1>
@@ -881,8 +881,6 @@ const handlePartnersCategoryClick = (category) => {
           <h2>{mapPoints[activeMapIndex].Locality}</h2>
           <h2>{mapPoints[activeMapIndex].District}</h2>
           <h2>{mapPoints[activeMapIndex].State}</h2>
-
-
           <hr />
           <p>{mapPoints[activeMapIndex].desc}</p>
         </div>
@@ -897,8 +895,8 @@ const handlePartnersCategoryClick = (category) => {
 
 
 
-      <h1 className="sticky-title">ClimeScore For You</h1>
       <div className="divfour">
+      <h1 className="sticky-titlediv">ClimeScore For You</h1>
         {/* sample boxes — keep as you had them */}
         <div>
           <img src="https://shopequo.com/cdn/shop/articles/Cover_642d8475-e5b3-4074-a452-8d054a621b9e.jpg?v=1709275662&width=1600" alt="" />

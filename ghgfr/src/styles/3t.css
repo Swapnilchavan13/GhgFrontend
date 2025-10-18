@@ -832,7 +832,12 @@ height: 20px;
   }
 
   .overlay-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .overlay-dec{
+    font-size: 0.7rem;
+
   }
 
   .overlay-btn {
@@ -862,6 +867,11 @@ height: 20px;
     font-size: 10px;
   }
 
+  .step-image-text{
+      font-size: 1.2rem;
+
+  }
+
   /* Step / Section2 */
   .step {
     flex-direction: column;
@@ -879,7 +889,7 @@ height: 20px;
 
   .conbox {
     width: 70%;
-    height: 250px;
+    height: 330px;
     margin-top: -60px;
     margin-left: 2px;
   }
@@ -966,16 +976,364 @@ height: 20px;
     flex-direction: column;
     align-items: center;
         width: 92% !important;
+        margin-top: 50px;
 
   }
 
   .divfour div {
     width: 90%;
-    margin-bottom: 20px;
+    margin-bottom: -20px;
     text-align: center;
+    z-index: 99999;
+  }
+
+  .divfour>div img{
+    height: 220px;
   }
 
   .divfour h2 {
     font-size: 22px;
   }
+
+
+
+/* Section3 */
+
+.section3 {
+  margin-top: -130px !important;         
+  padding: 40px 10px;
+  height: auto;
+  overflow: visible;
+  position: relative;               
+  z-index: 1;
+}
+
+  .sticky-title2 {
+    font-size: 20px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .title-buttons2 {
+    margin: 10px auto 20px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .title-buttons2 .title-btn {
+    width: 110px;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .counters-sticky {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    height: auto;
+    top: 0;
+  }
+
+ 
+
+  .counter-left {
+    width: 100%;
+  }
+
+  .counter-image-box {
+    width: 600px !important;
+    background: transparent;
+    margin-left: -215px;
+  }
+
+  .counter-image-box img {
+    width: 350px;
+    height: 300px;
+    border-radius: 12px;
+  }
+
+  .counter-overlay {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+
+  .counter-number {
+    font-size: 40px;
+  }
+
+  .counter-right {
+    position: relative;
+    width: 90%;
+    margin-top: -70px;
+    margin-left: -8px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .counter-right h2 {
+    font-size: 18px;
+  }
+
+  .counter-right p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .counter-right hr {
+    margin: 10px auto;
+    width: 60%;
+  }
+
+
+
+
+  /* ===== Mobile styles for "ClimeScore Partners" (section4) ===== */
+.section4 {
+  margin-top: 540px;                  
+  padding: 40px 10px;
+  height: auto;
+  z-index: 0;
+}
+
+  .partners-sticky {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .sticky-title3 {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .title-buttons3 {
+    margin: 15px auto 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 5;
+  }
+
+  .title-buttons3 .title-btn {
+    width: 110px;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .partner-step {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    opacity: 1 !important; /* Always visible on mobile */
+    background-color: transparent;
+    margin: 0 0 60px 0;
+  }
+
+  .partner-left {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .partner-image-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .partner-image-box img {
+    width: 100%;
+    height: 300px;
+    margin-left: -20px;
+    border-radius: 15px;
+  }
+
+  .partner-right {
+    width: 90%;
+    height: 320px;
+    margin-left: -20px;
+    margin-top: -100px;
+    padding: 20px;
+    background-color: rgb(38, 38, 38);
+    border-radius: 15px;
+    text-align: center;
+    z-index: 1111;
+  }
+
+  .partner-right h2 {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .partner-right hr {
+    width: 50%;
+    margin: 10px auto;
+  }
+
+  .partner-right p {
+    font-size: 14px;
+    color: white;
+    line-height: 1.5;
+  }
+
+  .section-testimonials {
+  position: relative;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+  margin-top: -150px;
+  background-color: transparent;
+}
+
+.testimonial-title{
+  margin-top: -30px;
+  font-size: 20px;
+  color: #4d4d4d;
+}
+
+.sticky-titlediv{
+  color: #e2e2e2;
+  font-size: 24px;
+}
+
+/* ====== ClimeScore Map Section ====== */
+.sticky-title4{
+  font-size: 20px;
+  color: #414141;
+  z-index: 999999;
+  margin-top: -20px !important ;
+}
+
+.section-map {
+  margin: -70px auto !important;
+  position: relative;
+  width: 95%;
+}
+
+.map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: 30px !important;
+}
+
+.map-sticky {
+  position: sticky;
+  top: 20px;
+  height: 100%;
+}
+
+.map-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+}
+
+.map-image-wrapper {
+  position: relative;
+  width: 60%;
+  height: auto;
+}
+
+.india-map {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  margin-top: -20px;
+  object-fit: cover;
+}
+
+.map-point {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 1.8s infinite;
+  z-index: 10;
+}
+
+.map-info-box h2 {
+  font-size: 18px;
+  margin: 5px 0;
+  color: white;
+}
+
+.map-info-box hr {
+  border: 1px solid #fff;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.map-info-box p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ===== Responsive styles for mobile ===== */
+  .section-map {
+    height: auto;
+    padding: 20px 10px;
+    margin-top: 30px;
+  }
+
+  .map-sticky {
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+
+  .sticky-title4 {
+    text-align: center;
+    margin: 0 0 15px 0;
+    font-size: 22px;
+  }
+
+  .map-box {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .map-image-wrapper {
+    width: 100%;
+  }
+
+  .map-info-box {
+    width: 90%;
+    padding: 20px;
+    text-align: center;
+    height: 250px;
+    margin-top: -30px;
+  }
+
+  .map-info-box h2 {
+    font-size: 16px;
+  }
+
+  .map-info-box p {
+    font-size: 14px;
+  }
+
+
 }
