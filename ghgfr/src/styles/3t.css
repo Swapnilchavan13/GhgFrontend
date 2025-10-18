@@ -973,10 +973,11 @@ height: 20px;
 
   /* Div 4 (cards row) */
   .divfour {
+    position: relative;
     flex-direction: column;
     align-items: center;
-        width: 92% !important;
-        margin-top: 50px;
+    width: 92% !important;
+    margin-top: 50px;
 
   }
 
