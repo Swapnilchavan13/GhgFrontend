@@ -686,12 +686,9 @@ margin-top: 50px;
 
 
 
- /* .section-map {
-  position: relative;
-  height: 110vh;
-  background-color: #f5f5f5;
-  overflow: hidden;
-} */
+ .section-map {
+ margin-top: 110px;
+}
 
 .map-box {
   display: flex;
@@ -753,7 +750,7 @@ margin-top: 50px;
 .sticky-title4{
   color: #414141;
   z-index: 999999;
-  margin-top: 10px !important ;
+  margin-top: -20px !important ;
 }
 
 /* .section-map {
@@ -1009,9 +1006,10 @@ height: 20px;
   }
 
   .counter-right {
-    margin: -120px auto 0 -22%;
+    margin-top: -100px !important;
+    margin: -160px auto 0 -22%;
     width: 90%;
-    height: 300px;
+    height: 340px !important;
   }
 
   .counter-number {

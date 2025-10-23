@@ -841,9 +841,6 @@ const handlePartnersCategoryClick = (category) => {
   </div>
 </section>
 
-
-
-
 {/* <section className="section section-testimonials">
   <h1 className="testimonial-title">What Our Clients Say</h1>
   
@@ -866,8 +863,6 @@ const handlePartnersCategoryClick = (category) => {
 </section> */}
 
 
-
-
       {/* rest of page content */}
       {/* <div className="hero-content">
         <h1 className="sticky-title">The ClimeScore Footprint</h1>
@@ -875,8 +870,6 @@ const handlePartnersCategoryClick = (category) => {
           <img src="http://nettzero.world/wp-content/uploads/2025/03/Locality-Name-Nubra-Valley-State-Laddakh-UT.gif" alt="Nubra Valley" className="hero-image" />
         </div>
       </div> */}
-
-
 
   <section className="section section-map">
   <div className="map-container" ref={mapContainerRef}>
