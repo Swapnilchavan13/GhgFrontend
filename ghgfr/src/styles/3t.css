@@ -686,12 +686,12 @@ margin-top: 50px;
 
 
 
-.section-map {
+ /* .section-map {
   position: relative;
   height: 110vh;
   background-color: #f5f5f5;
   overflow: hidden;
-}
+} */
 
 .map-box {
   display: flex;
@@ -745,6 +745,89 @@ margin-top: 50px;
   font-size: 16px;
   color: #ddd;
 }
+
+
+/* ///// */
+
+
+.sticky-title4{
+  color: #414141;
+  z-index: 999999;
+  margin-top: 10px !important ;
+}
+
+/* .section-map {
+  margin: -70px auto !important;
+  position: relative;
+  width: 95%;
+} */
+
+.map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  /* margin-top: 30px !important; */
+}
+
+.map-sticky {
+  position: sticky;
+  top: 20px;
+  height: 100%;
+}
+
+.map-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 40px; */
+  width: 100%;
+}
+
+/* .map-image-wrapper {
+  position: relative;
+  width: 60%;
+  height: auto;
+} */
+
+.india-map {
+  width: 140%;
+  height: auto;
+  border-radius: 20px;
+  margin-top: -20px;
+  object-fit: cover;
+}
+
+/* .map-point {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 1.8s infinite;
+  z-index: 10;
+} */
+
+/* .map-info-box h2 {
+  font-size: 18px;
+  margin: 5px 0;
+  color: white;
+} */
+
+/* .map-info-box hr {
+  border: 1px solid #fff;
+  margin: 10px 0;
+  width: 100%;
+} */
+
+/* .map-info-box p {
+  font-size: 15px;
+  line-height: 1.6;
+} */
+
+
+
+
+
 
 
 
