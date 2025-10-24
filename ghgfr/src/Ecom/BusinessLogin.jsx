@@ -16,7 +16,7 @@ const BusinessLogin = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8080/business/login", {
+      const res = await fetch("http://62.72.59.146:8080/business/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -752,6 +752,7 @@ const handlePartnersCategoryClick = (category) => {
       <hr />
       <p>{s.text}</p>
     </div>
+    <div className="greybox"></div>
   </div>
 ))}
         </div>
@@ -880,7 +881,10 @@ const handlePartnersCategoryClick = (category) => {
         {/* Map background */}
         <div className="map-image-wrapper">
           <img
-            src="https://maps-india-in.com/img/1200/3d-map-of-india.jpg"
+            // src="https://maps-india-in.com/img/1200/3d-map-of-india.jpg"
+            src="https://static.vecteezy.com/system/resources/previews/025/842/873/non_2x/flat-simple-india-map-free-vector.jpg"
+
+            
             alt="India Map"
             className="india-map"
           />
