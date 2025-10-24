@@ -795,6 +795,7 @@ const handlePartnersCategoryClick = (category) => {
                   <hr />
                   <p>{item.desc}</p>
                 </div>
+                <div className="greybox2"></div>
               </div>
             ))}
           </div>
@@ -836,6 +837,7 @@ const handlePartnersCategoryClick = (category) => {
             <hr />
             <p>{item.desc}</p>
           </div>
+            <div className="greybox3"></div>
         </div>
       ))}
     </div>
