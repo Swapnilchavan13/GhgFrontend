@@ -415,7 +415,7 @@ const BusinessDashboard = () => {
   const username = loggedInBusiness?.businessName;
   const adminId = loggedInBusiness?.adminId;
 
-  const API_BASE = "http://localhost:8080";
+  const API_BASE = "http://62.72.59.146:8080";
 
   useEffect(() => {
     if (!loggedInBusiness) return;
