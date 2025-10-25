@@ -137,6 +137,9 @@
   font-weight: bold;
   color: white;
   text-align: center;
+  padding: 5px;
+background-color: rgba(23, 23, 23, 0.7);  
+border-radius: 10px;
 
 }
 
@@ -146,6 +149,9 @@ font-style: italic;
   font-weight: bold;
   color: white;
   text-align: center;
+  padding: 5px;
+background-color: rgba(23, 23, 23, 0.7);  
+border-radius: 10px;
 
 }
 
@@ -554,6 +560,11 @@ width: 100%;
 }
 
 
+ .partner-image-box {
+    width: 1200px !important; 
+   
+  }
+
   .partner-image-box img {
     width: 1200px !important; 
    
@@ -900,11 +911,11 @@ margin-top: 50px;
 
   .hamburger {
     display: flex; /* show only on mobile */
-background-color: #848383;
-width: 30px;
-height: 20px;
- margin-top: 10px;
- border-radius: 20px;
+    background-color: #848383;
+    width: 40px;
+    height: 25px;
+    margin-top: 10px;
+    border-radius: 20px;
   }
 
   .nav-links {
@@ -948,10 +959,17 @@ height: 20px;
 
   .overlay-text {
     font-size: 1rem;
-  }
+    /* border: 1px solid red; */
+    padding: 5px;
+background-color: rgba(23, 23, 23, 0.7);  
+border-radius: 10px;
+}
 
   .overlay-dec{
     font-size: 0.7rem;
+    padding: 5px;
+background-color: rgba(23, 23, 23, 0.7);  
+border-radius: 10px;
 
   }
 
@@ -984,7 +1002,7 @@ height: 20px;
 
   .step-image-text{
       font-size: 1.2rem;
-      margin-left: 40px;
+      margin-left: 25%;
 
   }
 

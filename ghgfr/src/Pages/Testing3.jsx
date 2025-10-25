@@ -119,19 +119,19 @@ const Partners = [
     title: "Customers",
     label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
     desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
-    image: "https://iili.io/KgfM7hg.png",
+    image: "https://iili.io/KrXt6vt.jpg",
   },
   {
     title: "Customers",
     label: "Shobha Rudra - Founder, RARE India",
     desc: "“ClimeScore has been a great partner in measuring emissions of Bridges by RARE.”",
-    image: "https://iili.io/KgfM7hg.png",
+    image: "https://iili.io/KrXt6vt.jpg",
   },
   {
     title: "Customers",
     label: "Hashim Tyebji - Director, Kafila and renowned Tiger Conservationist",
     desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
-    image: "https://iili.io/KgfM7hg.png",
+    image: "https://iili.io/KrXt6vt.jpg",
   },
 
   // PARTNERS
@@ -139,25 +139,25 @@ const Partners = [
     title: "Partners",
     label: "Carbon Standards International",
     desc: "Working with global organizations to ensure carbon projects follow internationally recognized standards.",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
+    image: "https://iili.io/KrXtLjs.jpg",
   },
   {
     title: "Partners",
     label: "Circonomy",
     desc: "Supporting circular economy initiatives that reduce waste and improve sustainability.",
-    image: "https://images.unsplash.com/photo-1532635241-17e820acc59f",
+    image: "https://iili.io/KrXuep9.jpg",
   },
   {
     title: "Partners",
     label: "RARE India",
     desc: "A long-term sustainability partner promoting responsible tourism.",
-    image: "https://images.unsplash.com/photo-1534854638093-bada1813ca19",
+    image: "https://iili.io/KrXuvIe.jpg",
   },
   {
     title: "Partners",
     label: "ISN (Indian Sustainability Network)",
     desc: "Collaborating to develop India-specific sustainability benchmarks.",
-    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+    image: "https://iili.io/KrXu8hu.jpg",
   },
 
   // STANDARDS
@@ -165,31 +165,31 @@ const Partners = [
     title: "Standards",
     label: "GHG Protocol",
     desc: "Provides globally accepted tools to measure and manage GHG emissions.",
-    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+    image: "https://iili.io/KrXhabs.jpg",
   },
   {
     title: "Standards",
     label: "PAS 2060",
     desc: "International standard for demonstrating carbon neutrality.",
-    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+    image: "https://iili.io/KrXurEx.jpg",
   },
   {
     title: "Standards",
     label: "GRI – Global Reporting Initiative",
     desc: "Used for sustainability reporting ensuring transparency and accountability.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+    image: "https://iili.io/KrXt4aI.jpg",
   },
   {
     title: "Standards",
     label: "CSI – C-Sink Methodologies",
     desc: "Defines robust, science-based approaches for verifying carbon sink projects.",
-    image: "https://images.unsplash.com/photo-1542744095-291d1f67b221",
+    image: "https://iili.io/KrXtr3N.jpg",
   },
   {
     title: "Standards",
     label: "ISO 14068",
     desc: "A new ISO framework for climate change management and carbon neutrality.",
-    image: "https://www.udgamschool.com/wp-content/uploads/2023/05/dummy-image-grey-e1398449111870.jpg",
+    image: "https://iili.io/KrXtU4p.jpg",
   },
 ];
 
@@ -261,9 +261,17 @@ const mapPoints = [
     x: "55%",
     y: "24%",
   },
+   {
+    Locality: "Rudrapur",
+    District: "Pant Nagar",
+    State: "Uttarakhand",
+    desc: "One of the Nettzero`s Biochar Production installalation",
+     x: "55%",
+    y: "23%",
+  },
   {
     Locality: "Mandawa",
-    District: "NA",
+    District: "Shekhawati",
     State: "Rajastan",
     desc: "ClimeScore deployment to create Rajastan`s first Carbon Neutral Resort.",
     x: "35%",
@@ -277,14 +285,7 @@ const mapPoints = [
     x: "48%",
     y: "50%",
   },
-  {
-    Locality: "Rudrapur",
-    District: "NA",
-    State: "Uttarakhand",
-    desc: "One of the Nettzero`s Biochar Production installalation",
-     x: "55%",
-    y: "24%",
-  },
+ 
   {
     Locality: "Lonavla",
     District: "Pune",
@@ -305,7 +306,7 @@ const mapPoints = [
     Locality: "Coorg",
     District: "Kodagu",
     State: "Karnataka",
-    desc: "VlimeScore deployment and Biochar Project with installed capacity 2,000 tons per year.",
+    desc: "ClimeScore deployment at Tamara coorg for Scope-1, Scope-2 and Scope-3 for emission management.",
     x: "42%",
     y: "75%",
   },
@@ -954,31 +955,31 @@ const handlePartnersCategoryClick = (category) => {
           <img src="https://shopequo.com/cdn/shop/articles/Cover_642d8475-e5b3-4074-a452-8d054a621b9e.jpg?v=1709275662&width=1600" alt="" />
           <h2>Carbon Neutrality</h2>
           <p>NettZero offers the best of breed global standards & practices to make your organisation certified as Carbon Neutral​</p>
-          <button>Read More</button>
+          <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://climatecarbon.com/wp-content/uploads/2023/05/Carbon-Credit.jpg" alt="" />
           <h2>Carbon Credits</h2>
           <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits. 10 or 10,000, we've got them</p>
-          <button>Read More</button>
+          <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://cdn.tapinvest.in/strapi-assets/Credit_Creation_1_8ac29ba9ba.jpg" alt="" />
           <h2>Credit Creation</h2>
           <p>If you have projects that need development and promotion to earn Carbon Credits, we get you listed on top registries​</p>
-          <button>Read More</button>
+          <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2025/07/climate-literacy-image.png?fit=1280%2C720&ssl=1" alt="" />
           <h2>Climate Literacy​</h2>
           <p>If you need to educate & coach your company on the impact of various developments, NettZero Trains delivers​</p>
-          <button>Read More</button>
+          <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://static1.squarespace.com/static/650bf3ee96714871f4364ce8/652d0ba2958f231b73106e32/67125d543943cf1dbe41a26a/1752728063907/epr+-+Copy.png?format=1500w" alt="" />
           <h2>EPR & Plastic Credits​</h2>
           <p>We work with brands and Plastic Project developers to create value in terms of credits and social development. ​</p>
-          <button>Book Demo</button>
+          <button>Get In Touch</button>
         </div>
       </div>
 

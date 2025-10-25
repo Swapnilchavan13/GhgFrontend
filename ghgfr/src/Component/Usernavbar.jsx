@@ -19,6 +19,10 @@ export const Usernavbar = () => {
       <Link to='/user/useremission' className="nav-link">
         <h3>My Emissions</h3>
       </Link>
+
+       <Link to='/businessdashboard' className="nav-link">
+        <h3>Ecom Emission</h3>
+      </Link>
       {isUserLoggedIn ? (
         <h3 onClick={handleLogout} className="navh3">
           Logout
