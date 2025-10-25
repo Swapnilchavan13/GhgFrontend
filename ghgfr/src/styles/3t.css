@@ -560,10 +560,7 @@ width: 100%;
 }
 
 
- .partner-image-box {
-    width: 1200px !important; 
-   
-  }
+ 
 
   .partner-image-box img {
     width: 1200px !important; 
@@ -1293,11 +1290,10 @@ border-radius: 10px;
 
   .partner-image-box {
     width: 100%;
-    margin: 0 auto;
   }
 
   .partner-image-box img {
-    width: 100% !important;
+    width: 160% !important;
     height: 300px;
     margin-left: -20px;
     border-radius: 15px;
