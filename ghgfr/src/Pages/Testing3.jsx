@@ -34,7 +34,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 const images = [
   { src: "https://iili.io/KgfG7f4.png", text: "ClimeScore helps you measure, reduce and analyze your carbon emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
   { src: "https://iili.io/KgfRG6X.png", text: "ClimeScore develops valuable, high-integrity carbon credits", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation and DAC projects — creating carbon sinks that you can be part of." },
-  { src: "https://images.theconversation.com/files/562291/original/file-20231128-23-zrg8sr.jpg", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact and methodology", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
+  { src: "https://iili.io/Kr1giR1.png", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact and methodology", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
   { src: "https://iili.io/KgfGRsf.png", text: "ClimeScore delivers customized, implementation-oriented training related to sustainability and climate change and carbon credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
@@ -129,7 +129,7 @@ const Partners = [
   },
   {
     title: "Customers",
-    label: "Hashim Tyebji - Director, Kafila & Tiger Conservationist",
+    label: "Hashim Tyebji - Director, Kafila and renowned Tiger Conservationist",
     desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
     image: "https://iili.io/KgfM7hg.png",
   },
@@ -275,15 +275,15 @@ const mapPoints = [
     State: "Madhya Pradesh",
     desc: "Biochar Project with an inastalled capacity of 2,000 tons per year and over 1.5 lakh litres of biochar already produced.",
     x: "48%",
-    y: "60%",
+    y: "50%",
   },
   {
-    Locality: "Sawantwadi",
+    Locality: "Rudrapur",
     District: "NA",
-    State: "Maharashtra",
-    desc: "Biochar Project with installed capacity of 2,000 tons per year",
-    x: "42%",
-    y: "65%",
+    State: "Uttarakhand",
+    desc: "One of the Nettzero`s Biochar Production installalation",
+     x: "55%",
+    y: "24%",
   },
   {
     Locality: "Lonavla",
@@ -291,23 +291,23 @@ const mapPoints = [
     State: "Maharashtra",
     desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
     x: "40%",
-    y: "66%",
+    y: "62%",
   },
   {
     Locality: "Mumbai",
     District: "Mumbai",
     State: "Maharashtra",
     desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
-    x: "48%",
-    y: "72%",
+    x: "36%",
+    y: "62%",
   },
   {
     Locality: "Coorg",
     District: "Kodagu",
     State: "Karnataka",
     desc: "VlimeScore deployment and Biochar Project with installed capacity 2,000 tons per year.",
-    x: "34%",
-    y: "80%",
+    x: "42%",
+    y: "75%",
   },
 ];
 
@@ -337,6 +337,18 @@ export const Counter = ({ target, duration = 1200 }) => {
 
 /* -------------------- Main component -------------------- */
 export const Testing3 = () => {
+
+
+  const [showScroll, setShowScroll] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setShowScroll(window.scrollY > 300);
+  };
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -489,8 +501,7 @@ const [activeMapIndex, setActiveMapIndex] = useState(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
-  useEffect(() => {
+useEffect(() => {
   const partnerSteps = gsap.utils.toArray(".partner-step");
   if (!partnerSteps.length) return;
 
@@ -507,6 +518,18 @@ const [activeMapIndex, setActiveMapIndex] = useState(0);
   setTimeout(measureAndSet, 80);
   window.addEventListener("resize", measureAndSet);
 
+  // 🔹 Get all categories in order
+  const categories = ["Customers", "Partners", "Standards"];
+
+  // 🔹 Map each category to its index range in the Partners array
+  const categoryRanges = categories.map((cat) => {
+    const start = Partners.findIndex((p) => p.title === cat);
+    const end =
+      Partners.findLastIndex?.((p) => p.title === cat) ??
+      [...Partners].reverse().findIndex((p) => p.title === cat);
+    return { title: cat, start, end: end + 1 };
+  });
+
   const stepTriggers = partnerSteps.map((step, i) =>
     ScrollTrigger.create({
       trigger: partnersContainerRef.current,
@@ -515,12 +538,21 @@ const [activeMapIndex, setActiveMapIndex] = useState(0);
       onEnter: () => {
         gsap.to(partnerSteps, { autoAlpha: 0, duration: 0.45 });
         gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-        setActivePartnersIndex(i);
+
+        // 🔹 Find which category this index belongs to
+        const activeCatIndex = categoryRanges.findIndex(
+          (r) => i >= r.start && i < r.end
+        );
+        setActivePartnersIndex(activeCatIndex);
       },
       onEnterBack: () => {
         gsap.to(partnerSteps, { autoAlpha: 0, duration: 0.45 });
         gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-        setActivePartnersIndex(i);
+
+        const activeCatIndex = categoryRanges.findIndex(
+          (r) => i >= r.start && i < r.end
+        );
+        setActivePartnersIndex(activeCatIndex);
       },
     })
   );
@@ -540,6 +572,7 @@ const [activeMapIndex, setActiveMapIndex] = useState(0);
     pinTrigger.kill();
   };
 }, []);
+
 
 
 
@@ -654,7 +687,7 @@ const handlePartnersCategoryClick = (category) => {
 
   const trigger = ScrollTrigger.getById("section4Pin");
   if (trigger) {
-    const targetY = trigger.start + targetIndex * window.innerHeight;
+    const targetY = trigger.start + targetIndex * window.innerHeight +100;
     gsap.to(window, {
       scrollTo: { y: targetY, autoKill: true },
       duration: 1.5,
@@ -814,16 +847,17 @@ const handlePartnersCategoryClick = (category) => {
 
       {/* ✅ Only 3 main buttons */}
       <div className="title-buttons3">
-        {["Customers", "Partners", "Standards"].map((category, idx) => (
-          <button
-            key={idx}
-            className={`title-btn ${activePartnersIndex === idx ? "active" : ""}`}
-            onClick={() => handlePartnersCategoryClick(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+  {["Customers", "Partners", "Standards"].map((category, idx) => (
+    <button
+      key={idx}
+      className={`title-btn ${activePartnersIndex === idx ? "active" : ""}`}
+      onClick={() => handlePartnersCategoryClick(category)}
+    >
+      {category}
+    </button>
+  ))}
+</div>
+
 
       {Partners.map((item, i) => (
         <div key={i} className="partner-step">
@@ -949,6 +983,20 @@ const handlePartnersCategoryClick = (category) => {
       </div>
 
       <Footer />
+      {/* Scroll to Top Button */}
+<button
+  className="scroll-to-top"
+  onClick={() => {
+    gsap.to(window, {
+      scrollTo: { y: 0, autoKill: true },
+      duration: 1.5,
+      ease: "power2.inOut",
+    });
+  }}
+>
+  ↑
+</button>
+
     </div>
   );
 };
