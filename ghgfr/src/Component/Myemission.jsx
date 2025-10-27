@@ -385,9 +385,6 @@ for (const user of users) {
   
 
 
-
-
-
   const handleShowData = async (userId) => {
     try {
       const response = await fetch(`https://backend.climescore.com/getdata12?userId=${userId}`);

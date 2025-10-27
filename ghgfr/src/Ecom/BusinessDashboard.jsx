@@ -305,6 +305,7 @@
 // src/pages/BusinessDashboard.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Usernavbar } from "../Component/Usernavbar";
 
 /*
   Fields implemented exactly per user's list (no extra visible inputs):
@@ -408,12 +409,16 @@ const BusinessDashboard = () => {
   const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
 
-  const loggedInBusiness = JSON.parse(localStorage.getItem("logged_in_business"));
+  const loggedInBusiness = localStorage.getItem("useruserId");
+
   if (!loggedInBusiness) {
     // This early return prevents rendering when not logged-in; rest of component relies on business context.
   }
-  const username = loggedInBusiness?.businessName;
-  const adminId = loggedInBusiness?.adminId;
+  const username = loggedInBusiness;
+  const adminId = loggedInBusiness;
+
+
+  // console.log(loggedInBusiness)
 
   const API_BASE = "http://62.72.59.146:8080";
 
@@ -439,11 +444,11 @@ const BusinessDashboard = () => {
     };
     fetchEntries();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedInBusiness?.businessName]);
+  }, [loggedInBusiness]);
 
   const handleLogout = () => {
-    localStorage.removeItem("logged_in_business");
-    window.location.href = "/businesslogin";
+    localStorage.removeItem("useruserId");
+    window.location.href = "/user/login";
   };
 
   const onChange = (e) => {
@@ -609,8 +614,11 @@ const BusinessDashboard = () => {
   }
 
   return (
+    <>
+            <Usernavbar />
     <div style={styles.container}>
-      <h2 style={styles.title}>Welcome, {loggedInBusiness.businessName}</h2>
+      
+      <h2 style={styles.title}>Welcome, {loggedInBusiness}</h2>
       <button onClick={handleLogout} style={{ marginTop: "30px", background: "red", color: "white" }}>
         Logout
       </button>
@@ -784,6 +792,7 @@ const BusinessDashboard = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 

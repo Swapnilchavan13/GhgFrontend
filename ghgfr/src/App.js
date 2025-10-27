@@ -53,6 +53,7 @@ import { Jobs } from './Pages/Jobs.jsx';
 import ScrollSection from './Pages/ScrollSection.jsx';
 import { Testing3 } from './Pages/Testing3.jsx';
 import ExternalRedirect from './Component/ExternalRedirect.jsx';
+import EcomEmissionDashboard from './Ecom/EcomEmissionDashboard.jsx';
 
 function App() {
 
@@ -118,6 +119,8 @@ function App() {
           <Route path="client/login" element={<Login />} />
           <Route path="client/myusers" element={<Myusers />} />
           <Route path="client/reports" element={<Reports />} />
+          <Route path="client/ecomemission" element={<EcomEmissionDashboard />} />
+
 
 
           <Route path="user" element={<Useremission />} />
