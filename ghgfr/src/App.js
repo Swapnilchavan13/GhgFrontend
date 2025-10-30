@@ -54,6 +54,7 @@ import ScrollSection from './Pages/ScrollSection.jsx';
 import { Testing3 } from './Pages/Testing3.jsx';
 import ExternalRedirect from './Component/ExternalRedirect.jsx';
 import EcomEmissionDashboard from './Ecom/EcomEmissionDashboard.jsx';
+import CombinedEmission from './Ecom/CombinedEmission.jsx';
 
 function App() {
 
@@ -120,8 +121,7 @@ function App() {
           <Route path="client/myusers" element={<Myusers />} />
           <Route path="client/reports" element={<Reports />} />
           <Route path="client/ecomemission" element={<EcomEmissionDashboard />} />
-
-
+          <Route path="client/combinedemission" element={<CombinedEmission />} />
 
           <Route path="user" element={<Useremission />} />
           <Route path="user/useremission" element={<Useremission />} />

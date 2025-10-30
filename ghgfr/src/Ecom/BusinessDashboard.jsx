@@ -629,6 +629,14 @@ const BusinessDashboard = () => {
           <input name="orderId" style={styles.input} value={form.orderId} onChange={onChange} />
         </label>
 
+         <label style={styles.label}>Product ID
+          <input name="ProductId" style={styles.input}/>
+        </label>
+
+         <label style={styles.label}>Product Quantity
+          <input name="ProductQuantity" style={styles.input}/>
+        </label>
+
         <label style={styles.label}>Order Date
           <input type="date" name="orderDate" style={styles.input} value={form.orderDate} onChange={onChange} />
         </label>
