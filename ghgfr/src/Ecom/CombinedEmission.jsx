@@ -271,34 +271,39 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
 </div>
           <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
             <thead style={{ background: "#e0e7f1" }}>
-              <tr>
-                <th>Order ID</th>
-                <th>Date</th>
-                {/* <th>Transport Mode</th> */}
-                {/* <th>Distance (km)</th> */}
-                <th>Packaging (kg CO₂e)</th>
-                <th>Transport (kg CO₂e)</th>
-                <th>Return (kg CO₂e)</th>
-                <th>Total (kg CO₂e)</th>
-              </tr>
-            </thead>
+  <tr>
+    <th>Order ID</th>
+    <th>Date</th>
+    <th>Packaging (kg CO₂e)</th>
+    <th>Transport (kg CO₂e)</th>
+    <th>Return (kg CO₂e)</th>
+    <th>Total (kg CO₂e)</th>
+    <th>Per-Product (kg CO₂e/unit)</th>
+  </tr>
+</thead>
+
             <tbody>
               {filteredEdata.length > 0 ? (
                 filteredEdata.map((e, i) => {
-                  const r = computeRowTotals(e);
-                  return (
-                    <tr key={i}>
-                      <td>{e.orderId}</td>
-                      <td>{new Date(e.orderDate).toLocaleDateString()}</td>
-                      {/* <td>{e.transportMode}</td> */}
-                      {/* <td>{e.distanceKm}</td> */}
-                      <td>{r.packaging.toFixed(2)}</td>
-                      <td>{r.transport.toFixed(2)}</td>
-                      <td>{r.returnEmission.toFixed(2)}</td>
-                      <td>{r.total.toFixed(2)}</td>
-                    </tr>
-                  );
-                })
+  const r = computeRowTotals(e);
+  const perProductEmission =
+    e.packagingUnits && e.packagingUnits > 0
+      ? r.total / e.packagingUnits
+      : 0;
+
+  return (
+    <tr key={i}>
+      <td>{e.orderId}</td>
+      <td>{new Date(e.orderDate).toLocaleDateString()}</td>
+      <td>{r.packaging.toFixed(2)}</td>
+      <td>{r.transport.toFixed(2)}</td>
+      <td>{r.returnEmission.toFixed(2)}</td>
+      <td>{r.total.toFixed(2)}</td>
+      <td>{perProductEmission.toFixed(2)}</td>
+    </tr>
+  );
+})
+
               ) : (
                 <tr>
                   <td colSpan="8" align="center">
@@ -307,11 +312,14 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
                 </tr>
               )}
               <tr style={{ fontWeight: "bold" }}>
-                <td colSpan="2">E-com Totals</td>
-                <td>{ecomTotals.packaging.toFixed(2)}</td>
-                <td>{ecomTotals.transport.toFixed(2)}</td>
-                <td>{ecomTotals.returnEmission.toFixed(2)}</td>
-                <td>{ecomTotals.total.toFixed(2)}</td>
+  <td colSpan="2">E-com Totals</td>
+  <td>{ecomTotals.packaging.toFixed(2)}</td>
+  <td>{ecomTotals.transport.toFixed(2)}</td>
+  <td>{ecomTotals.returnEmission.toFixed(2)}</td>
+  <td>{ecomTotals.total.toFixed(2)}</td>
+  <td>-</td>
+
+
               </tr>
               <tr style={{ fontWeight: "bold", background: "#f3f9ef" }}>
                 <td colSpan="5">E-com Total (in tons CO₂e)</td>
