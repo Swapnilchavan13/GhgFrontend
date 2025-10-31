@@ -21,6 +21,8 @@ const CombinedEmission = () => {
 
   const username = localStorage.getItem("useruserId");
 
+  
+
   const getReturnFactor = (mode) => {
     const factors = {
       Air: 1.58,
@@ -132,6 +134,12 @@ const CombinedEmission = () => {
     if (toDate && date > new Date(toDate)) return false;
     return true;
   });
+
+  const totalOrders = edata.length;
+const filteredOrders = filteredEdata.length;
+
+const uniqueOrderIds = new Set(edata.map((e) => e.orderId)).size;
+const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size;
 
   const computeRowTotals = (e) => {
     const basePackaging = (e.packagingWeightKg || 0) * (e.packagingEmissionFactor || 0);
@@ -256,7 +264,11 @@ const CombinedEmission = () => {
           </h3>
 
           {/* === ECOM TABLE === */}
-          <h3 style={{ marginTop: "25px" }}>E-commerce Emissions (original in kg CO₂e)</h3>
+          {/* <h3 style={{ marginTop: "25px" }}>E-commerce Emissions (original in kg CO₂e)</h3> */}
+          <div style={{ marginBottom: "10px", fontWeight: "bold", color: "#0d257f" }}>
+  <p>Total Orders: {uniqueOrderIds}</p>
+  {/* <p>Orders Matching Filters: {uniqueFilteredOrderIds}</p> */}
+</div>
           <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
             <thead style={{ background: "#e0e7f1" }}>
               <tr>
