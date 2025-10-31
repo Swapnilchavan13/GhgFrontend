@@ -1029,6 +1029,8 @@ border-radius: 10px;
     margin-top: -180px;
     height: fit-content;
   }
+
+
   
   .sticky-title2{
     margin-top: 0px !important;
@@ -1053,12 +1055,12 @@ border-radius: 10px;
   }
 
   .counter-image-box{
-    margin-left: -9%;
+    margin-left: 12% !important;
   }
 
   .counter-right {
     margin-top: -100px !important;
-    margin: -160px auto 0 -22%;
+    margin: -100px auto 0 18% !important;
     width: 90%;
     height: 340px !important;
   }
@@ -1412,6 +1414,7 @@ border-radius: 10px;
   transform: translate(-50%, -50%);
   animation: pulse 1.8s infinite;
   z-index: 10;
+  margin-left: -40px;
 }
 
 .map-info-box h2 {
