@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Clientnavbar } from '../Component/Clientnavbar';
 
 const API_SCOPE = "https://backend.climescore.com/getdata12";
 const API_ECOM = "http://62.72.59.146:8080/emission";
@@ -118,6 +119,23 @@ const CombinedEmission = () => {
     });
   };
 
+
+  // === Calculate overall per-product emission ===
+const totalPackagingUnits = edata
+  .filter((e) => {
+    const date = new Date(e.orderDate);
+    const year = date.getFullYear().toString();
+    if (selectedYear !== "All" && year !== selectedYear) return false;
+    if (fromDate && date < new Date(fromDate)) return false;
+    if (toDate && date > new Date(toDate)) return false;
+    return true;
+  })
+  .reduce((sum, e) => sum + (e.packagingUnits || 0), 0);
+
+const perProductTotal =
+  totalPackagingUnits > 0 ? ecomTotals.total / totalPackagingUnits : 0;
+
+
   const uniqueYears = [
     "All",
     ...new Set([
@@ -187,8 +205,10 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
   );
 
   return (
+    <>
+      <Clientnavbar />
     <div style={{ padding: "20px", fontFamily: "Segoe UI" }}>
-      <h2 style={{ color: "#0d257f" }}>🌍 Combined Emission Dashboard</h2>
+      <h2 style={{ color: "#0d257f" }}>🌍 Total Emission Dashboard</h2>
 
       {loading ? (
         <p>Loading data...</p>
@@ -238,7 +258,7 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
                 if (scope === "Scope 3") {
                   return (
                     <tr key={scope} style={{ fontWeight: "bold", background: "#f5faff" }}>
-                      <td>{scope} (includes E-commerce)</td>
+                      <td>{scope}</td>
                       <td>{scope3WithEcom.toFixed(2)}</td>
                     </tr>
                   );
@@ -259,79 +279,49 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
           </table>
 
             {/* === COMBINED TOTAL === */}
-          <h3 style={{ marginTop: "30px", color: "green" }}>
+          {/* <h3 style={{ marginTop: "30px", color: "green" }}>
             🌎 Overall Total Emission (All Scopes + E-commerce): {allScopeTotal.toFixed(2)} tons CO₂e
-          </h3>
+          </h3> */}
 
           {/* === ECOM TABLE === */}
-          {/* <h3 style={{ marginTop: "25px" }}>E-commerce Emissions (original in kg CO₂e)</h3> */}
+          <h3 style={{ marginTop: "25px" }}>Order Related Emission Dashboard</h3>
           <div style={{ marginBottom: "10px", fontWeight: "bold", color: "#0d257f" }}>
   <p>Total Orders: {uniqueOrderIds}</p>
   {/* <p>Orders Matching Filters: {uniqueFilteredOrderIds}</p> */}
 </div>
           <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead style={{ background: "#e0e7f1" }}>
-  <tr>
-    <th>Order ID</th>
-    <th>Date</th>
-    <th>Packaging (kg CO₂e)</th>
-    <th>Transport (kg CO₂e)</th>
-    <th>Return (kg CO₂e)</th>
-    <th>Total (kg CO₂e)</th>
-    <th>Per-Product (kg CO₂e/unit)</th>
-  </tr>
-</thead>
-
-            <tbody>
-              {filteredEdata.length > 0 ? (
-                filteredEdata.map((e, i) => {
-  const r = computeRowTotals(e);
-  const perProductEmission =
-    e.packagingUnits && e.packagingUnits > 0
-      ? r.total / e.packagingUnits
-      : 0;
-
-  return (
-    <tr key={i}>
-      <td>{e.orderId}</td>
-      <td>{new Date(e.orderDate).toLocaleDateString()}</td>
-      <td>{r.packaging.toFixed(2)}</td>
-      <td>{r.transport.toFixed(2)}</td>
-      <td>{r.returnEmission.toFixed(2)}</td>
-      <td>{r.total.toFixed(2)}</td>
-      <td>{perProductEmission.toFixed(2)}</td>
+  <thead style={{ background: "#e0e7f1" }}>
+    <tr>
+      <th>Packaging (kg CO₂e)</th>
+      <th>Transport (kg CO₂e)</th>
+      {/* <th>Return (kg CO₂e)</th> */}
+      <th>Total (kg CO₂e)</th>
+      <th>Per-Product (kg CO₂e/unit)</th>
     </tr>
-  );
-})
+  </thead>
 
-              ) : (
-                <tr>
-                  <td colSpan="8" align="center">
-                    No E-commerce records found.
-                  </td>
-                </tr>
-              )}
-              <tr style={{ fontWeight: "bold" }}>
-  <td colSpan="2">E-com Totals</td>
-  <td>{ecomTotals.packaging.toFixed(2)}</td>
-  <td>{ecomTotals.transport.toFixed(2)}</td>
-  <td>{ecomTotals.returnEmission.toFixed(2)}</td>
-  <td>{ecomTotals.total.toFixed(2)}</td>
-  <td>-</td>
+  <tbody>
+    <tr style={{ fontWeight: "bold" }}>
+      <td>{ecomTotals.packaging.toFixed(2)}</td>
+      <td>{ecomTotals.transport.toFixed(2)}</td>
+      {/* <td>{ecomTotals.returnEmission.toFixed(2)}</td> */}
+      <td>{ecomTotals.total.toFixed(2)}</td>
+      <td>{perProductTotal.toFixed(2)}</td>
+    </tr>
 
+    <tr style={{ fontWeight: "bold", background: "#f3f9ef" }}>
+      <td colSpan="3" align="right">E-com Total (in tons CO₂e)</td>
+      <td>{ecomInTons.toFixed(3)}</td>
+    </tr>
+  </tbody>
+</table>
 
-              </tr>
-              <tr style={{ fontWeight: "bold", background: "#f3f9ef" }}>
-                <td colSpan="5">E-com Total (in tons CO₂e)</td>
-                <td>{ecomInTons.toFixed(3)}</td>
-              </tr>
-            </tbody>
-          </table>
 
         
         </>
       )}
     </div>
+        </>
   );
 };
 

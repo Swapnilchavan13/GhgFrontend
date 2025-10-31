@@ -35,7 +35,7 @@ export const Login = () => {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userId', userId); // Save user ID on successful login
         alert('Login successful!');
-        navigate('/client/myemission');
+        navigate('/client/combinedemission');
         // Redirect to the My Emission page or perform any other necessary actions
       } else {
         // Login failed

@@ -476,9 +476,9 @@ for (const user of users) {
 
   return (
  <>
-      {!hasProceeded ? (
-        <ClimeLanding onProceed={() => setHasProceeded(true)} />
-      ) : (    
+      
+        {/* <ClimeLanding /> */}
+      
 
       <div>
      <Clientnavbar logoimg={logoimg} />
@@ -874,7 +874,7 @@ for (const user of users) {
 </div>
 
     </div>
-     )}
+     
     </>
   );
 };

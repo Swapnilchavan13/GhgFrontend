@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/climelanding.css';
+import { useNavigate } from "react-router-dom";
 
 
-const ClimeLanding = ({ onProceed }) => {
+
+const ClimeLanding = () => {
+
+  const navigate = useNavigate();
+
+const onProceed = () => {
+  navigate("/client/combinedemission");
+};
+
+  
   const [emission, setEmission] = useState(0);
 
   useEffect(() => {
@@ -14,9 +24,10 @@ const ClimeLanding = ({ onProceed }) => {
 
   return (
         <div className="landing-container">
-  <button className="proceed-button-top" onClick={onProceed}>
-    Proceed to Dashboard →
-  </button>
+ <button className="proceed-button-top" onClick={onProceed}>
+  Proceed to Dashboard →
+</button>
+
   
 
 
