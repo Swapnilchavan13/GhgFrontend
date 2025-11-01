@@ -138,25 +138,25 @@ const Partners = [
   {
     title: "Partners",
     label: "Carbon Standards International",
-    desc: "Working with global organizations to ensure carbon projects follow internationally recognized standards.",
+    desc: "ClimeScore by NettZero is a member of Carbon Standards International since 2023, making it one of the earliest organizations from India to be aligned with the vision of enabling Carbon Dioxide Removal through widespread adoption. CSI is one of the most respected and leading registries for CDR in the world, with a focus on fundamental methodologies that create robust, transparent and impactful Carbon Sinks. ",
     image: "https://iili.io/KrXtLjs.jpg",
   },
   {
     title: "Partners",
     label: "Circonomy",
-    desc: "Supporting circular economy initiatives that reduce waste and improve sustainability.",
+    desc: "ClimeScore by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
     image: "https://iili.io/KrXuep9.jpg",
   },
   {
     title: "Partners",
     label: "RARE India",
-    desc: "A long-term sustainability partner promoting responsible tourism.",
+    desc: "RARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinentRARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinent ClimeScore by NettZero has been partnering with Rare since 2023 to enable their member hotels to become Carbon Neutral and also ensuring that RARE’s annual event, BRIDGES, is Carbon Neutral across Scope 1, 2 and 3.",
     image: "https://iili.io/KrXuvIe.jpg",
   },
   {
     title: "Partners",
     label: "ISN (Indian Sustainability Network)",
-    desc: "Collaborating to develop India-specific sustainability benchmarks.",
+    desc: "ClimeScore by NettZero drives the engine behind Indian School of Nature’s sustainability portal. As technology developers of the platform and the Carbon managers for its network, we power the members of ISN who want to migrate onto the path of sustainability. ISN is unique and progressive organization founded by doyens in sustainability and conservation, including Mr. Hashim Tyebji and Mr. Ram Pratap Singh. ",
     image: "https://iili.io/KrXu8hu.jpg",
   },
 
@@ -242,48 +242,42 @@ const mapPoints = [
     District: "Laddakh (UH)",
     State: "NA",
     desc: "ClimeScore deployment to create Ladakh`s first carbon Neutral Resort.",
-    x: "50%", // x position of point on map
-    y: "10%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
   {
     Locality: "Phagu",
     District: "Sirmaur",
     State: "Himachal Pradesh",
     desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-    x: "45%",
-    y: "20%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
   {
     Locality: "Sukki",
     District: "Uttarkashi",
     State: "Uttarakhand",
     desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-    x: "55%",
-    y: "24%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
    {
     Locality: "Rudrapur",
     District: "Pant Nagar",
     State: "Uttarakhand",
     desc: "One of the Nettzero`s Biochar Production installalation",
-     x: "55%",
-    y: "23%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
   {
     Locality: "Mandawa",
     District: "Shekhawati",
     State: "Rajastan",
     desc: "ClimeScore deployment to create Rajastan`s first Carbon Neutral Resort.",
-    x: "35%",
-    y: "35%",
+    img: "https://iili.io/KrXt6vt.jpg",
   },
   {
     Locality: "Bandhavgarh",
     District: "Umaria",
     State: "Madhya Pradesh",
     desc: "Biochar Project with an inastalled capacity of 2,000 tons per year and over 1.5 lakh litres of biochar already produced.",
-    x: "48%",
-    y: "50%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
  
   {
@@ -291,24 +285,21 @@ const mapPoints = [
     District: "Pune",
     State: "Maharashtra",
     desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
-    x: "40%",
-    y: "62%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
   {
     Locality: "Mumbai",
     District: "Mumbai",
     State: "Maharashtra",
     desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
-    x: "36%",
-    y: "62%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
   {
     Locality: "Coorg",
     District: "Kodagu",
     State: "Karnataka",
     desc: "ClimeScore deployment at Tamara coorg for Scope-1, Scope-2 and Scope-3 for emission management.",
-    x: "42%",
-    y: "75%",
+     img: "https://iili.io/KrXt6vt.jpg",
   },
 ];
 
@@ -371,11 +362,10 @@ const [activePartnersIndex, setActivePartnersIndex] = useState(0);
 
 
 
+const mapsContainerRef = useRef(null);
+const mapsStickyRef = useRef(null);
 
-const mapContainerRef = useRef(null);
-const mapStickyRef = useRef(null);
-const mapPointRef = useRef(null);
-const [activeMapIndex, setActiveMapIndex] = useState(0);
+
 
 
 
@@ -502,6 +492,9 @@ const [activeMapIndex, setActiveMapIndex] = useState(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+  // Section 4???///
+
 useEffect(() => {
   const partnerSteps = gsap.utils.toArray(".partner-step");
   if (!partnerSteps.length) return;
@@ -575,61 +568,46 @@ useEffect(() => {
 }, []);
 
 
+// ???? Section 5??
 
+/* ---------- Section 5 Scroll Setup ---------- */
+  useEffect(() => {
+    const mapSteps = gsap.utils.toArray(".map-step");
+    if (!mapSteps.length) return;
+    gsap.set(mapSteps, { autoAlpha: 0 });
+    gsap.set(mapSteps[0], { autoAlpha: 1 });
 
-useEffect(() => {
-  if (!mapPoints.length) return;
+    const stepTriggers = mapSteps.map((step, i) =>
+      ScrollTrigger.create({
+        trigger: mapsContainerRef.current,
+        start: () => `top+=${i * window.innerHeight} top`,
+        end: () => `+=${window.innerHeight}`,
+        onEnter: () => {
+          gsap.to(mapSteps, { autoAlpha: 0, duration: 0.45 });
+          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+        },
+        onEnterBack: () => {
+          gsap.to(mapSteps, { autoAlpha: 0, duration: 0.45 });
+          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+        },
+      })
+    );
 
-  const total = mapPoints.length;
-  const mapPoint = mapPointRef.current;
+    const pinTrigger = ScrollTrigger.create({
+      id: "section5Pin",
+      trigger: mapsContainerRef.current,
+      pin: true,
+      start: "top top",
+      end: `+=${mapSteps.length * window.innerHeight}`,
+      scrub: false,
+    });
 
-  gsap.set(mapPoint, {
-    xPercent: -50,
-    yPercent: -50,
-    left: mapPoints[0].x,
-    top: mapPoints[0].y,
-  });
+    return () => {
+      stepTriggers.forEach((t) => t.kill());
+      pinTrigger.kill();
+    };
+  }, []);
 
-  const triggers = mapPoints.map((point, i) =>
-    ScrollTrigger.create({
-      trigger: mapContainerRef.current,
-      start: () => `top+=${i * window.innerHeight} top`,
-      end: () => `+=${window.innerHeight}`,
-      onEnter: () => {
-        gsap.to(mapPoint, {
-          left: point.x,
-          top: point.y,
-          duration: 1,
-          ease: "power2.inOut",
-        });
-        setActiveMapIndex(i);
-      },
-      onEnterBack: () => {
-        gsap.to(mapPoint, {
-          left: point.x,
-          top: point.y,
-          duration: 1,
-          ease: "power2.inOut",
-        });
-        setActiveMapIndex(i);
-      },
-    })
-  );
-
-  const pinTrigger = ScrollTrigger.create({
-    id: "sectionMapPin",
-    trigger: mapContainerRef.current,
-    pin: true,
-    start: "top top",
-    end: `+=${total * window.innerHeight}`,
-    scrub: false,
-  });
-
-  return () => {
-    triggers.forEach((t) => t.kill());
-    pinTrigger.kill();
-  };
-}, []);
 
 
 // Smoothly scroll to the specific step within Section 2 (3x slower)
@@ -879,73 +857,29 @@ const handlePartnersCategoryClick = (category) => {
   </div>
 </section>
 
-{/* <section className="section section-testimonials">
-  <h1 className="testimonial-title">What Our Clients Say</h1>
-  
-  <div className="testimonial-carousel">
-    <img
-      src={testimonials[current].img}
-      alt={testimonials[current].name}
-      className="carousel-image2"
-    />
 
-    <div className="overlay-content">
-      <h2 className="customer-name">{testimonials[current].name}</h2>
-      <h3 className="customer-designation">{testimonials[current].designation}</h3>
-      <p className="testimonial-text">{testimonials[current].text}</p>
-    </div>
-
-    <button onClick={prevSlide} className="nav-button prev">◀</button>
-    <button onClick={nextSlide} className="nav-button next">▶</button>
-  </div>
-</section> */}
-
-
-      {/* rest of page content */}
-      {/* <div className="hero-content">
-        <h1 className="sticky-title">The ClimeScore Footprint</h1>
-        <div className="hero-image-container">
-          <img src="http://nettzero.world/wp-content/uploads/2025/03/Locality-Name-Nubra-Valley-State-Laddakh-UT.gif" alt="Nubra Valley" className="hero-image" />
+ <section className="section section5">
+        <div className="maps-container" ref={mapsContainerRef}>
+          <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
+            <h1 className="sticky-title5">ClimeScore Deployments Across India</h1>
+            {mapPoints.map((point, i) => (
+              <div key={i} className="map-step">
+                <div className="map-left">
+                  <img src={point.img} alt={point.Locality} />
+                </div>
+                <div className="map-right">
+                  <h2>{point.Locality}</h2>
+                  <p><b>District:</b> {point.District}</p>
+                  <p><b>State:</b> {point.State}</p>
+                  <hr />
+                  <p>{point.desc}</p>
+                </div>
+                <div className="greybox5"></div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div> */}
-
-  <section className="section section-map">
-  <div className="map-container" ref={mapContainerRef}>
-    <div className="sticky-box map-sticky" ref={mapStickyRef}>
-      <h1 className="sticky-title4">The ClimeScore Footprint</h1>
-
-      <div className="map-box">
-        {/* Map background */}
-        <div className="map-image-wrapper">
-          <img
-            // src="https://maps-india-in.com/img/1200/3d-map-of-india.jpg"
-            src="https://static.vecteezy.com/system/resources/previews/025/842/873/non_2x/flat-simple-india-map-free-vector.jpg"
-
-            
-            alt="India Map"
-            className="india-map"
-          />
-          {/* Moving point */}
-          <div className="map-point" ref={mapPointRef}></div>
-        </div>
-
-        {/* Right side info box */}
-        <div className="map-info-box">
-          <h2>{mapPoints[activeMapIndex].Locality}</h2>
-          <h2>{mapPoints[activeMapIndex].District}</h2>
-          <h2>{mapPoints[activeMapIndex].State}</h2>
-          <hr />
-          <p>{mapPoints[activeMapIndex].desc}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
+      </section>
 
 
       <h1 className="sticky-titlediv">ClimeScore For You</h1>
