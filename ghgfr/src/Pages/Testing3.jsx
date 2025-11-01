@@ -76,27 +76,27 @@ const countersData = [
   { 
     value: 200000, 
     title:"Biochar",
-    label: "LITRES OF BIOCHAR PRODUCED", 
+    label: "Liters Of Biochar Produced", 
     desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem.",
     image: "https://iili.io/KgfM4je.png"
   },
   { 
     value: 120, 
     title:"Field Weathering",
-    label: "HECTARES", 
+    label: "Hectares", 
     desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares.",
     image: "https://iili.io/KgfREGt.png"
   },
   { 
     value: 40000, 
-    label: "TREES", 
+    label: "Three", 
     title:"Direction Capture",
     desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species.",
     image: "https://iili.io/KgfR1nI.png"
   },
   { 
     value: 250, 
-    label: "GMS/HOUR", 
+    label: "GMS/Hour", 
      title:"Direction Capture",
 
     desc: "The capacity of the Direct Air Capture consumer machine prototyped by us.",
@@ -104,7 +104,7 @@ const countersData = [
   },
   { 
     value: 300000, 
-    label: "TONS OF CO2", 
+    label: "Tons Of Co2", 
      title:"Direction Capture",
 
     desc: "Emissions accurately measured & reported as per GRJ standards on our platform – ClimeScore",
@@ -287,13 +287,13 @@ const mapPoints = [
     desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
      img: "https://iili.io/KrXt6vt.jpg",
   },
-  {
-    Locality: "Mumbai",
-    District: "Mumbai",
-    State: "Maharashtra",
-    desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
-     img: "https://iili.io/KrXt6vt.jpg",
-  },
+  // {
+  //   Locality: "Mumbai",
+  //   District: "Mumbai",
+  //   State: "Maharashtra",
+  //   desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
+  //    img: "https://iili.io/KrXt6vt.jpg",
+  // },
   {
     Locality: "Coorg",
     District: "Kodagu",
@@ -861,7 +861,7 @@ const handlePartnersCategoryClick = (category) => {
  <section className="section section5">
         <div className="maps-container" ref={mapsContainerRef}>
           <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
-            <h1 className="sticky-title5">ClimeScore Deployments Across India</h1>
+            <h1 className="sticky-title5">ClimeScore Map</h1>
             {mapPoints.map((point, i) => (
               <div key={i} className="map-step">
                 <div className="map-left">
@@ -872,7 +872,7 @@ const handlePartnersCategoryClick = (category) => {
                   <p><b>District:</b> {point.District}</p>
                   <p><b>State:</b> {point.State}</p>
                   <hr />
-                  <p>{point.desc}</p>
+                  <p className="descpt">{point.desc}</p>
                 </div>
                 <div className="greybox5"></div>
               </div>
