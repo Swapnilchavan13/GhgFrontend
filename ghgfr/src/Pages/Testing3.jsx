@@ -242,42 +242,42 @@ const mapPoints = [
     District: "Laddakh (UH)",
     State: "NA",
     desc: "ClimeScore deployment to create Ladakh`s first carbon Neutral Resort.",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://cdnbbsr.s3waas.gov.in/s395192c98732387165bf8e396c0f2dad2/uploads/2019/10/2019102917.jpg",
   },
   {
     Locality: "Phagu",
     District: "Sirmaur",
     State: "Himachal Pradesh",
     desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://www.thehillgypsy.com/wp-content/uploads/2020/02/cover-image-11.jpg",
   },
   {
     Locality: "Sukki",
     District: "Uttarkashi",
     State: "Uttarakhand",
     desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b8/55/15/kharsali.jpg",
   },
    {
     Locality: "Rudrapur",
     District: "Pant Nagar",
     State: "Uttarakhand",
     desc: "One of the Nettzero`s Biochar Production installalation",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/VC_Office_building_Pantnagar.JPG/640px-VC_Office_building_Pantnagar.JPG",
   },
   {
     Locality: "Mandawa",
     District: "Shekhawati",
     State: "Rajastan",
     desc: "ClimeScore deployment to create Rajastan`s first Carbon Neutral Resort.",
-    img: "https://iili.io/KrXt6vt.jpg",
+    img: "https://www.rajasthantourplanner.com/blog/wp-content/uploads/2018/04/mandawa-tour1-1.jpg",
   },
   {
     Locality: "Bandhavgarh",
     District: "Umaria",
     State: "Madhya Pradesh",
     desc: "Biochar Project with an inastalled capacity of 2,000 tons per year and over 1.5 lakh litres of biochar already produced.",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://www.bandhavgarh-national-park.com/images/flora-in-bandhavgarh.jpg",
   },
  
   {
@@ -285,7 +285,7 @@ const mapPoints = [
     District: "Pune",
     State: "Maharashtra",
     desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Mumbai_Pune_Expressway2.jpg",
   },
   // {
   //   Locality: "Mumbai",
@@ -299,7 +299,7 @@ const mapPoints = [
     District: "Kodagu",
     State: "Karnataka",
     desc: "ClimeScore deployment at Tamara coorg for Scope-1, Scope-2 and Scope-3 for emission management.",
-     img: "https://iili.io/KrXt6vt.jpg",
+     img: "https://www.easeindiatrip.com/blog/wp-content/uploads/2025/01/Coorg-by-Train-1024x576.jpg",
   },
 ];
 
