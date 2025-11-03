@@ -204,6 +204,10 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
     0
   );
 
+  const perOrderTotal =
+  uniqueFilteredOrderIds > 0 ? ecomTotals.total / uniqueFilteredOrderIds : 0;
+
+
   return (
     <>
       <Clientnavbar />
@@ -285,18 +289,19 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
 
           {/* === ECOM TABLE === */}
           <h3 style={{ marginTop: "25px" }}>Order Related Emission Dashboard</h3>
-          <div style={{ marginBottom: "10px", fontWeight: "bold", color: "#0d257f" }}>
+<div style={{ marginBottom: "10px", fontWeight: "bold", color: "#0d257f" }}>
   <p>Total Orders: {uniqueOrderIds}</p>
-  {/* <p>Orders Matching Filters: {uniqueFilteredOrderIds}</p> */}
+  <p>Filtered Orders: {uniqueFilteredOrderIds}</p>
 </div>
-          <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
+
+<table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
   <thead style={{ background: "#e0e7f1" }}>
     <tr>
       <th>Packaging (kg CO₂e)</th>
       <th>Transport (kg CO₂e)</th>
-      {/* <th>Return (kg CO₂e)</th> */}
       <th>Total (kg CO₂e)</th>
       <th>Per-Product (kg CO₂e/unit)</th>
+      <th>Per-Order (kg CO₂e/order)</th>
     </tr>
   </thead>
 
@@ -304,17 +309,18 @@ const uniqueFilteredOrderIds = new Set(filteredEdata.map((e) => e.orderId)).size
     <tr style={{ fontWeight: "bold" }}>
       <td>{ecomTotals.packaging.toFixed(2)}</td>
       <td>{ecomTotals.transport.toFixed(2)}</td>
-      {/* <td>{ecomTotals.returnEmission.toFixed(2)}</td> */}
       <td>{ecomTotals.total.toFixed(2)}</td>
       <td>{perProductTotal.toFixed(2)}</td>
+      <td>{perOrderTotal.toFixed(2)}</td>
     </tr>
 
     <tr style={{ fontWeight: "bold", background: "#f3f9ef" }}>
-      <td colSpan="3" align="right">E-com Total (in tons CO₂e)</td>
+      <td colSpan="4" align="right">E-com Total (in tons CO₂e)</td>
       <td>{ecomInTons.toFixed(3)}</td>
     </tr>
   </tbody>
 </table>
+
 
 
         
