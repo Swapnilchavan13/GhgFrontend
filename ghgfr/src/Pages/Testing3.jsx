@@ -32,10 +32,11 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /* -- your top carousel images -- */
 const images = [
-  { src: "https://iili.io/KgfG7f4.png", text: "ClimeScore helps you measure, reduce and analyze your carbon emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
-  { src: "https://iili.io/KgfRG6X.png", text: "ClimeScore develops valuable, high-integrity carbon credits", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation and DAC projects — creating carbon sinks that you can be part of." },
-  { src: "https://iili.io/Kr1giR1.png", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact and methodology", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
-  { src: "https://iili.io/KgfGRsf.png", text: "ClimeScore delivers customized, implementation-oriented training related to sustainability and climate change and carbon credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
+  {img:'https://iili.io/KLQzN8x.png', src: "https://iili.io/KgfG7f4.png", text: "ClimeScore helps you measure, reduce and analyze your carbon emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
+  {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/KgfRG6X.png", text: "ClimeScore develops valuable, high-integrity carbon credits", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation and DAC projects — creating carbon sinks that you can be part of." },
+  {img:'https://iili.io/KLQzwaj.png',src: "https://iili.io/Kr1giR1.png", text: "ClimeScore curates high-integrity carbon credits based on transparency, impact and methodology", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
+  {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KgfGRsf.png", text: "A marketplace of sustainable goods and services that verify their Carbon Emissions", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
+  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "ClimeScore delivers customized, implementation-oriented training related to sustainability and climate change and carbon credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
 const slides = [
@@ -119,13 +120,13 @@ const Partners = [
     title: "Customers",
     label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
     desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
-    image: "https://iili.io/KrXt6vt.jpg",
+    image: "https://iili.io/KQOD5Kl.jpg",
   },
   {
     title: "Customers",
     label: "Shobha Rudra - Founder, RARE India",
     desc: "“ClimeScore has been a great partner in measuring emissions of Bridges by RARE.”",
-    image: "https://iili.io/KrXt6vt.jpg",
+    image: "https://iili.io/KQOD7l2.jpg",
   },
   {
     title: "Customers",
@@ -145,7 +146,7 @@ const Partners = [
     title: "Partners",
     label: "Circonomy",
     desc: "ClimeScore by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
-    image: "https://iili.io/KrXuep9.jpg",
+    image: "https://iili.io/KQeFxnI.jpg",
   },
   {
     title: "Partners",
@@ -677,6 +678,26 @@ const handlePartnersCategoryClick = (category) => {
 
 
 
+// Scroll smoothly to a specific section by selector or ref
+const handleScroll = (target) => {
+  let y = 0;
+  if (target === "top") {
+    y = 0;
+  } else if (target?.current) {
+    y = target.current.offsetTop;
+  } else if (typeof target === "string") {
+    const el = document.querySelector(target);
+    if (el) y = el.offsetTop;
+  }
+
+  gsap.to(window, {
+    scrollTo: { y, autoKill: true },
+    duration: 1.5,
+    ease: "power2.inOut",
+  });
+};
+
+
 
 
   return (
@@ -726,8 +747,9 @@ const handlePartnersCategoryClick = (category) => {
         <div className="firstdiv">
           <img src={images[current].src} alt="carousel" className="carousel-image" />
           <div className="overlay-content">
+          <img src={images[current].img} alt="carousel" className="img-image" />
+
             <h2 className="overlay-text">{images[current].text}</h2>
-            {/* <button className="overlay-btn" onClick={handleButtonClick}>{images[current].button}</button> */}
             <h3 className="overlay-dec">{images[current].dec}</h3>
           </div>
           <button onClick={prevSlide} className="nav-button prev">◀</button>
@@ -767,7 +789,14 @@ const handlePartnersCategoryClick = (category) => {
     <div className="greybox"></div>
   </div>
 ))}
+ <div className="section2btn">
+  <button onClick={() => handleScroll(".section1")}>Previous Section</button>
+  <button onClick={() => handleScroll(".section3")}>Next Section</button>
+  <button onClick={() => handleScroll("top")}>Back To Top</button>
+</div>
         </div>
+      
+
       </section>
 
       {/* Div 3 — counters: pinned, step-by-step, image + running number + text */}
@@ -810,9 +839,19 @@ const handlePartnersCategoryClick = (category) => {
                 <div className="greybox2"></div>
               </div>
             ))}
+            <div className="section3btn">
+  <button onClick={() => handleScroll(".section2")}>Previous Section</button>
+  <button onClick={() => handleScroll(".section4")}>Next Section</button>
+  <button onClick={() => handleScroll("top")}>Back To Top</button>
+</div>
           </div>
         </div>
+
+       
+
       </section>
+
+      
 
 
 
@@ -853,8 +892,15 @@ const handlePartnersCategoryClick = (category) => {
             <div className="greybox3"></div>
         </div>
       ))}
+       <div className="section2btn">
+  <button onClick={() => handleScroll(".section3")}>Previous Section</button>
+  <button onClick={() => handleScroll(".section5")}>Next Section</button>
+  <button onClick={() => handleScroll("top")}>Back To Top</button>
+</div>
     </div>
   </div>
+  
+
 </section>
 
 
@@ -877,9 +923,16 @@ const handlePartnersCategoryClick = (category) => {
                 <div className="greybox5"></div>
               </div>
             ))}
+              <div className="section5btn">
+  <button onClick={() => handleScroll(".section4")}>Previous Section</button>
+  <button onClick={() => handleScroll(".sticky-titlediv")}>Next Section</button>
+  <button onClick={() => handleScroll("top")}>Back To Top</button>
+</div>
           </div>
         </div>
+         
       </section>
+     
 
 
       <h1 className="sticky-titlediv">ClimeScore For You</h1>
