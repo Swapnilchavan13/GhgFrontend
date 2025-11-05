@@ -222,23 +222,66 @@ border-radius: 10px;
 }
 
 .section2btn{
+  display: flex;
+  justify-content: space-between;
 top: 75%;  
+ gap: 50px;
+ width: 148%;
+ margin-left: -25%;
 position: relative;
   z-index: 9999999;
 }
 
+.section2btn button{
+  width: 400px;
+}
+
+.section3btn button{
+  width: 400px;
+}
 .section3btn{
-top: 75%;  
-margin-left: 15%;
+   display: flex;
+  justify-content: space-between;
+ width: 100%;
+ gap: 50px;
+ 
+
+
+top: 75% ;  
+margin-left: 7%;
  position: relative;
  z-index: 9999999;
 }
 
+.section4btn{
+ display: flex;
+  justify-content: space-between;
+top: 80%;  
+ gap: 50px;
+ width: 148%;
+ margin-left: -25%;
+position: relative;
+  z-index: 99999999999;
+}
+
+.section4btn button{
+  width: 400px;
+}
+
+.section5btn button{
+  width: 400px;
+}
+
 .section5btn{
-  /* top: 75% !important;   */
-  margin-top: 75%;
+  margin-top: 73% ;
    position: relative;
  z-index: 9999999;
+ display: flex;
+  justify-content: space-between;
+ gap: 50px;
+ width: 150%;
+ margin-left: -25%;
+
 }
 
 
@@ -786,7 +829,7 @@ margin-top: 50px;
   position: relative;
   width: 100%;
   /* height: 100%; */
-  margin-top: 50px;
+  /* margin-top: 50px; */
 
 }
 
@@ -1505,17 +1548,69 @@ border-radius: 10px;
 }
 
 @media (max-width: 1400px) {
-  /* General wrapper */
-/* .section3 {
-  margin-top: -130px !important;         
-  padding: 40px 10px;
-  height: auto;
-  overflow: visible;
-  position: relative;               
-  z-index: 1;
-} */
 
+.section2btn{
+  display: flex;
+  justify-content: space-between;
+top: 96%;  
+ gap: 50px;
+ width: 148%;
+ margin-left: -25%;
+position: relative;
+  z-index: 9999999;
+}
 
+.section2btn button{
+  width: 400px;
+}
+
+.section3btn button{
+  width: 400px;
+}
+.section3btn{
+   display: flex;
+  justify-content: space-between;
+ width: 118%;
+ gap: 50px;
+
+ margin-left: -6% !important;
+
+top: 88% !important;  
+/* margin-left: 15%; */
+ position: relative;
+ z-index: 9999999;
+}
+
+.section4btn{
+ display: flex;
+  justify-content: space-between;
+top: 98%;  
+ gap: 50px;
+ width: 148%;
+ margin-left: -25%;
+position: relative;
+  z-index: 99999999999;
+}
+
+.section4btn button{
+  width: 400px;
+}
+
+.section5btn button{
+  width: 400px;
+}
+
+.section5btn{
+  margin-top: 84% !important;
+   position: relative;
+ z-index: 9999999;
+ display: flex;
+  justify-content: space-between;
+ gap: 50px;
+ width: 150%;
+ margin-left: -25%;
+
+}
 
 
 .counter-step{
@@ -1526,76 +1621,8 @@ border-radius: 10px;
   margin-top: 300px;
 }
 
+.section5{
+  margin-top: 120px;
+}
 
-
-
-  /* .title-buttons2 .title-btn {
-    width: 110px;
-    padding: 8px;
-    font-size: 12px;
-    border-radius: 10px;
-  } */
-
-  /* .counters-sticky {
-    position: relative;
-    max-width: 100%;
-    margin: 0 auto;
-    height: auto;
-    top: 0;
-  }
-
- 
-
-  .counter-left {
-    width: 100%;
-  } */
-
-
-
-  /* .greybox2{
-    display: none;
-  }
-
-  .counter-image-box img {
-    width: 350px;
-    height: 300px;
-    border-radius: 12px;
-  } */
-
-  /* .counter-overlay {
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    padding: 12px 20px;
-    border-radius: 8px;
-  }
-
-  .counter-number {
-    font-size: 40px;
-  }
-
-  .counter-right {
-    position: relative;
-    width: 90%;
-    margin-top: -70px;
-    margin-left: -8px;
-    height: 300px;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-  }
-
-  .counter-right h2 {
-    font-size: 18px;
-  }
-
-  .counter-right p {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  .counter-right hr {
-    margin: 10px auto;
-    width: 60%;
-  } */
 }

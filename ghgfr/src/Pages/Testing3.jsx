@@ -892,7 +892,7 @@ const handleScroll = (target) => {
             <div className="greybox3"></div>
         </div>
       ))}
-       <div className="section2btn">
+       <div className="section4btn">
   <button onClick={() => handleScroll(".section3")}>Previous Section</button>
   <button onClick={() => handleScroll(".section5")}>Next Section</button>
   <button onClick={() => handleScroll("top")}>Back To Top</button>
@@ -907,7 +907,7 @@ const handleScroll = (target) => {
  <section className="section section5">
         <div className="maps-container" ref={mapsContainerRef}>
           <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
-            <h1 className="sticky-title5">ClimeScore Map</h1>
+            <h1 className="sticky-title5">The ClimeScore Footprint</h1>
             {mapPoints.map((point, i) => (
               <div key={i} className="map-step">
                 <div className="map-left">
