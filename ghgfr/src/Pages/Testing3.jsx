@@ -11,32 +11,13 @@ import { Footer } from "./Footer";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 // gsap.registerPlugin(ScrollTrigger);
 
-
-{/* <a href="https://freeimage.host/i/KgfuZbV"><img src="https://iili.io/KgfuZbV.md.png" alt="KgfuZbV.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfuUW7"><img src="https://iili.io/KgfuUW7.md.png" alt="KgfuUW7.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfuSxS"><img src="https://iili.io/KgfuSxS.md.png" alt="KgfuSxS.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfukOl"><img src="https://iili.io/KgfukOl.md.png" alt="KgfukOl.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfR1nI"><img src="https://iili.io/KgfR1nI.md.png" alt="KgfR1nI.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfRcjp"><img src="https://iili.io/KgfRcjp.md.png" alt="KgfRcjp.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfREGt"><img src="https://iili.io/KgfREGt.md.png" alt="KgfREGt.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfRG6X"><img src="https://iili.io/KgfRG6X.md.png" alt="KgfRG6X.md.png" border="0"></a>
-<a href="https://freeimage.host/i/Kgf5wUg"><img src="https://iili.io/Kgf5wUg.md.png" alt="Kgf5wUg.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfG7f4"><img src="https://iili.io/KgfG7f4.md.png" alt="KgfG7f4.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfGRsf"><img src="https://iili.io/KgfGRsf.md.png" alt="KgfGRsf.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfGAWG"><img src="https://iili.io/KgfGAWG.md.png" alt="KgfGAWG.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfGzOX"><img src="https://iili.io/KgfGzOX.md.png" alt="KgfGzOX.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfMUy7"><img src="https://iili.io/KgfMUy7.md.png" alt="KgfMUy7.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfM4je"><img src="https://iili.io/KgfM4je.md.png" alt="KgfM4je.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfMru9"><img src="https://iili.io/KgfMru9.md.png" alt="KgfMru9.md.png" border="0"></a>
-<a href="https://freeimage.host/i/KgfM7hg"><img src="https://iili.io/KgfM7hg.md.png" alt="KgfM7hg.md.png" border="0"></a> */}
-
 /* -- your top carousel images -- */
 const images = [
   {img:'https://iili.io/KLQzN8x.png',src: "https://iili.io/KgfG7f4.png", text: "Measure, Reduce & Analyse your Carbon Emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
-  {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/Kr1giR1.png", text: "Handpicked by experts, high integrity Carbon Credits from across the world", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation and DAC projects — creating carbon sinks that you can be part of." },
-  {img:'https://iili.io/KLQzwaj.png',src: "https://iili.io/KgfRG6X.png", text: "Develop valuable, high integrity Carbon Credits", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
-  {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KZaYnFS.png", text: "A marketplace of sustainable goods and services that verify their Carbon Emissions", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
-  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Customised, Implementation oriented training on Sustainability & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
+  {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/Kr1giR1.png", text: "Handpicked by experts, high integrity Carbon Credits from across the world", dec: "Our Carbon Credit Marketplace features carefully vetted CDR projects for robust, hassle-free and cost-effective offsetting" },
+  {img:'https://iili.io/KLQzwaj.png',src: "https://iili.io/KgfRG6X.png", text: "Develop valuable, high integrity Carbon Credits", dec: "We deliver scalable CDR through Biochar, ERW, Tree Plantation and DAC projects—creating carbon sinks you can join" },
+  {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KZaYnFS.png", text: "A marketplace for verified green vendors and carbon services", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
+  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Customised, Training on Sustainability & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
 const slides = [
@@ -373,7 +354,7 @@ const mapsStickyRef = useRef(null);
   // Div1 carousel
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 10000);
+    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 13000);
     return () => clearInterval(interval);
   }, []);
 
@@ -845,18 +826,11 @@ const handleScroll = (target) => {
   <button onClick={() => handleScroll("top")}>Back To Top</button>
 </div>
           </div>
-        </div>
-
-       
+        </div> 
 
       </section>
 
       
-
-
-
-
-
 
     <section className="section section4">
   <div className="partners-container" ref={partnersContainerRef}>
@@ -972,18 +946,7 @@ const handleScroll = (target) => {
 
       <Footer />
       {/* Scroll to Top Button */}
-<button
-  className="scroll-to-top"
-  onClick={() => {
-    gsap.to(window, {
-      scrollTo: { y: 0, autoKill: true },
-      duration: 1.5,
-      ease: "power2.inOut",
-    });
-  }}
->
-  ↑
-</button>
+
 
     </div>
   );
