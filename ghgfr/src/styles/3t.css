@@ -1477,10 +1477,10 @@ display: inline;
 .map-right{
   position: absolute;
   background-color: #1d1d1d;
-  height:200px !important;
+  height:400px !important;
   border-radius: 15px;
   margin-left: -100% !important;
-  margin-top: -30px;
+  margin-top: -80px;
   text-align: left;
   padding: 40px;
   z-index: 999;
@@ -1505,7 +1505,6 @@ display: inline;
   margin: -50px auto !important;
   position: relative;
   width: 95%;
-  border: 1px solid red !important;
 }
 
 .map-container {
@@ -1626,6 +1625,12 @@ display: inline;
 
 .section2btn>button, .section3btn>button, .section4btn>button, .section5btn>button{
 display: none;}
+
+.sticky-titlediv{
+  margin-top: 450px;
+  color: #333;
+  margin-bottom: -40px;
+}
 
 }
 
