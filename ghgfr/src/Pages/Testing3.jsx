@@ -222,52 +222,52 @@ const mapPoints = [
   {
     Locality: "Nubra Vally",
     District: "Laddakh (UH)",
-    State: "NA",
-    desc: "ClimeScore deployment to create Ladakh`s first carbon Neutral Resort.",
-     img: "https://cdnbbsr.s3waas.gov.in/s395192c98732387165bf8e396c0f2dad2/uploads/2019/10/2019102917.jpg",
+    State: "Stone Hedge",
+    desc: "ClimeScore creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
+     img: "https://www.stonehedgeladakh.com/wp-content/uploads/stone1.jpg",
   },
   {
     Locality: "Phagu",
     District: "Sirmaur",
-    State: "Himachal Pradesh",
+    State: "Agroforestry & Biochar",
     desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-     img: "https://www.thehillgypsy.com/wp-content/uploads/2020/02/cover-image-11.jpg",
+     img: "https://infinitejourneys.in/blog/wp-content/uploads/2020/09/Apples-in-Kinnaur-2-2.jpg",
   },
-  {
-    Locality: "Sukki",
-    District: "Uttarkashi",
-    State: "Uttarakhand",
-    desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-     img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b8/55/15/kharsali.jpg",
-  },
+  // {
+  //   Locality: "Sukki",
+  //   District: "Uttarkashi",
+  //   State: "Uttarakhand",
+  //   desc: "Biochar Project with installed capacity of 2,000 tons per year.",
+  //    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b8/55/15/kharsali.jpg",
+  // },
    {
     Locality: "Rudrapur",
     District: "Pant Nagar",
     State: "Uttarakhand",
-    desc: "One of the Nettzero`s Biochar Production installalation",
-     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/VC_Office_building_Pantnagar.JPG/640px-VC_Office_building_Pantnagar.JPG",
+    desc: "ClimeScore by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers. We then convert the rice straw to biochar which is them provided to farmers as a rich, soil enhancing organic fertiliser. ",
+     img: "https://iili.io/KD3lbLv.png",
   },
   {
     Locality: "Mandawa",
     District: "Shekhawati",
-    State: "Rajastan",
-    desc: "ClimeScore deployment to create Rajastan`s first Carbon Neutral Resort.",
-    img: "https://www.rajasthantourplanner.com/blog/wp-content/uploads/2018/04/mandawa-tour1-1.jpg",
+    State: "ClimeScore Creates Rajasthan’s first Carbon Neutral Resort",
+    desc: "ClimeScore by NettZero has worked with the Legacy Mandawa for four years to ensure it is a sustainable property in the midst of a parched desert. We provide them with accurate measurements across all scopes - along with reduction processes and purchase of genuine offsets to create a carbon neutral property. ",
+    img: "https://legacy.themachan.com/img/yovraj-room.jpg",
   },
   {
     Locality: "Bandhavgarh",
     District: "Umaria",
     State: "Madhya Pradesh",
-    desc: "Biochar Project with an inastalled capacity of 2,000 tons per year and over 1.5 lakh litres of biochar already produced.",
-     img: "https://www.bandhavgarh-national-park.com/images/flora-in-bandhavgarh.jpg",
+    desc: "ClimeScore by NettZero has been working in the ecologically sensitive area of the Bandhavgarh since 2023 to aid with biodiversity preservation and biochar creation through rice straw and invasive species. We have helped create over 300,000 litres of biochar and clear over 200 acres of invasive species, while providing income to women and local farmers. ",
+     img: "https://indiaforbeginners.com/wp-content/uploads/2020/02/Adobe-tigers-Bandhavgarh.jpg",
   },
  
   {
     Locality: "Lonavla",
     District: "Pune",
-    State: "Maharashtra",
-    desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
-     img: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Mumbai_Pune_Expressway2.jpg",
+    State: "Asia’s first Climate Neutral Resort Text- 4 years and counting!",
+    desc: "ClimeScore by NettZero has proudly created Asia’s first Verified Carbon Neutral resort at The Machan. Known for its immaculately designed tree houses that merge into nature, ClimeScore has meeticulously documented the emissions of this highly admired resort since 2022. The Machan is a member of the United Nation’s Race to Zero program and has been purchasing legitimate offsets from the CDM, Verra and GS reigstries through ClimeScore. ",
+     img: "https://www.themachan.com/img/slider-main/slider/1.webp",
   },
   // {
   //   Locality: "Mumbai",
@@ -279,9 +279,9 @@ const mapPoints = [
   {
     Locality: "Coorg",
     District: "Kodagu",
-    State: "Karnataka",
-    desc: "ClimeScore deployment at Tamara coorg for Scope-1, Scope-2 and Scope-3 for emission management.",
-     img: "https://www.easeindiatrip.com/blog/wp-content/uploads/2025/01/Coorg-by-Train-1024x576.jpg",
+    State: "The Tamara Emissions Management Program",
+    desc: "ClimeScore by NettZero provides its platform to this exquisite piece of paradise nestled amidst plantations in Coorg.  We have developed a customised solution that helps The Tamara track emissions not just across Scope 1 & Scope 2 - but, also of its guest travel. Which makes it one of the few properties in the world that is calculating emissions caused by travel to reach it. ",
+    img: "https://iili.io/KD34QKQ.jpg",
   },
 ];
 
@@ -809,10 +809,9 @@ const handleScroll = (target) => {
     </h1>
   </div>
 </div>
+</div>
 
-                </div>
-
-                <div className="counter-right">
+            <div className="counter-right">
                   <h2>{item.label}</h2>
                   <hr />
                   <p>{item.desc}</p>
@@ -890,7 +889,7 @@ const handleScroll = (target) => {
                 <div className="map-right">
                   <h2>{point.Locality}</h2>
                   <p><b>District:</b> {point.District}</p>
-                  <p><b>State:</b> {point.State}</p>
+                  <p> {point.State}</p>
                   <hr />
                   <p className="descpt">{point.desc}</p>
                 </div>
@@ -906,39 +905,38 @@ const handleScroll = (target) => {
         </div>
          
       </section>
-     
+    
 
-
-      <h1 className="sticky-titlediv">ClimeScore For You</h1>
+    <h1 className="sticky-titlediv">ClimeScore For You</h1>
       <div className="divfour">
         {/* sample boxes — keep as you had them */}
         <div>
-          <img src="https://shopequo.com/cdn/shop/articles/Cover_642d8475-e5b3-4074-a452-8d054a621b9e.jpg?v=1709275662&width=1600" alt="" />
-          <h2>Carbon Neutrality</h2>
+          <img src="https://iili.io/KDFeOZl.png" alt="" />
+          <h3>Carbon Neutrality</h3>
           <p>NettZero offers the best of breed global standards & practices to make your organisation certified as Carbon Neutral​</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://climatecarbon.com/wp-content/uploads/2023/05/Carbon-Credit.jpg" alt="" />
-          <h2>Carbon Credits</h2>
+          <img src="https://iili.io/KDFeNj4.png" alt="" />
+          <h3>Carbon Credits</h3>
           <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits. 10 or 10,000, we've got them</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://cdn.tapinvest.in/strapi-assets/Credit_Creation_1_8ac29ba9ba.jpg" alt="" />
-          <h2>Credit Creation</h2>
+          <img src="https://iili.io/KDFe867.png" alt="" />
+          <h3>Credit Creation</h3>
           <p>If you have projects that need development and promotion to earn Carbon Credits, we get you listed on top registries​</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2025/07/climate-literacy-image.png?fit=1280%2C720&ssl=1" alt="" />
-          <h2>Climate Literacy​</h2>
+          <img src="https://iili.io/KDFPoHN.png" alt="" />
+          <h3>Climate Literacy​</h3>
           <p>If you need to educate & coach your company on the impact of various developments, NettZero Trains delivers​</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://static1.squarespace.com/static/650bf3ee96714871f4364ce8/652d0ba2958f231b73106e32/67125d543943cf1dbe41a26a/1752728063907/epr+-+Copy.png?format=1500w" alt="" />
-          <h2>EPR & Plastic Credits​</h2>
+          <img src="https://iili.io/KDFe4yb.png" alt="" />
+          <h3>EPR & Plastic Credits​</h3>
           <p>We work with brands and Plastic Project developers to create value in terms of credits and social development. ​</p>
           <button>Get In Touch</button>
         </div>

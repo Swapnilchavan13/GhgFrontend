@@ -939,6 +939,10 @@ margin-top: 50px;
 }
 
 
+.sticky-titlediv{
+  margin-top: 80px;
+}
+
 
 
 
@@ -1495,10 +1499,6 @@ display: inline;
 .greybox5{
   display: none;
 }
-
-
-
-
 
 
 .section-map {
