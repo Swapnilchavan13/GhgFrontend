@@ -14,17 +14,10 @@ export const Login = () => {
 
   ////////
 
-const images = [
-  {img:'https://iili.io/KLQzN8x.png',src: "https://iili.io/KgfG7f4.png", text: "Measure, Reduce & Analyse your Carbon Emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
-  {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/Kr1giR1.png", text: "Handpicked by experts, high integrity Carbon Credits from across the world", dec: "Our Carbon Credit Marketplace hosts meticulously selected CDR projects to ensure your offsetting is robust, hassle-free and cost-effective" },
-  {img:'https://iili.io/KLQzwaj.png',src: "https://iili.io/KgfRG6X.png", text: "Develop valuable, high integrity Carbon Credits", dec: "We do scalable CDR through Biochar, Enhanced Rock Weathering, Tree Plantation and DAC projects — creating carbon sinks that you can be part of." },
-  {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KZaYnFS.png", text: "A marketplace of green wenders and services that verify their Carbon Emissions", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
-  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Customised, Training on Sustainability & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
-];
 
 const slides = [
   {
-    title: "Manage Carbon Emission",
+    title: "Hospitality",
     contents: [
       { title2: "Measure",img: "https://iili.io/KgfGzOX.png",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
       { title2: "Report",img: "https://iili.io/KgfMru9.png", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
@@ -32,7 +25,7 @@ const slides = [
     ],
   },
   {
-    title: "Manage Carbon Credits",
+    title: "Academia",
     contents: [
       { title2: "Generate",img: "https://iili.io/KgfukOl.png",imgtext:'Carbon Credits', text: "ClimeScore is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
       { title2: "Invest",img: "https://iili.io/KgfuSxS.png",imgtext:'Carbon Credits', text: "ClimeScore actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
@@ -40,7 +33,17 @@ const slides = [
     ],
   },
   {
-    title: "Explore Sustainable Marketplace",
+    title: "SMEs",
+    title2: "Offset",
+    contents: [
+      { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
+      { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",imgtext:'Sustainable Marketplace', text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business." },
+    ],
+  },
+
+  {
+    title: "Events",
     title2: "Offset",
     contents: [
       { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
@@ -98,21 +101,21 @@ const countersData = [
 
 
 const Partners = [
-  // CUSTOMERS
+  // CUSTOMERS Reliable", "Valid", "Findable", "Trusted
   {
-    title: "Customers",
+    title: "Reliable",
     label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
     desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
     image: "https://iili.io/KQOD5Kl.jpg",
   },
   {
-    title: "Customers",
+    title: "Reliable",
     label: "Shobha Rudra - Founder, RARE India",
     desc: "“ClimeScore has been a great partner in measuring emissions of Bridges by RARE.”",
     image: "https://iili.io/KQOD7l2.jpg",
   },
   {
-    title: "Customers",
+    title: "Reliable",
     label: "Hashim Tyebji - Director, Kafila and renowned Tiger Conservationist",
     desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
     image: "https://iili.io/KrXt6vt.jpg",
@@ -120,25 +123,25 @@ const Partners = [
 
   // PARTNERS
   {
-    title: "Partners",
+    title: "Valid",
     label: "Carbon Standards International",
     desc: "ClimeScore by NettZero is a member of Carbon Standards International since 2023, making it one of the earliest organizations from India to be aligned with the vision of enabling Carbon Dioxide Removal through widespread adoption. CSI is one of the most respected and leading registries for CDR in the world, with a focus on fundamental methodologies that create robust, transparent and impactful Carbon Sinks. ",
     image: "https://iili.io/KrXtLjs.jpg",
   },
   {
-    title: "Partners",
+    title: "Valid",
     label: "Circonomy",
     desc: "ClimeScore by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
     image: "https://iili.io/KQeFxnI.jpg",
   },
   {
-    title: "Partners",
+    title: "Valid",
     label: "RARE India",
     desc: "RARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinentRARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinent ClimeScore by NettZero has been partnering with Rare since 2023 to enable their member hotels to become Carbon Neutral and also ensuring that RARE’s annual event, BRIDGES, is Carbon Neutral across Scope 1, 2 and 3.",
     image: "https://iili.io/KrXuvIe.jpg",
   },
   {
-    title: "Partners",
+    title: "Valid",
     label: "ISN (Indian Sustainability Network)",
     desc: "ClimeScore by NettZero drives the engine behind Indian School of Nature’s sustainability portal. As technology developers of the platform and the Carbon managers for its network, we power the members of ISN who want to migrate onto the path of sustainability. ISN is unique and progressive organization founded by doyens in sustainability and conservation, including Mr. Hashim Tyebji and Mr. Ram Pratap Singh. ",
     image: "https://iili.io/KrXu8hu.jpg",
@@ -146,77 +149,34 @@ const Partners = [
 
   // STANDARDS
   {
-    title: "Standards",
+    title: "Findable",
     label: "GHG Protocol",
     desc: "Provides globally accepted tools to measure and manage GHG emissions.",
     image: "https://iili.io/KrXhabs.jpg",
   },
   {
-    title: "Standards",
+    title: "Findable",
     label: "PAS 2060",
     desc: "International standard for demonstrating carbon neutrality.",
     image: "https://iili.io/KrXurEx.jpg",
   },
   {
-    title: "Standards",
+    title: "Findable",
     label: "GRI – Global Reporting Initiative",
     desc: "Used for sustainability reporting ensuring transparency and accountability.",
     image: "https://iili.io/KrXt4aI.jpg",
   },
-  {
-    title: "Standards",
-    label: "CSI – C-Sink Methodologies",
-    desc: "Defines robust, science-based approaches for verifying carbon sink projects.",
-    image: "https://iili.io/KrXtr3N.jpg",
+   {
+    title: "Trusted",
+    label: "GRI – Global Reporting Initiative",
+    desc: "Used for sustainability reporting ensuring transparency and accountability.",
+    image: "https://iili.io/KrXt4aI.jpg",
+  },  {
+    title: "Trusted",
+    label: "GRI – Global Reporting Initiative",
+    desc: "Used for sustainability reporting ensuring transparency and accountability.",
+    image: "https://iili.io/KrXt4aI.jpg",
   },
-  {
-    title: "Standards",
-    label: "ISO 14068",
-    desc: "A new ISO framework for climate change management and carbon neutrality.",
-    image: "https://iili.io/KrXtU4p.jpg",
-  },
-];
-
-
-
-
-const testimonials = [
-  {
-    img: "https://www.shutterstock.com/image-photo/business-team-meeting-600nw-107480708.jpg", 
-    name: "Varun Hooja",
-    designation: "Founder & Partner, Machan Resorts LLP",
-    text: `“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”`
-  },
-  {
-    img: "https://parsadi.com/wp-content/uploads/2022/05/Business.jpg", 
-    name: "Ananya Mehta",
-    designation: "CEO, GreenWatt Energy",
-    text: `“Working with NettZero transformed our approach to sustainability. Their insights on carbon accounting and project implementation were invaluable.”`
-  },
-  {
-    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
-    name: "Rohit Sharma",
-    designation: "Director, EcoBuild Solutions",
-    text: `“The team’s expertise and attention to detail make NettZero a trusted partner for any organization aiming to achieve real climate impact.”`
-  },
-  {
-    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
-    name: "Priya Desai",
-    designation: "Sustainability Head, AgroPure Pvt Ltd",
-    text: `“NettZero helped us measure and offset emissions across our operations. The process was smooth and the results were transparent.”`
-  },
-  {
-    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
-    name: "Aditya Rao",
-    designation: "Managing Partner, EnviroEdge Consulting",
-    text: `“Their technology-driven approach brings both accuracy and accountability to sustainability efforts. Highly recommended!”`
-  },
-  {
-    img: "https://www.winsavvy.com/wp-content/uploads/2024/06/60255e7341de62c988dd08aa_DigitalAdvertising.jpg",
-    name: "Sneha Kapoor",
-    designation: "Founder, Urban Roots Foundation",
-    text: `“The NettZero team truly understands the balance between business goals and environmental responsibility.”`
-  }
 ];
 
 
@@ -271,13 +231,7 @@ const mapPoints = [
     desc: "ClimeScore deployment to create India`s first Carbon Neural resort chain.",
      img: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Mumbai_Pune_Expressway2.jpg",
   },
-  // {
-  //   Locality: "Mumbai",
-  //   District: "Mumbai",
-  //   State: "Maharashtra",
-  //   desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
-  //    img: "https://iili.io/KrXt6vt.jpg",
-  // },
+
   {
     Locality: "Coorg",
     District: "Kodagu",
@@ -325,16 +279,7 @@ const mapsStickyRef = useRef(null);
 
 
 
-  // Div1 carousel
-  const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 10000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextSlide = () => setCurrent((p) => (p + 1) % images.length);
-  const prevSlide = () => setCurrent((p) => (p - 1 + images.length) % images.length);
-
+  
   /* ---------------- Section 2 Setup (same pattern you've been using) ---------------- */
   useEffect(() => {
     const sectionSteps = gsap.utils.toArray(".step");
@@ -754,7 +699,7 @@ const handleScroll = (target) => {
 
        <section className="section section2" ref={containerRef}>
               <div className="sticky-box" ref={stickyRef}>
-                <h1 className="sticky-title">The ClimeScore Suite</h1>
+                <h1 className="sticky-title">ClimeScore For Your Emission</h1>
       
                 <div className="title-buttons">
                  {slides.map((slide, idx) => (
@@ -799,11 +744,11 @@ const handleScroll = (target) => {
           <section className="section section4">
         <div className="partners-container" ref={partnersContainerRef}>
           <div className="sticky-box partners-sticky" ref={partnersStickyRef}>
-            <h1 className="sticky-title3">ClimeScore Partners</h1>
+            <h1 className="sticky-title3">Why Use ClimeScore</h1>
       
             {/* ✅ Only 3 main buttons */}
             <div className="title-buttons3">
-        {["Customers", "Partners", "Standards"].map((category, idx) => (
+        {["Reliable", "Valid", "Findable", "Trusted"].map((category, idx) => (
           <button
             key={idx}
             className={`title-btn ${activePartnersIndex === idx ? "active" : ""}`}
@@ -845,7 +790,14 @@ const handleScroll = (target) => {
        <section className="section section5">
               <div className="maps-container" ref={mapsContainerRef}>
                 <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
-                  <h1 className="sticky-title5">The ClimeScore Footprint</h1>
+                  <h1 className="sticky-title5">Getting Started</h1>
+                  <div>
+                  <button>Register</button>
+                  <button>Select Module</button>
+                  <button>pay and Use</button>
+
+
+                  </div>
                   {mapPoints.map((point, i) => (
                     <div key={i} className="map-step">
                       <div className="map-left">
@@ -853,8 +805,8 @@ const handleScroll = (target) => {
                       </div>
                       <div className="map-right">
                         <h2>{point.Locality}</h2>
-                        <p><b>District:</b> {point.District}</p>
-                        <p><b>State:</b> {point.State}</p>
+                        {/* <p><b>District:</b> {point.District}</p>
+                        <p><b>State:</b> {point.State}</p> */}
                         <hr />
                         <p className="descpt">{point.desc}</p>
                       </div>
