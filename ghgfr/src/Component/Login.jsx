@@ -58,46 +58,7 @@ const steps = slides.flatMap((slide) =>
   slide.contents.map((c) => ({ title: slide.title, ...c }))
 );
 
-/* -------- counters data -------- */
-const countersData = [
-  { 
-    value: 200000, 
-    title:"Biochar",
-    label: "Liters Of Biochar Produced", 
-    desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem.",
-    image: "https://iili.io/KgfM4je.png"
-  },
-  { 
-    value: 120, 
-    title:"Field Weathering",
-    label: "Hectares", 
-    desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares.",
-    image: "https://iili.io/KgfREGt.png"
-  },
-  { 
-    value: 40000, 
-    label: "Three", 
-    title:"Direction Capture",
-    desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species.",
-    image: "https://iili.io/KgfR1nI.png"
-  },
-  { 
-    value: 250, 
-    label: "GMS/Hour", 
-     title:"Direction Capture",
 
-    desc: "The capacity of the Direct Air Capture consumer machine prototyped by us.",
-    image: "https://iili.io/Kgf5wUg.png"
-  },
-  { 
-    value: 300000, 
-    label: "Tons Of Co2", 
-     title:"Direction Capture",
-
-    desc: "Emissions accurately measured & reported as per GRJ standards on our platform – ClimeScore",
-    image: "https://iili.io/KgfMUy7.png"
-  },
-];
 
 
 const Partners = [
@@ -179,6 +140,31 @@ const Partners = [
   },
 ];
 
+
+const [currentSlide, setCurrentSlide] = useState(0);
+
+const slides2 = [
+    {
+      img: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
+      text: "Welcome to our client portal – connect, manage, and grow.",
+    },
+    {
+      img: "https://www.dummyimage.co.uk/600x400/cbcbcb/959595/Dummy%20Image/40",
+      text: "Manage your business efficiently and securely.",
+    },
+    {
+      img: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
+      text: "Secure access. Smarter workflow. Better results.",
+    },
+  ];
+
+    // auto-slide every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
 const mapPoints = [
   {
@@ -661,40 +647,57 @@ const handleScroll = (target) => {
 <button onClick={() => navigate('/user/login')}>User Login</button>
 
 
+
+
+ <div className="login-page-container">
+      {/* LEFT SIDE: Slider */}
+      <div className="slider-section">
+        <img
+          src={slides2[currentSlide].img}
+          alt="Slide"
+          className="slider-image"
+        />
+        <p className="slider-text">{slides2[currentSlide].text}</p>
+      </div>
+
+      {/* RIGHT SIDE: Login form */}
       <div className="add-client-container">
         <h2>Login</h2>
         <label>
-          userId:
-          <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
+          User ID:
+          <input
+            type="text"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+          />
         </label>
         <br />
         <label>
           Password:
           <div className="password-input-container">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <button
               type="button"
               className="password-toggle-button"
-              onClick={() => setShowPassword(prevShowPassword => !prevShowPassword)}
+              onClick={() => setShowPassword((prev) => !prev)}
             >
-              {showPassword ? 'Hide' : 'Show'}
+              {showPassword ? "Hide" : "Show"}
             </button>
           </div>
         </label>
         <br />
         <button onClick={handleLogin}>Login</button>
         {loginStatus === false && (
-          <p style={{ color: 'red' }}>Incorrect username or password. Please try again.</p>
+          <p style={{ color: "red" }}>
+            Incorrect username or password. Please try again.
+          </p>
         )}
       </div>
-
-
-
-
+    </div>
 
 
        <section className="section section2" ref={containerRef}>
@@ -730,7 +733,7 @@ const handleScroll = (target) => {
       ))}
        <div className="section2btn">
         <button onClick={() => handleScroll(".section1")}>Previous Section</button>
-        <button onClick={() => handleScroll(".section3")}>Next Section</button>
+        <button onClick={() => handleScroll(".section4")}>Next Section</button>
         <button onClick={() => handleScroll("top")}>Back To Top</button>
       </div>
               </div>
@@ -747,7 +750,7 @@ const handleScroll = (target) => {
             <h1 className="sticky-title3">Why Use ClimeScore</h1>
       
             {/* ✅ Only 3 main buttons */}
-            <div className="title-buttons3">
+            <div className="title-buttonlogin">
         {["Reliable", "Valid", "Findable", "Trusted"].map((category, idx) => (
           <button
             key={idx}
@@ -791,12 +794,10 @@ const handleScroll = (target) => {
               <div className="maps-container" ref={mapsContainerRef}>
                 <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
                   <h1 className="sticky-title5">Getting Started</h1>
-                  <div>
+                  <div className='getbuttons'>
                   <button>Register</button>
                   <button>Select Module</button>
-                  <button>pay and Use</button>
-
-
+                  <button>Pay and Use</button>
                   </div>
                   {mapPoints.map((point, i) => (
                     <div key={i} className="map-step">

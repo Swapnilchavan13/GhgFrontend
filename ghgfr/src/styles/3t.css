@@ -1730,3 +1730,65 @@ position: relative;
 }
 
 }
+
+
+
+/* Login Page Changes */
+
+.title-buttonlogin button{
+  /* border: 1px solid red; */
+  width: 25%;
+
+}
+
+.title-buttonlogin{
+  width: 150%;
+  margin-left: -25%;
+}
+
+.getbuttons{
+  width: 150%;
+  margin-left: -25%;
+  margin-top: 20px;
+
+}
+
+.getbuttons button{
+  width: 33%;
+  background-color: #1a1a1a;
+  margin-left: -10px;
+}
+
+
+.login-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.slider-section {
+  width: 50%;
+  position: relative;
+  text-align: center;
+}
+
+.slider-image {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.slider-text {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+
+
+
+
