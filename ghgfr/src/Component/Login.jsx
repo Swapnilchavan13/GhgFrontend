@@ -145,26 +145,26 @@ const [currentSlide, setCurrentSlide] = useState(0);
 
 const slides2 = [
     {
-      img: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
+      imge: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
       text: "Welcome to our client portal – connect, manage, and grow.",
     },
     {
-      img: "https://www.dummyimage.co.uk/600x400/cbcbcb/959595/Dummy%20Image/40",
+      imge: "https://www.dummyimage.co.uk/600x400/cbcbcb/959595/Dummy%20Image/40",
       text: "Manage your business efficiently and securely.",
     },
     {
-      img: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
+      imge: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
       text: "Secure access. Smarter workflow. Better results.",
     },
   ];
 
-    // auto-slide every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides2.length);
+  }, 4000);
+  return () => clearInterval(interval);
+}, [slides2.length]);
+
 
 const mapPoints = [
   {
@@ -637,28 +637,43 @@ const handleScroll = (target) => {
     }
   };
 
+   const handleNavigate = (path) => {
+    // 💥 Kill all active ScrollTriggers and tweens before route change
+    gsap.killTweensOf(window);
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    ScrollTrigger.clearMatchMedia();
+
+    navigate(path);
+  };
+
   
   return (
     <>
       <Clientnavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} logoimg={null}/>
 
 
-<button onClick={() => navigate('/clientregister')}>Register Here</button>
-<button onClick={() => navigate('/user/login')}>User Login</button>
+ <button onClick={() => handleNavigate('/clientregister')}>
+        Register Here
+      </button>
+      <button onClick={() => handleNavigate('/user/login')}>
+        User Login
+      </button>
 
 
 
 
  <div className="login-page-container">
       {/* LEFT SIDE: Slider */}
-      <div className="slider-section">
-        <img
-          src={slides2[currentSlide].img}
-          alt="Slide"
-          className="slider-image"
-        />
-        <p className="slider-text">{slides2[currentSlide].text}</p>
-      </div>
+      {slides2[currentSlide] && (
+  <div className="slider-section">
+    <img
+      src={slides2[currentSlide].imge}
+      alt="Slide"
+      className="slider-image"
+    />
+    <p className="slider-text">{slides2[currentSlide].text}</p>
+  </div>
+)}
 
       {/* RIGHT SIDE: Login form */}
       <div className="add-client-container">
