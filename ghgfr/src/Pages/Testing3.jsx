@@ -604,7 +604,9 @@ const handleTitleClick = (index) => {
   const clampedStepIndex = Math.min(lastStepIndex, totalSteps - 1);
   const targetY = section.offsetTop + clampedStepIndex * window.innerHeight;
 
-  gsap.to(window, {
+ const scrollTarget = document.scrollingElement || window;
+
+  gsap.to(scrollTarget, {
     scrollTo: { y: targetY, autoKill: true },
     duration: 2.5,
     ease: "power2.inOut",
@@ -626,7 +628,9 @@ const handleTitleClick2 = (index) => {
     const targetY =
       trigger.start + clampedIndex * window.innerHeight + 100;
 
-    gsap.to(window, {
+   const scrollTarget = document.scrollingElement || window;
+
+  gsap.to(scrollTarget, {
       scrollTo: { y: targetY, autoKill: true },
       duration: 2,
       ease: "power2.inOut",
@@ -649,7 +653,9 @@ const handlePartnersCategoryClick = (category) => {
   const trigger = ScrollTrigger.getById("section4Pin");
   if (trigger) {
     const targetY = trigger.start + targetIndex * window.innerHeight +100;
-    gsap.to(window, {
+    const scrollTarget = document.scrollingElement || window;
+
+  gsap.to(scrollTarget, {
       scrollTo: { y: targetY, autoKill: true },
       duration: 1.5,
       ease: "power2.inOut",
@@ -671,11 +677,14 @@ const handleScroll = (target) => {
     if (el) y = el.offsetTop;
   }
 
-  gsap.to(window, {
-    scrollTo: { y, autoKill: true },
-    duration: 1.5,
-    ease: "power2.inOut",
-  });
+ const scrollTarget = document.scrollingElement || window;
+
+gsap.to(scrollTarget, {
+  scrollTo: { y, autoKill: true, offsetY: 0 },
+  duration: 1.5,
+  ease: "power2.inOut",
+});
+
 };
 
 
