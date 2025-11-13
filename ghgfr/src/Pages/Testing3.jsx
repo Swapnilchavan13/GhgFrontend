@@ -14,10 +14,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 /* -- your top carousel images -- */
 const images = [
   {img:'https://iili.io/KLQzN8x.png',src: "https://iili.io/KgfG7f4.png", text: "Measure, Reduce & Analyse your Carbon Emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
-  {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/Kr1giR1.png", text: "Handpicked by experts, high integrity Carbon Credits from across the world", dec: "Our Carbon Credit Marketplace features carefully vetted CDR projects for robust, hassle-free and cost-effective offsetting" },
+  {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/Kr1giR1.png", text: "High integrity Carbon Credits from across the world", dec: "Our Carbon Credit Marketplace features carefully vetted CDR projects for robust, hassle-free and cost-effective offsetting" },
   {img:'https://iili.io/KLQzwaj.png',src: "https://iili.io/KgfRG6X.png", text: "Develop valuable, high integrity Carbon Credits", dec: "We deliver scalable CDR through Biochar, ERW, Tree Plantation and DAC projects—creating carbon sinks you can join" },
-  {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KZaYnFS.png", text: "A marketplace for verified green vendors and carbon services", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
-  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Customised, Training on Sustainability & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
+  {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KZaYnFS.png", text: "A marketplace for verified green vendors and services", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
+  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Customised Training on Sustainability & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
 const slides = [
@@ -241,8 +241,8 @@ const mapPoints = [
   //    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b8/55/15/kharsali.jpg",
   // },
    {
-    Locality: "Rudrapur",
-    District: "Pant Nagar",
+    Locality: "Puranpur",
+    District: "Tilibhit",
     State: "Uttarakhand",
     desc: "ClimeScore by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers. We then convert the rice straw to biochar which is them provided to farmers as a rich, soil enhancing organic fertiliser. ",
      img: "https://iili.io/KD3lbLv.png",
