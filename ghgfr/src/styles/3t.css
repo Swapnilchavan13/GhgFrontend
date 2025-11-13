@@ -1634,7 +1634,7 @@ display: none;}
 
 }
 
-@media (max-width: 1354px) {
+@media (max-width: 1384px) {
 
   .img-image{
   position: inherit;
@@ -1666,7 +1666,7 @@ position: relative;
 .section3btn{
    display: flex;
   justify-content: space-between;
- width: 112.5%;
+ width: 110%;
  gap: 50px;
 
  margin-left: 10px !important;
@@ -1723,10 +1723,14 @@ position: relative;
 
 .title-buttons2 {
   position: relative; /* ✅ create a stacking context */
-  margin-left: -180px;
-  width: 148%;
+  margin-left: -190px !important;
+  width: 147%;
   z-index: 99999;
   pointer-events: auto; /* ✅ ensures it can receive clicks */
+}
+
+.sticky-titlediv{
+  margin-top: 20px;
 }
 
 }
