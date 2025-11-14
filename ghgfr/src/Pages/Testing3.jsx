@@ -32,9 +32,9 @@ const slides = [
   {
     title: "Manage Carbon Credits",
     contents: [
-      { title2: "Generate",img: "https://iili.io/KgfukOl.png",imgtext:'Carbon Credits', text: "ClimeScore is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
-      { title2: "Invest",img: "https://iili.io/KgfuSxS.png",imgtext:'Carbon Credits', text: "ClimeScore actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeScore sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfuln ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Generate",img: "https://iili.io/KgfukOl.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Invest",img: "https://iili.io/KgfuSxS.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
+      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfuln ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
@@ -42,7 +42,7 @@ const slides = [
     title2: "Offset",
     contents: [
       { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
-      { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
       {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",imgtext:'Sustainable Marketplace', text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business." },
     ],
   },
@@ -56,7 +56,7 @@ const steps = slides.flatMap((slide) =>
 /* -------- counters data -------- */
 const countersData = [
   { 
-    value: 200000, 
+    value: 300000, 
     title:"Biochar",
     label: "Liters Of Biochar Produced", 
     desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem.",
@@ -71,7 +71,7 @@ const countersData = [
   },
   { 
     value: 40000, 
-    label: "Three", 
+    label: "Trees", 
     title:"Direction Capture",
     desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species.",
     image: "https://iili.io/KgfR1nI.png"
@@ -101,7 +101,7 @@ const Partners = [
     title: "Customers",
     label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
     desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
-    image: "https://iili.io/KQOD5Kl.jpg",
+    image: "https://iili.io/KytYqhX.jpg",
   },
   {
     title: "Customers",
@@ -113,20 +113,20 @@ const Partners = [
     title: "Customers",
     label: "Hashim Tyebji - Director, Kafila and renowned Tiger Conservationist",
     desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
-    image: "https://iili.io/KrXt6vt.jpg",
+    image: "https://iili.io/KytYfIt.jpg",
   },
 
   // PARTNERS
   {
     title: "Partners",
     label: "Carbon Standards International",
-    desc: "ClimeScore by NettZero is a member of Carbon Standards International since 2023, making it one of the earliest organizations from India to be aligned with the vision of enabling Carbon Dioxide Removal through widespread adoption. CSI is one of the most respected and leading registries for CDR in the world, with a focus on fundamental methodologies that create robust, transparent and impactful Carbon Sinks. ",
+    desc: "ClimeGrove by NettZero is a member of Carbon Standards International since 2023, making it one of the earliest organizations from India to be aligned with the vision of enabling Carbon Dioxide Removal through widespread adoption. CSI is one of the most respected and leading registries for CDR in the world, with a focus on fundamental methodologies that create robust, transparent and impactful Carbon Sinks. ",
     image: "https://iili.io/KrXtLjs.jpg",
   },
   {
     title: "Partners",
     label: "Circonomy",
-    desc: "ClimeScore by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
+    desc: "ClimeGrove by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
     image: "https://iili.io/KQeFxnI.jpg",
   },
   {
@@ -146,31 +146,31 @@ const Partners = [
   {
     title: "Standards",
     label: "GHG Protocol",
-    desc: "Provides globally accepted tools to measure and manage GHG emissions.",
+    desc: "ClimeScore ensures that your journey towards emissions measurement and reporting is truly world class, by bringing in co-efficient and processes front he GHG Protocol. The GHG Protocol is an international accounting tool, a partnership between the World Resources Institute (WRI) and the World Business Council for Sustainable Development (WBCSD), that provides globally standardized frameworks for measuring and managing greenhouse gas (GHG) emissions. It is the most widely used standard for accounting and reporting emissions by companies and governments, helping them understand, quantify, and manage their climate impact",
     image: "https://iili.io/KrXhabs.jpg",
   },
   {
     title: "Standards",
     label: "PAS 2060",
-    desc: "International standard for demonstrating carbon neutrality.",
+    desc: "PAS 2060 is an internationally recognized specification from the British Standards Institution (BSI) that defines how an organization, product, or even a government can demonstrate carbon neutrality. It involves a four-stage process: assessing greenhouse gas emissions, creating a plan to reduce them, offsetting any remaining emissions, and providing public documentation and verification. ClimeScore works with its customers to ensure that these specifications are diligently followed, so that your Carbon Neutrality is at par with the most diligent companies in the world. ",
     image: "https://iili.io/KrXurEx.jpg",
   },
   {
     title: "Standards",
     label: "GRI – Global Reporting Initiative",
-    desc: "Used for sustainability reporting ensuring transparency and accountability.",
+    desc: "GRI is THE gold standard on which disclosures and reporting is done for sustainability. ClimeScore creates your reports for you to meet the frameworks prescribed within these standards, so that no matter who reads it - they know your processes and data declarations are robust. ",
     image: "https://iili.io/KrXt4aI.jpg",
   },
   {
     title: "Standards",
     label: "CSI – C-Sink Methodologies",
-    desc: "Defines robust, science-based approaches for verifying carbon sink projects.",
+    desc: "Carbon Standards International is a reputed and respected standard for Carbon Dioxide Removal methodologies. ClimeGrove’s CD-R pathways for artisanal biochar are registered with CSI to ensure the highest levels of compliance, credibility and integrity for the biochar based Carbon Credits that we generate. ",
     image: "https://iili.io/KrXtr3N.jpg",
   },
   {
     title: "Standards",
     label: "ISO 14068",
-    desc: "A new ISO framework for climate change management and carbon neutrality.",
+    desc: "ClimeScore uses the stringent guidelines and frameworks stipulated within the ISO14068 standard, to ensure that your journey towards Carbon Neutrality is bonafide and accepted by your stakeholders",
     image: "https://iili.io/KrXtU4p.jpg",
   },
 ];
@@ -178,7 +178,7 @@ const Partners = [
 
 
 
-const testimonials = [
+const  v = [
   {
     img: "https://www.shutterstock.com/image-photo/business-team-meeting-600nw-107480708.jpg", 
     name: "Varun Hooja",
@@ -223,7 +223,7 @@ const mapPoints = [
     Locality: "Nubra Vally",
     District: "Laddakh (UH)",
     State: "Stone Hedge",
-    desc: "ClimeScore creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
+    desc: "ClimeGrove creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
      img: "https://www.stonehedgeladakh.com/wp-content/uploads/stone1.jpg",
   },
   {
@@ -244,7 +244,7 @@ const mapPoints = [
     Locality: "Puranpur",
     District: "Tilibhit",
     State: "Uttarakhand",
-    desc: "ClimeScore by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers. We then convert the rice straw to biochar which is them provided to farmers as a rich, soil enhancing organic fertiliser. ",
+    desc: "ClimeGrove by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers. We then convert the rice straw to biochar which is them provided to farmers as a rich, soil enhancing organic fertiliser. ",
      img: "https://iili.io/KD3lbLv.png",
   },
   {
@@ -258,7 +258,7 @@ const mapPoints = [
     Locality: "Bandhavgarh",
     District: "Umaria",
     State: "Madhya Pradesh",
-    desc: "ClimeScore by NettZero has been working in the ecologically sensitive area of the Bandhavgarh since 2023 to aid with biodiversity preservation and biochar creation through rice straw and invasive species. We have helped create over 300,000 litres of biochar and clear over 200 acres of invasive species, while providing income to women and local farmers. ",
+    desc: "ClimeGrove by NettZero has been working in the ecologically sensitive area of the Bandhavgarh since 2023 to aid with biodiversity preservation and biochar creation through rice straw and invasive species. We have helped create over 300,000 litres of biochar and clear over 200 acres of invasive species, while providing income to women and local farmers. ",
      img: "https://indiaforbeginners.com/wp-content/uploads/2020/02/Adobe-tigers-Bandhavgarh.jpg",
   },
  
@@ -284,8 +284,6 @@ const mapPoints = [
     img: "https://iili.io/KD34QKQ.jpg",
   },
 ];
-
-
 
 
 
@@ -337,17 +335,13 @@ useEffect(() => {
   const [activeCounterIndex, setActiveCounterIndex] = useState(0);
 
 
-
   const partnersContainerRef = useRef(null);
 const partnersStickyRef = useRef(null);
 const [activePartnersIndex, setActivePartnersIndex] = useState(0);
 
 
-
 const mapsContainerRef = useRef(null);
 const mapsStickyRef = useRef(null);
-
-
 
 
 
@@ -945,8 +939,8 @@ gsap.to(scrollTarget, {
         </div>
         <div>
           <img src="https://iili.io/KDFe4yb.png" alt="" />
-          <h3>EPR & Plastic Credits​</h3>
-          <p>We work with brands and Plastic Project developers to create value in terms of credits and social development. ​</p>
+          <h3>ClimeStore​</h3>
+          <p>Connect with 100’s of verified suppliers - across products and services that are verified as carbon efficient, to reduce your Scope 3 emissions. ​</p>
           <button>Get In Touch</button>
         </div>
       </div>

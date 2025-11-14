@@ -859,7 +859,7 @@ margin-top: 50px;
   height:500px;
   border-radius: 15px;
   width: 280px;
-  margin-left: 52%;
+  margin-left: -8%;
   text-align: left;
   padding: 40px;
   z-index: 999;
@@ -905,7 +905,7 @@ margin-top: 50px;
 /* Grey overlay box like in section 4 */
 .greybox5 {
   position: absolute;
-  right: 0;
+  margin-left: -21%;
   top: 0;
   width: 45%;
   height: 97.5%;
