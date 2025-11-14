@@ -146,13 +146,13 @@ const Partners = [
   {
     title: "Standards",
     label: "GHG Protocol",
-    desc: "ClimeScore ensures that your journey towards emissions measurement and reporting is truly world class, by bringing in co-efficient and processes front he GHG Protocol. The GHG Protocol is an international accounting tool, a partnership between the World Resources Institute (WRI) and the World Business Council for Sustainable Development (WBCSD), that provides globally standardized frameworks for measuring and managing greenhouse gas (GHG) emissions. It is the most widely used standard for accounting and reporting emissions by companies and governments, helping them understand, quantify, and manage their climate impact",
+    desc: "ClimeScore makes your emissions measurement and reporting world-class by applying coefficients and processes from the GHG Protocol. The GHG Protocol — developed by the World Resources Institute (WRI) and the World Business Council for Sustainable Development (WBCSD) — is the leading global standard for measuring and managing greenhouse gas emissions, used by companies and governments to understand, quantify, and reduce their climate impact.",
     image: "https://iili.io/KrXhabs.jpg",
   },
   {
     title: "Standards",
     label: "PAS 2060",
-    desc: "PAS 2060 is an internationally recognized specification from the British Standards Institution (BSI) that defines how an organization, product, or even a government can demonstrate carbon neutrality. It involves a four-stage process: assessing greenhouse gas emissions, creating a plan to reduce them, offsetting any remaining emissions, and providing public documentation and verification. ClimeScore works with its customers to ensure that these specifications are diligently followed, so that your Carbon Neutrality is at par with the most diligent companies in the world. ",
+    desc: "PAS 2060 is a global standard from BSI that defines how organizations can demonstrate carbon neutrality through measuring emissions, reducing them, offsetting what remains, and publicly verifying the results. ClimeScore helps customers follow these steps thoroughly, ensuring their carbon-neutral claims meet top international standards.",
     image: "https://iili.io/KrXurEx.jpg",
   },
   {
