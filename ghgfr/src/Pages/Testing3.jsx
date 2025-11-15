@@ -915,25 +915,25 @@ gsap.to(scrollTarget, {
         {/* sample boxes — keep as you had them */}
         <div>
           <img src="https://iili.io/f9UVj3u.jpg" alt="" />
-          <h3>Carbon Neutrality</h3>
+          <h3>ClimeScore</h3>
           <p>NettZero offers the best of breed global standards & practices to make your organisation certified as Carbon Neutral​</p>
           <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://iili.io/f9S5XzG.jpg" alt="" />
-          <h3>Carbon Credits</h3>
+          <h3>ClimeFolio</h3>
           <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits. 10 or 10,000, we've got them</p>
           <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://iili.io/f9S5js4.jpg" alt="" />
-          <h3>Credit Creation</h3>
+          <h3>ClimeGrove</h3>
           <p>If you have projects that need development and promotion to earn Carbon Credits, we get you listed on top registries​</p>
           <button>Get In Touch</button>
         </div>
         <div>
           <img src="https://iili.io/f9S5Vbs.jpg" alt="" />
-          <h3>Climate Literacy​</h3>
+          <h3>ClimeSchool</h3>
           <p>If you need to educate & coach your company on the impact of various developments, NettZero Trains delivers​</p>
           <button>Get In Touch</button>
         </div>
