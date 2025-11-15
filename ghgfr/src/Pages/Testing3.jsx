@@ -914,7 +914,7 @@ gsap.to(scrollTarget, {
       <div className="divfour">
         {/* sample boxes — keep as you had them */}
         <div>
-          <img src="https://iili.io/f9S5hXf.jpg" alt="" />
+          <img src="https://iili.io/f9UVj3u.jpg" alt="" />
           <h3>Carbon Neutrality</h3>
           <p>NettZero offers the best of breed global standards & practices to make your organisation certified as Carbon Neutral​</p>
           <button>Get In Touch</button>
