@@ -230,7 +230,7 @@ const mapPoints = [
     Locality: "Phagu",
     District: "Sirmaur",
     State: "Agroforestry & Biochar",
-    desc: "Biochar Project with installed capacity of 2,000 tons per year.",
+    desc: "ClimeGrove by NettZero has a Agro-forestry waste based biochar facility here, which makes high quality biochar that is rich in Carbon Content. This project ensures that the pristine slopes of the Himalayas are not further polluted, through the practice of burning agro-forestry waste. The project aims to create 2,000 high-integrity Carbon Credits this year.",
      img: "https://infinitejourneys.in/blog/wp-content/uploads/2020/09/Apples-in-Kinnaur-2-2.jpg",
   },
   // {
@@ -914,31 +914,31 @@ gsap.to(scrollTarget, {
       <div className="divfour">
         {/* sample boxes — keep as you had them */}
         <div>
-          <img src="https://iili.io/KDFeOZl.png" alt="" />
+          <img src="https://iili.io/f9S5hXf.jpg" alt="" />
           <h3>Carbon Neutrality</h3>
           <p>NettZero offers the best of breed global standards & practices to make your organisation certified as Carbon Neutral​</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://iili.io/KDFeNj4.png" alt="" />
+          <img src="https://iili.io/f9S5XzG.jpg" alt="" />
           <h3>Carbon Credits</h3>
           <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits. 10 or 10,000, we've got them</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://iili.io/KDFe867.png" alt="" />
+          <img src="https://iili.io/f9S5js4.jpg" alt="" />
           <h3>Credit Creation</h3>
           <p>If you have projects that need development and promotion to earn Carbon Credits, we get you listed on top registries​</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://iili.io/KDFPoHN.png" alt="" />
+          <img src="https://iili.io/f9S5Vbs.jpg" alt="" />
           <h3>Climate Literacy​</h3>
           <p>If you need to educate & coach your company on the impact of various developments, NettZero Trains delivers​</p>
           <button>Get In Touch</button>
         </div>
         <div>
-          <img src="https://iili.io/KDFe4yb.png" alt="" />
+          <img src="https://iili.io/f9S5O12.jpg" alt="" />
           <h3>ClimeStore​</h3>
           <p>Connect with 100’s of verified suppliers - across products and services that are verified as carbon efficient, to reduce your Scope 3 emissions. ​</p>
           <button>Get In Touch</button>
