@@ -9,6 +9,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 import "../styles/3t.css";
 import { Link } from "react-router-dom";
+import { Footer } from '../Pages/Footer';
 
 export const Login = () => {
 
@@ -145,15 +146,15 @@ const [currentSlide, setCurrentSlide] = useState(0);
 
 const slides2 = [
     {
-      imge: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
+      imge: "https://iili.io/KgfGzOX.png",
       text: "Welcome to our client portal – connect, manage, and grow.",
     },
     {
-      imge: "https://www.dummyimage.co.uk/600x400/cbcbcb/959595/Dummy%20Image/40",
+      imge: "https://iili.io/KgfMru9.png",
       text: "Manage your business efficiently and securely.",
     },
     {
-      imge: "https://lh6.googleusercontent.com/proxy/G_p2LpvJ4Hfe2uBBUMBIl7H5caAYIhTTn7WK4xW0cHlwCONhWtYKBCJNMNjOVRBtwtCqxwv383KSroInLrnmLPDZugW5ZYSKQ9b0dEgGTg4dO8E-vHTP3ToFZBxTuObLC59Z9yIm7HE-ktbLeQ",
+      imge: "https://iili.io/KgfGAWG.png",
       text: "Secure access. Smarter workflow. Better results.",
     },
   ];
@@ -652,12 +653,12 @@ const handleScroll = (target) => {
       <Clientnavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} logoimg={null}/>
 
 
- <button onClick={() => handleNavigate('/clientregister')}>
+ {/* <button onClick={() => handleNavigate('/clientregister')}>
         Register Here
       </button>
       <button onClick={() => handleNavigate('/user/login')}>
         User Login
-      </button>
+      </button> */}
 
 
 
@@ -838,6 +839,10 @@ const handleScroll = (target) => {
               </div>
                
             </section>
+            <br />
+            <br />
+            <br />
+            <Footer />
     </>
   );
 };
