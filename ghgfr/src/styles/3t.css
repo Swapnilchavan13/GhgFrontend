@@ -950,80 +950,61 @@ margin-top: 50px;
 
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
+/* ------------------------------
+   MOBILE NAV FIX (Hamburger menu)
+   ------------------------------ */
 @media (max-width: 768px) {
-  /* General wrapper */
-  .wrapper {
-    padding: 0 10px;
-  }
 
-  /* Navbar */
-  .navbar {
-    padding: 0 15px;
-    font-size: 1rem;
-  }
-
+  /* Hide the nav by default on mobile */
   .nav-links {
-    display: none; /* hide default nav links on mobile */
+    display: none;
     flex-direction: column;
+    background-color: white;
     position: absolute;
-    top: 50px;
-    right: 0;
-    background: #f5f5f5;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .nav-links.show {
-    display: flex; /* toggle with JS */
-  }
-
-  .nav-links li {
-    text-align: center;
-    padding: 10px 0;
-  }
-
-  .hamburger {
-    display: flex; /* show only on mobile */
-    background-color: #848383;
-    width: 40px;
-    height: 25px;
-    margin-top: 10px;
-    border-radius: 20px;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 60px;
+    top: 80px;
     right: 0;
     width: 100%;
-    background: #f5f5f5;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
     padding: 20px 0;
-    display: none; /* hidden by default */
-  }
-
-  .nav-links.active {
-    display: flex; /* show when toggled */
-  }
-
-  .nav-links li {
-    width: 100%;
     text-align: center;
+    z-index: 999;
   }
 
-  .nav-links .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background: transparent;
-    padding: 0;
+  /* When menuOpen === true */
+  .nav-links.active {
+    display: none;
   }
 
-  .nav-links .dropdown-menu li a {
-    padding: 8px 0;
-    display: block;
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1000;
   }
+
+  .hamburger span {
+    width: 28px;
+    height: 3px;
+    background: black;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* OPTIONAL — animate hamburger to “X” */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+
+
+
 
   /* First div carousel */
   .firstdiv {
@@ -1240,14 +1221,15 @@ border-radius: 10px;
   }
 
   .title-buttons2 {
-    margin: 10px auto 20px -90px !important;
-    width: 100%;
+    /* margin: 10px auto 20px 850px !important; */
+    width: 100% !important;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
     position: relative;
     z-index: 5;
+    padding-left: 190px;
   }
 
   .title-buttons2 .title-btn {
@@ -1282,7 +1264,7 @@ border-radius: 10px;
   }
 
   .counter-image-box img {
-    width: 350px;
+    width: 370px;
     height: 300px;
     border-radius: 12px;
   }
@@ -1329,7 +1311,7 @@ border-radius: 10px;
 
   /* ===== Mobile styles for "ClimeScore Partners" (section4) ===== */
 .section4 {
-  margin-top: 500px;                  
+  margin-top: 120px;                  
   padding: 40px 10px;
   height: auto;
   z-index: 0;
@@ -1826,8 +1808,3 @@ position: relative;
   margin-top: -1% !important;
   margin-left: 5% !important;
 }
-
-
-
-
-

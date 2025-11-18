@@ -696,16 +696,16 @@ gsap.to(scrollTarget, {
 
       {/* Hamburger Button */}
       <div
-        className="hamburger"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+  className={`hamburger ${menuOpen ? "active" : ""}`}
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
-      {/* Nav Links */}
-      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+<ul className={`nav-links ${!menuOpen ? "active" : ""}`}>
+
         <li><Link to="/client/login">Measure Carbon Emission</Link></li>
         <li><Link to="/marketplacehome">Carbon Credits</Link></li>
 
