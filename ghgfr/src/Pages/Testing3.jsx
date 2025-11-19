@@ -17,7 +17,7 @@ const images = [
   {img:'https://iili.io/KLQzi8v.png',src: "https://iili.io/Kr1giR1.png", text: "High integrity Carbon Credits from across the world", dec: "Our Carbon Credit Marketplace features carefully vetted CDR projects for robust, hassle-free and cost-effective offsetting" },
   {img:'https://iili.io/KLQzwaj.png',src: "https://iili.io/KgfRG6X.png", text: "Develop valuable, high integrity Carbon Credits", dec: "We deliver scalable CDR through Biochar, ERW, Tree Plantation and DAC projects—creating carbon sinks you can join" },
   {img:'https://iili.io/KLQzj3b.png',src: "https://iili.io/KZaYnFS.png", text: "A marketplace for verified green vendors and services", dec: "Decarbonise your supply chain and reduce your Scope 3 emissions" },
-  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Customised Training on Sustainability & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
+  {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Tailored Training Programs on Sustainability, Climate Action & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
 const slides = [
@@ -26,24 +26,23 @@ const slides = [
     contents: [
       { title2: "Measure",img: "https://iili.io/KgfGzOX.png",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
       { title2: "Report",img: "https://iili.io/KgfMru9.png", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
-      { title2: "Offset",img: "https://iili.io/KgfGAWG.png", imgtext:'Carbon Emission',text: "ClimeScore helps you become Carbon Neutral through a process of reduction and offsetting. Take the second step, after accurate carbon measurement, to offset emissions and become Verified Carbon Neutral." },
-    ],
+      { title2: "Offset",img: "https://iili.io/KgfGAWG.png", imgtext:'Carbon Emission',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
   },
   {
     title: "Manage Carbon Credits",
     contents: [
-      { title2: "Generate",img: "https://iili.io/KgfukOl.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Generate",img: "https://iili.io/KgfukOl.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
       { title2: "Invest",img: "https://iili.io/KgfuSxS.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfuln ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
     title: "Explore Sustainable Marketplace",
     title2: "Offset",
     contents: [
-      { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions." },
+      { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
       { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
-      {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",imgtext:'Sustainable Marketplace', text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business." },
+      {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
     ],
   },
 ];
@@ -72,14 +71,14 @@ const countersData = [
   { 
     value: 40000, 
     label: "Trees", 
-    title:"Direction Capture",
+    title:"Direct Capture",
     desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species.",
     image: "https://iili.io/KgfR1nI.png"
   },
   { 
     value: 250, 
     label: "GMS/Hour", 
-     title:"Direction Capture",
+     title:"Direct Capture",
 
     desc: "The capacity of the Direct Air Capture consumer machine prototyped by us.",
     image: "https://iili.io/Kgf5wUg.png"
@@ -87,9 +86,9 @@ const countersData = [
   { 
     value: 300000, 
     label: "Tons Of Co2", 
-     title:"Direction Capture",
+     title:"Direct Capture",
 
-    desc: "Emissions accurately measured & reported as per GRJ standards on our platform – ClimeScore",
+    desc: "Emissions accurately measured & reported as per GRI standards on our platform – ClimeScore",
     image: "https://iili.io/KgfMUy7.png"
   },
 ];
@@ -223,7 +222,7 @@ const mapPoints = [
     Locality: "Nubra Vally",
     District: "Laddakh (UH)",
     State: "Stone Hedge",
-    desc: "ClimeGrove creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
+    desc: "ClimeScore creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
      img: "https://www.stonehedgeladakh.com/wp-content/uploads/stone1.jpg",
   },
   {
@@ -263,7 +262,7 @@ const mapPoints = [
   },
  
   {
-    Locality: "Lonavla",
+    Locality: "Lonavala",
     District: "Pune",
     State: "Asia’s first Climate Neutral Resort Text- 4 years and counting!",
     desc: "ClimeScore by NettZero has proudly created Asia’s first Verified Carbon Neutral resort at The Machan. Known for its immaculately designed tree houses that merge into nature, ClimeScore has meeticulously documented the emissions of this highly admired resort since 2022. The Machan is a member of the United Nation’s Race to Zero program and has been purchasing legitimate offsets from the CDM, Verra and GS reigstries through ClimeScore. ",
@@ -706,7 +705,7 @@ gsap.to(scrollTarget, {
 
 <ul className={`nav-links ${!menuOpen ? "active" : ""}`}>
 
-        <li><Link to="/client/login">Measure Carbon Emission</Link></li>
+        <li><Link to="/client/login">Measure Carbon Emissions</Link></li>
         <li><Link to="/marketplacehome">Carbon Credits</Link></li>
 
         <li className="dropdown">
@@ -934,7 +933,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5Vbs.jpg" alt="" />
           <h3>ClimeSchool</h3>
-          <p>If you need to educate & coach your company on the impact of various developments, NettZero Trains delivers​</p>
+          <p>If you need to educate and train your staff and organisation on the impact of key sustainability developments, NettZero delivers effective, expert-led learning programs.​</p>
           <button>Get In Touch</button>
         </div>
         <div>

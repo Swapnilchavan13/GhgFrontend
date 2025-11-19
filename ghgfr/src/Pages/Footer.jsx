@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className="footer-left">
         <img className="logo" src="/ClimeScore.png" alt="" />
         <p className="description">
-          ClimeScore, your partner for carbon emissions measurement, Carbon Credit
+          ClimeScore, your partner for Carbone Emissions Measurement, Carbon Credit
           purchases and Carbon Credit Creations.
         </p>
       </div>
