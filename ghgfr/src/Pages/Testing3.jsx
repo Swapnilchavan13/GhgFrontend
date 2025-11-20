@@ -308,6 +308,44 @@ export const Counter = ({ target, duration = 1200 }) => {
 
 /* -------------------- Main component -------------------- */
 export const Testing3 = () => {
+  
+const [showPopup, setShowPopup] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    company: "",
+    message: "",
+  });
+
+  const handleGetInTouch = (serviceName) => {
+    setSelectedService(serviceName);
+    setShowPopup(true);
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const sendMail = () => {
+    const subject = `Inquiry About ${selectedService}`;
+    const body = `
+Name: ${form.name}
+Phone: ${form.phone}
+Company: ${form.company}
+Message: ${form.message}
+
+Service Requested: ${selectedService}
+`.replace(/ /g, "%20").replace(/\n/g, "%0A");
+
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=contact@nettzero.world&su=${subject}&body=${body}`
+    );
+
+    setShowPopup(false);
+  };
+
+
 
 
   const [showScroll, setShowScroll] = useState(false);
@@ -916,33 +954,84 @@ gsap.to(scrollTarget, {
           <img src="https://iili.io/f9UVj3u.jpg" alt="" />
           <h3>ClimeScore</h3>
           <p>NettZero offers the best of breed global standards & practices to make your organisation certified as Carbon Neutral​</p>
-          <button>Get In Touch</button>
+          <button onClick={() => handleGetInTouch("ClimeScore")}>
+            Get In Touch
+          </button>
+
         </div>
         <div>
           <img src="https://iili.io/f9S5XzG.jpg" alt="" />
           <h3>ClimeFolio</h3>
           <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits. 10 or 10,000, we've got them</p>
-          <button>Get In Touch</button>
+          <button onClick={() => handleGetInTouch("ClimeFolio")}>
+            Get In Touch
+          </button>
+
         </div>
         <div>
           <img src="https://iili.io/f9S5js4.jpg" alt="" />
           <h3>ClimeGrove</h3>
           <p>If you have projects that need development and promotion to earn Carbon Credits, we get you listed on top registries​</p>
-          <button>Get In Touch</button>
+          <button onClick={() => handleGetInTouch("ClimeGrove")}>
+            Get In Touch
+          </button>
+
         </div>
         <div>
           <img src="https://iili.io/f9S5Vbs.jpg" alt="" />
           <h3>ClimeSchool</h3>
           <p>If you need to educate and train your staff and organisation on the impact of key sustainability developments, NettZero delivers effective, expert-led learning programs.​</p>
-          <button>Get In Touch</button>
+          <button onClick={() => handleGetInTouch("ClimeSchool")}>
+            Get In Touch
+          </button>
+
         </div>
         <div>
           <img src="https://iili.io/f9S5O12.jpg" alt="" />
           <h3>ClimeStore​</h3>
           <p>Connect with 100’s of verified suppliers - across products and services that are verified as carbon efficient, to reduce your Scope 3 emissions. ​</p>
-          <button>Get In Touch</button>
+        <button onClick={() => handleGetInTouch("ClimeStore")}>
+            Get In Touch
+          </button>
+
         </div>
       </div>
+
+         {/* POPUP */}
+      {/* POPUP */}
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+
+            <h3>Contact — {selectedService}</h3>
+
+            <input
+              name="name"
+              placeholder="Your Name"
+              onChange={handleChange}
+            />
+            <input
+              name="phone"
+              placeholder="Mobile Number"
+              onChange={handleChange}
+            />
+            <input
+              name="company"
+              placeholder="Company Name"
+              onChange={handleChange}
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              onChange={handleChange}
+            />
+
+            <button onClick={sendMail}>Send Message</button>
+            <button onClick={() => setShowPopup(false)}>Cancel</button>
+
+          </div>
+        </div>
+      )}
 
       <Footer />
       {/* Scroll to Top Button */}

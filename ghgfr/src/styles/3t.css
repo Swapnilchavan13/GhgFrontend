@@ -1816,3 +1816,23 @@ position: relative;
   margin-top: -1% !important;
   margin-left: 5% !important;
 }
+
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
