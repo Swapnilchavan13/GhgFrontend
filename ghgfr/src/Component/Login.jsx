@@ -650,7 +650,46 @@ const handleScroll = (target) => {
   
   return (
     <>
-      <Clientnavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} logoimg={null}/>
+      {/* <Clientnavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} logoimg={null}/> */}
+<nav className="navbar">
+      <div className="logo">
+        <Link to="/">
+          <img src="/ClimeScore.png" alt="Climescore Logo" />
+        </Link>
+        <span style={{ fontSize: "12px", marginTop: "16px" }}>By NettZero</span>
+      </div>
+
+      {/* Hamburger Button */}
+      <div
+  className={`hamburger ${menuOpen ? "active" : ""}`}
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<ul className={`nav-links ${!menuOpen ? "active" : ""}`}>
+
+        <li><Link to="/client/login">Measure Carbon Emissions</Link></li>
+        <li><Link to="/marketplacehome">Carbon Credits</Link></li>
+
+        <li className="dropdown">
+          <span>Our Scope ▾</span>
+          <ul className="dropdown-menu">
+            <li><Link to="/scope/clime">Clime Score</Link></li>
+            <li><Link to="/scope/credits">Carbon Credits</Link></li>
+            <li><Link to="/scope/plastic">Plastic Credits</Link></li>
+            <li><Link to="/scope/climate">Climate Literacy</Link></li>
+          </ul>
+        </li>
+
+        <li><Link to="/marketplace">Green Marketplace</Link></li>
+        <li><Link to="/blog">Resources</Link></li>
+        <li><Link to="/jobs">Jobs</Link></li>
+        <li><Link to="/about">About</Link></li>
+      </ul>
+    </nav>
 
 
  {/* <button onClick={() => handleNavigate('/clientregister')}>
