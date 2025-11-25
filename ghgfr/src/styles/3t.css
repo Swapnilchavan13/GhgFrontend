@@ -1462,12 +1462,12 @@ display: inline;
   background-color: #1d1d1d;
   height:400px !important;
   border-radius: 15px;
-  margin-left: -100% !important;
+  margin-left: -90% !important;
   margin-top: -80px;
-  text-align: left;
+  text-align: center;
   padding: 40px;
   z-index: 999;
-  width: 300px;
+  width: 260px;
   /* border: 1px solid red; */
 }
 
