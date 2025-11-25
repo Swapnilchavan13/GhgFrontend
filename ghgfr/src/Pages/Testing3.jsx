@@ -11,6 +11,7 @@ import { Footer } from "./Footer";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 // gsap.registerPlugin(ScrollTrigger);
 
+
 /* -- your top carousel images -- */
 const images = [
   {img:'https://iili.io/KLQzN8x.png',src: "https://iili.io/KgfG7f4.png", text: "Measure, Reduce & Analyse your Carbon Emissions", dec: "Our AI-driven platform has accurately measured over 300,000 tons of CO₂" },
@@ -436,12 +437,14 @@ const mapsStickyRef = useRef(null);
 
     // pin the whole section & let GSAP manage the scroll distance
     const pinTrigger = ScrollTrigger.create({
-      trigger: containerRef.current,
-      pin: true,
-      start: "top top",
-      end: `+=${sectionSteps.length * window.innerHeight}`,
-      scrub: false,
-    });
+  trigger: containerRef.current,
+  pin: true,
+  start: "top top",
+  end: `+=${sectionSteps.length * window.innerHeight}`,
+  scrub: false,
+  scroller: document.body,
+});
+
 
     return () => {
       window.removeEventListener("resize", measureAndSet);
@@ -486,14 +489,16 @@ const mapsStickyRef = useRef(null);
       })
     );
 
- const pinTrigger = ScrollTrigger.create({
-  id: "section3Pin",  // ✅ add this line
+const pinTrigger = ScrollTrigger.create({
+  id: "section3Pin",
   trigger: countersContainerRef.current,
   pin: true,
   start: "top top",
   end: `+=${counterSteps.length * window.innerHeight}`,
   scrub: false,
+  scroller: document.body,
 });
+
 
 
     return () => {
@@ -565,13 +570,16 @@ useEffect(() => {
   );
 
   const pinTrigger = ScrollTrigger.create({
-    id: "section4Pin",
-    trigger: partnersContainerRef.current,
-    pin: true,
-    start: "top top",
-    end: `+=${partnerSteps.length * window.innerHeight}`,
-    scrub: false,
-  });
+  id: "section4Pin",
+  trigger: partnersContainerRef.current,
+  pin: true,
+  start: "top top",
+  end: `+=${partnerSteps.length * window.innerHeight}`,
+  scrub: false,
+  scroller: document.body,
+});
+
+
 
   return () => {
     window.removeEventListener("resize", measureAndSet);
@@ -607,13 +615,15 @@ useEffect(() => {
     );
 
     const pinTrigger = ScrollTrigger.create({
-      id: "section5Pin",
-      trigger: mapsContainerRef.current,
-      pin: true,
-      start: "top top",
-      end: `+=${mapSteps.length * window.innerHeight}`,
-      scrub: false,
-    });
+  id: "section5Pin",
+  trigger: mapsContainerRef.current,
+  pin: true,
+  start: "top top",
+  end: `+=${mapSteps.length * window.innerHeight}`,
+  scrub: false,
+  scroller: document.body,
+});
+
 
     return () => {
       stepTriggers.forEach((t) => t.kill());
@@ -635,10 +645,14 @@ const handleTitleClick = (index) => {
   const clampedStepIndex = Math.min(lastStepIndex, totalSteps - 1);
   const targetY = section.offsetTop + clampedStepIndex * window.innerHeight;
 
- const scrollTarget = document.scrollingElement || window;
+ const scrollTarget =
+  document.scrollingElement ||
+  document.documentElement ||
+  document.body;
+
 
   gsap.to(scrollTarget, {
-    scrollTo: { y: targetY, autoKill: true },
+    scrollTo: { y: targetY, autoKill: false },
     duration: 2.5,
     ease: "power2.inOut",
   });
@@ -659,10 +673,14 @@ const handleTitleClick2 = (index) => {
     const targetY =
       trigger.start + clampedIndex * window.innerHeight + 100;
 
-   const scrollTarget = document.scrollingElement || window;
+   const scrollTarget =
+  document.scrollingElement ||
+  document.documentElement ||
+  document.body;
+
 
   gsap.to(scrollTarget, {
-      scrollTo: { y: targetY, autoKill: true },
+      scrollTo: { y: targetY, autoKill: false },
       duration: 2,
       ease: "power2.inOut",
     });
@@ -684,10 +702,14 @@ const handlePartnersCategoryClick = (category) => {
   const trigger = ScrollTrigger.getById("section4Pin");
   if (trigger) {
     const targetY = trigger.start + targetIndex * window.innerHeight +100;
-    const scrollTarget = document.scrollingElement || window;
+   const scrollTarget =
+  document.scrollingElement ||
+  document.documentElement ||
+  document.body;
+
 
   gsap.to(scrollTarget, {
-      scrollTo: { y: targetY, autoKill: true },
+      scrollTo: { y: targetY, autoKill: false },
       duration: 1.5,
       ease: "power2.inOut",
     });
@@ -708,10 +730,14 @@ const handleScroll = (target) => {
     if (el) y = el.offsetTop;
   }
 
- const scrollTarget = document.scrollingElement || window;
+ const scrollTarget =
+  document.scrollingElement ||
+  document.documentElement ||
+  document.body;
+
 
 gsap.to(scrollTarget, {
-  scrollTo: { y, autoKill: true, offsetY: 0 },
+  scrollTo: { y, autoKill: false, offsetY: 0 },
   duration: 1.5,
   ease: "power2.inOut",
 });
