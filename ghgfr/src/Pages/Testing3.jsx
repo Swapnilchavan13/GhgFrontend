@@ -752,9 +752,11 @@ gsap.to(scrollTarget, {
      <nav className="navbar">
       <div className="logo">
         <Link to="/">
-          <img src="/ClimeScore.png" alt="Climescore Logo" />
+          {/* <img src="/ClimeScore.png" alt="Climescore Logo" /> */}
+          <img src="https://iili.io/fqSTKkG.jpg" alt="Climescore Logo" />
+
         </Link>
-        <span style={{ fontSize: "12px", marginTop: "16px" }}>By NettZero</span>
+        {/* <span style={{ fontSize: "12px", marginTop: "16px" }}>By NettZero</span> */}
       </div>
 
       {/* Hamburger Button */}
@@ -807,7 +809,7 @@ gsap.to(scrollTarget, {
       {/* Div 2 — pinned slideshow (unchanged UX) */}
       <section className="section section2" ref={containerRef}>
         <div className="sticky-box" ref={stickyRef}>
-          <h1 className="sticky-title">The ClimeScore Suite</h1>
+          <h1 className="sticky-title">The NettZero Suite</h1>
 
           <div className="title-buttons">
            {slides.map((slide, idx) => (
@@ -900,7 +902,7 @@ gsap.to(scrollTarget, {
     <section className="section section4">
   <div className="partners-container" ref={partnersContainerRef}>
     <div className="sticky-box partners-sticky" ref={partnersStickyRef}>
-      <h1 className="sticky-title3">ClimeScore Partners</h1>
+      <h1 className="sticky-title3">NettZero Partners</h1>
 
       {/* ✅ Only 3 main buttons */}
       <div className="title-buttons3">
