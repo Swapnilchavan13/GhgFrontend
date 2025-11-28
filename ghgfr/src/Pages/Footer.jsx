@@ -6,9 +6,9 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-left">
-        <img className="logo" src="/ClimeScore.png" alt="" />
+        <img className="logo" src="https://iili.io/fCMwWSS.png" alt="" />
         <p className="description">
-          ClimeScore, your partner for Carbone Emissions Measurement, Carbon Credit
+          NettZero, your partner for Carbone Emissions Measurement, Carbon Credit
           purchases and Carbon Credit Creations.
         </p>
       </div>
