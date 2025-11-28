@@ -32,18 +32,27 @@ const slides = [
   {
     title: "Manage Carbon Credits",
     contents: [
-      { title2: "Generate",img: "https://iili.io/KgfukOl.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
-      { title2: "Invest",img: "https://iili.io/KgfuSxS.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Generate",img: "https://iili.io/KgfukOl.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Invest",img: "https://iili.io/KgfuSxS.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
+      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
     title: "Explore Sustainable Marketplace",
     title2: "Offset",
     contents: [
-      { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
-      { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
-      {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
+      { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
+      { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
+    ],
+  },
+  {
+    title: "Climate Literacy",
+    contents: [
+      { title2: "Empower Your Leadership",img: "https://iili.io/fCRiMDG.jpg", img2:"https://iili.io/KLQzN8x.png",imgtext:'Corporate Training', text: "ClimeSchool brings decades of climate & academic expertise to empower your leadership to understand fundaments, global trends and carbon credit economics that are shaping the world. We build bespoke programs that suit your audience, timings and budgets" },
+      { title2: "Equip your Faculty",img: "https://iili.io/fCRiclI.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Faculty Training', text: "ClimeSchool empowers your faculty and academic staff on the accurate science and global trends in Climate & Sustainability. Teachers & Faculty are the bedrock of tomorrow’s change makers’ outlooks and aptitude - at ClimeSchool, we ensure that they are fully equipped to provide relevant Climate Literacy to students + build impact activities on Campus" },
+      { title2: "Upskill your Resume",img: "https://iili.io/fCRiERn.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Certificate Courses', text: "ClimeSchool provides a range of customised courses for working professionals that impart specific training and skills which enhance your resume for sustainability jobs. From Carbon Credit economics to Biochar creation processes, we’ve got you covered & certified" },
+
     ],
   },
 ];
@@ -827,6 +836,7 @@ gsap.to(scrollTarget, {
   <div key={i} className="step">
     <div className="step-image-wrapper">
       <img src={s.img} alt={s.text} />
+
       <span className="step-image-text">{s.imgtext}</span>
     </div>
 
@@ -852,7 +862,7 @@ gsap.to(scrollTarget, {
       <section className="section section3">
         <div className="counters-container" ref={countersContainerRef}>
           <div className="sticky-box counters-sticky" ref={countersStickyRef}>
-            <h1 className="sticky-title2">ClimeScore in Numbers</h1>
+            <h1 className="sticky-title2">NettZero in Numbers</h1>
 <div className="title-buttons2">
   {countersData.slice(0, 3).map((item, idx) => (
     <button
@@ -948,7 +958,7 @@ gsap.to(scrollTarget, {
  <section className="section section5">
         <div className="maps-container" ref={mapsContainerRef}>
           <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
-            <h1 className="sticky-title5">The ClimeScore Footprint</h1>
+            <h1 className="sticky-title5">The NettZero Footprint</h1>
             {mapPoints.map((point, i) => (
               <div key={i} className="map-step">
                 <div className="map-left">
@@ -975,7 +985,7 @@ gsap.to(scrollTarget, {
       </section>
     
 
-    <h1 className="sticky-titlediv">ClimeScore For You</h1>
+    <h1 className="sticky-titlediv">NettZero For You</h1>
       <div className="divfour">
         {/* sample boxes — keep as you had them */}
         <div>
