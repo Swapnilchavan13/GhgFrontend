@@ -25,25 +25,25 @@ const slides = [
   {
     title: "Manage Carbon Emission",
     contents: [
-      { title2: "Measure",img: "https://iili.io/KgfGzOX.png",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
-      { title2: "Report",img: "https://iili.io/KgfMru9.png", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
-      { title2: "Offset",img: "https://iili.io/KgfGAWG.png", imgtext:'Carbon Emission',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
+      { title2: "Measure",img: "https://iili.io/fnREPxS.jpg",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
+      { title2: "Report",img: "https://iili.io/fnREZ0u.jpg", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
+      { title2: "Offset",img: "https://iili.io/fnREQfe.jpg", imgtext:'Carbon Emission',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
   },
   {
     title: "Manage Carbon Credits",
     contents: [
-      { title2: "Generate",img: "https://iili.io/KgfukOl.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
-      { title2: "Invest",img: "https://iili.io/KgfuSxS.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Generate",img: "https://iili.io/fnRENVt.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Invest",img: "https://iili.io/fnREOiX.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
+      { title2: "Purchase",img: "https://iili.io/fnREtUb.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
     title: "Explore Sustainable Marketplace",
     title2: "Offset",
     contents: [
-      { title2: "Decarbonise Supply Chain",img: "https://iili.io/KgfuZbV.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
-      { title2: "Reduce Costs",img: "https://iili.io/KgfRcjp.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
-      {title2: "Support Green Businesses",img: "https://iili.io/KgfuUW7.png",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
+      { title2: "Decarbonise Supply Chain",img: "https://iili.io/fnRE8UG.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
+      { title2: "Reduce Costs",img: "https://iili.io/fnREiW7.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      {title2: "Support Green Businesses",img: "https://iili.io/fnREkfn.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
     ],
   },
   {
@@ -76,7 +76,7 @@ const countersData = [
     title:"Field Weathering",
     label: "Hectares", 
     desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares.",
-    image: "https://iili.io/KgfREGt.png"
+    image: "https://iili.io/fn5z1CQ.jpg"
   },
   { 
     value: 40000, 
