@@ -34,7 +34,7 @@ const slides = [
     contents: [
       { title2: "Generate",img: "https://iili.io/fnRENVt.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
       { title2: "Invest",img: "https://iili.io/fnREOiX.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://iili.io/fnREtUb.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Purchase",img: "https://iili.io/fxPpZSs.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
@@ -237,7 +237,7 @@ const mapPoints = [
   },
   {
     Locality: "Phagu",
-    District: "Sirmaur",
+    District: "Sinnaur",
     State: "Agroforestry & Biochar",
     desc: "ClimeGrove by NettZero has a Agro-forestry waste based biochar facility here, which makes high quality biochar that is rich in Carbon Content. This project ensures that the pristine slopes of the Himalayas are not further polluted, through the practice of burning agro-forestry waste. The project aims to create 2,000 high-integrity Carbon Credits this year.",
      img: "https://infinitejourneys.in/blog/wp-content/uploads/2020/09/Apples-in-Kinnaur-2-2.jpg",
@@ -251,8 +251,8 @@ const mapPoints = [
   // },
    {
     Locality: "Puranpur",
-    District: "Tilibhit",
-    State: "Uttarakhand",
+    District: "Pilibhit",
+    State: "Uttar Pradesh",
     desc: "ClimeGrove by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers. We then convert the rice straw to biochar which is them provided to farmers as a rich, soil enhancing organic fertiliser. ",
      img: "https://iili.io/KD3lbLv.png",
   },

@@ -144,7 +144,7 @@
 
 /* Text */
 .overlay-text {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: white;
   text-align: center;
@@ -155,7 +155,7 @@ border-radius: 10px;
 }
 
 .overlay-dec {
-  font-size: 1.2rem;
+  font-size: 1rem;
 font-style: italic;
   font-weight: bold;
   color: white;
@@ -1690,12 +1690,12 @@ position: relative;
 }
 
 .section3btn button{
-  width: 400px;
+  width: 420px;
 }
 .section3btn{
    display: flex;
   justify-content: space-between;
- width: 110%;
+ width: 112%;
  gap: 50px;
 
  margin-left: 10px !important;
@@ -1704,6 +1704,7 @@ top: 88% !important;
 /* margin-left: 15%; */
  position: relative;
  z-index: 9999999;
+ /* border: 1px solid red; */
 }
 
 .section4btn{
@@ -1752,7 +1753,7 @@ position: relative;
 
 .title-buttons2 {
   position: relative; /* ✅ create a stacking context */
-  margin-left: -190px !important;
+  margin-left: -170px !important;
   width: 147%;
   z-index: 99999;
   pointer-events: auto; /* ✅ ensures it can receive clicks */
