@@ -198,15 +198,7 @@ export const Login = () => {
     {
       imge: "https://iili.io/KgfGzOX.png",
       text: "Welcome to our client portal – connect, manage, and grow.",
-    },
-    {
-      imge: "https://iili.io/KgfMru9.png",
-      text: "Manage your business efficiently and securely.",
-    },
-    {
-      imge: "https://iili.io/KgfGAWG.png",
-      text: "Secure access. Smarter workflow. Better results.",
-    },
+    }
   ];
 
   const mapPoints = [
@@ -267,6 +259,23 @@ export const Login = () => {
       img: "https://www.easeindiatrip.com/blog/wp-content/uploads/2025/01/Coorg-by-Train-1024x576.jpg",
     },
   ];
+
+  const logos = [
+  // "https://iili.io/KytYqhX.jpg",
+  // "https://iili.io/KQOD7l2.jpg",
+  // "https://iili.io/KytYfIt.jpg",
+
+  "https://iili.io/KrXtLjs.jpg",
+  "https://iili.io/KQeFxnI.jpg",
+  "https://iili.io/KrXuvIe.jpg",
+  "https://iili.io/KrXu8hu.jpg",
+
+  "https://iili.io/KrXhabs.jpg",
+  "https://iili.io/KrXurEx.jpg",
+  "https://iili.io/KrXt4aI.jpg",
+  "https://iili.io/KrXtr3N.jpg",
+  "https://iili.io/KrXtU4p.jpg",
+];
 
   // ------------------ UI state ------------------
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -735,7 +744,7 @@ export const Login = () => {
             <br />
             <button onClick={handleLogin}>Login</button>
             {loginStatus === false && (
-              <p style={{ color: "red" }}>Incorrect username or password. Please try again.</p>
+              <p style={{ color: "red" }}></p>
             )}
           </div>
         </div>
@@ -779,6 +788,22 @@ export const Login = () => {
             </div>
           </div>
         </section>
+
+
+       <div className="logo-slider">
+      <div className="logo-track">
+        {logos.map((src, i) => (
+          <img key={i} src={src} alt="logo" />
+        ))}
+
+        {/* Duplicate for infinite scroll */}
+        {logos.map((src, i) => (
+          <img key={`dup-${i}`} src={src} alt="logo" />
+        ))}
+      </div>
+    </div>
+
+
 
         {/* Partners section */}
         <section className="section section4">
