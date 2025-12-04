@@ -1138,13 +1138,13 @@ border-radius: 10px;
 }
 
   .counter-image-box img {
-    width: 350px;
-    /* margin-top: 0px; */
+    width: 400px !important;
     height: 250px;
     
   }
 
   .counter-image-box{
+    width: 500px !important;
     margin-left: 12% !important;
   }
 
@@ -1273,9 +1273,9 @@ border-radius: 10px;
   }
 
   .counter-image-box {
-    width: 380px !important;
+    /* width: 420px !important; */
     background: transparent;
-    margin-left: -28px;
+    margin-left: -20px;
     /* margin: auto; */
   }
 
@@ -1284,10 +1284,10 @@ border-radius: 10px;
   }
 
   .counter-image-box img {
-    width: 100%;
+    width: 400px;
     height: 300px;
     border-radius: 12px;
-    /* border: 1px solid red; */
+    
   }
 
   .counter-overlay {
