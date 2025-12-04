@@ -1062,8 +1062,10 @@ border-radius: 10px;
   }
 
    .title-buttons{
-     margin-left: -80px;
+     margin-left:15px !important;
      gap: 5px;
+     width: 98%;
+     margin: auto;
    
    }
   .title-buttons button{
