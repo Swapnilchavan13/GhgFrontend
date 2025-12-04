@@ -1138,7 +1138,7 @@ border-radius: 10px;
 }
 
   .counter-image-box img {
-    width: 400px !important;
+    width: 80% !important;
     height: 250px;
     
   }
