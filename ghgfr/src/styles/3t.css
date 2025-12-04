@@ -393,6 +393,21 @@ position: relative;
   pointer-events: none; /* so clicks go through */
 }
 
+.step-image-text1 {
+  position: absolute;
+  bottom: 50%;
+  left: 25%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 16px;
+  border-radius: 8px;
+  pointer-events: none; /* so clicks go through */
+}
+
 /* Div 3 */
 .counters-container { 
  padding-top: 20px;
@@ -866,6 +881,8 @@ margin-top: 10px;
 }
 
 .sticky-title5{
+  font-size: 20px;
+  color: #414141;
   margin-top: 30px;
 }
 
@@ -1088,7 +1105,7 @@ border-radius: 10px;
 
   .conbox {
     width: 70%;
-    height: 330px;
+    height: 320px !important;
     margin-top: -60px;
     margin-left: 2px;
   }
@@ -1099,6 +1116,8 @@ border-radius: 10px;
   .section3{
     margin-top: -180px;
     height: fit-content;
+    margin-bottom: 550px;
+    position: relative;
   }
 
 
@@ -1207,7 +1226,7 @@ border-radius: 10px;
 
 .section3 {
   margin-top: -130px !important;         
-  padding: 40px 10px;
+  /* padding: 40px 10px; */
   height: auto;
   overflow: visible;
   position: relative;               
@@ -1229,7 +1248,7 @@ border-radius: 10px;
     gap: 10px;
     position: relative;
     z-index: 5;
-    padding-left: 190px;
+    padding-left: 180px;
   }
 
   .title-buttons2 .title-btn {
@@ -1254,9 +1273,10 @@ border-radius: 10px;
   }
 
   .counter-image-box {
-    width: 600px !important;
+    width: 380px !important;
     background: transparent;
     margin-left: -28px;
+    /* margin: auto; */
   }
 
   .greybox2{
@@ -1264,9 +1284,10 @@ border-radius: 10px;
   }
 
   .counter-image-box img {
-    width: 370px;
+    width: 100%;
     height: 300px;
     border-radius: 12px;
+    /* border: 1px solid red; */
   }
 
   .counter-overlay {
@@ -1311,8 +1332,8 @@ border-radius: 10px;
 
   /* ===== Mobile styles for "ClimeScore Partners" (section4) ===== */
 .section4 {
-  margin-top: 130%;                  
-  padding: 40px 10px;
+  margin-top: 10% !important;                  
+  padding: 50px 10px;
   height: auto;
   /* z-index: 0; */
   position: relative;
@@ -1380,7 +1401,7 @@ border-radius: 10px;
 
   .partner-right {
     width: 80%;
-    height: 360px;
+    height: 350px !important;
     margin-left: -20px;
     margin-top: -100px;
     padding: 20px;
@@ -1841,10 +1862,24 @@ position: relative;
 
 .slider-text {
   position: absolute;
-  bottom: 70%;   
-  left: 30%;     /* Move text left/right */
+  bottom: 45%;   
+  left: 25%;     /* Move text left/right */
   color: white !important;
   font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 5;
+  /* text-shadow: 0 2px 8px rgba(0,0,0,0.7); */
+  background-color: #333;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.slider-text2 {
+  position: absolute;
+  bottom: 35%;   
+  left: 25%;     /* Move text left/right */
+  color: white !important;
+  font-size: 1rem;
   font-weight: bold;
   z-index: 5;
   /* text-shadow: 0 2px 8px rgba(0,0,0,0.7); */
@@ -1879,9 +1914,9 @@ position: relative;
 
 .add-client-container{
   z-index: 999;
-  height: 300px;
-  width: 12%;
-  margin-top: -1% !important;
+  height: 180px;
+  width: 14%;
+  margin-top: -6% !important;
   margin-left: 12% !important;
 }
 

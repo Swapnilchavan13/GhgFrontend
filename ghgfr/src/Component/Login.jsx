@@ -23,22 +23,22 @@ export const Login = () => {
       title: "Hospitality",
       contents: [
         {
-          title2: "Measure",
-          img: "https://iili.io/KgfGzOX.png",
-          imgtext: "Carbon Emission",
-          text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple.",
+          title2: "Trusted by Leaders",
+          img: "https://iili.io/fIcRUWG.jpg",
+          imgtext: "for Hospitality",
+          text: " ClimeScore is trusted by over 20 leading hospitality companies, making it one of the most widely used Emission Measurement Platform in the sector. We have deep expertise in accurately measuring and reporting emissions of the hospitality sector.",
         },
         {
-          title2: "Report",
-          img: "https://iili.io/KgfMru9.png",
-          imgtext: "Carbon Emission",
-          text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more.",
+          title2: "100% accurate. 100% Easy to Use",
+          img: "https://iili.io/fIcRvbn.jpg",
+          imgtext: "Simple. Powerful. Thorough.",
+          text: "ClimeScore makes it extremely simple for hospitality companies to measure their emissions - very accurately, granularity and robustly. It is based on globally accepted standards and gives you measurements and reports that can be shared with international organisations seeking bonafide emission reporting.",
         },
         {
-          title2: "Offset",
-          img: "https://iili.io/KgfGAWG.png",
-          imgtext: "Carbon Emission",
-          text: "ClimeScore helps you become Carbon Neutral through a process of reduction and offsetting. Take the second step, after accurate carbon measurement, to offset emissions and become Verified Carbon Neutral.",
+          title2: "Performance - without hefty price tags",
+          img: "https://iili.io/fIcRSxs.jpg",
+          imgtext: "Extremely Affordable, Yet Reliable",
+          text: "ClimeScore is designed for serious players in the hospitality industry, who wish to get serious about Carbon Emission Measurement - without breaking the bank. We have made the platform extremely affordable - at a mere US$ 20 per month - to bring proper climate tools to every serious hospitality group.",
         },
       ],
     },
@@ -196,8 +196,9 @@ export const Login = () => {
 
   const slides2 = [
     {
-      imge: "https://iili.io/KgfGzOX.png",
-      text: "Welcome to our client portal – connect, manage, and grow.",
+      imge: "https://iili.io/fIRydpj.jpg",
+      text: "Welcome to our robust, AI powered Emission Measurement Platform", 
+      sub: "Over 300,000 tCO2e of emissions accurately measured for Industry Leading Organizations",
     }
   ];
 
@@ -714,16 +715,17 @@ export const Login = () => {
             <div className="slider-section">
               <img src={slides2[currentSlide].imge} alt="Slide" className="slider-image" />
               <p className="slider-text">{slides2[currentSlide].text}</p>
+              <p className="slider-text2">{slides2[currentSlide].sub}</p>
+
             </div>
           )}
 
           <div className="add-client-container">
-            <h2>Login</h2>
             <label>
               User ID:
               <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
             </label>
-            <br />
+            {/* <br /> */}
             <label>
               Password:
               <div className="password-input-container">
@@ -741,11 +743,11 @@ export const Login = () => {
                 </button>
               </div>
             </label>
-            <br />
+            {/* <br /> */}
             <button onClick={handleLogin}>Login</button>
-            {loginStatus === false && (
-              <p style={{ color: "red" }}></p>
-            )}
+            <button>Register Now</button>
+
+           
           </div>
         </div>
 
@@ -754,24 +756,24 @@ export const Login = () => {
             <h1 className="sticky-title">ClimeScore For Your Emission</h1>
 
             <div className="title-buttons">
-              {slides.map((slide, idx) => (
-                <button
-                  key={idx}
-                  className={`title-btn ${activeTitleIndex === idx ? "active" : ""}`}
-                  onClick={() => handleTitleClick(idx)}
-                >
-                  {slide.title}
-                </button>
-              ))}
-            </div>
+           {slides.map((slide, idx) => (
+    <button
+      key={idx}
+      className={`title-btn ${activeTitleIndex === idx ? "active" : ""}`}
+      onClick={() => handleTitleClick(idx)}
+    >
+      {slide.title}
+    </button>
+  ))}
+          </div>
 
-            {steps.map((s, i) => (
-              <div key={i} className="step">
-                <div className="step-image-wrapper">
-                  <img src={s.img} alt={s.text} />
-                  <span className="step-image-text">{s.imgtext}</span>
-                </div>
+        {steps.map((s, i) => (
+  <div key={i} className="step">
+    <div className="step-image-wrapper">
+      <img src={s.img} alt={s.text} />
 
+      <span className="step-image-text1">{s.imgtext}</span>
+    </div>
                 <div className="conbox">
                   <h2>{s.title2}</h2>
                   <hr />

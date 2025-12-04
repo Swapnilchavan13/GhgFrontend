@@ -118,6 +118,7 @@
 
   /* Logo */
   .logo {
+    width: 100%;
     font-size: 28px;
     justify-content: center;
   }
