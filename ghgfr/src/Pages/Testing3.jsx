@@ -21,37 +21,52 @@ const images = [
   {img:'https://iili.io/KLQzkuV.png',src: "https://iili.io/KgfGRsf.png", text: "Tailored Training Programs on Sustainability, Climate Action & Carbon Credits", dec: "Our precise and effective modules are delivered by experts with thousands of hours in corporate education" },
 ];
 
+/*
+https://iili.io/fToWQNp.jpg
+https://iili.io/fToWPUJ.jpg
+https://iili.io/fToW6la.jpg-
+https://iili.io/fToWgiF.jpg-
+https://iili.io/fToWbVt.jpg-
+https://iili.io/fToWyfn.jpg-
+https://iili.io/fToX9ls.jpg-
+https://iili.io/fToXHUG.jpg-
+https://iili.io/fToXdJf.jpg-
+https://iili.io/fToX2R4.jpg-
+https://iili.io/fToX3Ol.jpg-
+https://iili.io/fToXfxS.jpg
+*/ 
+
 const slides = [
   {
     title: "Manage Carbon Emission",
     contents: [
-      { title2: "Measure",img: "https://iili.io/fnREPxS.jpg",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
-      { title2: "Report",img: "https://iili.io/fnREZ0u.jpg", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
-      { title2: "Offset",img: "https://iili.io/fnREQfe.jpg", imgtext:'Carbon Emission',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
+      { title2: "Measure",mob:"https://iili.io/fToWbVt.jpg",img: "https://iili.io/fnREPxS.jpg",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
+      { title2: "Report",mob:"https://iili.io/fToXfxS.jpg",img: "https://iili.io/fnREZ0u.jpg", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
+      { title2: "Offset",mob:"https://iili.io/fToWyfn.jpg",img: "https://iili.io/fnREQfe.jpg", imgtext:'Carbon Emission',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
   },
   {
     title: "Manage Carbon Credits",
     contents: [
-      { title2: "Generate",img: "https://iili.io/fnRENVt.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
-      { title2: "Invest",img: "https://iili.io/fnREOiX.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
-      { title2: "Purchase",img: "https://iili.io/fxPpZSs.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
+      { title2: "Generate",mob:"https://iili.io/fToWgiF.jpg",img: "https://iili.io/fnRENVt.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeGrove is an experienced developer of high integrity and high value credits using Carbon Dioxide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals." },
+      { title2: "Invest",mob:"https://iili.io/fToWgiF.jpg",img: "https://iili.io/fnREOiX.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements." },
+      { title2: "Purchase",mob:"https://iili.io/fToX3Ol.jpg",img: "https://iili.io/fxPpZSs.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Carbon Credits', text: "ClimeFolio sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactful ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors." },
     ],
   },
   {
     title: "Explore Sustainable Marketplace",
     title2: "Offset",
     contents: [
-      { title2: "Decarbonise Supply Chain",img: "https://iili.io/fnRE8UG.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
-      { title2: "Reduce Costs",img: "https://iili.io/fnREiW7.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
-      {title2: "Support Green Businesses",img: "https://iili.io/fnREkfn.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
+      { title2: "Decarbonise Supply Chain",mob:"https://iili.io/fToWQNp.jpg",img: "https://iili.io/fnRE8UG.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your upstream and downstream emissions." },
+      { title2: "Reduce Costs",mob:"https://iili.io/fToXHUG.jpg",img: "https://iili.io/fnREiW7.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeStore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised." },
+      {title2: "Support Green Businesses",mob:"https://iili.io/fToWPUJ.jpg",img: "https://iili.io/fnREkfn.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Sustainable Marketplace', text: "Businesses that promote and adopt sustainability deserve recognition. By supporting entrepreneurs and innovators who choose cleaner, climate-positive pathways, you—and your customers—contribute to a healthier, more responsible way of doing business" },
     ],
   },
   {
     title: "Climate Literacy",
     contents: [
-      { title2: "Empower Your Leadership",img: "https://iili.io/fCRiMDG.jpg", img2:"https://iili.io/KLQzN8x.png",imgtext:'Corporate Training', text: "ClimeSchool brings decades of climate & academic expertise to empower your leadership to understand fundaments, global trends and carbon credit economics that are shaping the world. We build bespoke programs that suit your audience, timings and budgets" },
-      { title2: "Equip your Faculty",img: "https://iili.io/fCRiclI.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Faculty Training', text: "ClimeSchool empowers your faculty and academic staff on the accurate science and global trends in Climate & Sustainability. Teachers & Faculty are the bedrock of tomorrow’s change makers’ outlooks and aptitude - at ClimeSchool, we ensure that they are fully equipped to provide relevant Climate Literacy to students + build impact activities on Campus" },
-      { title2: "Upskill your Resume",img: "https://iili.io/fCRiERn.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Certificate Courses', text: "ClimeSchool provides a range of customised courses for working professionals that impart specific training and skills which enhance your resume for sustainability jobs. From Carbon Credit economics to Biochar creation processes, we’ve got you covered & certified" },
+      { title2: "Empower Your Leadership",mob:"https://iili.io/fToX9ls.jpg",img: "https://iili.io/fCRiMDG.jpg", img2:"https://iili.io/KLQzN8x.png",imgtext:'Corporate Training', text: "ClimeSchool brings decades of climate & academic expertise to empower your leadership to understand fundaments, global trends and carbon credit economics that are shaping the world. We build bespoke programs that suit your audience, timings and budgets" },
+      { title2: "Equip your Faculty",mob:"https://iili.io/fToX2R4.jpg",img: "https://iili.io/fCRiclI.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Faculty Training', text: "ClimeSchool empowers your faculty and academic staff on the accurate science and global trends in Climate & Sustainability. Teachers & Faculty are the bedrock of tomorrow’s change makers’ outlooks and aptitude - at ClimeSchool, we ensure that they are fully equipped to provide relevant Climate Literacy to students + build impact activities on Campus" },
+      { title2: "Upskill your Resume",mob:"https://iili.io/fToXdJf.jpg",img: "https://iili.io/fCRiERn.jpg",img2:"https://iili.io/KLQzN8x.png",imgtext:'Certificate Courses', text: "ClimeSchool provides a range of customised courses for working professionals that impart specific training and skills which enhance your resume for sustainability jobs. From Carbon Credit economics to Biochar creation processes, we’ve got you covered & certified" },
 
     ],
   },
@@ -104,6 +119,20 @@ const countersData = [
 ];
 
 
+/*
+https://iili.io/fTzAcU7.jpg
+https://iili.io/fTzAYf2.jpg
+https://iili.io/fTzAalS.jpg-
+https://iili.io/fTzA5il.jpg-
+https://iili.io/fTzA0J9.jpg-
+https://iili.io/fTzAEOu.jpg-
+https://iili.io/fTzA1Re.jpg-
+https://iili.io/fTzAGDb.jpg-
+https://iili.io/fTzAXiQ.jpg-
+https://iili.io/fTzAWWx.jpg
+https://iili.io/fTzAjfV.jpg
+
+*/
 const Partners = [
   // CUSTOMERS
   {
@@ -111,18 +140,21 @@ const Partners = [
     label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
     desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
     image: "https://iili.io/KytYqhX.jpg",
+    mob:'https://iili.io/fTzAYf2.jpg'
   },
   {
     title: "Customers",
     label: "Shobha Rudra - Founder, RARE India",
     desc: "“ClimeScore has been a great partner in measuring emissions of Bridges by RARE.”",
     image: "https://iili.io/KQOD7l2.jpg",
+    mob:"https://iili.io/fTzAcU7.jpg"
   },
   {
     title: "Customers",
     label: "Hashim Tyebji - Director, Kafila and renowned Tiger Conservationist",
     desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
     image: "https://iili.io/KytYfIt.jpg",
+    mob:'https://iili.io/fTzAalS.jpg'
   },
 
   // PARTNERS
@@ -131,24 +163,28 @@ const Partners = [
     label: "Carbon Standards International",
     desc: "ClimeGrove by NettZero is a member of Carbon Standards International since 2023, making it one of the earliest organizations from India to be aligned with the vision of enabling Carbon Dioxide Removal through widespread adoption. CSI is one of the most respected and leading registries for CDR in the world, with a focus on fundamental methodologies that create robust, transparent and impactful Carbon Sinks. ",
     image: "https://iili.io/KrXtLjs.jpg",
+    mob:'https://iili.io/fTzA1Re.jpg'
   },
   {
     title: "Partners",
     label: "Circonomy",
     desc: "ClimeGrove by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
     image: "https://iili.io/KQeFxnI.jpg",
+    mob:'https://iili.io/fTzAjfV.jpg'
   },
   {
     title: "Partners",
     label: "RARE India",
     desc: "RARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinentRARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinent ClimeScore by NettZero has been partnering with Rare since 2023 to enable their member hotels to become Carbon Neutral and also ensuring that RARE’s annual event, BRIDGES, is Carbon Neutral across Scope 1, 2 and 3.",
     image: "https://iili.io/KrXuvIe.jpg",
+    mob:'https://iili.io/fTzwHJe.jpg'
   },
   {
     title: "Partners",
     label: "ISN (Indian Sustainability Network)",
     desc: "ClimeScore by NettZero drives the engine behind Indian School of Nature’s sustainability portal. As technology developers of the platform and the Carbon managers for its network, we power the members of ISN who want to migrate onto the path of sustainability. ISN is unique and progressive organization founded by doyens in sustainability and conservation, including Mr. Hashim Tyebji and Mr. Ram Pratap Singh. ",
     image: "https://iili.io/KrXu8hu.jpg",
+    mob:'https://iili.io/fTzA5il.jpg'
   },
 
   // STANDARDS
@@ -157,30 +193,35 @@ const Partners = [
     label: "GHG Protocol",
     desc: "ClimeScore makes your emissions measurement and reporting world-class by applying coefficients and processes from the GHG Protocol. The GHG Protocol — developed by the World Resources Institute (WRI) and the World Business Council for Sustainable Development (WBCSD) — is the leading global standard for measuring and managing greenhouse gas emissions, used by companies and governments to understand, quantify, and reduce their climate impact.",
     image: "https://iili.io/KrXhabs.jpg",
+    mob:'https://iili.io/fTzAXiQ.jpg'
   },
   {
     title: "Standards",
     label: "PAS 2060",
     desc: "PAS 2060 is a global standard from BSI that defines how organizations can demonstrate carbon neutrality through measuring emissions, reducing them, offsetting what remains, and publicly verifying the results. ClimeScore helps customers follow these steps thoroughly, ensuring their carbon-neutral claims meet top international standards.",
     image: "https://iili.io/KrXurEx.jpg",
+    mob:'https://iili.io/fTzAEOu.jpg'
   },
   {
     title: "Standards",
     label: "GRI – Global Reporting Initiative",
     desc: "GRI is THE gold standard on which disclosures and reporting is done for sustainability. ClimeScore creates your reports for you to meet the frameworks prescribed within these standards, so that no matter who reads it - they know your processes and data declarations are robust. ",
     image: "https://iili.io/KrXt4aI.jpg",
+    mob:'https://iili.io/fTzAWWx.jpg'
   },
   {
     title: "Standards",
     label: "CSI – C-Sink Methodologies",
     desc: "Carbon Standards International is a reputed and respected standard for Carbon Dioxide Removal methodologies. ClimeGrove’s CD-R pathways for artisanal biochar are registered with CSI to ensure the highest levels of compliance, credibility and integrity for the biochar based Carbon Credits that we generate. ",
     image: "https://iili.io/KrXtr3N.jpg",
+    mob:'https://iili.io/fTzA0J9.jpg'
   },
   {
     title: "Standards",
     label: "ISO 14068",
     desc: "ClimeScore uses the stringent guidelines and frameworks stipulated within the ISO14068 standard, to ensure that your journey towards Carbon Neutrality is bonafide and accepted by your stakeholders",
     image: "https://iili.io/KrXtU4p.jpg",
+    mob:'https://iili.io/fTzAGDb.jpg'
   },
 ];
 
@@ -833,12 +874,13 @@ gsap.to(scrollTarget, {
           </div>
 
         {steps.map((s, i) => (
-  <div key={i} className="step">
-    <div className="step-image-wrapper">
-      <img src={s.img} alt={s.text} />
+ <div key={i} className="step">
+  <div className="step-image-wrapper">
+    <img className="desktop-img" src={s.img} alt={s.text} />
+    <img className="mobile-img" src={s.mob} alt={s.text} />
+    <span className="step-image-text">{s.imgtext}</span>
+  </div>
 
-      <span className="step-image-text">{s.imgtext}</span>
-    </div>
 
     <div className="conbox">
       <h2>{s.title2}</h2>
@@ -932,7 +974,8 @@ gsap.to(scrollTarget, {
         <div key={i} className="partner-step">
           <div className="partner-left">
             <div className="partner-image-box">
-              <img src={item.image} alt={item.label} />
+              <img className="desktop-img"  src={item.image} alt={item.label} />
+              <img className="mobile-img" src={item.mob} alt={item.label} />
             </div>
           </div>
           <div className="partner-right">

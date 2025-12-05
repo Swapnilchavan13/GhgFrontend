@@ -1074,8 +1074,9 @@ border-radius: 10px;
   }
 
   .step-image-text{
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin-left: 25%;
+      top: 150px !important;
 
   }
 
@@ -1393,7 +1394,7 @@ border-radius: 10px;
   .partner-image-box img {
     width: 160% !important;
     height: 300px;
-    margin-left: -20px !important;
+    margin-left: -120px !important;
     border-radius: 15px;
   }
 
@@ -1405,7 +1406,7 @@ border-radius: 10px;
     width: 80%;
     height: 350px !important;
     margin-left: -20px;
-    margin-top: -100px;
+    margin-top: -60px;
     padding: 20px;
     background-color: rgb(38, 38, 38);
     border-radius: 15px;
@@ -2012,5 +2013,23 @@ position: relative;
      height: 580px;
     object-fit: cover;
     object-position: top;
+  }
+}
+
+
+.desktop-img {
+  display: block;
+}
+
+.mobile-img {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-img {
+    display: none;
+  }
+  .mobile-img {
+    display: block;
   }
 }
