@@ -1626,7 +1626,7 @@ display: inline;
   position: inherit;
   margin-top: -44% !important;
   width: 23%;
-  background-color: rgba(148, 147, 147, 0.5);  
+  background-color: rgba(240, 239, 239, 0.9) !important;  
   border-radius: 10px;
   height:40px !important;
 }
