@@ -360,6 +360,11 @@ export const Counter = ({ target, duration = 1200 }) => {
 /* -------------------- Main component -------------------- */
 export const Testing3 = () => {
   
+  const [open, setOpen] = useState(false);
+
+
+
+
 const [showPopup, setShowPopup] = useState(false);
   const [selectedService, setSelectedService] = useState("");
   const [form, setForm] = useState({
@@ -799,6 +804,36 @@ gsap.to(scrollTarget, {
 
   return (
     <div className="wrapper">
+
+      <button
+        className="floating-hamburger"
+        onClick={() => setOpen(!open)}
+      >
+        ☰
+      </button>
+
+      {/* Slide Menu */}
+      <div className={`floating-menu ${open ? "open" : ""}`}>
+        <ul>
+          <li>
+            <span className="submenu-title">Scope</span>
+            <ul className="submenu">
+              <li><Link to="/scope/clime">Clime Score</Link></li>
+              <li><Link to="/scope/credits">Carbon Credits</Link></li>
+              <li><Link to="/scope/plastic">Plastic Credits</Link></li>
+              <li><Link to="/scope/climate">Climate Literacy</Link></li>
+            </ul>
+          </li>
+
+          <li><Link to="/marketplace">Green Marketplace</Link></li>
+          <li><Link to="/blog">Resources</Link></li>
+          <li><Link to="/jobs">Jobs</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+      </div>
+
+
+
      <nav className="navbar">
       <div className="logo">
         <Link to="/">

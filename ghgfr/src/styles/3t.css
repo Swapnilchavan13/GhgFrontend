@@ -2105,3 +2105,66 @@ position: relative;
 }
 
 }
+
+
+
+
+/* Floating hamburger button */
+.floating-hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: #111;
+  color: white;
+  font-size: 26px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Menu container */
+.floating-menu {
+  position: fixed;
+  top: 0;
+  right: -260px; /* hide off-screen */
+  width: 250px;
+  height: 50%;
+  background: white;
+  /* padding: 20px; */
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+  z-index: 9998;
+}
+
+.floating-menu.open {
+  right: 0; /* slide in */
+}
+
+.floating-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.floating-menu li {
+  margin-bottom: 15px;
+}
+
+.floating-menu a {
+  text-decoration: none;
+  color: #222;
+  font-size: 18px;
+}
+
+/* Submenu styling */
+.submenu-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.submenu {
+  margin-top: 10px;
+  padding-left: 15px;
+}
