@@ -18,6 +18,11 @@ export const Login = () => {
   const navigate = useNavigate();
 
   // ------------------ data (unchanged) ------------------
+/*
+https://iili.io/fT4QKYB.jpg
+https://iili.io/fT4Q2rQ.jpg
+https://iili.io/fT4pA3G.jpg
+*/
   const slides = [
     {
       title: "Hospitality",
@@ -25,20 +30,23 @@ export const Login = () => {
         {
           title2: "Trusted by Leaders",
           img: "https://iili.io/fIcRUWG.jpg",
+          mob:'https://iili.io/fT4pA3G.jpg',
           imgtext: "for Hospitality",
-          text: " ClimeScore is trusted by over 20 leading hospitality companies, making it one of the most widely used Emission Measurement Platform in the sector. We have deep expertise in accurately measuring and reporting emissions of the hospitality sector.",
+          text: "ClimeScore is trusted by over 20 leading hospitality companies, making it one of the most widely used Emission Measurement Platform in the sector. We have deep expertise in accurately measuring and reporting emissions - from nature centric wildlife lodges to super premium luxury resorts, we know the nuances.",
         },
         {
           title2: "100% accurate. 100% Easy to Use",
           img: "https://iili.io/fIcRvbn.jpg",
+          mob:'https://iili.io/fT4Q2rQ.jpg',
           imgtext: "Simple. Powerful. Thorough.",
-          text: "ClimeScore makes it extremely simple for hospitality companies to measure their emissions - very accurately, granularity and robustly. It is based on globally accepted standards and gives you measurements and reports that can be shared with international organisations seeking bonafide emission reporting.",
+          text: "ClimeScore makes it extremely simple for hospitality companies to measure their emissions - very accurately, granularity and robustly. It is based on globally adopted standards and gives you measurements and reports that can be shared with international organisations seeking bonafide emission reporting.",
         },
         {
           title2: "Performance - without hefty price tags",
           img: "https://iili.io/fIcRSxs.jpg",
+          mob:'https://iili.io/fT4QKYB.jpg',
           imgtext: "Extremely Affordable, Yet Reliable",
-          text: "ClimeScore is designed for serious players in the hospitality industry, who wish to get serious about Carbon Emission Measurement - without breaking the bank. We have made the platform extremely affordable - at a mere US$ 20 per month - to bring proper climate tools to every serious hospitality group.",
+          text: "ClimeScore is designed for trendsetting players in the hospitality industry, who wish to get serious about Carbon Emission Measurement - without breaking the bank. We have made the platform extremely affordable - at a mere US$ 20 per month - to bring proper climate tools to every sustainability oriented hospitality group.",
         },
       ],
     },
@@ -46,10 +54,10 @@ export const Login = () => {
       title: "Academia",
       contents: [
         {
-          title2: "Generate",
+          title2: "Educational Institutes Drive the Future",
           img: "https://iili.io/KgfukOl.png",
-          imgtext: "Carbon Credits",
-          text: "ClimeScore is an experienced developer of high integrity and high value credits using Carbon Dixide Removal pathways such as Biomass Carbon Removal & Storage (e.g. Biochar), Field Weathering (I.e. Enhanced Rock Weathering) and Direct Air Capture. Work with us to generate your own Carbon Credits and head to your Net Zero goals.",
+          imgtext: "Quantified Sustainability for Academia",
+          text: "ClimeScore is especially designed for schools and colleges to measure their carbon emissions in a very simple yet accurate way. Academia will be required to quantify and plan their Net Zero strategies soon, to be globally and nationally eligible for various accreditations + subsidies. We ensure you have the tools and reporting structures for the same.",
         },
         {
           title2: "Invest",
@@ -770,9 +778,10 @@ export const Login = () => {
         {steps.map((s, i) => (
   <div key={i} className="step">
     <div className="step-image-wrapper">
-      <img src={s.img} alt={s.text} />
+      <img className="desktop-img" src={s.img} alt={s.text} />
+      <img className="mobile-img" src={s.mob} alt={s.text} />
 
-      <span className="step-image-text1">{s.imgtext}</span>
+      <span className="step-image-text2">{s.imgtext}</span>
     </div>
                 <div className="conbox">
                   <h2>{s.title2}</h2>

@@ -1061,7 +1061,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5Vbs.jpg" alt="" />
           <h3>ClimeSchool</h3>
-          <p>If you need to educate and train your staff and organisation on the impact of key sustainability developments, NettZero delivers effective, expert-led learning programs.​</p>
+          <p>Train your team on the impact of sustainability. ClimeSchool delivers webinars, online training and offline sessions that are impact oriented and delivered by experts in professional coaching.​</p>
           <button onClick={() => handleGetInTouch("ClimeSchool")}>
             Get In Touch
           </button>
@@ -1070,7 +1070,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5O12.jpg" alt="" />
           <h3>ClimeStore​</h3>
-          <p>Connect with 100’s of verified suppliers - across products and services that are verified as carbon efficient, to reduce your Scope 3 emissions. ​</p>
+          <p>Connect with 100’s of verified carbon efficient suppliers -  to reduce your Scope 3 emissions​</p>
         <button onClick={() => handleGetInTouch("ClimeStore")}>
             Get In Touch
           </button>
