@@ -361,7 +361,21 @@ export const Counter = ({ target, duration = 1200 }) => {
 export const Testing3 = () => {
   
   const [open, setOpen] = useState(false);
+ const [showHamburger, setShowHamburger] = useState(false);
 
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 150) {
+        setShowHamburger(true);
+      } else {
+        setShowHamburger(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
 
 
@@ -815,16 +829,9 @@ gsap.to(scrollTarget, {
       {/* Slide Menu */}
       <div className={`floating-menu ${open ? "open" : ""}`}>
         <ul>
-          <li>
-            <span className="submenu-title">Scope</span>
-            <ul className="submenu">
-              <li><Link to="/scope/clime">Clime Score</Link></li>
-              <li><Link to="/scope/credits">Carbon Credits</Link></li>
-              <li><Link to="/scope/plastic">Plastic Credits</Link></li>
-              <li><Link to="/scope/climate">Climate Literacy</Link></li>
-            </ul>
-          </li>
-
+         
+          <li><Link to="/client/login">Measure Carbon Emissions</Link></li>
+          <li><Link to="/marketplacehome">Carbon Credits</Link></li>
           <li><Link to="/marketplace">Green Marketplace</Link></li>
           <li><Link to="/blog">Resources</Link></li>
           <li><Link to="/jobs">Jobs</Link></li>
