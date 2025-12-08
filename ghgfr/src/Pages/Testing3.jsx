@@ -8,6 +8,8 @@ import "../styles/3t.css";
 import { Link } from "react-router-dom";
 import { Footer } from "./Footer";
 
+
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 // gsap.registerPlugin(ScrollTrigger);
 
@@ -283,13 +285,7 @@ const mapPoints = [
     desc: "ClimeGrove by NettZero has a Agro-forestry waste based biochar facility here, which makes high quality biochar that is rich in Carbon Content. This project ensures that the pristine slopes of the Himalayas are not further polluted, through the practice of burning agro-forestry waste. The project aims to create 2,000 high-integrity Carbon Credits this year.",
      img: "https://infinitejourneys.in/blog/wp-content/uploads/2020/09/Apples-in-Kinnaur-2-2.jpg",
   },
-  // {
-  //   Locality: "Sukki",
-  //   District: "Uttarkashi",
-  //   State: "Uttarakhand",
-  //   desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-  //    img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b8/55/15/kharsali.jpg",
-  // },
+
    {
     Locality: "Puranpur",
     District: "Pilibhit",
@@ -319,13 +315,7 @@ const mapPoints = [
     desc: "ClimeScore by NettZero has proudly created Asia’s first Verified Carbon Neutral resort at The Machan. Known for its immaculately designed tree houses that merge into nature, ClimeScore has meeticulously documented the emissions of this highly admired resort since 2022. The Machan is a member of the United Nation’s Race to Zero program and has been purchasing legitimate offsets from the CDM, Verra and GS reigstries through ClimeScore. ",
      img: "https://www.themachan.com/img/slider-main/slider/1.webp",
   },
-  // {
-  //   Locality: "Mumbai",
-  //   District: "Mumbai",
-  //   State: "Maharashtra",
-  //   desc: "Construction Conglamerate adopting Carbon Removalmaterials for Construction C-Sinks.",
-  //    img: "https://iili.io/KrXt6vt.jpg",
-  // },
+
   {
     Locality: "Coorg",
     District: "Kodagu",
