@@ -278,7 +278,7 @@ position: relative;
 }
 
 .section5btn{
-  margin-top: 83.5% ;
+  margin-top: 83% ;
    position: relative;
  z-index: 9999999;
  display: flex;
@@ -1652,7 +1652,7 @@ width: 45% !important;
 }
 
 .section2btn{
-  margin-top: -20%;
+  margin-top: -2%;
 /* border: 1px solid red; */
 font-size: 5px ;
 gap: 0px !important;
@@ -1660,7 +1660,7 @@ width: 87% !important;
 margin-left: 8% !important;
 }
 .section3btn{
- margin-top: -5% !important;
+ margin-top: 8% !important;
 /* border: 1px solid red; */
 font-size: 5px ;
 gap: 0px !important;
@@ -1674,16 +1674,16 @@ padding-left: 12px;
 /* border: 1px solid red; */
 font-size: 5px ;
 gap: 0px !important;
-width: 87% !important;
-margin-left: 6% !important;
+width: 92% !important;
+margin-left: 3% !important;
 }
 
 .section5btn{
-margin-top: 175% !important;
+margin-top: 182% !important;
 /* border: 1px solid red; */
 font-size: 5px ;
 gap: 0px !important;
-width: 87% !important;
+width: 88% !important;
 margin-left: 7% !important;
 }
 

@@ -18,7 +18,26 @@ export const Login = () => {
   const navigate = useNavigate();
 
   // ------------------ data (unchanged) ------------------
+
+  /*
+  
 /*
+https://iili.io/fA9BCzl.jpg
+https://iili.io/fA9Bqb4.jpg
+https://iili.io/fA9Bfef.jpg
+https://iili.io/fA9BK5G.jpg
+https://iili.io/fA9BFJs.jpg
+https://iili.io/fA9B2gn.jpg
+
+https://iili.io/fA9KOL7.jpg
+https://iili.io/fA9KNXS.jpg
+https://iili.io/fA9KwI2.jpg
+https://iili.io/fA9Khml.jpg
+https://iili.io/fA9KXe4.jpg
+https://iili.io/fA9KW7f.jpg
+/*
+
+
 https://iili.io/fT4QKYB.jpg
 https://iili.io/fT4Q2rQ.jpg
 https://iili.io/fT4pA3G.jpg
@@ -51,25 +70,28 @@ https://iili.io/fT4pA3G.jpg
       ],
     },
     {
-      title: "Academia",
+      title: "Academic",
       contents: [
         {
           title2: "Educational Institutes Drive the Future",
-          img: "https://iili.io/KgfukOl.png",
+          img: "https://iili.io/fA9KwI2.jpg",
+          mob:'https://iili.io/fA9Bfef.jpg',
           imgtext: "Quantified Sustainability for Academia",
           text: "ClimeScore is especially designed for schools and colleges to measure their carbon emissions in a very simple yet accurate way. Academia will be required to quantify and plan their Net Zero strategies soon, to be globally and nationally eligible for various accreditations + subsidies. We ensure you have the tools and reporting structures for the same.",
         },
         {
-          title2: "Invest",
-          img: "https://iili.io/KgfuSxS.png",
-          imgtext: "Carbon Credits",
-          text: "ClimeScore actively identifies in-development projects that desire to make an impact by building a more sustainable planet. Support projects from across the world that are engaged in Carbon Dioxide Removal by investing in Offtake agreements.",
+          title2: "Do what the World’s Finext are doing",
+          img: "https://iili.io/fA9KOL7.jpg",
+          mob:'https://iili.io/fA9BCzl.jpg',
+          imgtext: "Belong to a Global Fraternity",
+          text: "ClimeScore helps you become part of global movements in which academic institutions are participating. Join the United Nations’ Race To Zero program that is endorsed by our government - and get recognised as a pioneer in sustainability amongst international peers.",
         },
         {
-          title2: "Purchase",
-          img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",
-          imgtext: "Carbon Credits",
-          text: "ClimeScore sifts through hundreds of Carbon Credit projects across various registries to rate and curate the most genuine and impactfuln ones. Simplify your offsetting journey by selecting credits that have been meticulously handpicked by our team of impact assessors.",
+          title2: "A Hassle-Free Platform",
+          img: "https://iili.io/fA9KNXS.jpg",
+          mob:'https://iili.io/fA9Bqb4.jpg',
+          imgtext: "Simple to Deploy",
+          text: "ClimeScore understands that your most valuable resource is your time. Which is why our platform is designed such that  takes minimal effort and is extremely simple to use. Just enter the data for Scope 1, Scope 2 and Scope 3 in the intuitive interfaces - and our AI driven platform gives your everything you need to take effective climate positive steps + publish a world class report.",
         },
       ],
     },
@@ -78,22 +100,25 @@ https://iili.io/fT4pA3G.jpg
       title2: "Offset",
       contents: [
         {
-          title2: "Decarbonise Supply Chain",
-          img: "https://iili.io/KgfuZbV.png",
-          imgtext: "Sustainable Marketplace",
-          text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions.",
+          title2: "Your customers will ask your footprint soon",
+          img: "https://iili.io/fA9KXe4.jpg",
+          mob:'https://iili.io/fA9BFJs.jpg',
+          imgtext: "Know Your Emissions",
+          text: "ClimeScore makes SME’s, Exporters and Supply Chain Vendors compliant with Carbon Emissions measurement and reporting. Businesses are being made accountable for their extended emissions - making it necessary for all their partners to declare Scope 1, Scope 2 and Scope 3 accurately and as per global standards. We make it easy to deploy and scale Carbon Accounting - so that your partnerships remain solid.",
         },
         {
-          title2: "Reduce Costs",
-          img: "https://iili.io/KgfRcjp.png",
-          imgtext: "Sustainable Marketplace",
-          text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised.",
+          title2: "Global Businesses prefer Sustainable Vendors",
+          img: "https://iili.io/fA9KW7f.jpg",
+          mob:'https://iili.io/fA9B2gn.jpg',
+          imgtext: "Get a Competitive Edge",
+          text: "With increasing pressure on global businesses to measure and declare their Scope 3 emissions, Global Brands are giving preferences to companies that are sustainable. Not just as a philosophy - but, as a quantified and declared metric. Join the exclusive group of organisations that are measuring & reporting their emissions as per the most stringent global standards.",
         },
         {
-          title2: "Support Green Businesses",
-          img: "https://iili.io/KgfuUW7.png",
-          imgtext: "Sustainable Marketplace",
-          text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business.",
+          title2: "Your outsourced Chief Sustainability Officer",
+          img: "https://iili.io/fA9Khml.jpg",
+          mob:'https://iili.io/fA9BK5G.jpg',
+          imgtext: "100% compliant. 1% effort.",
+          text: "ClimeScore works with you as your outsourced Chief Sustainability Officer and his department. From strategy, to planning, to measurement and reporting - we will deliver all to you. Without the cost attached to running a bulky department. Driving organisational sustainability is your goal and our execution.",
         },
       ],
     },
@@ -102,20 +127,23 @@ https://iili.io/fT4pA3G.jpg
       title2: "Offset",
       contents: [
         {
-          title2: "Decarbonise Supply Chain",
+          title2: "Conduct Green Events",
           img: "https://iili.io/KgfuZbV.png",
-          imgtext: "Sustainable Marketplace",
-          text: "Scope 3 emissions from your supply chain are actually the largest contributor to overall emissions. Cut undesirable emissions by shifting to certified sustainable vendors and decarbonise your iupstream and downstream emissions.",
+          mob:'',
+          imgtext: "Carbon Neutral Events",
+          text: "Events are a major source of emissions, and are facing scrutiny for the emissions they generate. Stand out from the crowd, by becoming an early adopter to measuring your event’s emissions and offsetting it with vetted and curated carbon credits. ClimeScore allows you to do that with minimal fuss and maximum impact.",
         },
         {
           title2: "Reduce Costs",
           img: "https://iili.io/KgfRcjp.png",
+          mob:'',
           imgtext: "Sustainable Marketplace",
           text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised.",
         },
         {
           title2: "Support Green Businesses",
           img: "https://iili.io/KgfuUW7.png",
+          mob:'',
           imgtext: "Sustainable Marketplace",
           text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business.",
         },
@@ -205,6 +233,7 @@ https://iili.io/fT4pA3G.jpg
   const slides2 = [
     {
       imge: "https://iili.io/fIRydpj.jpg",
+      mob:'https://iili.io/fA9r9Hv.jpg',
       text: "Welcome to our robust, AI powered Emission Measurement Platform", 
       sub: "Over 300,000 tCO2e of emissions accurately measured for Industry Leading Organizations",
     }
@@ -721,7 +750,8 @@ https://iili.io/fT4pA3G.jpg
         <div className="login-page-container">
           {slides2[currentSlide] && (
             <div className="slider-section">
-              <img src={slides2[currentSlide].imge} alt="Slide" className="slider-image" />
+            <img className="desktop-img slider-image" src={slides2[currentSlide].imge} alt="Slide" />
+            <img className="mobile-img slider-image" src={slides2[currentSlide].mob} alt='mobile img' />
               <p className="slider-text">{slides2[currentSlide].text}</p>
               <p className="slider-text2">{slides2[currentSlide].sub}</p>
 
