@@ -896,7 +896,7 @@ margin-top: 10px;
 }
 
 .sticky-title5{
-  font-size: 20px;
+  font-size: 30x;
   color: #414141;
   margin-top: 30px;
 }
@@ -1516,6 +1516,10 @@ display: inline;
   height: 300px;
   margin-left: -190px;
 
+}
+
+.sticky-title5{
+  font-size: 20x;
 }
 
 .greybox5{

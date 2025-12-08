@@ -453,197 +453,307 @@ const mapsStickyRef = useRef(null);
   const prevSlide = () => setCurrent((p) => (p - 1 + images.length) % images.length);
 
   /* ---------------- Section 2 Setup (same pattern you've been using) ---------------- */
-  useEffect(() => {
-    const sectionSteps = gsap.utils.toArray(".step");
-    if (!sectionSteps.length) return;
-
-    gsap.set(sectionSteps, { autoAlpha: 0 }); // hide all
-    gsap.set(sectionSteps[0], { autoAlpha: 1 });
-
-    // measure after images/fonts have had a chance to load
-    const measureAndSet = () => {
-      let maxH = 0;
-      sectionSteps.forEach((el) => (maxH = Math.max(maxH, el.offsetHeight)));
-      if (stickyRef.current) stickyRef.current.style.height = `${maxH}px`;
-    };
-    // small delay to allow images to layout
-    setTimeout(measureAndSet, 80);
-    window.addEventListener("resize", measureAndSet);
-
-    // create ScrollTriggers for each step (fade-in/out)
-    const stepTriggers = sectionSteps.map((step, i) =>
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: () => `top+=${i * window.innerHeight} top`,
-        end: () => `+=${window.innerHeight}`,
-       onEnter: () => {
-  gsap.killTweensOf(sectionSteps);
-  gsap.to(sectionSteps, { autoAlpha: 0, duration: 0.45 });
-  gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-  const slideIndex = slides.findIndex((sl) => sl.title === steps[i].title);
-  setActiveTitleIndex(slideIndex >= 0 ? slideIndex : 0);
-},
-
-        onEnterBack: () => {
-          gsap.to(sectionSteps, { autoAlpha: 0, duration: 0.45 });
-          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-          const slideIndex = slides.findIndex((sl) => sl.title === steps[i].title);
-          setActiveTitleIndex(slideIndex >= 0 ? slideIndex : 0);
-        },
-      })
-    );
-
-
-    // pin the whole section & let GSAP manage the scroll distance
-    const pinTrigger = ScrollTrigger.create({
-  trigger: containerRef.current,
-  pin: true,
-  start: "top top",
-  end: `+=${sectionSteps.length * window.innerHeight}`,
-  scrub: false,
-  scroller: document.body,
-});
-
-
-    return () => {
-      window.removeEventListener("resize", measureAndSet);
-      stepTriggers.forEach((t) => t.kill());
-      pinTrigger.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /* ---------------- Section 3 (counters) Setup - mirrored behavior like Section 2 ---------------- */
-  useEffect(() => {
-    const counterSteps = gsap.utils.toArray(".counter-step");
-    if (!counterSteps.length) return;
-
-    gsap.set(counterSteps, { autoAlpha: 0 });
-    gsap.set(counterSteps[0], { autoAlpha: 1 });
-
-    const measureAndSet = () => {
-      let maxH = 0;
-      counterSteps.forEach((el) => (maxH = Math.max(maxH, el.offsetHeight)));
-      if (countersStickyRef.current) countersStickyRef.current.style.height = `${maxH}px`;
-    };
-    setTimeout(measureAndSet, 80);
-    window.addEventListener("resize", measureAndSet);
-
-    const stepTriggers = counterSteps.map((step, i) =>
-      ScrollTrigger.create({
-        trigger: countersContainerRef.current,
-        start: () => `top+=${i * window.innerHeight} top`,
-        end: () => `+=${window.innerHeight}`,
-        onEnter: () => {
-          gsap.to(counterSteps, { autoAlpha: 0, duration: 0.45 });
-          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-          setActiveCounterIndex(i);
-        },
-        onEnterBack: () => {
-          gsap.to(counterSteps, { autoAlpha: 0, duration: 0.45 });
-          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-          setActiveCounterIndex(i);
-        },
-      })
-    );
-
-const pinTrigger = ScrollTrigger.create({
-  id: "section3Pin",
-  trigger: countersContainerRef.current,
-  pin: true,
-  start: "top top",
-  end: `+=${counterSteps.length * window.innerHeight}`,
-  scrub: false,
-  scroller: document.body,
-});
-
-
-
-    return () => {
-      window.removeEventListener("resize", measureAndSet);
-      stepTriggers.forEach((t) => t.kill());
-      pinTrigger.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-
-  // Section 4???///
-
+ /* ---------------- Smooth, working Section 2 (replace your existing useEffect) ---------------- */
 useEffect(() => {
-  const partnerSteps = gsap.utils.toArray(".partner-step");
-  if (!partnerSteps.length) return;
+  const section = containerRef.current;
+  const sectionSteps = gsap.utils.toArray(".step");
+  if (!section || !sectionSteps.length) return;
 
+  // smoother ticker behaviour
+  gsap.ticker.lagSmoothing(0);
+
+  // initial state
+  gsap.set(sectionSteps, { autoAlpha: 0 });
+  gsap.set(sectionSteps[0], { autoAlpha: 1 });
+
+  // measure & set height for sticky container
+  const measureAndSet = () => {
+    let maxH = 0;
+    sectionSteps.forEach((el) => {
+      // force layout read
+      const h = el.offsetHeight || el.getBoundingClientRect().height || 0;
+      if (h > maxH) maxH = h;
+    });
+    if (stickyRef.current) stickyRef.current.style.height = `${maxH}px`;
+  };
+
+  // run measurement once and after a short delay (images/fonts)
+  measureAndSet();
+  const measureTimeout = setTimeout(() => {
+    measureAndSet();
+    // ensure ScrollTrigger knows sizes after images/layout
+    ScrollTrigger.refresh();
+  }, 120);
+
+  window.addEventListener("resize", measureAndSet);
+
+  // Create a single timeline controlled by scrollTrigger (scrubbed)
+  const tl = gsap.timeline({
+    defaults: { duration: 0.6, ease: "power1.out" },
+    scrollTrigger: {
+      trigger: section,
+      start: "top top",
+      end: () => `+=${sectionSteps.length * window.innerHeight}`,
+      pin: true,
+      scrub: 0.6,           // smooth link to scroll
+      anticipatePin: 1,
+      // update active title index using progress
+      onUpdate: (self) => {
+        const idx = Math.round(self.progress * (sectionSteps.length - 1));
+        const slideIndex = slides.findIndex((sl) => sl.title === steps[idx].title);
+        setActiveTitleIndex(slideIndex >= 0 ? slideIndex : 0);
+      },
+    },
+  });
+
+  // Build timeline: fade all out then fade the target step in (per-step)
+  sectionSteps.forEach((step, i) => {
+    // use position index so each "step" block maps to one viewport block of timeline
+    tl.to(sectionSteps, { autoAlpha: 0, duration: 0.4 }, i)
+      .to(step, { autoAlpha: 1, duration: 0.6 }, i + 0.01);
+  });
+
+  // pause the timeline (ScrollTrigger controls playhead)
+  tl.pause();
+
+  // Ensure ScrollTrigger recalculates after images load (safety)
+  const imgs = Array.from(section.querySelectorAll("img"));
+  let loadedCount = 0;
+  const onImgLoad = () => {
+    loadedCount += 1;
+    if (loadedCount === imgs.length) {
+      measureAndSet();
+      ScrollTrigger.refresh();
+    }
+  };
+  if (imgs.length) {
+    imgs.forEach((img) => {
+      if (img.complete) onImgLoad();
+      else img.addEventListener("load", onImgLoad, { once: true });
+    });
+  }
+
+  // CLEANUP
+  return () => {
+    clearTimeout(measureTimeout);
+    window.removeEventListener("resize", measureAndSet);
+
+    // kill timeline and its ScrollTrigger
+    try {
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();
+    } catch (e) {}
+    try {
+      tl.kill();
+    } catch (e) {}
+
+    // do NOT indiscriminately kill ALL ScrollTriggers (avoids interfering with other components)
+    // but if you really want to be aggressive you can uncomment:
+    // ScrollTrigger.getAll().forEach(t => t.kill());
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
+
+/* ---------------- Smooth Scroll — Counters (Section 3) ---------------- */
+useEffect(() => {
+  const container = countersContainerRef.current;
+  const counterSteps = gsap.utils.toArray(".counter-step");
+  if (!container || !counterSteps.length) return;
+
+  gsap.ticker.lagSmoothing(0);
+
+  // initial visibility
+  gsap.set(counterSteps, { autoAlpha: 0 });
+  gsap.set(counterSteps[0], { autoAlpha: 1 });
+
+  // measure tallest step so sticky container doesn't jump
+  const measureAndSet = () => {
+    let maxH = 0;
+    counterSteps.forEach((el) => {
+      const h = el.offsetHeight || el.getBoundingClientRect().height || 0;
+      if (h > maxH) maxH = h;
+    });
+    if (countersStickyRef.current) {
+      countersStickyRef.current.style.height = `${maxH}px`;
+    }
+  };
+
+  measureAndSet();
+  const t = setTimeout(() => {
+    measureAndSet();
+    ScrollTrigger.refresh();
+  }, 120);
+
+  window.addEventListener("resize", measureAndSet);
+
+  /* ---------------- Timeline controlling smooth fades ---------------- */
+  const tl = gsap.timeline({
+    defaults: { duration: 0.6, ease: "power1.out" },
+    scrollTrigger: {
+      trigger: container,
+      start: "top top",
+      end: () => `+=${counterSteps.length * window.innerHeight}`,
+      pin: true,
+      scrub: 0.6,             // 👈 smooth scroll
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        const idx = Math.round(self.progress * (counterSteps.length - 1));
+        setActiveCounterIndex(idx);
+      }
+    }
+  });
+
+  // Build each fade step (smooth scroll-linked)
+  counterSteps.forEach((step, i) => {
+    tl.to(counterSteps, { autoAlpha: 0, duration: 0.4 }, i)
+      .to(step, { autoAlpha: 1, duration: 0.6 }, i + 0.01);
+  });
+
+  tl.pause(); // ScrollTrigger drives timeline
+
+  // Refresh after all images load (if any)
+  const imgs = Array.from(container.querySelectorAll("img"));
+  let loadedCount = 0;
+  const onImgLoad = () => {
+    loadedCount += 1;
+    if (loadedCount === imgs.length) {
+      measureAndSet();
+      ScrollTrigger.refresh();
+    }
+  };
+  if (imgs.length) {
+    imgs.forEach((img) => {
+      if (img.complete) onImgLoad();
+      else img.addEventListener("load", onImgLoad, { once: true });
+    });
+  }
+
+  /* ---------------- Cleanup ---------------- */
+  return () => {
+    clearTimeout(t);
+    window.removeEventListener("resize", measureAndSet);
+
+    try {
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();
+    } catch {}
+
+    try {
+      tl.kill();
+    } catch {}
+
+    // Don't kill all ScrollTriggers, avoids breaking other sections.
+  };
+}, []);
+
+
+
+ /* ---------------- Smooth Scroll — Section 4 (Partners) ---------------- */
+useEffect(() => {
+  const container = partnersContainerRef.current;
+  const partnerSteps = gsap.utils.toArray(".partner-step");
+  if (!container || !partnerSteps.length) return;
+
+  gsap.ticker.lagSmoothing(0);
+
+  // initial visibility
   gsap.set(partnerSteps, { autoAlpha: 0 });
   gsap.set(partnerSteps[0], { autoAlpha: 1 });
 
+  // measure tallest step
   const measureAndSet = () => {
     let maxH = 0;
-    partnerSteps.forEach((el) => (maxH = Math.max(maxH, el.offsetHeight)));
-    if (partnersStickyRef.current)
+    partnerSteps.forEach((el) => {
+      const h = el.offsetHeight || el.getBoundingClientRect().height || 0;
+      if (h > maxH) maxH = h;
+    });
+
+    if (partnersStickyRef.current) {
       partnersStickyRef.current.style.height = `${maxH}px`;
+    }
   };
 
-  setTimeout(measureAndSet, 80);
+  measureAndSet();
+  const t = setTimeout(() => {
+    measureAndSet();
+    ScrollTrigger.refresh();
+  }, 120);
+
   window.addEventListener("resize", measureAndSet);
 
-  // 🔹 Get all categories in order
+  /* ---------------- Compute category ranges ---------------- */
   const categories = ["Customers", "Partners", "Standards"];
 
-  // 🔹 Map each category to its index range in the Partners array
   const categoryRanges = categories.map((cat) => {
     const start = Partners.findIndex((p) => p.title === cat);
     const end =
       Partners.findLastIndex?.((p) => p.title === cat) ??
       [...Partners].reverse().findIndex((p) => p.title === cat);
+
     return { title: cat, start, end: end + 1 };
   });
 
-  const stepTriggers = partnerSteps.map((step, i) =>
-    ScrollTrigger.create({
-      trigger: partnersContainerRef.current,
-      start: () => `top+=${i * window.innerHeight} top`,
-      end: () => `+=${window.innerHeight}`,
-      onEnter: () => {
-        gsap.to(partnerSteps, { autoAlpha: 0, duration: 0.45 });
-        gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+  /* ---------------- Smooth timeline controlled by scrollTrigger ---------------- */
+  const tl = gsap.timeline({
+    defaults: { duration: 0.6, ease: "power1.out" },
+    scrollTrigger: {
+      trigger: container,
+      start: "top top",
+      end: () => `+=${partnerSteps.length * window.innerHeight}`,
+      pin: true,
+      scrub: 0.6,          // 👈 Smooth scroll animation
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        const idx = Math.round(self.progress * (partnerSteps.length - 1));
 
-        // 🔹 Find which category this index belongs to
+        // determine active category
         const activeCatIndex = categoryRanges.findIndex(
-          (r) => i >= r.start && i < r.end
+          (range) => idx >= range.start && idx < range.end
         );
+
         setActivePartnersIndex(activeCatIndex);
       },
-      onEnterBack: () => {
-        gsap.to(partnerSteps, { autoAlpha: 0, duration: 0.45 });
-        gsap.to(step, { autoAlpha: 1, duration: 0.45 });
+    },
+  });
 
-        const activeCatIndex = categoryRanges.findIndex(
-          (r) => i >= r.start && i < r.end
-        );
-        setActivePartnersIndex(activeCatIndex);
-      },
-    })
-  );
+  // build fade steps in timeline
+  partnerSteps.forEach((step, i) => {
+    tl.to(partnerSteps, { autoAlpha: 0, duration: 0.4 }, i)
+      .to(step, { autoAlpha: 1, duration: 0.6 }, i + 0.01);
+  });
 
-  const pinTrigger = ScrollTrigger.create({
-  id: "section4Pin",
-  trigger: partnersContainerRef.current,
-  pin: true,
-  start: "top top",
-  end: `+=${partnerSteps.length * window.innerHeight}`,
-  scrub: false,
-  scroller: document.body,
-});
+  tl.pause(); // controlled by ScrollTrigger
 
+  /* ---------------- Refresh after images load ---------------- */
+  const imgs = Array.from(container.querySelectorAll("img"));
+  let loadedCount = 0;
 
+  const onImgLoad = () => {
+    loadedCount += 1;
+    if (loadedCount === imgs.length) {
+      measureAndSet();
+      ScrollTrigger.refresh();
+    }
+  };
 
+  if (imgs.length) {
+    imgs.forEach((img) => {
+      if (img.complete) onImgLoad();
+      else img.addEventListener("load", onImgLoad, { once: true });
+    });
+  }
+
+  /* ---------------- Cleanup ---------------- */
   return () => {
+    clearTimeout(t);
     window.removeEventListener("resize", measureAndSet);
-    stepTriggers.forEach((t) => t.kill());
-    pinTrigger.kill();
+
+    try {
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();
+    } catch {}
+
+    try {
+      tl.kill();
+    } catch {}
   };
 }, []);
 
