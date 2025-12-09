@@ -272,7 +272,7 @@ const  v = [
 
 const mapPoints = [
   {
-    Locality: "Nubra Vally",
+    Locality: "Nubra Valley",
     District: "Laddakh (UH)",
     State: "Stone Hedge",
     desc: "ClimeScore creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
@@ -759,46 +759,93 @@ useEffect(() => {
 
 
 // ???? Section 5??
+/* ---------- Smooth, robust Section 5 (Map Steps) ---------- */
+useEffect(() => {
+  const container = mapsContainerRef.current;
+  const steps = gsap.utils.toArray(".map-step");
+  if (!container || !steps.length) return;
 
-/* ---------- Section 5 Scroll Setup ---------- */
-  useEffect(() => {
-    const mapSteps = gsap.utils.toArray(".map-step");
-    if (!mapSteps.length) return;
-    gsap.set(mapSteps, { autoAlpha: 0 });
-    gsap.set(mapSteps[0], { autoAlpha: 1 });
+  // improve ticker behaviour
+  gsap.ticker.lagSmoothing(0);
 
-    const stepTriggers = mapSteps.map((step, i) =>
-      ScrollTrigger.create({
-        trigger: mapsContainerRef.current,
-        start: () => `top+=${i * window.innerHeight} top`,
-        end: () => `+=${window.innerHeight}`,
-        onEnter: () => {
-          gsap.to(mapSteps, { autoAlpha: 0, duration: 0.45 });
-          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-        },
-        onEnterBack: () => {
-          gsap.to(mapSteps, { autoAlpha: 0, duration: 0.45 });
-          gsap.to(step, { autoAlpha: 1, duration: 0.45 });
-        },
-      })
-    );
+  // initial visibility
+  gsap.set(steps, { autoAlpha: 0 });
+  gsap.set(steps[0], { autoAlpha: 1 });
 
-    const pinTrigger = ScrollTrigger.create({
-  id: "section5Pin",
-  trigger: mapsContainerRef.current,
-  pin: true,
-  start: "top top",
-  end: `+=${mapSteps.length * window.innerHeight}`,
-  scrub: false,
-  scroller: document.body,
-});
+  // measure & set sticky height to tallest step to avoid layout jumps
+  const measureAndSet = () => {
+    let maxH = 0;
+    steps.forEach((el) => {
+      const h = el.offsetHeight || el.getBoundingClientRect().height || 0;
+      if (h > maxH) maxH = h;
+    });
+    if (mapsStickyRef.current) mapsStickyRef.current.style.height = `${maxH}px`;
+  };
 
+  // run measurement immediately and again after a short delay
+  measureAndSet();
+  const measureTimeout = setTimeout(() => {
+    measureAndSet();
+    ScrollTrigger.refresh();
+  }, 120);
 
-    return () => {
-      stepTriggers.forEach((t) => t.kill());
-      pinTrigger.kill();
-    };
-  }, []);
+  window.addEventListener("resize", measureAndSet);
+
+  // build a single timeline controlled by one ScrollTrigger (scrub for smoothness)
+  const tl = gsap.timeline({
+    defaults: { duration: 0.5, ease: "power1.out" },
+    scrollTrigger: {
+      trigger: container,
+      start: "top top",
+      end: () => `+=${steps.length * window.innerHeight}`,
+      pin: true,
+      scrub: 0.6,
+      anticipatePin: 1,
+      // update callback optional — uncomment if you want an index state
+      // onUpdate: (self) => { const idx = Math.round(self.progress * (steps.length - 1)); setSomeIndex(idx); }
+    },
+  });
+
+  // For each map-step: fade all out, then fade this one in — positioned per-step
+  steps.forEach((step, i) => {
+    tl.to(steps, { autoAlpha: 0, duration: 0.35 }, i)
+      .to(step, { autoAlpha: 1, duration: 0.45 }, i + 0.01);
+  });
+
+  // Pause timeline; ScrollTrigger controls it
+  tl.pause();
+
+  // Refresh after images load inside this container (prevent mis-sized pin)
+  const imgs = Array.from(container.querySelectorAll("img"));
+  let loadedCount = 0;
+  const onImgLoad = () => {
+    loadedCount += 1;
+    if (loadedCount === imgs.length) {
+      measureAndSet();
+      ScrollTrigger.refresh();
+    }
+  };
+  if (imgs.length) {
+    imgs.forEach((img) => {
+      if (img.complete) onImgLoad();
+      else img.addEventListener("load", onImgLoad, { once: true });
+    });
+  }
+
+  // CLEANUP: remove listeners and only kill this timeline/trigger
+  return () => {
+    clearTimeout(measureTimeout);
+    window.removeEventListener("resize", measureAndSet);
+
+    try {
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();
+    } catch (e) {}
+    try {
+      tl.kill();
+    } catch (e) {}
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
 
 
@@ -1185,7 +1232,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5XzG.jpg" alt="" />
           <h3>ClimeFolio</h3>
-          <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits. 10 or 10,000, we've got them</p>
+          <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits.</p>
           <button onClick={() => handleGetInTouch("ClimeFolio")}>
             Get In Touch
           </button>
@@ -1203,7 +1250,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5Vbs.jpg" alt="" />
           <h3>ClimeSchool</h3>
-          <p>Train your team on the impact of sustainability. ClimeSchool delivers webinars, online training and offline sessions that are impact oriented and delivered by experts in professional coaching.​</p>
+          <p>Train your team on the impact of sustainability. ClimeSchool delivers webinars, online training sessions.​</p>
           <button onClick={() => handleGetInTouch("ClimeSchool")}>
             Get In Touch
           </button>
@@ -1212,7 +1259,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5O12.jpg" alt="" />
           <h3>ClimeStore​</h3>
-          <p>Connect with 100’s of verified carbon efficient suppliers -  to reduce your Scope 3 emissions​</p>
+          <p>Connect with 100’s of verified carbon efficient suppliers - to reduce your Scope 3 emissions and decarbonise efficiently.​</p>
         <button onClick={() => handleGetInTouch("ClimeStore")}>
             Get In Touch
           </button>

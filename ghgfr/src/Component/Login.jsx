@@ -128,25 +128,19 @@ https://iili.io/fT4pA3G.jpg
       contents: [
         {
           title2: "Conduct Green Events",
-          img: "https://iili.io/KgfuZbV.png",
-          mob:'',
+          img: "https://iili.io/fAtnsGR.jpg",
+          mob:'https://iili.io/fAtW5ue.jpg',
           imgtext: "Carbon Neutral Events",
           text: "Events are a major source of emissions, and are facing scrutiny for the emissions they generate. Stand out from the crowd, by becoming an early adopter to measuring your event’s emissions and offsetting it with vetted and curated carbon credits. ClimeScore allows you to do that with minimal fuss and maximum impact.",
         },
         {
-          title2: "Reduce Costs",
-          img: "https://iili.io/KgfRcjp.png",
-          mob:'',
-          imgtext: "Sustainable Marketplace",
-          text: "Moving to sustainable vendors need not be expensive. In facts, it’s quite the contrary. ClimeScore aggregates suppliers for products and services that measure, declare, reduce and offset their carbon emissions - so that your eventual carbon footprint is also minimised.",
+          title2: "Attract Sustainable Participants",
+          img: "https://iili.io/fAtnNCx.jpg",
+          mob:'https://iili.io/fAtWR99.jpg',
+          imgtext: "Differentiate Your Event",
+          text: "Event participants (sponsors/ exhibitors) are increasingly becoming conscious of their emission footprint. Provide them with the opportunity to accurately know their climate impact along with the ability to offset the same. Make your event climate friendly and visibly sustainable.",
         },
-        {
-          title2: "Support Green Businesses",
-          img: "https://iili.io/KgfuUW7.png",
-          mob:'',
-          imgtext: "Sustainable Marketplace",
-          text: "Businesses promoting and adopting sustainability need validation. Encourage entrepreneurs and risk takers who take the path less polluting to be more climate positive - you and your customers, in turn will be supporting a healthier way of doing business.",
-        },
+        
       ],
     },
   ];
