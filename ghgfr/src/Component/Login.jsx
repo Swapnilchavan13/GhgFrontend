@@ -128,14 +128,14 @@ https://iili.io/fT4pA3G.jpg
       contents: [
         {
           title2: "Conduct Green Events",
-          img: "https://iili.io/fAtnsGR.jpg",
+          img: "https://iili.io/f5MrRu1.jpg",
           mob:'https://iili.io/fAtW5ue.jpg',
           imgtext: "Carbon Neutral Events",
           text: "Events are a major source of emissions, and are facing scrutiny for the emissions they generate. Stand out from the crowd, by becoming an early adopter to measuring your event’s emissions and offsetting it with vetted and curated carbon credits. ClimeScore allows you to do that with minimal fuss and maximum impact.",
         },
         {
           title2: "Attract Sustainable Participants",
-          img: "https://iili.io/fAtnNCx.jpg",
+          img: "https://iili.io/f5MLsiF.jpg",
           mob:'https://iili.io/fAtWR99.jpg',
           imgtext: "Differentiate Your Event",
           text: "Event participants (sponsors/ exhibitors) are increasingly becoming conscious of their emission footprint. Provide them with the opportunity to accurately know their climate impact along with the ability to offset the same. Make your event climate friendly and visibly sustainable.",
@@ -828,7 +828,9 @@ https://iili.io/fT4pA3G.jpg
           </div>
         </section>
 
+<div className="logodiv">
 
+        <h1 className="sticky-title">Customers, Partners and Standards</h1>
        <div className="logo-slider">
       <div className="logo-track">
         {logos.map((src, i) => (
@@ -842,6 +844,7 @@ https://iili.io/fT4pA3G.jpg
       </div>
     </div>
 
+        </div>
 
 
         {/* Partners section */}

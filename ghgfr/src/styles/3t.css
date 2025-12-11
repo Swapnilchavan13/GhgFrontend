@@ -1991,23 +1991,27 @@ position: relative;
   margin-left: 22% !important;
 }
 
+.logodiv{
+  margin-top: -40px;
+}
 
 .logo-slider {
   width: 100%;
   overflow: hidden;
   background: #fff;
-  padding: 20px 0;
+  height: 450px;
+  /* padding: 20px 0; */
 }
 
 /* The scrolling container */
 .logo-track {
   display: flex;
-  width: calc(200%); /* track is twice as long due to duplication */
-  animation: scroll 15s linear infinite;
+  width: calc(1000%); /* track is twice as long due to duplication */
+  animation: scroll 25s linear infinite;
 }
 
 .logo-track img {
-  width: 200px;       /* adjust this to fit 3 logos on screen */
+  width: 800px;       /* adjust this to fit 3 logos on screen */
   height: auto;
   margin: 0 20px;
   object-fit: contain;
