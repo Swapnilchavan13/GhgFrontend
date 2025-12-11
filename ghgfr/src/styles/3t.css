@@ -572,6 +572,14 @@ text-align: left;
   pointer-events: auto; /* ✅ ensures it can receive clicks */
 }
 
+.title-buttons2 button {
+  position: relative; /* ✅ create a stacking context */
+  /* margin-left: -207px; */
+  /* width: 148%; */
+  width: 49.5%;
+ 
+}
+
 
 .title-btn {
   padding: 10px;
@@ -1820,7 +1828,7 @@ position: relative;
 
 
 .sticky-titlediv{
-  margin-top: 20px;
+  margin-top: 90px;
 }
 
 .greybox{
@@ -1906,8 +1914,10 @@ position: relative;
 
 .slider-text {
   position: absolute;
-  bottom: 45%;   
-  left: 25%;     /* Move text left/right */
+  bottom: 30%;   
+    right: -35%; 
+
+  left: 60%;     /* Move text left/right */
   color: white !important;
   font-size: 1.5rem;
   font-weight: bold;
@@ -1920,12 +1930,29 @@ position: relative;
 
 .slider-text2 {
   position: absolute;
-  bottom: 35%;   
-  left: 25%;     /* Move text left/right */
+  bottom: 15%;  
+  right: -40%; 
+  left: 55%;     /* Move text left/right */
   color: white !important;
   font-size: 1rem;
   font-weight: bold;
   z-index: 5;
+  /* text-shadow: 0 2px 8px rgba(0,0,0,0.7); */
+  background-color: #333;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.slider-text3 {
+  position: absolute;
+  bottom: 5%;  
+  /* right: -40%;  */
+  left: 83%;     /* Move text left/right */
+  color: white !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 5;
+  width: 30%;
   /* text-shadow: 0 2px 8px rgba(0,0,0,0.7); */
   background-color: #333;
   padding: 10px;
@@ -1958,10 +1985,10 @@ position: relative;
 
 .add-client-container{
   z-index: 999;
-  height: 180px;
-  width: 14%;
-  margin-top: -6% !important;
-  margin-left: 12% !important;
+  height: 120px;
+  width: 10%;
+  margin-top: -25% !important;
+  margin-left: 22% !important;
 }
 
 

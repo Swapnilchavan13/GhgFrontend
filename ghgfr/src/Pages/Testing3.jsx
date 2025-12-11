@@ -83,42 +83,58 @@ const steps = slides.flatMap((slide) =>
 const countersData = [
   { 
     value: 300000, 
-    title:"Biochar",
+    label: "Tons Of Co2", 
+     title:"Carbon Emission Measurement",
+    desc: "The ClimeScore platform has accurately measured, accounted and verified over 3,00,000 tons of CO2e across different industry types and events. Leverage this expertise for accounting your Scope 1, 2 and 3 emissions.",
+    image: "https://iili.io/KgfMUy7.png"
+  },
+   { 
+    value: 20, 
+    label: "Trusted by leaders", 
+     title:"Carbon Emission Measurement",
+    desc: "ClimeScore works with industry leaders who are serious about their sustainability outcomes and emissions measurement. Our platform gives them a robust software - through which they can track and visualise their emissions in real time.",
+    image: "https://iili.io/f51LheS.jpg"
+  },
+  { 
+    value: 300000, 
+    title:"Carbon dioxide Removal",
     label: "Liters Of Biochar Produced", 
-    desc: "Our Biochar Project in Bandhavgarh works with 100’s of farmers to create over 1 ton of biochar everyday, while positively impacting a fragile forest ecosystem.",
-    image: "https://iili.io/KgfM4je.png"
+    desc: "ClimeGrove by NettZero has Artisanal Biochar locations in four Indian states and processes hundreds of tons of agricultural waste into biochar. Our production capacity has grown from producing 200kgs per day to over 10,000 kgs of biochar per day in one year. Next year, our target is to process 4,00,00,000 (4 crore kgs) of biomass per harvest season.",
+    image: "https://iili.io/f50DQeV.jpg"
+  },
+    { 
+    value: 15000, 
+    title:"Carbon dioxide Removal",
+    label: "Farmers Positively Impacted", 
+    desc: "ClimeGrove has given over 15,000 farmers additional income by helping them monetize their rice straw residue. An agricultural waste that was being burnt and causing polllution - is now being converted to biochar and creating additional resources.",
+    image: "https://iili.io/f5EKKG4.jpg"
+  },
+    { 
+    value: 2000000, 
+    title:"Carbon dioxide Removal",
+    label: "Tons of Agricultural Waste", 
+    desc: "ClimeGrove is currently processing over 2 million kilograms of agricultural waste and converting it into soil enhancing fertiliser that will be spread over 500 acres of Indian agricultural land.",
+    image: "https://iili.io/f51ybef.jpg"
   },
   { 
     value: 120, 
-    title:"Field Weathering",
+    title:"Carbon dioxide Removal",
     label: "Hectares", 
-    desc: "Our Field Weathering Projects are being deployed at 3 unique locations in India over a surface area of over 120 hectares.",
+    desc: "ClimeGrove is actively developing its Enhanced Rock Weathering capabilities and will be deploying basalt based Carbon Sequestration at 3 sites in India that cover over 120 hectares.",
     image: "https://iili.io/fn5z1CQ.jpg"
   },
   { 
     value: 40000, 
-    label: "Trees", 
-    title:"Direct Capture",
-    desc: "Our Tree C-Sink is creating agro-forestry by planting over 40,000 trees of various native species.",
+    label: "Tress C-Sink", 
+    title:"Carbon dioxide Removal",
+    desc: "ClimeGrove manages a Tree C-Sink with over 40,000 tress planted for agroforestry in 2025. The C-Sink is on the slopes of the pristine Himalayas and provides an additional framework for Carbon Dioxide Removal",
     image: "https://iili.io/KgfR1nI.png"
-  },
-  { 
-    value: 250, 
-    label: "GMS/Hour", 
-     title:"Direct Capture",
-
-    desc: "The capacity of the Direct Air Capture consumer machine prototyped by us.",
-    image: "https://iili.io/Kgf5wUg.png"
-  },
-  { 
-    value: 300000, 
-    label: "Tons Of Co2", 
-     title:"Direct Capture",
-
-    desc: "Emissions accurately measured & reported as per GRI standards on our platform – ClimeScore",
-    image: "https://iili.io/KgfMUy7.png"
-  },
+  }
 ];
+
+
+
+
 
 
 /*
@@ -290,7 +306,7 @@ const mapPoints = [
     Locality: "Puranpur",
     District: "Pilibhit",
     State: "Uttar Pradesh",
-    desc: "ClimeGrove by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers. We then convert the rice straw to biochar which is them provided to farmers as a rich, soil enhancing organic fertiliser. ",
+    desc: "ClimeGrove by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers.",
      img: "https://iili.io/KD3lbLv.png",
   },
   {
@@ -312,7 +328,7 @@ const mapPoints = [
     Locality: "Lonavala",
     District: "Pune",
     State: "Asia’s first Climate Neutral Resort Text- 4 years and counting!",
-    desc: "ClimeScore by NettZero has proudly created Asia’s first Verified Carbon Neutral resort at The Machan. Known for its immaculately designed tree houses that merge into nature, ClimeScore has meeticulously documented the emissions of this highly admired resort since 2022. The Machan is a member of the United Nation’s Race to Zero program and has been purchasing legitimate offsets from the CDM, Verra and GS reigstries through ClimeScore. ",
+    desc: "ClimeScore by NettZero has proudly created Asia’s first Verified Carbon Neutral resort at The Machan. Known for its immaculately designed tree houses that merge into nature, ClimeScore has meeticulously documented the emissions of this highly admired resort since 2022.",
      img: "https://www.themachan.com/img/slider-main/slider/1.webp",
   },
 
@@ -320,7 +336,7 @@ const mapPoints = [
     Locality: "Coorg",
     District: "Kodagu",
     State: "The Tamara Emissions Management Program",
-    desc: "ClimeScore by NettZero provides its platform to this exquisite piece of paradise nestled amidst plantations in Coorg.  We have developed a customised solution that helps The Tamara track emissions not just across Scope 1 & Scope 2 - but, also of its guest travel. Which makes it one of the few properties in the world that is calculating emissions caused by travel to reach it. ",
+    desc: "ClimeScore by NettZero provides its platform to this exquisite piece of paradise nestled amidst plantations in Coorg.  We have developed a customised solution that helps The Tamara track emissions not just across Scope 1 & Scope 2 - but, also of its guest travel.",
     img: "https://iili.io/KD34QKQ.jpg",
   },
 ];
@@ -590,6 +606,8 @@ useEffect(() => {
   const tl = gsap.timeline({
     defaults: { duration: 0.6, ease: "power1.out" },
     scrollTrigger: {
+        id: "section3Pin",      // <-- ADD THIS
+
       trigger: container,
       start: "top top",
       end: () => `+=${counterSteps.length * window.innerHeight}`,
@@ -885,25 +903,22 @@ const handleTitleClick2 = (index) => {
   const trigger = ScrollTrigger.getById("section3Pin");
 
   if (trigger) {
-    // Calculate scroll distance relative to the pinned section
-    const targetY =
-      trigger.start + clampedIndex * window.innerHeight + 100;
+    // Calculate the real scroll position of the element
+    const step = counterSteps[clampedIndex];
+    const rect = step.getBoundingClientRect();
+    const targetY = rect.top + window.pageYOffset - 100; // adjust offset if needed
 
-   const scrollTarget =
-  document.scrollingElement ||
-  document.documentElement ||
-  document.body;
-
-
-  gsap.to(scrollTarget, {
+    gsap.to(window, {
       scrollTo: { y: targetY, autoKill: false },
-      duration: 2,
+      duration: 1.5,
       ease: "power2.inOut",
     });
   }
 
   setActiveCounterIndex(clampedIndex);
 };
+
+
 
 
 
@@ -1095,16 +1110,26 @@ gsap.to(scrollTarget, {
           <div className="sticky-box counters-sticky" ref={countersStickyRef}>
             <h1 className="sticky-title2">NettZero in Numbers</h1>
 <div className="title-buttons2">
-  {countersData.slice(0, 3).map((item, idx) => (
-    <button
-      key={idx}
-      className={`title-btn ${activeCounterIndex === idx ? "active" : ""}`}
-      onClick={() => handleTitleClick2(idx)}
-    >
-      {item.title}
-    </button>
-  ))}
+
+  {/* FIRST BUTTON - Carbon Emission Measurement */}
+  <button
+    className={`title-btn ${activeCounterIndex >= 0 && activeCounterIndex <= 1 ? "active" : ""}`}
+    onClick={() => handleTitleClick2(0)} // first group starts at index 0
+  >
+    {countersData[0].title}
+  </button>
+
+  {/* SECOND BUTTON - Carbon dioxide Removal */}
+  <button
+    className={`title-btn ${activeCounterIndex >= 2 ? "active" : ""}`}
+    onClick={() => handleTitleClick2(2)} // second group starts at index 2
+  >
+    {countersData[2].title}
+  </button>
+
 </div>
+
+
 
 
             {countersData.map((item, i) => (

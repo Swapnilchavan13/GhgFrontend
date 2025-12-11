@@ -70,7 +70,7 @@ https://iili.io/fT4pA3G.jpg
       ],
     },
     {
-      title: "Academic",
+      title: "Academia",
       contents: [
         {
           title2: "Educational Institutes Drive the Future",
@@ -226,7 +226,7 @@ https://iili.io/fT4pA3G.jpg
 
   const slides2 = [
     {
-      imge: "https://iili.io/fIRydpj.jpg",
+      imge: "https://iili.io/f5l3pyb.jpg",
       mob:'https://iili.io/fA9r9Hv.jpg',
       text: "Welcome to our robust, AI powered Emission Measurement Platform", 
       sub: "Over 300,000 tCO2e of emissions accurately measured for Industry Leading Organizations",
@@ -748,21 +748,25 @@ https://iili.io/fT4pA3G.jpg
             <img className="mobile-img slider-image" src={slides2[currentSlide].mob} alt='mobile img' />
               <p className="slider-text">{slides2[currentSlide].text}</p>
               <p className="slider-text2">{slides2[currentSlide].sub}</p>
+              <button className="slider-text3">Register Now</button>
 
             </div>
           )}
 
           <div className="add-client-container">
             <label>
-              User ID:
-              <input type="text" value={userId} onChange={(e) => setUserId(e.target.value)} />
+              <input 
+              type="text" 
+              placeholder="Enter User Id"
+              value={userId} 
+              onChange={(e) => setUserId(e.target.value)} />
             </label>
             {/* <br /> */}
             <label>
-              Password:
               <div className="password-input-container">
                 <input
                   type={showPassword ? "text" : "password"}
+                  placeholder="Enter Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -777,7 +781,7 @@ https://iili.io/fT4pA3G.jpg
             </label>
             {/* <br /> */}
             <button onClick={handleLogin}>Login</button>
-            <button>Register Now</button>
+            {/* <button>Register Now</button> */}
 
            
           </div>
