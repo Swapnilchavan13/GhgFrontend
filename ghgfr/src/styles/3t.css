@@ -410,11 +410,11 @@ position: relative;
 
 .step-image-text2 {
   position: absolute;
-  bottom: 70%;
-  left: 50%;
+  bottom: 50%;
+  left: 25%;
   transform: translateX(-50%);
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   background: rgba(0, 0, 0, 0.35);
@@ -1984,11 +1984,22 @@ position: relative;
 }
 
 .add-client-container{
+  display: flex;
+  direction: initial;
   z-index: 999;
-  height: 120px;
-  width: 10%;
-  margin-top: -25% !important;
-  margin-left: 22% !important;
+  gap: 5px;
+  height: 22px;
+  width: 20%;
+  margin-top: -30% !important;
+  margin-left: 15% !important;
+}
+
+.password-toggle-button{
+  height: 26px !important;
+}
+
+.btnlogin{
+  height: fit-content;
 }
 
 .logodiv{
@@ -1999,19 +2010,19 @@ position: relative;
   width: 100%;
   overflow: hidden;
   background: #fff;
-  height: 450px;
+  height: 250px;
   /* padding: 20px 0; */
 }
 
 /* The scrolling container */
 .logo-track {
   display: flex;
-  width: calc(1000%); /* track is twice as long due to duplication */
+  width: calc(800%); /* track is twice as long due to duplication */
   animation: scroll 25s linear infinite;
 }
 
 .logo-track img {
-  width: 800px;       /* adjust this to fit 3 logos on screen */
+  width: 400px;       /* adjust this to fit 3 logos on screen */
   height: auto;
   margin: 0 20px;
   object-fit: contain;
@@ -2040,8 +2051,6 @@ position: relative;
   }
 }
 
-
-
 .popup-overlay {
   position: fixed;
   inset: 0;
@@ -2050,7 +2059,6 @@ position: relative;
   align-items: center;
   justify-content: center;
   z-index: 9999999;
-
 }
 
 .popup-box {
