@@ -820,7 +820,7 @@ https://iili.io/fT4pA3G.jpg
               </div>
             ))}
 
-            <div className="section2btn">
+            <div className="section2btn section2btn2">
               <button onClick={() => handleScroll(".section1")}>Previous Section</button>
               <button onClick={() => handleScroll(".section4")}>Next Section</button>
               <button onClick={() => handleScroll("top")}>Back To Top</button>
