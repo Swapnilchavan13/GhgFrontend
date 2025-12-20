@@ -338,6 +338,7 @@ position: relative;
     width: 250px;
     padding: 40px;
     z-index: 999999 !important;
+    text-align: center;
 }
 
 .conbox h2{
