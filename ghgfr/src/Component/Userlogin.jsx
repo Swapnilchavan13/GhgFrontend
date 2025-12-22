@@ -56,7 +56,7 @@ export const Userlogin = () => {
       <Usernavbar isLoggedIn={loginStatus} userName={loggedInUserName} onLogout={handleLogout} />
 
     
-      <div className="add-client-container">
+      <div className="add-client-container2">
         <h2>User Login</h2>
        
         <label>

@@ -152,76 +152,34 @@ https://iili.io/fT4pA3G.jpg
   const Partners = [
     {
       title: "Reliable",
-      label: "Varun Hooja - Founder & Partner, Machan Resorts LLP",
-      desc: "“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”",
+      label: "Reliable Emission Data",
+      imgtext:"Reliable",
+      desc: "ClimeScore is trusted by Industry Leaders for accurately measuring their emissions. Remove the guesswork and trial & error from your emissions calculations when you choose ClimeScore. With hundreds of emission co-efficients that are mapped to authoratative sources like DEFRA, GHG Protocol, ISO 14068 etc. - you will not be required to explain HOW you arrived at your emissions. The seal of ClimeScore is enough",
       image: "https://iili.io/KQOD5Kl.jpg",
     },
-    {
-      title: "Reliable",
-      label: "Shobha Rudra - Founder, RARE India",
-      desc: "“ClimeScore has been a great partner in measuring emissions of Bridges by RARE.”",
-      image: "https://iili.io/KQOD7l2.jpg",
-    },
-    {
-      title: "Reliable",
-      label: "Hashim Tyebji - Director, Kafila and renowned Tiger Conservationist",
-      desc: "“It takes a huge amount of single-minded commitment and optimism to do the pioneering work you are doing.”",
-      image: "https://iili.io/KrXt6vt.jpg",
-    },
+   
     {
       title: "Valid",
-      label: "Carbon Standards International",
-      desc: "ClimeScore by NettZero is a member of Carbon Standards International since 2023, making it one of the earliest organizations from India to be aligned with the vision of enabling Carbon Dioxide Removal through widespread adoption. CSI is one of the most respected and leading registries for CDR in the world, with a focus on fundamental methodologies that create robust, transparent and impactful Carbon Sinks. ",
+      label: "Distilled from leading Emission Sources",
+      imgtext:"Globally Valid Results",
+      desc: "ClimeScore’s engine is based on co-efficients and emission factors from the world’s most trusted and reliable sources - such as DEFRA, EPA, GHG Protocol, IPCC to name a few. We’ve then worked with extensive secondary research to customise these results for India and then for the various sectors. With 100s of co-efficient available at the click of a button - your emission calculations will be globally valid and indisputable.",
       image: "https://iili.io/KrXtLjs.jpg",
     },
+   
     {
-      title: "Valid",
-      label: "Circonomy",
-      desc: "ClimeScore by NettZero partners with Circonomy for their reliable, globally renowned SOP’s and dMRV tools, since 2023. Through this partnership, we will have created over 500,000 litres of biochar in 2025.",
-      image: "https://iili.io/KQeFxnI.jpg",
-    },
-    {
-      title: "Valid",
-      label: "RARE India",
-      desc: "RARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinentRARE India is a community of owner-run boutique hotels, heritage palaces, wildlife lodges, homestays and retreats across the Indian subcontinent ClimeScore by NettZero has been partnering with Rare since 2023 to enable their member hotels to become Carbon Neutral and also ensuring that RARE’s annual event, BRIDGES, is Carbon Neutral across Scope 1, 2 and 3.",
-      image: "https://iili.io/KrXuvIe.jpg",
-    },
-    {
-      title: "Valid",
-      label: "ISN (Indian Sustainability Network)",
-      desc: "ClimeScore by NettZero drives the engine behind Indian School of Nature’s sustainability portal. As technology developers of the platform and the Carbon managers for its network, we power the members of ISN who want to migrate onto the path of sustainability. ISN is unique and progressive organization founded by doyens in sustainability and conservation, including Mr. Hashim Tyebji and Mr. Ram Pratap Singh. ",
-      image: "https://iili.io/KrXu8hu.jpg",
-    },
-    {
-      title: "Findable",
-      label: "GHG Protocol",
-      desc: "Provides globally accepted tools to measure and manage GHG emissions.",
+      title: "Affordable",
+      imgtext:'Extremely Affordable',
+      label: "Top Quality at Near Zero Prices",
+      desc: "ClimeScore is available for a small subscription fee of under US$ 10/- We deploy our platform, customise it for your business and give you full access to all its features and functionalities at this nominal fee. You get the power, performance, analytics and reporting of platforms that costs thousands for dollars without the price tag. Emission reporting has never been so flexible, simple and affordable - giving you all the reasons you need to start emission reporting.",
       image: "https://iili.io/KrXhabs.jpg",
     },
     {
-      title: "Findable",
-      label: "PAS 2060",
-      desc: "International standard for demonstrating carbon neutrality.",
-      image: "https://iili.io/KrXurEx.jpg",
-    },
-    {
-      title: "Findable",
-      label: "GRI – Global Reporting Initiative",
-      desc: "Used for sustainability reporting ensuring transparency and accountability.",
-      image: "https://iili.io/KrXt4aI.jpg",
-    },
-    {
       title: "Trusted",
-      label: "GRI – Global Reporting Initiative",
+      imgtext:'Validated by Leaders',
+      label: "Chosen by Hospitality Leaders",
       desc: "Used for sustainability reporting ensuring transparency and accountability.",
       image: "https://iili.io/KrXt4aI.jpg",
-    },
-    {
-      title: "Trusted",
-      label: "GRI – Global Reporting Initiative",
-      desc: "Used for sustainability reporting ensuring transparency and accountability.",
-      image: "https://iili.io/KrXt4aI.jpg",
-    },
+    }
   ];
 
   const slides2 = [
@@ -394,20 +352,7 @@ https://iili.io/fT4pA3G.jpg
   };
 
   // handleNavigate will safely revert the local gsap context BEFORE route change
-  const handleNavigate = (path) => {
-    // revert local gsap context (if exists)
-    if (gsapContextRef.current) {
-      try {
-        gsapContextRef.current.revert();
-        gsapContextRef.current = null;
-      } catch (e) {
-        console.warn("Error while reverting gsap context:", e);
-      }
-    }
-    // also kill tweens on window to be safe
-    gsap.killTweensOf(window);
-    navigate(path);
-  };
+  
 
   // ---------------- Single useEffect that sets up all ScrollTriggers inside a gsap.context ----------------
   useEffect(() => {
@@ -763,6 +708,8 @@ https://iili.io/fT4pA3G.jpg
           )}
 
           <div className="add-client-container">
+              
+              {/* <p>Existing User Login</p> */}
             <label>
               <input 
               type="text" 
@@ -798,7 +745,7 @@ https://iili.io/fT4pA3G.jpg
 
         <section className="section section2" ref={containerRef}>
           <div className="sticky-box" ref={stickyRef}>
-            <h1 className="sticky-title">ClimeScore For Your Emission</h1>
+            <h1 className="sticky-title">ClimeScore For Your Industry</h1>
 
             <div className="title-buttons">
            {slides.map((slide, idx) => (
@@ -860,7 +807,7 @@ https://iili.io/fT4pA3G.jpg
         <section className="section section4">
           <div className="partners-container" ref={partnersContainerRef}>
             <div className="sticky-box partners-sticky" ref={partnersStickyRef}>
-              <h1 className="sticky-title3">Why Use ClimeScore</h1>
+              <h1 className="sticky-title3">Why Use ClimeScore?</h1>
 
               <div className="title-buttonlogin">
                 {["Reliable", "Valid", "Findable", "Trusted"].map((category, idx) => (

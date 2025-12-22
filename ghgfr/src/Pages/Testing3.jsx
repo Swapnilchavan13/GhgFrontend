@@ -472,7 +472,7 @@ const mapsStickyRef = useRef(null);
  /* ---------------- Smooth, working Section 2 (replace your existing useEffect) ---------------- */
 useEffect(() => {
   const section = containerRef.current;
-  const sectionSteps = gsap.utils.toArray(".step");
+  const sectionSteps = gsap.utils.toArray(".step", containerRef.current)
   if (!section || !sectionSteps.length) return;
 
   // smoother ticker behaviour
@@ -634,7 +634,10 @@ useEffect(() => {
  /* ---------------- Smooth Scroll — Section 4 (Partners) ---------------- */
 useEffect(() => {
   const container = partnersContainerRef.current;
-  const partnerSteps = gsap.utils.toArray(".partner-step");
+  const partnerSteps = gsap.utils.toArray(
+  ".partner-step",
+  partnersContainerRef.current
+);
   if (!container || !partnerSteps.length) return;
 
   gsap.ticker.lagSmoothing(0);
@@ -746,7 +749,10 @@ useEffect(() => {
 /* ---------- Smooth, robust Section 5 (Map Steps) ---------- */
 useEffect(() => {
   const container = mapsContainerRef.current;
-  const steps = gsap.utils.toArray(".map-step");
+  const steps = gsap.utils.toArray(
+  ".map-step",
+  mapsContainerRef.current
+);
   if (!container || !steps.length) return;
 
   // improve ticker behaviour
