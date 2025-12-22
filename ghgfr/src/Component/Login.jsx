@@ -149,13 +149,16 @@ https://iili.io/fT4pA3G.jpg
     slide.contents.map((c) => ({ title: slide.title, ...c }))
   );
 
+  //https://iili.io/fEJf2tt.png
+//https://iili.io/fEJfJAN.png
+
   const Partners = [
     {
       title: "Reliable",
       label: "Reliable Emission Data",
       imgtext:"Reliable",
       desc: "ClimeScore is trusted by Industry Leaders for accurately measuring their emissions. Remove the guesswork and trial & error from your emissions calculations when you choose ClimeScore. With hundreds of emission co-efficients that are mapped to authoratative sources like DEFRA, GHG Protocol, ISO 14068 etc. - you will not be required to explain HOW you arrived at your emissions. The seal of ClimeScore is enough",
-      image: "https://iili.io/KQOD5Kl.jpg",
+      image: "https://iili.io/fEJf2tt.png",
     },
    
     {
@@ -163,7 +166,7 @@ https://iili.io/fT4pA3G.jpg
       label: "Distilled from leading Emission Sources",
       imgtext:"Globally Valid Results",
       desc: "ClimeScore’s engine is based on co-efficients and emission factors from the world’s most trusted and reliable sources - such as DEFRA, EPA, GHG Protocol, IPCC to name a few. We’ve then worked with extensive secondary research to customise these results for India and then for the various sectors. With 100s of co-efficient available at the click of a button - your emission calculations will be globally valid and indisputable.",
-      image: "https://iili.io/KrXtLjs.jpg",
+      image: "https://iili.io/fEJf2tt.png",
     },
    
     {
@@ -171,14 +174,14 @@ https://iili.io/fT4pA3G.jpg
       imgtext:'Extremely Affordable',
       label: "Top Quality at Near Zero Prices",
       desc: "ClimeScore is available for a small subscription fee of under US$ 10/- We deploy our platform, customise it for your business and give you full access to all its features and functionalities at this nominal fee. You get the power, performance, analytics and reporting of platforms that costs thousands for dollars without the price tag. Emission reporting has never been so flexible, simple and affordable - giving you all the reasons you need to start emission reporting.",
-      image: "https://iili.io/KrXhabs.jpg",
+      image: "https://iili.io/fEJfJAN.png",
     },
     {
       title: "Trusted",
       imgtext:'Validated by Leaders',
       label: "Chosen by Hospitality Leaders",
       desc: "Used for sustainability reporting ensuring transparency and accountability.",
-      image: "https://iili.io/KrXt4aI.jpg",
+      image: "https://iili.io/KytYfIt.jpg",
     }
   ];
 
@@ -197,7 +200,7 @@ https://iili.io/fT4pA3G.jpg
       District: "Laddakh (UH)",
       State: "NA",
       desc: "ClimeScore deployment to create Ladakh`s first carbon Neutral Resort.",
-      img: "https://cdnbbsr.s3waas.gov.in/s395192c98732387165bf8e396c0f2dad2/uploads/2019/10/2019102917.jpg",
+      img: "https://iili.io/fE22MFf.jpg",
     },
     {
       Locality: "Phagu",
@@ -810,7 +813,7 @@ https://iili.io/fT4pA3G.jpg
               <h1 className="sticky-title3">Why Use ClimeScore?</h1>
 
               <div className="title-buttonlogin">
-                {["Reliable", "Valid", "Findable", "Trusted"].map((category, idx) => (
+                {["Reasons to Choose ClimeScore"].map((category, idx) => (
                   <button
                     key={idx}
                     className={`title-btn ${activePartnersIndex === idx ? "active" : ""}`}
@@ -826,6 +829,7 @@ https://iili.io/fT4pA3G.jpg
                   <div className="partner-left">
                     <div className="partner-image-box">
                       <img src={item.image} alt={item.label} />
+                      <span className="step-image-text2">{item.imgtext}</span>
                     </div>
                   </div>
                   <div className="partner-right">

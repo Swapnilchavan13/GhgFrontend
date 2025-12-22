@@ -246,53 +246,13 @@ const Partners = [
 
 
 
-const  v = [
-  {
-    img: "https://www.shutterstock.com/image-photo/business-team-meeting-600nw-107480708.jpg", 
-    name: "Varun Hooja",
-    designation: "Founder & Partner, Machan Resorts LLP",
-    text: `“NettZero is a company founded with a shared vision to create a positive impact on the planet, one step at a time. Their commitment to emissions measurement and reporting is both rigorous and purpose-driven, making sustainability actionable for organizations of all sizes. The effort they put into their work is truly commendable, and I would strongly recommend their services to any company serious about reducing its environmental footprint.”`
-  },
-  {
-    img: "https://parsadi.com/wp-content/uploads/2022/05/Business.jpg", 
-    name: "Ananya Mehta",
-    designation: "CEO, GreenWatt Energy",
-    text: `“Working with NettZero transformed our approach to sustainability. Their insights on carbon accounting and project implementation were invaluable.”`
-  },
-  {
-    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
-    name: "Rohit Sharma",
-    designation: "Director, EcoBuild Solutions",
-    text: `“The team’s expertise and attention to detail make NettZero a trusted partner for any organization aiming to achieve real climate impact.”`
-  },
-  {
-    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
-    name: "Priya Desai",
-    designation: "Sustainability Head, AgroPure Pvt Ltd",
-    text: `“NettZero helped us measure and offset emissions across our operations. The process was smooth and the results were transparent.”`
-  },
-  {
-    img: "https://www.marketing91.com/wp-content/uploads/2021/02/Business.jpg", 
-    name: "Aditya Rao",
-    designation: "Managing Partner, EnviroEdge Consulting",
-    text: `“Their technology-driven approach brings both accuracy and accountability to sustainability efforts. Highly recommended!”`
-  },
-  {
-    img: "https://www.winsavvy.com/wp-content/uploads/2024/06/60255e7341de62c988dd08aa_DigitalAdvertising.jpg",
-    name: "Sneha Kapoor",
-    designation: "Founder, Urban Roots Foundation",
-    text: `“The NettZero team truly understands the balance between business goals and environmental responsibility.”`
-  }
-];
-
-
 const mapPoints = [
   {
     Locality: "Nubra Valley",
     District: "Laddakh (UH)",
     State: "Stone Hedge",
     desc: "ClimeScore creates Ladakh’s first Carbon Neutral resort to support sustainability in a fragile ecosystem.",
-     img: "https://www.stonehedgeladakh.com/wp-content/uploads/stone1.jpg",
+     img: "https://iili.io/fE22MFf.jpg",
   },
   {
     Locality: "Phagu",
@@ -1227,7 +1187,7 @@ gsap.to(scrollTarget, {
         <div>
           <img src="https://iili.io/f9S5XzG.jpg" alt="" />
           <h3>ClimeFolio</h3>
-          <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits.</p>
+          <p>NettZero works with the industry leaders to provide bonafide & legitimate Carbon Credits, for your obsets.</p>
           <button onClick={() => handleGetInTouch("ClimeFolio")}>
             Get In Touch
           </button>
