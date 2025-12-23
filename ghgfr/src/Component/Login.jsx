@@ -207,14 +207,14 @@ https://iili.io/fT4pA3G.jpg
       District: "Sirmaur",
       State: "Himachal Pradesh",
       desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-      img: "https://www.thehillgypsy.com/wp-content/uploads/2020/02/cover-image-11.jpg",
+      img: "https://iili.io/fEgJSz7.jpg",
     },
     {
       Locality: "Sukki",
       District: "Uttarkashi",
       State: "Uttarakhand",
       desc: "Biochar Project with installed capacity of 2,000 tons per year.",
-      img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/b8/55/15/kharsali.jpg",
+      img: "https://iili.io/fEgzTYP.jpg",
     },
     {
       Locality: "Rudrapur",
@@ -313,6 +313,8 @@ https://iili.io/fT4pA3G.jpg
   const mapsContainerRef = useRef(null);
   const mapsStickyRef = useRef(null);
 
+
+  const [accountType, setAccountType] = useState("");
   // --------------- login state (unchanged) ----------------
   const storedLoginStatus = localStorage.getItem("isLoggedIn") === "true";
   const [userId, setUserId] = useState("");
@@ -851,36 +853,114 @@ https://iili.io/fT4pA3G.jpg
         </section>
 
         <section className="section section5">
-          <div className="maps-container" ref={mapsContainerRef}>
-            <div className="sticky-box maps-sticky" ref={mapsStickyRef}>
-              <h1 className="sticky-title5">Getting Started</h1>
-              <div className="getbuttons">
-                <button>Register</button>
-                <button>Select Module</button>
-                <button>Pay and Use</button>
-              </div>
-              {mapPoints.map((point, i) => (
-                <div key={i} className="map-step">
-                  <div className="map-left">
-                    <img src={point.img} alt={point.Locality} />
-                  </div>
-                  <div className="map-right">
-                    <h2>{point.Locality}</h2>
-                    <hr />
-                    <p className="descpt">{point.desc}</p>
-                  </div>
-                  <div className="greybox5"></div>
-                </div>
-              ))}
+      <div className="maps-container">
+        <div className="sticky-box maps-sticky">
 
-              <div className="section5btn">
-                <button onClick={() => handleScroll(".section4")}>Previous Section</button>
-                <button onClick={() => handleScroll(".sticky-titlediv")}>Next Section</button>
-                <button onClick={() => handleScroll("top")}>Back To Top</button>
+          {/* Section Title */}
+          <h1 className="sticky-title5">Getting Started</h1>
+
+         
+
+          {/* ================= REGISTRATION FORM ================= */}
+          <div className="registration-form">
+            <h2>ClimeScore Registration Form</h2>
+            <p className="step-indicator">Step 1 of 2</p>
+
+            <form>
+              {/* User Details */}
+              <h3>User Details</h3>
+
+              <input type="text" placeholder="Full Name *" required />
+              <input type="email" placeholder="Email Address *" required />
+              <input type="text" placeholder="Mobile Number *" required />
+              <input type="password" placeholder="Password *" required />
+              <input type="password" placeholder="Confirm Password *" required />
+
+              <select required>
+                <option value="">Select Country *</option>
+                <option>India</option>
+                <option>USA</option>
+                <option>UK</option>
+                <option>Other</option>
+              </select>
+
+              {/* Account Type */}
+              <h3>Account Type</h3>
+              <div className="radio-group">
+                <label>
+                  <input
+                    type="radio"
+                    name="accountType"
+                    value="individual"
+                    onChange={() => setAccountType("individual")}
+                    required
+                  />
+                  Individual
+                </label>
+
+                <label>
+                  <input
+                    type="radio"
+                    name="accountType"
+                    value="business"
+                    onChange={() => setAccountType("business")}
+                  />
+                  Business / Corporate
+                </label>
+
+                <label>
+                  <input
+                    type="radio"
+                    name="accountType"
+                    value="government"
+                    onChange={() => setAccountType("government")}
+                  />
+                  Government / NGO / Academic
+                </label>
               </div>
-            </div>
+
+              {/* Business Conditional Fields */}
+              {accountType === "business" && (
+                <>
+                  <h3>Industry Category</h3>
+                  <select required>
+                    <option value="">Select Industry *</option>
+                    <option>Manufacturing</option>
+                    <option>Hospitality & Travel</option>
+                    <option>Retail & Consumer Goods</option>
+                    <option>Information Technology</option>
+                    <option>Agriculture</option>
+                    <option>Education</option>
+                    <option>Real Estate / Construction</option>
+                    <option>Other</option>
+                  </select>
+
+                  <h3>Organization Details</h3>
+                  <input type="text" placeholder="Organization Name *" required />
+                  <input type="url" placeholder="Website (Optional)" />
+                  <input type="text" placeholder="GSTIN / Registration Number (Optional)" />
+                </>
+              )}
+
+              {/* Consent */}
+              <label className="checkbox">
+                <input type="checkbox" required />
+                I agree to the Terms & Conditions and Privacy Policy
+              </label>
+
+              {/* CTA */}
+              <button type="submit" className="cta-btn">
+                Proceed to Payment
+              </button>
+            </form>
           </div>
-        </section>
+          {/* ================= END FORM ================= */}
+
+
+        </div>
+      </div>
+    </section>
+
 
         <br />
         <br />

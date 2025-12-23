@@ -2287,3 +2287,183 @@ position: relative;
   margin-top: 10px;
   padding-left: 15px;
 }
+
+
+/* Registration form */
+
+/* ================================
+   REGISTRATION FORM CONTAINER
+================================ */
+.registration-form {
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 40px 36px;
+  background: linear-gradient(180deg, #ffffff, #f7fbf9);
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e3efe9;
+}
+
+/* Title */
+.registration-form h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f5132;
+  margin-bottom: 6px;
+}
+
+.registration-form .step-indicator {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+/* Section Headings */
+.registration-form h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 32px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ================================
+   INPUT FIELDS
+================================ */
+.registration-form input,
+.registration-form select {
+  width: 100%;
+  padding: 14px 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 16px;
+  transition: all 0.25s ease;
+  background-color: #ffffff;
+}
+
+.registration-form input::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus */
+.registration-form input:focus,
+.registration-form select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+  outline: none;
+}
+
+/* ================================
+   RADIO BUTTONS
+================================ */
+.radio-group {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #374151;
+}
+
+.radio-group input[type="radio"] {
+  accent-color: #198754;
+  cursor: pointer;
+}
+
+/* ================================
+   CHECKBOX
+================================ */
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 22px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.checkbox input {
+  margin-top: 3px;
+  accent-color: #198754;
+}
+
+/* ================================
+   CTA BUTTON
+================================ */
+.cta-btn {
+  width: 100%;
+  margin-top: 28px;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #198754, #0f5132);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(25, 135, 84, 0.35);
+}
+
+/* ================================
+   STEP BUTTONS (TOP)
+================================ */
+.getbuttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.getbuttons button {
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 999px;
+  border: 1px solid #d1fae5;
+  background-color: #ecfdf5;
+  color: #065f46;
+  cursor: pointer;
+}
+
+.getbuttons button.active {
+  background: #198754;
+  color: #ffffff;
+  border-color: #198754;
+}
+
+.getbuttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .registration-form {
+    padding: 28px 22px;
+    margin: 40px 16px;
+  }
+
+  .registration-form h2 {
+    font-size: 24px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

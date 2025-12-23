@@ -42,9 +42,9 @@ const slides = [
   {
     title: "Manage Carbon Emission",
     contents: [
-      { title2: "Measure",mob:"https://iili.io/fToWbVt.jpg",img: "https://iili.io/fnREPxS.jpg",imgtext:'Carbon Emission', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
-      { title2: "Report",mob:"https://iili.io/fToXfxS.jpg",img: "https://iili.io/fnREZ0u.jpg", imgtext:'Carbon Emission',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
-      { title2: "Offset",mob:"https://iili.io/fToWyfn.jpg",img: "https://iili.io/fnREQfe.jpg", imgtext:'Carbon Emission',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
+      { title2: "Measure",mob:"https://iili.io/fToWbVt.jpg",img: "https://iili.io/fnREPxS.jpg",imgtext:'Carbon Emissions', text: "ClimeScore’s AI powered emissions measurement helps you track your Carbon Footprint in real time across Scope 1 , Scope 2 and Scope 3. It is robust, globally validated and incredibly simple." },
+      { title2: "Report",mob:"https://iili.io/fToXfxS.jpg",img: "https://iili.io/fnREZ0u.jpg", imgtext:'Carbon Emissions',text: "ClimeScore provides you with a simplified, yet reliable framework for your sustainability reporting as per GRI standards. Generate globally valid reports with a few simple clicks and analyse your carbon footprint in real time - across departments, locations, business verticals, vendors and more." },
+      { title2: "Offset",mob:"https://iili.io/fToWyfn.jpg",img: "https://iili.io/fnREQfe.jpg", imgtext:'Carbon Emissions',text: "ClimeScore helps you achieve Carbon Neutrality through a structured approach of reduction and offsetting. Once your carbon footprint is accurately measured, take the next step by offsetting your remaining emissions to become Verified Carbon Neutral." }],
   },
   {
     title: "Manage Carbon Credits",
@@ -259,7 +259,7 @@ const mapPoints = [
     District: "Sinnaur",
     State: "Agroforestry & Biochar",
     desc: "ClimeGrove by NettZero has a Agro-forestry waste based biochar facility here, which makes high quality biochar that is rich in Carbon Content. This project ensures that the pristine slopes of the Himalayas are not further polluted, through the practice of burning agro-forestry waste. The project aims to create 2,000 high-integrity Carbon Credits this year.",
-     img: "https://infinitejourneys.in/blog/wp-content/uploads/2020/09/Apples-in-Kinnaur-2-2.jpg",
+     img: "https://iili.io/fEgJSz7.jpg",
   },
 
    {
@@ -267,21 +267,21 @@ const mapPoints = [
     District: "Pilibhit",
     State: "Uttar Pradesh",
     desc: "ClimeGrove by NettZero is working with over 2,000 farmers to prevent the burning of rice straw that releases enormous amounts of methane and CO2 in the atmosphere. The project provides straw cropping facilities to under equipped farmers.",
-     img: "https://iili.io/KD3lbLv.png",
+     img: "https://iili.io/fEgzTYP.jpg",
   },
   {
     Locality: "Mandawa",
     District: "Shekhawati",
     State: "ClimeScore Creates Rajasthan’s first Carbon Neutral Resort",
     desc: "ClimeScore by NettZero has worked with the Legacy Mandawa for four years to ensure it is a sustainable property in the midst of a parched desert. We provide them with accurate measurements across all scopes - along with reduction processes and purchase of genuine offsets to create a carbon neutral property. ",
-    img: "https://legacy.themachan.com/img/yovraj-room.jpg",
+    img: "https://iili.io/fErRVoX.jpg",
   },
   {
     Locality: "Bandhavgarh",
     District: "Umaria",
     State: "Madhya Pradesh",
     desc: "ClimeGrove by NettZero has been working in the ecologically sensitive area of the Bandhavgarh since 2023 to aid with biodiversity preservation and biochar creation through rice straw and invasive species. We have helped create over 300,000 litres of biochar and clear over 200 acres of invasive species, while providing income to women and local farmers. ",
-     img: "https://indiaforbeginners.com/wp-content/uploads/2020/02/Adobe-tigers-Bandhavgarh.jpg",
+     img: "https://iili.io/fErM34S.jpg",
   },
  
   {
@@ -289,7 +289,7 @@ const mapPoints = [
     District: "Pune",
     State: "Asia’s first Climate Neutral Resort Text- 4 years and counting!",
     desc: "ClimeScore by NettZero has proudly created Asia’s first Verified Carbon Neutral resort at The Machan. Known for its immaculately designed tree houses that merge into nature, ClimeScore has meeticulously documented the emissions of this highly admired resort since 2022.",
-     img: "https://www.themachan.com/img/slider-main/slider/1.webp",
+     img: "https://iili.io/fErkQ7R.jpg",
   },
 
   {
@@ -297,7 +297,7 @@ const mapPoints = [
     District: "Kodagu",
     State: "The Tamara Emissions Management Program",
     desc: "ClimeScore by NettZero provides its platform to this exquisite piece of paradise nestled amidst plantations in Coorg.  We have developed a customised solution that helps The Tamara track emissions not just across Scope 1 & Scope 2 - but, also of its guest travel.",
-    img: "https://iili.io/KD34QKQ.jpg",
+    img: "https://iili.io/fEri6wG.jpg",
   },
 ];
 
@@ -421,7 +421,7 @@ const mapsStickyRef = useRef(null);
   // Div1 carousel
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 13000);
+    const interval = setInterval(() => setCurrent((p) => (p + 1) % images.length), 10000);
     return () => clearInterval(interval);
   }, []);
 
