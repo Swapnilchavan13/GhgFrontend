@@ -424,6 +424,21 @@ position: relative;
   pointer-events: none; /* so clicks go through */
 }
 
+.step-image-text3 {
+  position: absolute;
+  bottom: 90%;
+  left: 30%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 6px 16px;
+  border-radius: 8px;
+  pointer-events: none; /* so clicks go through */
+}
+
 /* Div 3 */
 .counters-container { 
  padding-top: 20px;

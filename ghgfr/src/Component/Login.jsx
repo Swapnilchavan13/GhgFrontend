@@ -831,7 +831,7 @@ https://iili.io/fT4pA3G.jpg
                   <div className="partner-left">
                     <div className="partner-image-box">
                       <img src={item.image} alt={item.label} />
-                      <span className="step-image-text2">{item.imgtext}</span>
+                      <span className="step-image-text3">{item.imgtext}</span>
                     </div>
                   </div>
                   <div className="partner-right">

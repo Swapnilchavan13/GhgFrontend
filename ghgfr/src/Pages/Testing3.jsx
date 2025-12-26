@@ -450,7 +450,8 @@ useEffect(() => {
       const h = el.offsetHeight || el.getBoundingClientRect().height || 0;
       if (h > maxH) maxH = h;
     });
-    if (stickyRef.current) stickyRef.current.style.height = `${maxH}px`;
+    stickyRef.current?.style && (stickyRef.current.style.height = `${maxH}px`);
+
   };
 
   // run measurement once and after a short delay (images/fonts)
@@ -547,9 +548,8 @@ useEffect(() => {
       maxH = Math.max(maxH, el.offsetHeight);
     });
 
-    if (countersStickyRef.current) {
-      countersStickyRef.current.style.height = `${maxH}px`;
-    }
+   countersStickyRef.current?.style && (countersStickyRef.current.style.height = `${maxH}px`);
+
   };
 
   setTimeout(measureAndSet, 100);
@@ -614,9 +614,8 @@ useEffect(() => {
       if (h > maxH) maxH = h;
     });
 
-    if (partnersStickyRef.current) {
-      partnersStickyRef.current.style.height = `${maxH}px`;
-    }
+  partnersStickyRef.current?.style && (partnersStickyRef.current.style.height = `${maxH}px`);
+
   };
 
   measureAndSet();
@@ -729,7 +728,8 @@ useEffect(() => {
       const h = el.offsetHeight || el.getBoundingClientRect().height || 0;
       if (h > maxH) maxH = h;
     });
-    if (mapsStickyRef.current) mapsStickyRef.current.style.height = `${maxH}px`;
+   mapsStickyRef.current?.style && (mapsStickyRef.current.style.height = `${maxH}px`);
+
   };
 
   // run measurement immediately and again after a short delay
